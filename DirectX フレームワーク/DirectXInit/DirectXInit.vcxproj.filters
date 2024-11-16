@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Camera関係">
+      <UniqueIdentifier>{0d2c9082-a350-48ee-be1a-6da8042a1f41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera関係\ヘッダーファイル">
+      <UniqueIdentifier>{2aba95cc-5835-4bbe-b1a0-de044cbaab90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera関係\ソースファイル">
+      <UniqueIdentifier>{6e888aae-f5bc-4e87-83d0-c2e552c34665}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene関係">
+      <UniqueIdentifier>{255bf5cd-1e9a-4bc7-82e1-78f4b47d815e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene関係\ソースファイル">
+      <UniqueIdentifier>{2e981449-7619-44fb-98db-8b53d6357514}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene関係\ヘッダーファイル">
+      <UniqueIdentifier>{daabdcf9-280b-4cc5-a08e-9ec05a69b0fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application関係">
+      <UniqueIdentifier>{6adb6d7e-602c-48d7-aedb-0a6010dfa72f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application関係\ヘッダー ファイル">
+      <UniqueIdentifier>{da5f96a2-50d0-44b0-a9d4-2082a6df282d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application関係\ソース ファイル">
+      <UniqueIdentifier>{edbf907a-5fd9-4a3a-a090-19f9d6145135}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main関係">
+      <UniqueIdentifier>{8f440a21-9d4d-4f72-b9bc-27e4cd18dcc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main関係\ヘッダー ファイル">
+      <UniqueIdentifier>{faec5038-d1af-492a-8f07-912388172e52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main関係\ソース ファイル">
+      <UniqueIdentifier>{0ba6d412-a9be-4ea0-844e-a80108c0f565}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer関係">
+      <UniqueIdentifier>{eeef016d-799c-44e4-a415-c17bef479c10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer関係\ヘッダ ファイル">
+      <UniqueIdentifier>{b8c63b9d-f9a7-47b3-93d1-170dfbda372b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer関係\ソース ファイル">
+      <UniqueIdentifier>{44f59091-84dd-45ab-a326-799a1d84fe0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Texture関係">
+      <UniqueIdentifier>{f60d0353-af55-4589-8f1a-09dfceed5c3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Texture関係\ソース ファイル">
+      <UniqueIdentifier>{422f2a36-4121-49af-88e3-89d107100486}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Texture関係\ヘッダー ファイル">
+      <UniqueIdentifier>{75b3c8a1-2677-4725-96ad-308074f5d648}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buffer関係">
+      <UniqueIdentifier>{34cfaf45-ce4a-48ff-8070-a0dbaa565c04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buffer関係\ソース ファイル">
+      <UniqueIdentifier>{162c4de7-57d1-450e-8d8a-19147fdf6316}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buffer関係\ヘッダー ファイル">
+      <UniqueIdentifier>{405e8a5a-15bd-46a9-8d46-dbe5f4f4ec9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader関係">
+      <UniqueIdentifier>{1b702aa8-f669-49a8-ae82-007ec140e521}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader関係\ヘッダー ファイル">
+      <UniqueIdentifier>{81c8d2aa-31f3-4bcf-9015-31c3346459bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader関係\ソース ファイル">
+      <UniqueIdentifier>{ad8abaf7-67e2-48f0-a7c5-7464b8eea68e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object関係">
+      <UniqueIdentifier>{26939d6b-8248-4021-bb7f-6a2bf4f58ade}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object関係\TestQuad">
+      <UniqueIdentifier>{92271f0e-df59-49aa-b9eb-31059973d1a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object関係\TestQuad\ヘッダー ファイル">
+      <UniqueIdentifier>{6d21646b-b07e-4acd-9fb8-0366b96c82f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object関係\TestQuad\ソース ファイル">
+      <UniqueIdentifier>{0fb42386-80d6-4904-b88a-e855410104c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object関係\Object %28基底クラス%29">
+      <UniqueIdentifier>{32b4d57f-6281-4379-a138-05ac906682e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object関係\Object %28基底クラス%29\ソース ファイル">
+      <UniqueIdentifier>{e943828a-238b-45cf-8f1b-264ef7a7847c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object関係\Object %28基底クラス%29\ヘッダー ファイル">
+      <UniqueIdentifier>{20f9b2ae-cec0-4330-b552-6538026920da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input関係">
+      <UniqueIdentifier>{68659a91-e0a3-477e-b2ff-f2db81fbe98d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input関係\ヘッダー ファイル">
+      <UniqueIdentifier>{eb388b23-df6a-43db-b38e-6995b7659245}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input関係\ソース ファイル">
+      <UniqueIdentifier>{f74a5192-a8bb-4fb5-acbd-1e488a67eabd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Scene関係\ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Scene関係\ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>Scene関係\ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultScene.cpp">
+      <Filter>Scene関係\ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleScene.cpp">
+      <Filter>Scene関係\ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Camera関係\ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Application.cpp">
+      <Filter>Application関係\ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Main関係\ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Renderer関係\ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="dx11helper.cpp">
+      <Filter>Buffer関係\ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Shader関係\ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="TestQuad.cpp">
+      <Filter>Object関係\TestQuad\ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Texture関係\ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="stb_image.cpp">
+      <Filter>Texture関係\ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Object関係\Object %28基底クラス%29\ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Input関係\ソース ファイル</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Scene.h">
+      <Filter>Scene関係\ヘッダーファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>Scene関係\ヘッダーファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Scene関係\ヘッダーファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>Scene関係\ヘッダーファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultScene.h">
+      <Filter>Scene関係\ヘッダーファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Camera関係\ヘッダーファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Application.h">
+      <Filter>Application関係\ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>Main関係\ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Renderer関係\ヘッダ ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexBuffer.h">
+      <Filter>Buffer関係\ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexBuffer.h">
+      <Filter>Buffer関係\ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="dx11helper.h">
+      <Filter>Buffer関係\ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Shader関係\ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="TestQuad.h">
+      <Filter>Object関係\TestQuad\ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Texture関係\ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_image.h">
+      <Filter>Texture関係\ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Object関係\Object %28基底クラス%29\ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Input関係\ヘッダー ファイル</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="shader\common.hlsl">
+      <Filter>リソース ファイル</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\litTexturePS.hlsl">
+      <Filter>リソース ファイル</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\litTextureVS.hlsl">
+      <Filter>リソース ファイル</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\unlitTexturePS.hlsl">
+      <Filter>リソース ファイル</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\unlitTextureVS.hlsl">
+      <Filter>リソース ファイル</Filter>
+    </FxCompile>
+  </ItemGroup>
+</Project>
