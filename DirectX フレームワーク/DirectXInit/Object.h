@@ -3,6 +3,7 @@
 #include "Shader.h"
 
 class Object {
+
 protected:
 	// SRTî•ñ(p¨î•ñ)
 	DirectX::SimpleMath::Vector3 m_Position = DirectX::SimpleMath::Vector3(0.0f, 0.0f, 0.0f);
