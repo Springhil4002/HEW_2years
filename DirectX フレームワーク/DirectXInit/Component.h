@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Object.h"
-#include "Com_Transform.h"
 #include "Com_Quad.h"
 
 class Object;

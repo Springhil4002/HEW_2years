@@ -63,6 +63,7 @@ void Quad::Update()
 //===================================================================
 void Quad::Draw()
 {
+
 	// SRTî•ñì¬
 	Matrix r = Matrix::CreateFromYawPitchRoll(
 		m_Rotation.y,

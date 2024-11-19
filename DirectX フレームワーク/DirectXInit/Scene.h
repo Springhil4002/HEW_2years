@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include "input.h"
 #include "Object.h"
-#include "TestQuad.h"
 
 class Scene
 {
@@ -17,8 +16,8 @@ public:
 	virtual void Draw() = 0;	//描画処理関数	
 
 	// オブジェクトを管理するリスト
-	std::list<Object*>GameObjectList;
+	std::vector<Object*>GameObjectList;
 	// オブジェクトを取得する関数
-	Object* GetGameObject();
-	Object* AddGameObject();
+	Object* GetGameObject(const std::string& _name);
+	void AddGameObject(std::string _name);
 };
