@@ -80,6 +80,24 @@
     <Filter Include="Object関係">
       <UniqueIdentifier>{26939d6b-8248-4021-bb7f-6a2bf4f58ade}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object関係\TestQuad">
+      <UniqueIdentifier>{92271f0e-df59-49aa-b9eb-31059973d1a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object関係\TestQuad\ヘッダー ファイル">
+      <UniqueIdentifier>{6d21646b-b07e-4acd-9fb8-0366b96c82f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object関係\TestQuad\ソース ファイル">
+      <UniqueIdentifier>{0fb42386-80d6-4904-b88a-e855410104c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object関係\Object %28基底クラス%29">
+      <UniqueIdentifier>{32b4d57f-6281-4379-a138-05ac906682e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object関係\Object %28基底クラス%29\ソース ファイル">
+      <UniqueIdentifier>{e943828a-238b-45cf-8f1b-264ef7a7847c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object関係\Object %28基底クラス%29\ヘッダー ファイル">
+      <UniqueIdentifier>{20f9b2ae-cec0-4330-b552-6538026920da}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Input関係">
       <UniqueIdentifier>{68659a91-e0a3-477e-b2ff-f2db81fbe98d}</UniqueIdentifier>
     </Filter>
@@ -88,24 +106,6 @@
     </Filter>
     <Filter Include="Input関係\ソース ファイル">
       <UniqueIdentifier>{f74a5192-a8bb-4fb5-acbd-1e488a67eabd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Component関係">
-      <UniqueIdentifier>{83262faa-1f26-4b30-a60d-85bb4184b822}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Component関係\ヘッダー ファイル">
-      <UniqueIdentifier>{2dc9c063-c4d1-4114-83f0-506f4249085c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Component関係\ソース ファイル">
-      <UniqueIdentifier>{0c1a31b5-b73a-40ba-82b4-af980bab292e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object関係\Object">
-      <UniqueIdentifier>{32b4d57f-6281-4379-a138-05ac906682e5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object関係\Object\ソース ファイル">
-      <UniqueIdentifier>{e943828a-238b-45cf-8f1b-264ef7a7847c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object関係\Object\ヘッダー ファイル">
-      <UniqueIdentifier>{20f9b2ae-cec0-4330-b552-6538026920da}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +142,9 @@
     <ClCompile Include="Shader.cpp">
       <Filter>Shader関係\ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="TestQuad.cpp">
+      <Filter>Object関係\TestQuad\ソース ファイル</Filter>
+    </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>Texture関係\ソース ファイル</Filter>
     </ClCompile>
@@ -149,16 +152,10 @@
       <Filter>Texture関係\ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Object.cpp">
-      <Filter>Object関係\Object\ソース ファイル</Filter>
+      <Filter>Object関係\Object %28基底クラス%29\ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Input.cpp">
       <Filter>Input関係\ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Component.cpp">
-      <Filter>Component関係\ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Com_Quad.cpp">
-      <Filter>Component関係\ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -201,6 +198,9 @@
     <ClInclude Include="Shader.h">
       <Filter>Shader関係\ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="TestQuad.h">
+      <Filter>Object関係\TestQuad\ヘッダー ファイル</Filter>
+    </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>Texture関係\ヘッダー ファイル</Filter>
     </ClInclude>
@@ -208,16 +208,10 @@
       <Filter>Texture関係\ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Object.h">
-      <Filter>Object関係\Object\ヘッダー ファイル</Filter>
+      <Filter>Object関係\Object %28基底クラス%29\ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Input.h">
       <Filter>Input関係\ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Component.h">
-      <Filter>Component関係\ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Com_Quad.h">
-      <Filter>Component関係\ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

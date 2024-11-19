@@ -7,9 +7,7 @@ Scene::Scene()
 
 Scene::~Scene()
 {
-	for (auto* obj : GameObjectList) {
-		delete obj;
-	}
+
 }
 
 void Scene::Update()
@@ -23,22 +21,22 @@ void Scene::Draw()
 }
 
 // シーンが持っているオブジェクトを取得する関数
-Object* Scene::GetGameObject(const std::string& _name)
+Object* Scene::GetGameObject()
 {
-	for (Object* GameObject : GameObjectList)
-	{
-		if (GameObject->name == _name)
-		{
-			return GameObject;
+	for (auto com : GameObjectList) {
+		Object* buff = dynamic_cast<Object*>(com);
+		if (buff != nullptr) {
+			return buff;
 		}
 	}
 	return nullptr;
 }
 
 // シーンが持つオブジェクトを追加する関数
-void Scene::AddGameObject(std::string _name)
+Object* Scene::AddGameObject()
 {
-	Object* buff = new Object(_name);
-	buff->name = _name;
+	Object* buff = new Object();
+	buff->Parent = this;
 	GameObjectList.push_back(buff);
+	return buff;
 }
