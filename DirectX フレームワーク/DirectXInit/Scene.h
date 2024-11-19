@@ -14,11 +14,5 @@ public:
 
 	//純粋仮想関数
 	virtual void Update() = 0;	//更新処理関数
-	virtual void Draw() = 0;	//描画処理関数	
-
-	// オブジェクトを管理するリスト
-	std::list<Object*>GameObjectList;
-	// オブジェクトを取得する関数
-	Object* GetGameObject();
-	Object* AddGameObject();
+	virtual void Draw() = 0;	//描画処理関数
 };
