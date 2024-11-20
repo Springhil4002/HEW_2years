@@ -6,9 +6,9 @@
 #include "Texture.h"
 
 //=======================================================================================
-// TestQuadクラス
+// Groundクラス
 //=======================================================================================
-class TestQuad :public Object{
+class Ground :public Object {
 
 	// 描画のための情報(メッシュに関わる情報)
 	IndexBuffer m_IndexBuffer;				// インデックスバッファ
@@ -16,21 +16,10 @@ class TestQuad :public Object{
 
 	// 描画のための情報(見た目に関わる部分)
 	Texture m_Texture;	// テクスチャ
-
 public:
-
-	void Init(const std::string& filename);
 	// オーバーライドした関数
-	//void Init();	// 初期化処理
+	void Init();	// 初期化処理
 	void Update();	// 更新処理
 	void Draw();	// 描画処理
 	void Uninit();	// 解放処理
 };
-
-
-
-
-
-
-
-

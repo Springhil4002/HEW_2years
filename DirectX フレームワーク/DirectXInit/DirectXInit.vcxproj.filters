@@ -80,15 +80,6 @@
     <Filter Include="Object関係">
       <UniqueIdentifier>{26939d6b-8248-4021-bb7f-6a2bf4f58ade}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object関係\TestQuad">
-      <UniqueIdentifier>{92271f0e-df59-49aa-b9eb-31059973d1a0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object関係\TestQuad\ヘッダー ファイル">
-      <UniqueIdentifier>{6d21646b-b07e-4acd-9fb8-0366b96c82f9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object関係\TestQuad\ソース ファイル">
-      <UniqueIdentifier>{0fb42386-80d6-4904-b88a-e855410104c1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object関係\Object %28基底クラス%29">
       <UniqueIdentifier>{32b4d57f-6281-4379-a138-05ac906682e5}</UniqueIdentifier>
     </Filter>
@@ -106,6 +97,24 @@
     </Filter>
     <Filter Include="Input関係\ソース ファイル">
       <UniqueIdentifier>{f74a5192-a8bb-4fb5-acbd-1e488a67eabd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object関係\Ground %28地面%29">
+      <UniqueIdentifier>{772628d2-7408-4807-bd0f-b8e914d50066}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object関係\Ground %28地面%29\ヘッダー ファイル">
+      <UniqueIdentifier>{77574674-ad07-421c-90ea-75d7042e8f83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object関係\Ground %28地面%29\ソース ファイル">
+      <UniqueIdentifier>{0b5271e4-8942-405f-b3ea-a69a86ccd833}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object関係\Quad %28描画できる四角%29">
+      <UniqueIdentifier>{92271f0e-df59-49aa-b9eb-31059973d1a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object関係\Quad %28描画できる四角%29\ヘッダー ファイル">
+      <UniqueIdentifier>{6d21646b-b07e-4acd-9fb8-0366b96c82f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object関係\Quad %28描画できる四角%29\ソース ファイル">
+      <UniqueIdentifier>{0fb42386-80d6-4904-b88a-e855410104c1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -142,8 +151,8 @@
     <ClCompile Include="Shader.cpp">
       <Filter>Shader関係\ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="TestQuad.cpp">
-      <Filter>Object関係\TestQuad\ソース ファイル</Filter>
+    <ClCompile Include="Quad.cpp">
+      <Filter>Object関係\Quad %28描画できる四角%29\ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>Texture関係\ソース ファイル</Filter>
@@ -156,6 +165,9 @@
     </ClCompile>
     <ClCompile Include="Input.cpp">
       <Filter>Input関係\ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Ground.cpp">
+      <Filter>Object関係\Ground %28地面%29\ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -198,8 +210,8 @@
     <ClInclude Include="Shader.h">
       <Filter>Shader関係\ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="TestQuad.h">
-      <Filter>Object関係\TestQuad\ヘッダー ファイル</Filter>
+    <ClInclude Include="Quad.h">
+      <Filter>Object関係\Quad %28描画できる四角%29\ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>Texture関係\ヘッダー ファイル</Filter>
@@ -212,6 +224,9 @@
     </ClInclude>
     <ClInclude Include="Input.h">
       <Filter>Input関係\ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Ground.h">
+      <Filter>Object関係\Ground %28地面%29\ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

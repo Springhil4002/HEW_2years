@@ -1,21 +1,21 @@
-#include "TestQuad.h"
+#include "Ground.h"
 
 using namespace DirectX::SimpleMath;
 
 //===================================================================
 // 初期化処理
 //===================================================================
-void TestQuad::Init(const std::string& _filename)
+void Ground::Init()
 {
 	// 頂点データ
 	std::vector<VERTEX_3D>	vertices;
 
 	vertices.resize(4);
 
-	vertices[0].position = Vector3(-0.5f,  0.5f, 0);
-	vertices[1].position = Vector3( 0.5f,  0.5f, 0);
-	vertices[2].position = Vector3(-0.5f, -0.5f, 0);
-	vertices[3].position = Vector3( 0.5f, -0.5f, 0);
+	vertices[0].position = Vector3(-0.5f,  0.5f, 0.0f);
+	vertices[1].position = Vector3( 0.5f,  0.5f, 0.0f);
+	vertices[2].position = Vector3(-0.5f, -0.5f, 0.0f);
+	vertices[3].position = Vector3( 0.5f, -0.5f, 0.0f);
 
 	vertices[0].color = Color(1, 1, 1, 1);
 	vertices[1].color = Color(1, 1, 1, 1);
@@ -46,14 +46,17 @@ void TestQuad::Init(const std::string& _filename)
 	m_Shader.Create("shader/unlitTextureVS.hlsl", "shader/unlitTexturePS.hlsl");
 
 	// テクスチャロード
-	bool sts = m_Texture.Load(_filename);
+	bool sts = m_Texture.Load("asset/Texture/Grass.jpg");
 	assert(sts == true);
+
+	// オブジェクトのサイズ設定
+	SetScale(50.0f, 50.0f, 0.0f);
 }
 
 //===================================================================
 // 更新処理
 //===================================================================
-void TestQuad::Update()
+void Ground::Update()
 {
 	
 }
@@ -61,7 +64,7 @@ void TestQuad::Update()
 //===================================================================
 // 描画処理
 //===================================================================
-void TestQuad::Draw()
+void Ground::Draw()
 {
 	// SRT情報作成
 	Matrix r = Matrix::CreateFromYawPitchRoll(
@@ -104,8 +107,7 @@ void TestQuad::Draw()
 //===================================================================
 // 終了処理
 //===================================================================
-void TestQuad::Uninit()
+void Ground::Uninit()
 {
 
 }
-

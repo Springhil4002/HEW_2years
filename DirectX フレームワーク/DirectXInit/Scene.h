@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include "input.h"
 #include "Object.h"
-#include "TestQuad.h"
+#include "Quad.h"
+#include "Ground.h"
 
 class Scene
 {
