@@ -14,5 +14,4 @@ public:
 	//オーバーライドした関数
 	void Update();		// 更新処理
 	void Draw();		// 描画処理
-	
 };

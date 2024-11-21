@@ -7,7 +7,7 @@ TitleScene::TitleScene()
 	bg.SetScale(1280.0f, 720.0f, 0.0f);		//大きさを設定
 
 	// 配列の要素にオブジェクトを追加
-	objects.emplace_back(new Ground);
+	objects.emplace_back(std::make_unique<Ground>());
 
 	// オブジェクト初期化
 	for (auto& o : objects) {

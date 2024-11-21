@@ -9,8 +9,10 @@ Scene* SceneManager::currentScene = nullptr;
 
 void SceneManager::ChangeScene(SCENE _scene)
 {
+
 	if (currentScene != nullptr)
 	{
+		delete currentScene;
 		currentScene = nullptr;
 	}
 
@@ -47,4 +49,7 @@ void SceneManager::Draw()
 	}
 }
 
+void SceneManager::Uninit()
+{
 
+}
