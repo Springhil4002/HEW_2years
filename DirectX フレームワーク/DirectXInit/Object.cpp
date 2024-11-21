@@ -22,3 +22,9 @@ void Object::SetRotation(float _x, float _y, float _z)
 	m_Rotation.y = _y;
 	m_Rotation.z = _z;
 }
+
+bool Object::SearchTag(const std::string _tag) const
+{
+	// ƒ^ƒO‚ğŒŸõ‚µ‚Ä•Ô‚·
+	return tags.SearchTag(_tag);
+}

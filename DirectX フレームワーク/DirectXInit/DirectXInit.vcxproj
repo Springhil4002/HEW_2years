@@ -153,6 +153,7 @@
     <ClCompile Include="Quad.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Tags.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TitleScene.cpp" />
   </ItemGroup>
@@ -176,6 +177,7 @@
     <ClInclude Include="Quad.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Tags.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="VertexBuffer.h" />

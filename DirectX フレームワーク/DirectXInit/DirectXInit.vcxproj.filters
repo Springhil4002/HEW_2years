@@ -116,6 +116,15 @@
     <Filter Include="Object関係\Quad %28描画できる四角%29\ソース ファイル">
       <UniqueIdentifier>{0fb42386-80d6-4904-b88a-e855410104c1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Tag関係">
+      <UniqueIdentifier>{3b656b12-5825-47b9-ac5f-3c7f01d12c9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tag関係\ヘッダー ファイル">
+      <UniqueIdentifier>{71333ed8-214f-4e71-9bb2-18bc23a78704}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tag関係\ソース ファイル">
+      <UniqueIdentifier>{4b6ee3b6-9332-4299-86c8-c602d89dfcae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scene.cpp">
@@ -168,6 +177,9 @@
     </ClCompile>
     <ClCompile Include="Ground.cpp">
       <Filter>Object関係\Ground %28地面%29\ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Tags.cpp">
+      <Filter>Tag関係\ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -227,6 +239,9 @@
     </ClInclude>
     <ClInclude Include="Ground.h">
       <Filter>Object関係\Ground %28地面%29\ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Tags.h">
+      <Filter>Tag関係\ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
