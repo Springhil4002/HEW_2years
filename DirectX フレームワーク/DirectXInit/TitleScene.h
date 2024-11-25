@@ -6,7 +6,7 @@ class TitleScene
 {
 private:
 	Quad bg;	// 背景オブジェクト
-	std::vector <std::unique_ptr<Object>>objects;	// オブジェクト配列
+	//std::vector <std::unique_ptr<Object>>objects;	// オブジェクト配列
 public:
 	TitleScene();		// コンストラクタ(初期化処理)
 	~TitleScene();		// デストラクタ	(解放処理)
