@@ -125,6 +125,15 @@
     <Filter Include="Tag関係\ソース ファイル">
       <UniqueIdentifier>{4b6ee3b6-9332-4299-86c8-c602d89dfcae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object関係\Player">
+      <UniqueIdentifier>{0bedba0e-8384-4bcf-adad-95959008a8fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object関係\Player\ヘッダー ファイル">
+      <UniqueIdentifier>{583c52ee-60e8-4210-ac8b-5cfc046ab376}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object関係\Player\ソース ファイル">
+      <UniqueIdentifier>{38808d2c-4052-41b8-aa61-f713a3e88e8e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scene.cpp">
@@ -177,6 +186,9 @@
     </ClCompile>
     <ClCompile Include="Ground.cpp">
       <Filter>Object関係\Ground %28地面%29\ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Object関係\Player\ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Tags.cpp">
       <Filter>Tag関係\ソース ファイル</Filter>
@@ -242,6 +254,9 @@
     </ClInclude>
     <ClInclude Include="Tags.h">
       <Filter>Tag関係\ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Object関係\Player\ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

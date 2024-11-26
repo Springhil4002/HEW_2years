@@ -3,13 +3,25 @@
 
 GameScene::GameScene()
 {
-	bg.Init("asset/Texture/Beach.png");			//”wŒi‚ğ‰Šú‰»
-	bg.SetScale(1280.0f, 720.0f, 0.0f);	//‘å‚«‚³‚ğİ’è
+	bg.Init("asset/Texture/Beach.png");	// ”wŒi‚ğ‰Šú‰»
+	bg.SetScale(1280.0f, 720.0f, 0.0f);	// ‘å‚«‚³‚ğİ’è
+
+	ground.resize(OBJECT_VALUE);
+	for (int i = 0; i < OBJECT_VALUE; ++i)
+	{
+		ground[i] = new Ground;
+		ground[i]->Init();	// ’n–Ê‚ğ•`‰æ
+		ground[i]->SetPos(-200 + i * 50, -250.0f, 0.0f);	// À•W‚ğ‰Šú‰»
+	}
 }
 
 GameScene::~GameScene()
 {
 	bg.Uninit();	//”wŒi‚ğI—¹
+	for (int i = 0; i < OBJECT_VALUE; ++i)
+	{
+		ground[i]->Uninit();
+	}
 }
 
 void GameScene::Update()
@@ -33,5 +45,9 @@ void GameScene::Update()
 
 void GameScene::Draw()
 {
-	bg.Draw();		//”wŒi‚ğ•`‰æ
+	bg.Draw();		// ”wŒi‚ğ•`‰æ
+	for (int i = 0; i < OBJECT_VALUE; ++i)
+	{
+		ground[i]->Draw();
+	}
 }

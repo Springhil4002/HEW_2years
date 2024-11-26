@@ -6,7 +6,7 @@ void Tags::AddTag(const std::string _tag)
 	tags.insert(_tag);
 }
 
-// タグの削除
+// タグの部分削除
 void Tags::RemoveTag(const std::string _tag)
 {
 	tags.erase(_tag);

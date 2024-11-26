@@ -8,13 +8,13 @@ class Tags
 private:
 	std::set<std::string> tags;
 
-public:
-	Tags() {}
-	~Tags() {}
+public:	
+	Tags() {}	// コンストラクタ
+	~Tags() {}	// デストラクタ
 
-	void AddTag(const std::string _tag);
-	void RemoveTag(const std::string _tag);
-	bool SearchTag(const std::string _tag) const;
-	void ClearTags();
+	void AddTag(const std::string _tag);			// タグの追加
+	void RemoveTag(const std::string _tag);			// タグの部分削除
+	bool SearchTag(const std::string _tag) const;	// タグを探す
+	void ClearTags();								// タグの全削除
 };
 
