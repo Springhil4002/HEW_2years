@@ -102,7 +102,7 @@ bool Application::InitWindow()
 	rc.bottom = static_cast<LONG>(m_Height);
 
 	// ウィンドウサイズを調整
-	auto style = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU;
+	auto style = WS_POPUP;
 	AdjustWindowRect(&rc, style, FALSE);
 
 	// ウィンドウを生成
