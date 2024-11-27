@@ -61,23 +61,14 @@ void Player::Init(const std::string& _filename)
 //===================================================================
 // 更新処理
 //===================================================================
-void Player::Update(float _deltaTime)
+void Player::Update()
 {
+	input.Update();
 	Walk();
 	Jump();
 	if (isJumping) {
 		// deltaTimeはフレーム間の時間
-		velocity -= gravity * ;
-		m_Position.y += velocity * deltaTime;
-
-		// 地面に着地したかどうかのチェック
-		// ここに当たり判定の実装
-		//if ()
-		//{
-		// m_Position.y = 0.0f;
-		//	isJumping = false;
-		//	velocity = 0.0f;
-		//}
+		
 	}
 }
 
@@ -129,7 +120,7 @@ void Player::Draw()
 //===================================================================
 void Player::Uninit()
 {
-	delete this;
+	
 }
 
 //===================================================================
@@ -138,11 +129,11 @@ void Player::Uninit()
 void Player::Walk() {
 	if (input.GetKeyPress(VK_D))
 	{
-		m_Position.x += 0.5f;
+		m_Position.x += 3.0f;
 	}
 	if (input.GetKeyPress(VK_A))
 	{
-		m_Position.x -= 0.5f;
+		m_Position.x -= 3.0f;
 	}
 }
 
@@ -150,10 +141,9 @@ void Player::Walk() {
 // プレイヤーのジャンプ処理
 //===================================================================
 void Player::Jump() {
-	if (input.GetKeyPress(VK_SPACE) && isJumping == false)
+	if (input.GetKeyTrigger(VK_SPACE) && isJumping == false)
 	{
-		isJumping = true;
-		velocity = jumpSpeed;
+		
 	}
 }
 

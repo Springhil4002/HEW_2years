@@ -4,7 +4,7 @@
 TitleScene::TitleScene()
 {
 	bg.Init("asset/Texture/Future.jpg");	//背景を初期化
-	bg.SetScale(1280.0f, 720.0f, 0.0f);		//大きさを設定
+	bg.SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);		//大きさを設定
 
 	// 配列の要素にオブジェクトを追加
 	//objects.emplace_back(std::make_unique<Ground>());

@@ -1,9 +1,9 @@
 #pragma once
 #include "Input.h"
 #include "Quad.h"
-#include "Timer.h"
 
-class Player : Quad {
+class Player 
+	: public Quad {
 private:
 	Input input;			// 入力インスタンス
 	float velocity; 		// 速度
@@ -15,7 +15,7 @@ public:
 
 	// オーバーライドした関数
 	void Init(const std::string& filename);	// 初期化処理
-	void Update(float _deltaTime);			// 更新処理
+	void Update();	// 更新処理
 	void Draw();	// 描画処理
 	void Uninit();	// 解放処理
 

@@ -4,6 +4,11 @@
 #include "Object.h"
 #include "Quad.h"
 #include "Ground.h"
+#include "Player.h"
+
+#define BACKGROUND_X (1920)
+#define BACKGROUND_Y (1080)
+#define BLOCK_SIZE	(60.0f)
 
 class Scene
 {

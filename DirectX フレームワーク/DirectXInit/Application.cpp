@@ -3,7 +3,6 @@
 #include "Renderer.h"
 #include "Camera.h"
 #include "Player.h"
-#include <Windows.h>
 
 const auto ClassName = TEXT("2024 フレームワーク");			// ウィンドウクラス名
 const auto WindowName = TEXT("2024 フレームワーク (描画)");	// ウィンドウ名

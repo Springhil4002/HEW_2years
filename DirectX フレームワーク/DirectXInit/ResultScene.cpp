@@ -4,7 +4,7 @@
 ResultScene::ResultScene()
 {
 	bg.Init("asset/Texture/Night.jpg");		//”wŒi‚ğ‰Šú‰»
-	bg.SetScale(1280.0f, 720.0f, 0.0f);	//‘å‚«‚³‚ğİ’è
+	bg.SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);	//‘å‚«‚³‚ğİ’è
 }
 
 ResultScene::~ResultScene()

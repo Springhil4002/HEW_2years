@@ -46,11 +46,11 @@ void Ground::Init()
 	m_Shader.Create("shader/unlitTextureVS.hlsl", "shader/unlitTexturePS.hlsl");
 
 	// テクスチャロード
-	bool sts = m_Texture.Load("asset/Texture/Grass.jpg");
+	bool sts = m_Texture.Load("asset/Texture/ground.png");
 	assert(sts == true);
 
 	// オブジェクトのサイズ設定
-	SetScale(50.0f, 50.0f, 0.0f);
+	SetScale(60.0f, 60.0f, 0.0f);
 }
 
 //===================================================================
