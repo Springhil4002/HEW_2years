@@ -1,7 +1,7 @@
 #pragma once
 #include "Scene.h"
 
-#define OBJECT_VALUE (5)
+#define OBJECT_VALUE (26)
 
 class GameScene 
 	: public Scene

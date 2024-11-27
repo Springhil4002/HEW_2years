@@ -9,7 +9,7 @@
 // Quadクラス
 //=======================================================================================
 class Quad :public Object{
-
+protected:
 	// 描画のための情報(メッシュに関わる情報)
 	IndexBuffer m_IndexBuffer;				// インデックスバッファ
 	VertexBuffer<VERTEX_3D> m_VertexBuffer;	// 頂点バッファ

@@ -11,7 +11,7 @@ GameScene::GameScene()
 	{
 		ground[i] = new Ground;
 		ground[i]->Init();	// ’n–Ê‚ğ•`‰æ
-		ground[i]->SetPos(-200 + i * 50, -250.0f, 0.0f);	// À•W‚ğ‰Šú‰»
+		ground[i]->SetPos(-620 + i * 50, -250.0f, 0.0f);	// À•W‚ğ‰Šú‰»
 	}
 }
 
