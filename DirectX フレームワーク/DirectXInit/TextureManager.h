@@ -6,6 +6,7 @@
 class TextureManager
 {
 private:
+	// 
 	static std::map<std::string, Texture> textures;
 	static std::set<std::string> loaded;
 	static std::string last;

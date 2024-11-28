@@ -176,7 +176,7 @@ void Application::MainLoop()
 	Renderer::Init();
 
 	// シーンマネージャー初期化(タイトルシーンに設定)
-	sm.ChangeScene(sm.TITLE);
+	sm.Init();
 	
 	// カメラ初期化
 	camera.Init();

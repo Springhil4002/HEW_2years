@@ -34,6 +34,7 @@ void SceneManager::ChangeScene(SCENE _scene)
 void SceneManager::Init()
 {
 	Object::CreateShader();
+	ChangeScene(TITLE);
 }
 
 void SceneManager::Update()
