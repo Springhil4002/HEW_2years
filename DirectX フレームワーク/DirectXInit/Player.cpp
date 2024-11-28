@@ -5,7 +5,7 @@ using namespace DirectX::SimpleMath;
 //===================================================================
 // コンストラクタ
 //===================================================================
-Player::Player():velocity(0.0f),gravity(9.8f),jumpSpeed(50.0f),isJumping(false)
+Player::Player():velocity(0.0f),gravity(9.8f),jumpSpeed(60.0f),isJumping(false)
 {
 
 }
@@ -67,8 +67,16 @@ void Player::Update()
 	Walk();
 	Jump();
 	if (isJumping) {
-		// deltaTimeはフレーム間の時間
-		
+		float baceY = -420.0f;	// 当たり判定未実装故の代わりの基準
+		velocity -= gravity;
+		m_Position.y += velocity;
+
+		if (m_Position.y <= baceY)
+		{
+			m_Position.y = baceY;
+			isJumping = false;
+			velocity = 0.0f;
+		}
 	}
 }
 
@@ -143,7 +151,8 @@ void Player::Walk() {
 void Player::Jump() {
 	if (input.GetKeyTrigger(VK_SPACE) && isJumping == false)
 	{
-		
+		isJumping = true;
+		velocity = jumpSpeed;
 	}
 }
 

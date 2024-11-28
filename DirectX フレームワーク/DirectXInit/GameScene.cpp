@@ -7,7 +7,7 @@ GameScene::GameScene()
 	bg.SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);	// 大きさを設定
 
 	const float playerX = GROUND_OFFSET_X + 20.0f;
-	const float playerY = GROUND_OFFSET_Y + (2 * BLOCK_SIZE);
+	const float playerY = GROUND_OFFSET_Y + (1.5*BLOCK_SIZE);
 
 	player.Init("asset/Texture/player.png");// プレイヤーを初期化
 	player.SetPos(playerX, playerY, 0.0f);	// 座標を設定
