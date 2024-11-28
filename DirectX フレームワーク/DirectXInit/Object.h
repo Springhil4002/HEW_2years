@@ -12,7 +12,7 @@ protected:
 	DirectX::SimpleMath::Vector3 m_Scale = DirectX::SimpleMath::Vector3(1.0f, 1.0f, 1.0f);
 
 	// 描画の為の情報（見た目に関わる部分）
-	Shader m_Shader; // シェーダー
+	static Shader m_Shader; // シェーダー
 
 	// タグ
 	Tags tags;
@@ -32,4 +32,6 @@ public:
 
 	// タグ検索
 	bool SearchTag(const std::string _tag) const;
+
+	static void CreateShader();
 };

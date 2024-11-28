@@ -31,6 +31,11 @@ void SceneManager::ChangeScene(SCENE _scene)
 	}
 }
 
+void SceneManager::Init()
+{
+	Object::CreateShader();
+}
+
 void SceneManager::Update()
 {
 	if (currentScene)

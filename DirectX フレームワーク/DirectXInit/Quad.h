@@ -3,7 +3,7 @@
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
 #include "Object.h"
-#include "Texture.h"
+#include "TextureManager.h"
 
 //=======================================================================================
 // Quadクラス
@@ -15,7 +15,7 @@ protected:
 	VertexBuffer<VERTEX_3D> m_VertexBuffer;	// 頂点バッファ
 
 	// 描画のための情報(見た目に関わる部分)
-	Texture m_Texture;	// テクスチャ
+	TextureManager m_Texture;	// テクスチャ
 
 public:
 

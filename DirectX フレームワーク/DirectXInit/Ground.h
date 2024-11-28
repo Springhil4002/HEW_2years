@@ -3,7 +3,7 @@
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
 #include "Object.h"
-#include "Texture.h"
+#include "TextureManager.h"
 
 //=======================================================================================
 // Groundクラス
@@ -15,7 +15,7 @@ class Ground :public Object {
 	VertexBuffer<VERTEX_3D> m_VertexBuffer;	// 頂点バッファ
 
 	// 描画のための情報(見た目に関わる部分)
-	Texture m_Texture;	// テクスチャ
+	TextureManager m_Texture;	// テクスチャ
 public:
 	// オーバーライドした関数
 	void Init();	// 初期化処理

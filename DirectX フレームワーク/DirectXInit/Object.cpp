@@ -1,5 +1,7 @@
 #include "Object.h"
 
+Shader Object::m_Shader;
+
 // ¡‚Ì‚Æ‚±’Ç‹L‚È‚µ
 void Object::SetPos(float _x, float _y, float _z)
 {
@@ -27,4 +29,9 @@ bool Object::SearchTag(const std::string _tag) const
 {
 	// ƒ^ƒO‚ğŒŸõ‚µ‚Ä•Ô‚·
 	return tags.SearchTag(_tag);
+}
+
+void Object::CreateShader()
+{
+	m_Shader.Create("shader/unlitTextureVS.hlsl", "shader/unlitTexturePS.hlsl");
 }

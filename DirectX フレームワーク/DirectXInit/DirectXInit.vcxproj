@@ -156,6 +156,7 @@
     </ClCompile>
     <ClCompile Include="Tags.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -181,6 +182,7 @@
     </ClInclude>
     <ClInclude Include="Tags.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="VertexBuffer.h" />
     <ClInclude Include="SceneManager.h" />
