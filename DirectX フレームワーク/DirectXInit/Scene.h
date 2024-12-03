@@ -5,6 +5,7 @@
 #include "Quad.h"
 #include "Ground.h"
 #include "Player.h"
+#include "Physic.h"
 
 #define BACKGROUND_X (1920)
 #define BACKGROUND_Y (1080)

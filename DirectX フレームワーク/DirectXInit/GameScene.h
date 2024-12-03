@@ -13,6 +13,7 @@ private:
 	Quad bg;		//背景オブジェクト
 	Player player;	// プレイヤー
 	std::vector<Ground*> ground;	// 地面
+	Physic test;
 public:
 	GameScene();	//コンストラクタ(初期化処理関数)
 	~GameScene();	//デストラクタ　(解放処理関数)

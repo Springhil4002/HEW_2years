@@ -20,6 +20,12 @@ GameScene::GameScene()
 		ground[i]->Init();	// 地面を描画
 		ground[i]->SetPos(GROUND_OFFSET_X + i * BLOCK_SIZE, GROUND_OFFSET_Y, 0.0f);	// 座標を初期化
 	}
+
+	test.Init("asset/Texture/player.png");
+	test.SetPos(playerX, playerY, 0.0f);	// 座標を設定
+	test.SetScale(BLOCK_SIZE, 2 * BLOCK_SIZE, 0.0f);	// 大きさを設定
+	test.SetAcce(0, -1, 0);
+	test.SetVelo(1, 20, 0);
 }
 
 GameScene::~GameScene()
@@ -30,6 +36,7 @@ GameScene::~GameScene()
 	{
 		ground[i]->Uninit();
 	}
+	test.Uninit();
 }
 
 void GameScene::Update()
@@ -37,6 +44,8 @@ void GameScene::Update()
 	input.Update();	//キー入力の判定
 
 	player.Update();
+
+	test.Update();
 
 	// "1"キーを押したら
 	if (input.GetKeyTrigger(VK_1))
@@ -61,4 +70,5 @@ void GameScene::Draw()
 	{
 		ground[i]->Draw();
 	}
+	test.Draw();
 }
