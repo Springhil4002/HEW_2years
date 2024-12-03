@@ -42,13 +42,9 @@ void Quad::Init(const std::string& _filename)
 	// インデックスバッファ生成
 	m_IndexBuffer.Create(indices);
 
-	// シェーダオブジェクト生成
-	//m_Shader.Create("shader/unlitTextureVS.hlsl", "shader/unlitTexturePS.hlsl");
-
 	// テクスチャロード
 	bool sts = m_Texture.Load(_filename);
 	assert(sts == true);
-
 }
 
 //===================================================================

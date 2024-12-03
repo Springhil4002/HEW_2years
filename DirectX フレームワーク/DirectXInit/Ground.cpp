@@ -42,9 +42,6 @@ void Ground::Init()
 	// インデックスバッファ生成
 	m_IndexBuffer.Create(indices);
 
-	// シェーダオブジェクト生成
-	//m_Shader.Create("shader/unlitTextureVS.hlsl", "shader/unlitTexturePS.hlsl");
-
 	// テクスチャロード
 	bool sts = m_Texture.Load("asset/Texture/ground.png");
 	assert(sts == true);

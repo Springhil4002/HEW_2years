@@ -5,35 +5,17 @@ TitleScene::TitleScene()
 {
 	bg.Init("asset/Texture/Future.jpg");	//背景を初期化
 	bg.SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);		//大きさを設定
-
-	// 配列の要素にオブジェクトを追加
-	//objects.emplace_back(std::make_unique<Ground>());
-
-	// オブジェクト初期化
-	/**for (auto& o : objects) {
-		o->Init();
-	}*/
 }
 
 TitleScene::~TitleScene()
 {
 	bg.Uninit();	// 背景を終了
-	
-	// オブジェクト終了処理
-	/**for (auto& o : objects) {
-		o->Uninit();
-	}*/
 }
 
 void TitleScene::Update()
 {
 	input.Update();	//キー入力の判定
 	
-	// オブジェクト更新
-	//for (auto& o : objects) {
-	//	o->Update();
-	//}
-
 	// "2"キーを押したら
 	if (input.GetKeyTrigger(VK_2))
 	{
@@ -52,10 +34,4 @@ void TitleScene::Update()
 void TitleScene::Draw()
 {
 	bg.Draw();		// 背景を描画
-	//ground.Draw();	// 地面を描画
-	
-	// オブジェクト描画
-	/*for (auto& o : objects) {
-		o->Draw();
-	}*/
 }
