@@ -197,6 +197,7 @@
       <Filter>Texture関係\ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Physic.cpp" />
+    <ClCompile Include="Entity.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scene.h">
@@ -266,6 +267,7 @@
       <Filter>Texture関係\ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Physic.h" />
+    <ClInclude Include="Entity.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader\common.hlsl">

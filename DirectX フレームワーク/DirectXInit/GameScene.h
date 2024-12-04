@@ -6,8 +6,7 @@
 #define GROUND_OFFSET_X (-930.0f)
 #define GROUND_OFFSET_Y (-510.0f)
 
-class GameScene 
-	: public Scene
+class GameScene : public Scene
 {
 private:
 	Quad bg;		//背景オブジェクト

@@ -6,6 +6,7 @@
 #include "Ground.h"
 #include "Player.h"
 #include "Physic.h"
+#include "Entity.h"
 
 #define BACKGROUND_X (1920)
 #define BACKGROUND_Y (1080)

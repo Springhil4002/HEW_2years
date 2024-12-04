@@ -137,6 +137,7 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="dx11helper.cpp" />
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="Input.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="Application.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="dx11helper.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="IndexBuffer.h" />

@@ -26,6 +26,24 @@ GameScene::GameScene()
 	test.SetScale(BLOCK_SIZE, 2 * BLOCK_SIZE, 0.0f);	// 大きさを設定
 	test.SetAcce(0, -1, 0);
 	test.SetVelo(1, 20, 0);
+
+
+	Object* buf[2];
+	buf[0] = new Entity;
+	buf[1] = new Entity;
+	Object::GetInstance()->push_back(buf[0]);
+	Object::GetInstance()->push_back(buf[1]);
+	for (auto& ent : Object::GetObj<Entity>())
+	{
+		ent->Init("asset/Texture/explotion.png");
+		ent->SetScale(60, 60, 0);
+	}
+	Object::GetObj<Entity>()[0]->SetPos(playerX, playerY, 0.0f);	// 座標を設定
+	Object::GetObj<Entity>()[0]->SetVelo(1, 0, 0);	// を設定
+	Object::GetObj<Entity>()[1]->SetPos(playerX + 120, playerY, 0.0f);	// 座標を設定
+
+
+
 }
 
 GameScene::~GameScene()
@@ -37,6 +55,10 @@ GameScene::~GameScene()
 		ground[i]->Uninit();
 	}
 	test.Uninit();
+	for (auto& ent : Object::GetObj<Entity>())
+	{
+		ent->Uninit();
+	}
 }
 
 void GameScene::Update()
@@ -46,6 +68,12 @@ void GameScene::Update()
 	player.Update();
 
 	test.Update();
+
+	for (auto& ent : Object::GetObj<Entity>())
+	{
+		ent->Update();
+	}
+
 
 	// "1"キーを押したら
 	if (input.GetKeyTrigger(VK_1))
@@ -71,4 +99,9 @@ void GameScene::Draw()
 		ground[i]->Draw();
 	}
 	test.Draw();
+
+	for (auto& ent : Object::GetObj<Entity>())
+	{
+		ent->Draw();
+	}
 }

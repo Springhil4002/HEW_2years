@@ -16,6 +16,7 @@ protected:
 
 	// 描画のための情報(見た目に関わる部分)
 	TextureManager m_Texture;	// テクスチャ
+
 public:
 
 	void Init(const std::string& filename);

@@ -7,6 +7,9 @@ protected:
 	DirectX::SimpleMath::Vector3 m_Acceleration;
 
 public:
+	Physic() {}
+	~Physic() {}
+
 	void Update();
 
 	void SetVelo(float _vx, float _vy, float _vz);
