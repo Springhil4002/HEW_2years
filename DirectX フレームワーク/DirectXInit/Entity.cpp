@@ -4,7 +4,7 @@ void Entity::Update()
 {
 	Physic::Update();
 
-	auto allEntity = Object::GetObj<Entity>();
+	auto allEntity = Scene::GetInstance()->GetObjects<Entity>();
 
 	for (auto& main : allEntity)
 	{

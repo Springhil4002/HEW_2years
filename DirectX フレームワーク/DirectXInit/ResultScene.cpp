@@ -1,20 +1,28 @@
 #include "ResultScene.h"
 #include "SceneManager.h"
+#include "Quad.h"
 
 ResultScene::ResultScene()
 {
-	bg.Init("asset/Texture/Night.jpg");		//”wŒi‚ğ‰Šú‰»
-	bg.SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);	//‘å‚«‚³‚ğİ’è
+	//bg.Init("asset/Texture/Night.jpg");		//”wŒi‚ğ‰Šú‰»
+	//bg.SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);	//‘å‚«‚³‚ğİ’è
 }
 
 ResultScene::~ResultScene()
 {
-	bg.Uninit();	//”wŒi‚ğI—¹
+	//bg.Uninit();	//”wŒi‚ğI—¹
+}
+
+void ResultScene::Init()
+{
+	auto bg = Object::Create<Quad>();
+	bg->SetTex("asset/Texture/Night.jpg");
+	bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
 }
 
 void ResultScene::Update()
 {
-	input.Update();	//ƒL[“ü—Í‚Ì”»’è
+	//input.Update();	//ƒL[“ü—Í‚Ì”»’è
 	// "1"ƒL[‚ğ‰Ÿ‚µ‚½‚ç
 	if (input.GetKeyTrigger(VK_1))
 	{
@@ -30,7 +38,7 @@ void ResultScene::Update()
 	}
 }
 
-void ResultScene::Draw()
-{
-	bg.Draw();		//”wŒi‚ğ•`‰æ
-}
+//void ResultScene::Draw()
+//{
+//	bg.Draw();		//”wŒi‚ğ•`‰æ
+//}

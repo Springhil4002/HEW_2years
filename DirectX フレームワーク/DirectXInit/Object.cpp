@@ -1,8 +1,5 @@
 #include "Object.h"
 
-Shader Object::m_Shader;
-std::vector<Object*>* Object::objInstance;
-
 // ç°ÇÃÇ∆Ç±í«ãLÇ»Çµ
 void Object::SetPos(float _x, float _y, float _z)
 {
@@ -32,14 +29,18 @@ bool Object::SearchTag(const std::string _tag) const
 	return tags.SearchTag(_tag);
 }
 
-void Object::CreateShader()
+void Object::Delete(Object* _object)
 {
-	m_Shader.Create("shader/unlitTextureVS.hlsl", "shader/unlitTexturePS.hlsl");
-}
-
-std::vector<Object*>* Object::GetInstance()
-{
-	return objInstance;
+	auto begin = Scene::GetInstance()->GetObjects()->begin();
+	auto end = Scene::GetInstance()->GetObjects()->end();
+	for (auto itr = begin; itr != end; itr++)
+	{
+		if (*itr == _object)
+		{
+			Scene::GetInstance()->GetObjects()->erase(itr);
+			return;
+		}
+	}
 }
 
 bool Object::Collision(Object* _object1, Object* _object2)

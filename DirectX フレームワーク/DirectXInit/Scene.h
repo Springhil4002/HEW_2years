@@ -1,26 +1,65 @@
 #pragma once
 #include <stdio.h>
+#include <vector>
 #include "input.h"
-#include "Object.h"
-#include "Quad.h"
-#include "Ground.h"
-#include "Player.h"
-#include "Physic.h"
-#include "Entity.h"
 
 #define BACKGROUND_X (1920)
 #define BACKGROUND_Y (1080)
 #define BLOCK_SIZE	(60.0f)
 
+class Object;
+
 class Scene
 {
 protected:
-	Input input;		//入力系インスタンス
+	static Scene* sceneInstance;	//シーンのインスタンス
+	static Input input;		//入力系インスタンス
+
+	std::vector<Object*> objectInstance; //オブジェクトのインスタンス
 public:
-	Scene();			//コンストラクタ(初期化処理関数)
-	virtual ~Scene();	//デストラクタ	(解放処理関数)
+	Scene(){			//コンストラクタ
+		delete sceneInstance;
+		sceneInstance = this;
+	}
+
+	~Scene() {			//デストラクタ
+		sceneInstance = nullptr;
+	}
+
+	
+	static void Input();	//入力取得処理関数
+	void Draw();	//描画処理関数
+	void Uninit();	//終了処理関数
+
 
 	//純粋仮想関数
+	virtual void Init() = 0;	//初期化処理関数
 	virtual void Update() = 0;	//更新処理関数
-	virtual void Draw() = 0;	//描画処理関数
+
+
+	// 今のSceneを返すぜ
+	static Scene* GetInstance();
+
+	// 今ある全てのオブジェクトを返すぜ
+	std::vector<Object*>* GetObjects();
+
+	// その型のオブジェクトを返すぜ
+	template<class T>
+	std::vector<T*> GetObjects()
+	{
+		// 返すやつ
+		std::vector<T*> ret;
+
+		// 全オブジェクトから探そう
+		for (auto& obj : objectInstance)
+		{
+			// ダイナミックキャストして有るならretにいれる
+			T* buf = dynamic_cast<T*>(obj);
+			if (buf != nullptr)
+			{
+				ret.push_back(buf);
+			}
+		}
+		return ret;
+	}
 };

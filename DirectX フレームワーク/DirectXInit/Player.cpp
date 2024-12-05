@@ -1,5 +1,5 @@
 #include "Player.h"
-
+#include "Ground.h"
 using namespace DirectX::SimpleMath;
 
 //===================================================================
@@ -153,6 +153,15 @@ void Player::Jump() {
 	{
 		isJumping = true;
 		velocity = jumpSpeed;
+	}
+
+	if (input.GetKeyTrigger(VK_RETURN))
+	{
+		if (Scene::GetInstance()->GetObjects<Ground>().size() > 0)
+		{
+			auto buf = Scene::GetInstance()->GetObjects<Ground>()[0];
+			Object::Delete(buf);
+		}	
 	}
 }
 

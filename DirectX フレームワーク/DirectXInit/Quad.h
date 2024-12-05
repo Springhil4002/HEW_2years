@@ -2,6 +2,7 @@
 
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
+#include "Shader.h"
 #include "Object.h"
 #include "TextureManager.h"
 
@@ -18,10 +19,14 @@ protected:
 	TextureManager m_Texture;	// テクスチャ
 
 public:
+	// 描画の為の情報（見た目に関わる部分）
+	static Shader m_Shader; // シェーダー
 
-	void Init(const std::string& filename);
 	// オーバーライドした関数
+	void Init();	// 初期化処理
 	void Update();	// 更新処理
 	void Draw();	// 描画処理
 	void Uninit();	// 解放処理
+
+	void SetTex(const std::string& filename);
 };

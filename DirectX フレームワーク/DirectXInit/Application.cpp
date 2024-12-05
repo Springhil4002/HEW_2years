@@ -2,7 +2,7 @@
 #include "SceneManager.h"
 #include "Renderer.h"
 #include "Camera.h"
-#include "Player.h"
+//#include "Player.h"
 
 const auto ClassName = TEXT("2024 フレームワーク");			// ウィンドウクラス名
 const auto WindowName = TEXT("2024 フレームワーク (描画)");	// ウィンドウ名
@@ -240,6 +240,8 @@ void Application::MainLoop()
 		}
 	}
 
+
+	sm.Uninit();
 	// カメラ解放処理
 	camera.Uninit();
 	// 描画解放処理

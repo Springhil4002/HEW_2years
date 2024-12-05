@@ -1,20 +1,28 @@
 #include "TitleScene.h"
 #include "SceneManager.h"
+#include "Quad.h"
 
 TitleScene::TitleScene()
 {
-	bg.Init("asset/Texture/Future.jpg");	//”wŒi‚ğ‰Šú‰»
-	bg.SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);		//‘å‚«‚³‚ğİ’è
+	//bg.Init("asset/Texture/Future.jpg");	//”wŒi‚ğ‰Šú‰»
+	//bg.SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);		//‘å‚«‚³‚ğİ’è
 }
 
 TitleScene::~TitleScene()
 {
-	bg.Uninit();	// ”wŒi‚ğI—¹
+	//bg.Uninit();	// ”wŒi‚ğI—¹
+}
+
+void TitleScene::Init()
+{
+	auto bg = Object::Create<Quad>();
+	bg->SetTex("asset/Texture/Future.jpg");
+	bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);		//‘å‚«‚³‚ğİ’è
 }
 
 void TitleScene::Update()
 {
-	input.Update();	//ƒL[“ü—Í‚Ì”»’è
+	//input.Update();	//ƒL[“ü—Í‚Ì”»’è
 	
 	// "2"ƒL[‚ğ‰Ÿ‚µ‚½‚ç
 	if (input.GetKeyTrigger(VK_2))
@@ -31,7 +39,7 @@ void TitleScene::Update()
 	}
 }
 
-void TitleScene::Draw()
-{
-	bg.Draw();		// ”wŒi‚ğ•`‰æ
-}
+//void TitleScene::Draw()
+//{
+//	bg.Draw();		// ”wŒi‚ğ•`‰æ
+//}
