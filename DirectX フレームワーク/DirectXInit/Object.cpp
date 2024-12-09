@@ -60,7 +60,7 @@ bool Object::Collision(Object* _object1, Object* _object2)
 		// 2‚Â‚Ì•‚Ì‡Œv‚ğŒvZ
 		DirectX::SimpleMath::Vector3 sumScale;
 		sumScale = _object1->m_Scale + _object2->m_Scale;
-		sumScale /= 2;
+		sumScale /= 2.005f;
 
 		// •‚ª—¼•û‹¤‹——£‚æ‚è‘å‚«‚¯‚ê‚ÎÕ“Ë
 		return distance.x < sumScale.x && distance.y < sumScale.y;

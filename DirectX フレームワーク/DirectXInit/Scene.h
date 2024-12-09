@@ -13,10 +13,11 @@ class Scene
 {
 protected:
 	static Scene* sceneInstance;	//シーンのインスタンス
-	static Input input;		//入力系インスタンス
 
 	std::vector<Object*> objectInstance; //オブジェクトのインスタンス
 public:
+	static Input input;		//入力系インスタンス
+	
 	Scene(){			//コンストラクタ
 		delete sceneInstance;
 		sceneInstance = this;

@@ -1,14 +1,12 @@
 #pragma once
 
-#include "VertexBuffer.h"
-#include "IndexBuffer.h"
-#include "Quad.h"
+#include "Entity.h"
 #include "TextureManager.h"
 
 //=======================================================================================
 // Groundクラス
 //=======================================================================================
-class Ground :public Quad {
+class Ground :public Entity {
 public:
 	// オーバーライドした関数
 	void Init();	// 初期化処理
