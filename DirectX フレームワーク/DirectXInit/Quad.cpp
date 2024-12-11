@@ -17,7 +17,44 @@ void Quad::Init()
 //===================================================================
 void Quad::Update()
 {
-	
+	if (old != moveDirection)
+	{
+		// 頂点データ
+		std::vector<VERTEX_3D>	vertices;
+
+		vertices.resize(4);
+
+		vertices[0].position = Vector3(-0.5f, 0.5f, 0);
+		vertices[1].position = Vector3(0.5f, 0.5f, 0);
+		vertices[2].position = Vector3(-0.5f, -0.5f, 0);
+		vertices[3].position = Vector3(0.5f, -0.5f, 0);
+
+		vertices[0].color = Color(1, 1, 1, 1);
+		vertices[1].color = Color(1, 1, 1, 1);
+		vertices[2].color = Color(1, 1, 1, 1);
+		vertices[3].color = Color(1, 1, 1, 1);
+
+		if (moveDirection == RIGHT)
+		{
+			vertices[0].uv = Vector2(0, 0);
+			vertices[1].uv = Vector2(1, 0);
+			vertices[2].uv = Vector2(0, 1);
+			vertices[3].uv = Vector2(1, 1);
+		}
+		else
+		{
+			vertices[0].uv = Vector2(1, 0);
+			vertices[1].uv = Vector2(0, 0);
+			vertices[2].uv = Vector2(1, 1);
+			vertices[3].uv = Vector2(0, 1);
+		}
+
+		// 頂点バッファ生成
+		m_VertexBuffer.Create(vertices);
+
+		// 更新
+		old = moveDirection;
+	}
 }
 
 //===================================================================
@@ -88,14 +125,24 @@ void Quad::SetTex(const std::string& _filename)
 	vertices[2].color = Color(1, 1, 1, 1);
 	vertices[3].color = Color(1, 1, 1, 1);
 
-	vertices[0].uv = Vector2(0, 0);
-	vertices[1].uv = Vector2(1, 0);
-	vertices[2].uv = Vector2(0, 1);
-	vertices[3].uv = Vector2(1, 1);
+	if (moveDirection == RIGHT)
+	{
+		vertices[0].uv = Vector2(0, 0);
+		vertices[1].uv = Vector2(1, 0);
+		vertices[2].uv = Vector2(0, 1);
+		vertices[3].uv = Vector2(1, 1);
+	}
+	else
+	{
+		vertices[0].uv = Vector2(1, 0);
+		vertices[1].uv = Vector2(0, 0);
+		vertices[2].uv = Vector2(1, 1);
+		vertices[3].uv = Vector2(0, 1);
+	}
 
 	// 頂点バッファ生成
 	m_VertexBuffer.Create(vertices);
-
+	
 	// インデックスバッファ生成
 	std::vector<unsigned int> indices;
 	indices.resize(4);
@@ -107,7 +154,7 @@ void Quad::SetTex(const std::string& _filename)
 
 	// インデックスバッファ生成
 	m_IndexBuffer.Create(indices);
-
+	
 	// テクスチャロード
 	bool sts = m_Texture.Load(_filename);
 	assert(sts == true);

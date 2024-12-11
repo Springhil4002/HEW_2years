@@ -1,11 +1,15 @@
 #include "Player.h"
 #include "Ground.h"
+#include "Band.h"
 using namespace DirectX::SimpleMath;
+
+#define GROUND_OFFSET_X (-930.0f)
+#define GROUND_OFFSET_Y (-510.0f)
 
 //===================================================================
 // コンストラクタ
 //===================================================================
-Player::Player() : velocity(3.0f), gravity(3.0f), jumpSpeed(50.0f), isJumping(true), isFalling(false)
+Player::Player() : velocity(1.5f), gravity(3.0f), jumpSpeed(50.0f), isJumping(true), isFalling(false), isGrabing(false), isMoving(false)
 {
 
 }
@@ -15,49 +19,11 @@ Player::Player() : velocity(3.0f), gravity(3.0f), jumpSpeed(50.0f), isJumping(tr
 //===================================================================
 void Player::Init()
 {
-	//// 頂点データ
-	//std::vector<VERTEX_3D>	vertices;
-
-	//vertices.resize(4);
-
-	//vertices[0].position = Vector3(-0.5f, 0.5f, 0);
-	//vertices[1].position = Vector3(0.5f, 0.5f, 0);
-	//vertices[2].position = Vector3(-0.5f, -0.5f, 0);
-	//vertices[3].position = Vector3(0.5f, -0.5f, 0);
-
-	//vertices[0].color = Color(1, 1, 1, 1);
-	//vertices[1].color = Color(1, 1, 1, 1);
-	//vertices[2].color = Color(1, 1, 1, 1);
-	//vertices[3].color = Color(1, 1, 1, 1);
-
-	//vertices[0].uv = Vector2(0, 0);
-	//vertices[1].uv = Vector2(1, 0);
-	//vertices[2].uv = Vector2(0, 1);
-	//vertices[3].uv = Vector2(1, 1);
-
-	//// 頂点バッファ生成
-	//m_VertexBuffer.Create(vertices);
-
-	//// インデックスバッファ生成
-	//std::vector<unsigned int> indices;
-	//indices.resize(4);
-
-	//indices[0] = 0;
-	//indices[1] = 1;
-	//indices[2] = 2;
-	//indices[3] = 3;
-
-	//// インデックスバッファ生成
-	//m_IndexBuffer.Create(indices);
-
-	// シェーダオブジェクト生成
-	//m_Shader.Create("shader/unlitTextureVS.hlsl", "shader/unlitTexturePS.hlsl");
-
-	// テクスチャロード
-	//bool sts = m_Texture.Load(_filename);
-	//assert(sts == true);
-
-	//SetTex();
+	const float playerX = GROUND_OFFSET_X + (2.5f * BLOCK_SIZE);
+	const float playerY = GROUND_OFFSET_Y + (2.5f * BLOCK_SIZE);
+	SetTex("asset/Texture/player.png");// プレイヤーを初期化
+	SetPos(playerX, playerY, 0.0f);	// 座標を設定
+	SetScale(BLOCK_SIZE, 2 * BLOCK_SIZE, 0.0f);	// 大きさを設定
 	m_Acceleration.y = -gravity;
 }
 
@@ -66,55 +32,31 @@ void Player::Init()
 //===================================================================
 void Player::Update()
 {	
-	if (m_Velocity.y < -0.0001f)
+	State();	// 状態管理
+
+	Walk();		// 歩き処理
+	Jump();		// 跳躍処理
+	Resist();	// 抵抗処理
+	Entity::Update();	// 衝突処理
+
+	auto allQuad = Scene::GetInstance()->GetObjects<Quad>();
+	for (auto& x : allQuad)
 	{
-		isFalling = true;
+		if (x->tags.SearchTag("check"))
+		{
+			if (isGrabing)
+			{
+				x->SetPos(200, 0, 0);
+			}
+			else
+			{
+				x->SetPos(0, 0, 0);
+			}
+
+			break;
+		}
 	}
 
-	if (isFalling && -0.0001f < m_Velocity.y && m_Velocity.y < 0.0001f)
-	{
-		isJumping = true;
-		isFalling = false;
-	}
-
-	if (m_Velocity.y > 0.0001f)
-	{
-		//isJumping = false;
-	}
-
-
-	if (Scene::input.GetKeyPress(VK_D))
-	{
-		m_Velocity.x += velocity;
-	}
-	if (Scene::input.GetKeyPress(VK_A))
-	{
-		m_Velocity.x -= velocity;
-	}
-	if (Scene::input.GetKeyTrigger(VK_SPACE) && isJumping)
-	{
-		m_Velocity.y += jumpSpeed;
-	}
-
-	m_Velocity /= 1.2f;
-
-	Entity::Update();
-
-	//input.Update();
-	//Walk();
-	//Jump();
-	//if (isJumping) {
-	//	float baceY = -420.0f;	// 当たり判定未実装故の代わりの基準
-	//	velocity -= gravity;
-	//	m_Position.y += velocity;
-
-	//	if (m_Position.y <= baceY)
-	//	{
-	//		m_Position.y = baceY;
-	//		isJumping = false;
-	//		velocity = 0.0f;
-	//	}
-	//}
 }
 
 //===================================================================
@@ -169,36 +111,126 @@ void Player::Update()
 //}
 
 //===================================================================
+// プレイヤーの状態遷移処理
+//===================================================================
+void Player::State() {
+	if (m_Velocity.y < -0.001f)
+	{
+		state = FALLING;
+	}
+
+	if (m_Velocity.y > 0.001f)
+	{
+		state = FLYING;
+	}
+
+	if (state == FALLING && -0.001f < m_Velocity.y && m_Velocity.y < 0.001f)
+	{
+		state = ONGROUND;
+	}
+
+	if (Scene::input.GetKeyPress(VK_E))
+	{
+		auto allBand = Scene::GetInstance()->GetObjects<BandTip>();
+		for (auto& band : allBand)
+		{
+			if (Object::Collision(this, band))
+			{
+				if (moveDirection == band->MoveDirection())
+				{
+					grabState = GRAB;
+					if (m_Velocity.x > -0.01f && moveDirection == LEFT || m_Velocity.x < 0.01f && moveDirection == RIGHT)
+					{
+						band->isGrabing = true;
+						band->SetPos(m_Position.x, m_Position.y, 0);
+					}
+				}
+			}
+		}
+	}
+	else
+	{
+		grabState = DEFAULT;
+	}
+
+	if (Scene::input.GetKeyRelease(VK_E))
+	{
+		auto allBand = Scene::GetInstance()->GetObjects<BandTip>();
+		for (auto& band : allBand)
+		{
+			band->isGrabing = false;
+		}
+	}
+
+	if (m_Velocity.LengthSquared() > 0.000001f)
+	{
+		groundState = MOVE;
+	}
+	else
+	{
+		groundState = STOP;
+	}
+}
+
+//===================================================================
 // プレイヤーの左右移動処理
 //===================================================================
-//void Player::Walk() {
-//	if (input.GetKeyPress(VK_D))
-//	{
-//		m_Position.x += 3.0f;
-//	}
-//	if (input.GetKeyPress(VK_A))
-//	{
-//		m_Position.x -= 3.0f;
-//	}
-//}
+void Player::Walk() {
+	if (Scene::input.GetKeyPress(VK_D))
+	{
+		if (grabState == DEFAULT)
+		{
+			moveDirection = RIGHT;
+			if (state == ONGROUND)
+				m_Velocity.x += velocity;
+			else
+				m_Velocity.x += velocity / 2;
+		}
+		else
+		{
+			if (moveDirection == LEFT)
+			{
+				m_Velocity.x += velocity / 2;
+			}
+		}
+	}
+
+	if (Scene::input.GetKeyPress(VK_A))
+	{
+		if (grabState == DEFAULT)
+		{
+			moveDirection = LEFT;
+			if (state == ONGROUND)
+				m_Velocity.x -= velocity;
+			else
+				m_Velocity.x -= velocity / 2;
+		}
+		else
+		{
+			if (moveDirection == RIGHT)
+			{
+				m_Velocity.x -= velocity / 2;
+			}
+		}
+	}
+}
 
 //===================================================================
 // プレイヤーのジャンプ処理
 //===================================================================
-//void Player::Jump() {
-//	if (input.GetKeyTrigger(VK_SPACE) && isJumping == false)
-//	{
-//		isJumping = true;
-//		velocity = jumpSpeed;
-//	}
-//
-//	if (input.GetKeyTrigger(VK_RETURN))
-//	{
-//		if (Scene::GetInstance()->GetObjects<Ground>().size() > 0)
-//		{
-//			auto buf = Scene::GetInstance()->GetObjects<Ground>()[0];
-//			Object::Delete(buf);
-//		}	
-//	}
-//}
+void Player::Jump() {
+	if (state == ONGROUND && grabState == DEFAULT)	
+	{
+		if (Scene::input.GetKeyPress(VK_SPACE))
+		{
+			m_Velocity.y += jumpSpeed;
+		}
+	}
+}
 
+//===================================================================
+// プレイヤーの抵抗処理
+//===================================================================
+void Player::Resist() {
+	m_Velocity /= 1.2f;
+}

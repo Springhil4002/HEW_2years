@@ -11,10 +11,10 @@ protected:
 	DirectX::SimpleMath::Vector3 m_Rotation = DirectX::SimpleMath::Vector3(0.0f, 0.0f, 0.0f);
 	DirectX::SimpleMath::Vector3 m_Scale = DirectX::SimpleMath::Vector3(1.0f, 1.0f, 1.0f);
 
+public:	
 	// タグ
 	Tags tags;
-
-public:	
+	
 	Object() {}
 	~Object() {}
 
@@ -27,9 +27,6 @@ public:
 	void SetPos(float _x, float _y, float _z);				//座標をセット
 	void SetRotation(float _x, float _y, float _z);			//角度をセット
 	void SetScale(float _x, float _y, float _z);			//大きさをセット
-
-	// タグ検索
-	bool SearchTag(const std::string _tag) const;
 
 	// オブジェクトの生成
 	template<class T>

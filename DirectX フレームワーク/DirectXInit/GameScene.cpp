@@ -3,7 +3,7 @@
 #include "Quad.h"
 #include "Ground.h"
 #include "Player.h"
-
+#include "Band.h"
 //GameScene::GameScene()
 //{
 //	bg.Init("asset/Texture/Beach.png");	// 背景を初期化
@@ -79,9 +79,9 @@ void GameScene::Init()
 		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+		{1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1},
 		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1},
 		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -101,12 +101,17 @@ void GameScene::Init()
 		}
 	}
 
-	const float playerX = GROUND_OFFSET_X + (2.5f * BLOCK_SIZE);
-	const float playerY = GROUND_OFFSET_Y + (2.5f * BLOCK_SIZE);
 	auto player = Object::Create<Player>();
-	player->SetTex("asset/Texture/player.png");// プレイヤーを初期化
-	player->SetPos(playerX, playerY, 0.0f);	// 座標を設定
-	player->SetScale(BLOCK_SIZE, 2*BLOCK_SIZE, 0.0f);	// 大きさを設定
+
+	auto band = Object::Create<Band>();
+	band->SetTex("asset/Texture/ground.png");
+	band->SetPos(0, -400, 0);
+	band->SetScale(60, 30, 0);
+
+	auto check = Object::Create<Quad>();
+	check->SetTex("asset/Texture/explotion.png");
+	check->SetScale(100, 100, 0);
+	check->tags.AddTag("check");
 
 	for (auto& obj : objectInstance)
 	{

@@ -135,6 +135,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Band.cpp" />
+    <ClCompile Include="BandTip.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="dx11helper.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -163,6 +165,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="Band.h" />
+    <ClInclude Include="BandTip.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="dx11helper.h" />
     <ClInclude Include="Entity.h" />

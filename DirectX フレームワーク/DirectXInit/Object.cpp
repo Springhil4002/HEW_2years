@@ -23,12 +23,6 @@ void Object::SetRotation(float _x, float _y, float _z)
 	m_Rotation.z = _z;
 }
 
-bool Object::SearchTag(const std::string _tag) const
-{
-	// タグを検索して返す
-	return tags.SearchTag(_tag);
-}
-
 void Object::Delete(Object* _object)
 {
 	auto begin = Scene::GetInstance()->GetObjects()->begin();
@@ -60,7 +54,7 @@ bool Object::Collision(Object* _object1, Object* _object2)
 		// 2つの幅の合計を計算
 		DirectX::SimpleMath::Vector3 sumScale;
 		sumScale = _object1->m_Scale + _object2->m_Scale;
-		sumScale /= 2.005f;
+		sumScale /= 2.05f;
 
 		// 幅が両方共距離より大きければ衝突
 		return distance.x < sumScale.x && distance.y < sumScale.y;
