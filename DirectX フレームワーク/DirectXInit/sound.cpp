@@ -1,6 +1,15 @@
 #include "sound.h"
 
-#ifdef _XBOX //Big-Endian
+/* XBOXのプラットフォームと
+ それ以外のプラットフォームの
+	2パターンの定義 */
+
+// エンディアン(バイトオーダー)の定義
+// ※エンディアン:データのバイト順序のこと
+
+// ビッグエンディアン
+// ※最上位バイトが最初に来る順序
+#ifdef _XBOX 
 #define fourccRIFF 'RIFF'
 #define fourccDATA 'data'
 #define fourccFMT 'fmt '
@@ -8,7 +17,10 @@
 #define fourccXWMA 'XWMA'
 #define fourccDPDS 'dpds'
 #endif
-#ifndef _XBOX //Little-Endian
+
+// リトルエンディアン
+// ※最下位バイトが最初に来る順序
+#ifndef _XBOX 
 #define fourccRIFF 'FFIR'
 #define fourccDATA 'atad'
 #define fourccFMT ' tmf'
@@ -18,10 +30,11 @@
 #endif
 
 //=============================================================================
-// 初期化
+// 初期化処理
 //=============================================================================
 HRESULT Sound::Init()
 {
+	// 変数宣言
 	HRESULT hr;
 
 	HANDLE hFile;
@@ -29,31 +42,29 @@ HRESULT Sound::Init()
 	DWORD  dwChunkPosition;
 	DWORD  filetype;
 
-	// COMの初期化
+	// COMライブラリの初期化
 	hr = CoInitializeEx(NULL, COINIT_MULTITHREADED);
 	if (FAILED(hr)) {
 		CoUninitialize();
 		return -1;
 	}
 
-	/**** Create XAudio2 ****/
+	// XAudio2オブジェクトの作成
 	hr = XAudio2Create(&m_pXAudio2, 0);		// 第二引数は､動作フラグ デバッグモードの指定(現在は未使用なので0にする)
-	//hr=XAudio2Create(&g_pXAudio2, 0, XAUDIO2_DEFAULT_PROCESSOR);		// 第三引数は、windowsでは無視
 	if (FAILED(hr)) {
 		CoUninitialize();
 		return -1;
 	}
 
-	/**** Create Mastering Voice ****/
+	// マスターボイスの作成
 	hr = m_pXAudio2->CreateMasteringVoice(&m_pMasteringVoice);			// 今回はＰＣのデフォルト設定に任せている
-	/*, XAUDIO2_DEFAULT_CHANNELS, XAUDIO2_DEFAULT_SAMPLERATE, 0, 0, NULL*/		// 本当６個の引数を持っている
 	if (FAILED(hr)) {
 		if (m_pXAudio2)	m_pXAudio2->Release();
 		CoUninitialize();
 		return -1;
 	}
 
-	/**** Initalize Sound ****/
+	// サウンドの初期化
 	for (int i = 0; i < SOUND_LABEL_MAX; i++)
 	{
 		memset(&m_wfx[i], 0, sizeof(WAVEFORMATEXTENSIBLE));
@@ -68,7 +79,7 @@ HRESULT Sound::Init()
 			return HRESULT_FROM_WIN32(GetLastError());
 		}
 
-		//check the file type, should be fourccWAVE or 'XWMA'
+		//　WAVファイルのチャンク読み取り
 		FindChunk(hFile, fourccRIFF, dwChunkSize, dwChunkPosition);
 		ReadChunkData(hFile, &filetype, sizeof(DWORD), dwChunkPosition);
 		if (filetype != fourccWAVE)		return S_FALSE;
@@ -76,17 +87,18 @@ HRESULT Sound::Init()
 		FindChunk(hFile, fourccFMT, dwChunkSize, dwChunkPosition);
 		ReadChunkData(hFile, &m_wfx[i], dwChunkSize, dwChunkPosition);
 
-		//fill out the audio data buffer with the contents of the fourccDATA chunk
+		//　fill out the audio data buffer with the contents of the fourccDATA chunk
 		FindChunk(hFile, fourccDATA, dwChunkSize, dwChunkPosition);
 		m_DataBuffer[i] = new BYTE[dwChunkSize];
 		ReadChunkData(hFile, m_DataBuffer[i], dwChunkSize, dwChunkPosition);
 
 		CloseHandle(hFile);
 
-		// 	サブミットボイスで利用するサブミットバッファの設定
+		// 読み取ったデータをm_bufferに設定
 		m_buffer[i].AudioBytes = dwChunkSize;
 		m_buffer[i].pAudioData = m_DataBuffer[i];
 		m_buffer[i].Flags = XAUDIO2_END_OF_STREAM;
+		// ループ設定に応じてLoopCountを設定
 		if (m_param[i].bLoop)
 			m_buffer[i].LoopCount = XAUDIO2_LOOP_INFINITE;
 		else
@@ -99,60 +111,66 @@ HRESULT Sound::Init()
 }
 
 //=============================================================================
-// 開放処理
+// 解放処理
 //=============================================================================
 void Sound::Uninit(void)
 {
+	// サウンドの総数分、サウンドリソースの解放
 	for (int i = 0; i < SOUND_LABEL_MAX; i++)
 	{
 		if (m_pSourceVoice[i])
 		{
-			m_pSourceVoice[i]->Stop(0);
-			m_pSourceVoice[i]->FlushSourceBuffers();
+			m_pSourceVoice[i]->Stop(0);					// サウンドの再生を停止
+			m_pSourceVoice[i]->FlushSourceBuffers();	// ソースボイスをクリア
 			m_pSourceVoice[i]->DestroyVoice();			// オーディオグラフからソースボイスを削除
-			delete[]  m_DataBuffer[i];
+			delete[]  m_DataBuffer[i];					// サウンドデータもバッファを解放
 		}
 	}
 
-	m_pMasteringVoice->DestroyVoice();
+	m_pMasteringVoice->DestroyVoice();					// マスターボイスを削除します
 
-	if (m_pXAudio2) m_pXAudio2->Release();
+	if (m_pXAudio2) m_pXAudio2->Release();				// XAudioオブジェクトを解放
 
-	// COMの破棄
+	// COMライブラリの解放
 	CoUninitialize();
 }
 
 //=============================================================================
-// 再生
+// サウンドの再生処理
 //=============================================================================
 void Sound::Play(SOUND_LABEL label)
 {
+	// ソースボイスのチェックと破棄
 	IXAudio2SourceVoice*& pSV = m_pSourceVoice[(int)label];
 
+	// 既に同じソースボイスが存在してた場合、破棄してnullに設定して停止させる処理
 	if (pSV != nullptr)
 	{
 		pSV->DestroyVoice();
 		pSV = nullptr;
 	}
 
-	// ソースボイス作成
+	// 新しくソースボイス作成
 	m_pXAudio2->CreateSourceVoice(&pSV, &(m_wfx[(int)label].Format));
-	pSV->SubmitSourceBuffer(&(m_buffer[(int)label]));	// ボイスキューに新しいオーディオバッファーを追加
+	pSV->SubmitSourceBuffer(&(m_buffer[(int)label]));	// ボイスキューに新しいオーディオバッファを追加
 
-	// 再生
+	// サウンド再生
 	pSV->Start(0);
 
 }
 
 //=============================================================================
-// 停止
+// サウンドの停止処理
 //=============================================================================
 void Sound::Stop(SOUND_LABEL label)
 {
+	// 指定されたソースボイスの存在チェック
 	if (m_pSourceVoice[(int)label] == NULL) return;
 
+	// ソースボイスの状態取得
 	XAUDIO2_VOICE_STATE xa2state;
 	m_pSourceVoice[(int)label]->GetState(&xa2state);
+	// バッファがキューにあるか確認
 	if (xa2state.BuffersQueued)
 	{
 		m_pSourceVoice[(int)label]->Stop(0);
@@ -160,11 +178,13 @@ void Sound::Stop(SOUND_LABEL label)
 }
 
 //=============================================================================
-// 一時停止
+// サウンドの再生再開処理
 //=============================================================================
 void Sound::Resume(SOUND_LABEL label)
 {
+	// ソースボイスの取得
 	IXAudio2SourceVoice*& pSV = m_pSourceVoice[(int)label];
+	// サウンドの再生再開
 	pSV->Start();
 }
 

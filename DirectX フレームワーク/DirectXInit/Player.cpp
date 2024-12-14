@@ -221,7 +221,7 @@ void Player::Walk() {
 void Player::Jump() {
 	if (state == ONGROUND && grabState == DEFAULT)	
 	{
-		if (Scene::input.GetKeyPress(VK_SPACE))
+		if (Scene::input.GetKeyTrigger(VK_SPACE))
 		{
 			m_Velocity.y += jumpSpeed;
 		}

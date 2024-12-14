@@ -134,6 +134,18 @@
     <Filter Include="Object関係\Player %28プレイヤー%29\ソース ファイル">
       <UniqueIdentifier>{38808d2c-4052-41b8-aa61-f713a3e88e8e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object関係\Band関係%28引っ張るオブジェクト%29">
+      <UniqueIdentifier>{d126649f-bcc0-4b0a-b27b-cbf96fb5b3e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object関係\Entity関係">
+      <UniqueIdentifier>{1970bc94-4074-4e68-ad17-0101ea6ef3d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object関係\Physic関係">
+      <UniqueIdentifier>{86889164-00ae-4fc0-9953-590ce3d6b950}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound関係">
+      <UniqueIdentifier>{22b0f575-509a-479e-afc1-a09124d25e60}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scene.cpp">
@@ -196,10 +208,24 @@
     <ClCompile Include="TextureManager.cpp">
       <Filter>Texture関係\ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Physic.cpp" />
-    <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="Band.cpp" />
-    <ClCompile Include="BandTip.cpp" />
+    <ClCompile Include="Band.cpp">
+      <Filter>Object関係\Band関係%28引っ張るオブジェクト%29</Filter>
+    </ClCompile>
+    <ClCompile Include="BandTip.cpp">
+      <Filter>Object関係\Band関係%28引っ張るオブジェクト%29</Filter>
+    </ClCompile>
+    <ClCompile Include="Physic.cpp">
+      <Filter>Object関係\Physic関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Object関係\Entity関係</Filter>
+    </ClCompile>
+    <ClCompile Include="sound.cpp">
+      <Filter>Sound関係</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>Sound関係</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scene.h">
@@ -268,10 +294,24 @@
     <ClInclude Include="TextureManager.h">
       <Filter>Texture関係\ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Physic.h" />
-    <ClInclude Include="Entity.h" />
-    <ClInclude Include="Band.h" />
-    <ClInclude Include="BandTip.h" />
+    <ClInclude Include="Band.h">
+      <Filter>Object関係\Band関係%28引っ張るオブジェクト%29</Filter>
+    </ClInclude>
+    <ClInclude Include="BandTip.h">
+      <Filter>Object関係\Band関係%28引っ張るオブジェクト%29</Filter>
+    </ClInclude>
+    <ClInclude Include="Physic.h">
+      <Filter>Object関係\Physic関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Object関係\Entity関係</Filter>
+    </ClInclude>
+    <ClInclude Include="sound.h">
+      <Filter>Sound関係</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>Sound関係</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader\common.hlsl">
