@@ -47,8 +47,9 @@
 //
 //}
 
-//GameScene::~GameScene()
-//{
+GameScene::~GameScene()
+{
+	SceneManager::m_SoundManager.Uninit();		// サウンドマネージャーを終了
 	//bg.Uninit();		// 背景を終了
 	//player.Uninit();	// プレイヤーを終了
 	//for (int i = 0; i < OBJECT_X_VALUE; ++i)
@@ -60,7 +61,7 @@
 	//{
 	//	ent->Uninit();
 	//}
-//}
+}
 
 void GameScene::Init()
 {
@@ -122,6 +123,8 @@ void GameScene::Init()
 
 void GameScene::Update()
 {
+	SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM002);	// サウンドを再生
+
 	//input.Update();	//キー入力の判定
 
 	//player.Update();
@@ -138,14 +141,7 @@ void GameScene::Update()
 	{
 		obj->Update();
 	}
-
-	// "1"キーを押したら
-	if (input.GetKeyTrigger(VK_1))
-	{
-		//現在のシーンを「ResultScene」に切り替える
-		SceneManager::ChangeScene(SceneManager::TITLE);
-	}
-
+	
 	// "3"キーを押したら
 	if (input.GetKeyTrigger(VK_3))
 	{

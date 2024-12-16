@@ -1,5 +1,6 @@
 #pragma once
-#include"Scene.h"
+#include "Scene.h"
+#include "SoundManager.h"
 
 class SceneManager
 {
@@ -15,10 +16,9 @@ private:
 	static Scene* currentScene;	//現在のシーン
 	static SCENE nextScene;
 	static bool changed;
-
 	static void NewScene();
-
 public:
+	static SoundManager m_SoundManager;	// シーンマネージャーのインスタンス
 	SceneManager() {}		//コンストラクタ
 	~SceneManager() {}		//デストラクタ
 

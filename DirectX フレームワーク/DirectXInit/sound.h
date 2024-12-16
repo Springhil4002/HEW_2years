@@ -1,6 +1,6 @@
 #pragma once
-
 #include <xaudio2.h>
+#include <vector>
 
 // サウンドファイルのラベル定義
 enum SOUND_LABEL {
@@ -45,7 +45,7 @@ private:
 	// 各サウンドのバッファ情報
 	XAUDIO2_BUFFER m_buffer[SOUND_LABEL_MAX];
 	// 各サウンドのデータバッファ
-	BYTE* m_DataBuffer[SOUND_LABEL_MAX];
+	std::vector<BYTE> m_DataBuffer[SOUND_LABEL_MAX];
 
 	// 指定されたチャンク識別子を持つデータチャンクをファイル内から見つける
 	HRESULT FindChunk(HANDLE, DWORD, DWORD&, DWORD&);

@@ -10,6 +10,7 @@ ResultScene::ResultScene()
 
 ResultScene::~ResultScene()
 {
+	SceneManager::m_SoundManager.Uninit();	// サウンドマネージャーを終了
 	//bg.Uninit();	//背景を終了
 }
 
@@ -22,19 +23,13 @@ void ResultScene::Init()
 
 void ResultScene::Update()
 {
+	SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM003);	// サウンドを再生
 	//input.Update();	//キー入力の判定
 	// "1"キーを押したら
 	if (input.GetKeyTrigger(VK_1))
 	{
 		//現在のシーンを「TitleScene」に切り替える
 		SceneManager::ChangeScene(SceneManager::TITLE);
-	}
-
-	// "2"キーを押したら
-	if (input.GetKeyTrigger(VK_2))
-	{
-		//現在のシーンを「TitleScene」に切り替える
-		SceneManager::ChangeScene(SceneManager::GAME);
 	}
 }
 

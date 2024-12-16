@@ -7,6 +7,8 @@
 Scene* SceneManager::currentScene = nullptr;
 SceneManager::SCENE SceneManager::nextScene = TITLE;
 bool SceneManager::changed = false;
+// 静的メンバー変数の定義
+SoundManager SceneManager::m_SoundManager;
 
 void SceneManager::NewScene()
 {
@@ -37,6 +39,7 @@ void SceneManager::ChangeScene(SCENE _scene)
 
 void SceneManager::Init()
 {
+	m_SoundManager.Init();	// サウンドマネージャーを初期化
 	Quad::m_Shader.Create("shader/unlitTextureVS.hlsl", "shader/unlitTexturePS.hlsl");
 	ChangeScene(TITLE);
 }

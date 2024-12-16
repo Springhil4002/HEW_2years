@@ -15,7 +15,7 @@ private:
 	//Physic test;
 public:
 	GameScene() {}	//コンストラクタ
-	~GameScene() {}	//デストラクタ
+	~GameScene();	//デストラクタ
 
 	//オーバーライドした関数
 	void Init();

@@ -89,14 +89,14 @@ HRESULT Sound::Init()
 
 		//　fill out the audio data buffer with the contents of the fourccDATA chunk
 		FindChunk(hFile, fourccDATA, dwChunkSize, dwChunkPosition);
-		m_DataBuffer[i] = new BYTE[dwChunkSize];
-		ReadChunkData(hFile, m_DataBuffer[i], dwChunkSize, dwChunkPosition);
+		m_DataBuffer[i].resize(dwChunkSize);
+		ReadChunkData(hFile, m_DataBuffer[i].data(), dwChunkSize, dwChunkPosition);
 
 		CloseHandle(hFile);
 
 		// 読み取ったデータをm_bufferに設定
 		m_buffer[i].AudioBytes = dwChunkSize;
-		m_buffer[i].pAudioData = m_DataBuffer[i];
+		m_buffer[i].pAudioData = m_DataBuffer[i].data();
 		m_buffer[i].Flags = XAUDIO2_END_OF_STREAM;
 		// ループ設定に応じてLoopCountを設定
 		if (m_param[i].bLoop)
@@ -116,20 +116,16 @@ HRESULT Sound::Init()
 void Sound::Uninit(void)
 {
 	// サウンドの総数分、サウンドリソースの解放
-	for (int i = 0; i < SOUND_LABEL_MAX; i++)
-	{
-		if (m_pSourceVoice[i])
-		{
+	for (int i = 0; i < SOUND_LABEL_MAX; i++) {
+		if (m_pSourceVoice[i]) {
 			m_pSourceVoice[i]->Stop(0);					// サウンドの再生を停止
 			m_pSourceVoice[i]->FlushSourceBuffers();	// ソースボイスをクリア
 			m_pSourceVoice[i]->DestroyVoice();			// オーディオグラフからソースボイスを削除
-			delete[]  m_DataBuffer[i];					// サウンドデータもバッファを解放
 		}
 	}
 
-	m_pMasteringVoice->DestroyVoice();					// マスターボイスを削除します
-
-	if (m_pXAudio2) m_pXAudio2->Release();				// XAudioオブジェクトを解放
+	if(m_pMasteringVoice) m_pMasteringVoice->DestroyVoice();	// マスターボイスを削除します
+	if (m_pXAudio2) m_pXAudio2->Release();						// XAudioオブジェクトを解放
 
 	// COMライブラリの解放
 	CoUninitialize();
@@ -146,6 +142,8 @@ void Sound::Play(SOUND_LABEL label)
 	// 既に同じソースボイスが存在してた場合、破棄してnullに設定して停止させる処理
 	if (pSV != nullptr)
 	{
+		pSV->Stop(0);
+		pSV->FlushSourceBuffers();
 		pSV->DestroyVoice();
 		pSV = nullptr;
 	}
@@ -156,7 +154,6 @@ void Sound::Play(SOUND_LABEL label)
 
 	// サウンド再生
 	pSV->Start(0);
-
 }
 
 //=============================================================================
