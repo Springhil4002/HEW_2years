@@ -49,7 +49,6 @@
 
 GameScene::~GameScene()
 {
-	SceneManager::m_SoundManager.Uninit();		// サウンドマネージャーを終了
 	//bg.Uninit();		// 背景を終了
 	//player.Uninit();	// プレイヤーを終了
 	//for (int i = 0; i < OBJECT_X_VALUE; ++i)
@@ -64,7 +63,10 @@ GameScene::~GameScene()
 }
 
 void GameScene::Init()
-{
+{	
+	SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM001);	// サウンドを停止
+	SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM002);	// サウンドを再生
+
 	auto bg = Object::Create<Quad>();
 	bg->SetTex("asset/Texture/Beach.png");
 	bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
@@ -123,8 +125,7 @@ void GameScene::Init()
 
 void GameScene::Update()
 {
-	SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM002);	// サウンドを再生
-
+	
 	//input.Update();	//キー入力の判定
 
 	//player.Update();

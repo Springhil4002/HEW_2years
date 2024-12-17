@@ -10,12 +10,13 @@ ResultScene::ResultScene()
 
 ResultScene::~ResultScene()
 {
-	SceneManager::m_SoundManager.Uninit();	// サウンドマネージャーを終了
 	//bg.Uninit();	//背景を終了
 }
 
 void ResultScene::Init()
 {
+	SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM002);	// サウンドを停止
+	SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM003);	// サウンドを再生
 	auto bg = Object::Create<Quad>();
 	bg->SetTex("asset/Texture/Night.jpg");
 	bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
@@ -23,7 +24,6 @@ void ResultScene::Init()
 
 void ResultScene::Update()
 {
-	SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM003);	// サウンドを再生
 	//input.Update();	//キー入力の判定
 	// "1"キーを押したら
 	if (input.GetKeyTrigger(VK_1))
