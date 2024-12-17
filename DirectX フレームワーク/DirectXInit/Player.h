@@ -1,6 +1,7 @@
 #pragma once
 #include "Input.h"
 #include "Entity.h"
+#include "SceneManager.h"
 
 class Player : public Entity {
 private:

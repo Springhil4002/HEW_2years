@@ -29,6 +29,7 @@ void TitleScene::Update()
 	// "2"キーを押したら
 	if (input.GetKeyTrigger(VK_2))
 	{
+		SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
 		//現在のシーンを「GameScene」に切り替える
 		SceneManager::ChangeScene(SceneManager::GAME);
 	}

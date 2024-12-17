@@ -9,7 +9,7 @@ enum SOUND_LABEL {
 	SOUND_LABEL_BGM003,			// BGM_3
 	SOUND_LABEL_SE001,			// SE_1
 	SOUND_LABEL_SE002,			// SE_2
-	SOUND_LABEL_SE003,			// SE_3
+	//SOUND_LABEL_SE003,			// SE_3
 
 	SOUND_LABEL_MAX				// サウンドファイルの総数
 };
@@ -28,10 +28,10 @@ private:
 	{
 		{"asset/BGM/黄金色のカーペット.wav"			, true},	// BGM_1　タイトル
 		{"asset/BGM/水底に沈む古城.wav"				, true},	// BGM_2　ゲーム
-		{"asset/BGM/シュトラールブルクの学び舎.wav"	, true}//,	// BGM_3　リザルト
-		//{"asset/SE/.wav", false},	// SE_1
-		//{"asset/SE/.wav", false},	// SE_2
-		//{"asset/SE/.wav", false}    // SE_3
+		{"asset/BGM/シュトラールブルクの学び舎.wav"	, true},	// BGM_3　リザルト
+		{"asset/SE/SE_Jump.wav"					, false},	// SE_1　 ジャンプ音
+		{"asset/SE/Button_1.wav"				, false},	// SE_2 　クリック音
+		//{"asset/SE/.wav", false}							// SE_3
 	};
 
 	// XAudio2インターフェースへのポインタ

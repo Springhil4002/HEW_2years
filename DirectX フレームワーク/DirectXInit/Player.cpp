@@ -223,6 +223,7 @@ void Player::Jump() {
 	{
 		if (Scene::input.GetKeyTrigger(VK_SPACE))
 		{
+			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE001);
 			m_Velocity.y += jumpSpeed;
 		}
 	}

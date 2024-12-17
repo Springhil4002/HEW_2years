@@ -28,6 +28,7 @@ void ResultScene::Update()
 	// "1"キーを押したら
 	if (input.GetKeyTrigger(VK_1))
 	{
+		SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
 		//現在のシーンを「TitleScene」に切り替える
 		SceneManager::ChangeScene(SceneManager::TITLE);
 	}

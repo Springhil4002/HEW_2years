@@ -146,6 +146,7 @@ void GameScene::Update()
 	// "3"キーを押したら
 	if (input.GetKeyTrigger(VK_3))
 	{
+		SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
 		//現在のシーンを「ResultScene」に切り替える
 		SceneManager::ChangeScene(SceneManager::RESULT);
 	}
