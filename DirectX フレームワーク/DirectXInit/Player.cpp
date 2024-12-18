@@ -129,7 +129,9 @@ void Player::State() {
 		state = ONGROUND;
 	}
 
-	if (Scene::input.GetKeyPress(VK_E))
+	if (Scene::input.GetKeyPress(VK_E) ||
+	   (Scene::input.GetButtonPress(XINPUT_RIGHT_SHOULDER) && 
+		Scene::input.GetButtonPress(XINPUT_LEFT_SHOULDER) ) )
 	{
 		auto allBand = Scene::GetInstance()->GetObjects<BandTip>();
 		for (auto& band : allBand)
@@ -153,7 +155,9 @@ void Player::State() {
 		grabState = DEFAULT;
 	}
 
-	if (Scene::input.GetKeyRelease(VK_E))
+	if (Scene::input.GetKeyRelease(VK_E) || 
+	   (Scene::input.GetButtonRelease(XINPUT_RIGHT_SHOULDER) &&
+		Scene::input.GetButtonRelease(XINPUT_LEFT_SHOULDER) ) )
 	{
 		auto allBand = Scene::GetInstance()->GetObjects<BandTip>();
 		for (auto& band : allBand)
@@ -176,7 +180,8 @@ void Player::State() {
 // プレイヤーの左右移動処理
 //===================================================================
 void Player::Walk() {
-	if (Scene::input.GetKeyPress(VK_D))
+	if (Scene::input.GetKeyPress(VK_D) || 
+	   (Scene::input.GetLeftAnalogStick().x >= 0.7))
 	{
 		if (grabState == DEFAULT)
 		{
@@ -184,18 +189,19 @@ void Player::Walk() {
 			if (state == ONGROUND)
 				m_Velocity.x += velocity;
 			else
-				m_Velocity.x += velocity / 2;
+				m_Velocity.x += velocity / 1.5;
 		}
 		else
 		{
 			if (moveDirection == LEFT)
 			{
-				m_Velocity.x += velocity / 2;
+				m_Velocity.x += velocity / 1.5;
 			}
 		}
 	}
 
-	if (Scene::input.GetKeyPress(VK_A))
+	if (Scene::input.GetKeyPress(VK_A) ||
+	   (Scene::input.GetLeftAnalogStick().x <= -0.7))
 	{
 		if (grabState == DEFAULT)
 		{
@@ -203,13 +209,13 @@ void Player::Walk() {
 			if (state == ONGROUND)
 				m_Velocity.x -= velocity;
 			else
-				m_Velocity.x -= velocity / 2;
+				m_Velocity.x -= velocity / 1.5;
 		}
 		else
 		{
 			if (moveDirection == RIGHT)
 			{
-				m_Velocity.x -= velocity / 2;
+				m_Velocity.x -= velocity / 1.5;
 			}
 		}
 	}
@@ -221,7 +227,8 @@ void Player::Walk() {
 void Player::Jump() {
 	if (state == ONGROUND && grabState == DEFAULT)	
 	{
-		if (Scene::input.GetKeyTrigger(VK_SPACE))
+		if (Scene::input.GetKeyTrigger(VK_SPACE) ||
+			Scene::input.GetButtonTrigger(XINPUT_A))
 		{
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE001);
 			m_Velocity.y += jumpSpeed;
