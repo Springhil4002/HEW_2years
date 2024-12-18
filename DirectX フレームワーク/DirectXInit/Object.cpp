@@ -23,6 +23,11 @@ void Object::SetRotation(float _x, float _y, float _z)
 	m_Rotation.z = _z;
 }
 
+DirectX::SimpleMath::Vector3 Object::GetPos() const
+{
+	return m_Position;
+}
+
 void Object::Delete(Object* _object)
 {
 	auto begin = Scene::GetInstance()->GetObjects()->begin();

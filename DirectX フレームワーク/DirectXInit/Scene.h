@@ -1,6 +1,6 @@
 #pragma once
 #include <stdio.h>
-#include <vector>
+#include <set>
 #include "input.h"
 
 #define BACKGROUND_X (1920)
@@ -13,7 +13,7 @@ class Scene
 {
 protected:
 	static Scene* sceneInstance;			// シーンのインスタンス
-	std::vector<Object*> objectInstance;	// オブジェクトのインスタンス
+	std::set<Object*> objectInstance;	// オブジェクトのインスタンス
 public:
 	static Input input;		// 入力系インスタンス
 	
@@ -41,14 +41,14 @@ public:
 	static Scene* GetInstance();
 
 	// 今ある全てのオブジェクトを返すぜ
-	std::vector<Object*>* GetObjects();
+	std::set<Object*>* GetObjects();
 
 	// その型のオブジェクトを返すぜ
 	template<class T>
-	std::vector<T*> GetObjects()
+	std::set<T*> GetObjects()
 	{
 		// 返すやつを入れる変数
-		std::vector<T*> ret;
+		std::set<T*> ret;
 
 		// 全オブジェクトから探そう
 		for (auto& obj : objectInstance)
@@ -57,7 +57,7 @@ public:
 			T* buf = dynamic_cast<T*>(obj);
 			if (buf != nullptr)
 			{
-				ret.push_back(buf);
+				ret.insert(buf);
 			}
 		}
 		// 返すやつを返す

@@ -1,5 +1,6 @@
 #include "Scene.h"
 #include "Object.h"
+#include<map>
 
 Scene* Scene::sceneInstance;
 Input Scene::input;
@@ -11,9 +12,19 @@ void Scene::Input()
 
 void Scene::Draw()
 {
+	std::map<int, std::set<Object*>> layer;
+
 	for (auto& obj : objectInstance)
 	{
-		obj->Draw();
+		layer[obj->layer].insert(obj);
+	}
+
+	for (auto& lay : layer)
+	{
+		for (auto& obj : lay.second)
+		{
+			obj->Draw();
+		}
 	}
 }
 
@@ -30,7 +41,7 @@ Scene* Scene::GetInstance()
 	return sceneInstance;
 }
 
-std::vector<Object*>* Scene::GetObjects()
+std::set<Object*>* Scene::GetObjects()
 {
 	return &objectInstance;
 }

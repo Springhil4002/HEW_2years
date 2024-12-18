@@ -12,6 +12,9 @@ protected:
 	DirectX::SimpleMath::Vector3 m_Scale = DirectX::SimpleMath::Vector3(1.0f, 1.0f, 1.0f);
 
 public:	
+	// レイヤー
+	int layer;
+
 	// タグ
 	Tags tags;
 	
@@ -28,12 +31,14 @@ public:
 	void SetRotation(float _x, float _y, float _z);			//角度をセット
 	void SetScale(float _x, float _y, float _z);			//大きさをセット
 
+	DirectX::SimpleMath::Vector3 GetPos() const;
+
 	// オブジェクトの生成
 	template<class T>
 	static T* Create()
 	{
 		T* buf = new T;
-		Scene::GetInstance()->GetObjects()->push_back(buf);
+		Scene::GetInstance()->GetObjects()->insert(buf);
 		return buf;
 	}
 

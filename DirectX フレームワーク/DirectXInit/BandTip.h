@@ -1,7 +1,6 @@
 #pragma once
-#include "Quad.h"
-class BandTip :
-    public Quad
+#include "Physic.h"
+class BandTip : public Physic
 {
 public:
 	// ‚Â‚©‚Ü‚ê‚Ä‚é‚©
@@ -9,8 +8,5 @@ public:
 
 	// Œü‚«‚Ìæ“¾
 	MOVEDIRECTION MoveDirection() const { return moveDirection; }
-
-	// xÀ•W‚Ìæ“¾
-	float GetPosX() const;
 };
 
