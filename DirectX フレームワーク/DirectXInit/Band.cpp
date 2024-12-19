@@ -39,11 +39,20 @@ void Band::Update()
 
 	oldPos = tip->GetPos();
 	pullLevel += differencial.x;
-	if (pullLevel < -L * 60)
+
+	if (!tip->isGrabing)
 	{
-		tip->SetPos(tip->GetPos().x + L * 60, tip->GetPos().y, tip->GetPos().z);
+		if ((int)tip->GetPos().x % 60 < 30)
+		{
+			tip->SetPos((int)tip->GetPos().x / 60 * 60 - 30, tip->GetPos().y, 0);
+			tip->SetVelo(0, 0, 0);
+		}
 	}
 
+	if (pullLevel < -(L - 1) * 60)
+	{
+		tip->SetPos(tip->GetPos().x + L * 60, tip->GetPos().y, 0);
+	}
 }
 
 void Band::Uninit()

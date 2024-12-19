@@ -144,9 +144,13 @@ void Player::State() {
 					if (m_Velocity.x > -0.01f && moveDirection == LEFT || m_Velocity.x < 0.01f && moveDirection == RIGHT)
 					{
 						band->isGrabing = true;
-						band->SetPos(m_Position.x, m_Position.y, 0);
+						band->SetVelo(m_Velocity.x, 0, 0);
 					}
 				}
+			}
+			else
+			{
+				band->isGrabing = false;
 			}
 		}
 	}
@@ -181,7 +185,7 @@ void Player::State() {
 //===================================================================
 void Player::Walk() {
 	if (Scene::input.GetKeyPress(VK_D) || 
-	   (Scene::input.GetLeftAnalogStick().x >= 0.7))
+	   (Scene::input.GetLeftAnalogStick().x >= 0.7f))
 	{
 		if (grabState == DEFAULT)
 		{
@@ -189,19 +193,19 @@ void Player::Walk() {
 			if (state == ONGROUND)
 				m_Velocity.x += velocity;
 			else
-				m_Velocity.x += velocity / 1.5;
+				m_Velocity.x += velocity / 1.5f;
 		}
 		else
 		{
 			if (moveDirection == LEFT)
 			{
-				m_Velocity.x += velocity / 1.5;
+				m_Velocity.x += velocity / 3.0f;
 			}
 		}
 	}
 
 	if (Scene::input.GetKeyPress(VK_A) ||
-	   (Scene::input.GetLeftAnalogStick().x <= -0.7))
+	   (Scene::input.GetLeftAnalogStick().x <= -0.7f))
 	{
 		if (grabState == DEFAULT)
 		{
@@ -209,13 +213,13 @@ void Player::Walk() {
 			if (state == ONGROUND)
 				m_Velocity.x -= velocity;
 			else
-				m_Velocity.x -= velocity / 1.5;
+				m_Velocity.x -= velocity / 1.5f;
 		}
 		else
 		{
 			if (moveDirection == RIGHT)
 			{
-				m_Velocity.x -= velocity / 1.5;
+				m_Velocity.x -= velocity / 3.0f;
 			}
 		}
 	}
