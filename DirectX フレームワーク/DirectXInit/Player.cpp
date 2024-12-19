@@ -44,7 +44,8 @@ void Player::Update()
 	{
 		if (x->tags.SearchTag("check"))
 		{
-			if (isGrabing)
+			if ((Scene::input.GetButtonRelease(XINPUT_RIGHT_SHOULDER) ||
+				Scene::input.GetButtonRelease(XINPUT_LEFT_SHOULDER)))
 			{
 				x->SetPos(200, 0, 0);
 			}
@@ -145,12 +146,15 @@ void Player::State() {
 					{
 						band->isGrabing = true;
 						band->SetVelo(m_Velocity.x, 0, 0);
+						// ‘æˆêˆø”:ŽžŠÔA‘æ“ñˆø”:‹­‚³
+						Scene::input.SetVibration(30, 10 * band->GetPullLeveL());	
 					}
 				}
 			}
 			else
 			{
 				band->isGrabing = false;
+				band->SetPullLeveL(0);
 			}
 		}
 	}
@@ -160,7 +164,7 @@ void Player::State() {
 	}
 
 	if (Scene::input.GetKeyRelease(VK_E) || 
-	   (Scene::input.GetButtonRelease(XINPUT_RIGHT_SHOULDER) &&
+	   (Scene::input.GetButtonRelease(XINPUT_RIGHT_SHOULDER) ||
 		Scene::input.GetButtonRelease(XINPUT_LEFT_SHOULDER) ) )
 	{
 		auto allBand = Scene::GetInstance()->GetObjects<BandTip>();

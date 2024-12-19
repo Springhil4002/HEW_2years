@@ -1,5 +1,6 @@
 #pragma once
 #include <set>
+#include <math.h>
 #include "Entity.h"
 #include "BandTip.h"
 class Band : public Entity
@@ -11,7 +12,6 @@ private:
 	std::set<Quad*> jagged;
 	// 引かれるObject達
 	std::set<Object*> objects;
-
 	// どんだけ引っ張ってるか度
 	float pullLevel;
 	// 前の座標
@@ -29,4 +29,3 @@ public:
 	void Add(Object* _object);
 	void Remove(Object* _object);
 };
-

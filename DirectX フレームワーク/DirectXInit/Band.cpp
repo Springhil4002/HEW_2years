@@ -39,6 +39,7 @@ void Band::Update()
 
 	oldPos = tip->GetPos();
 	pullLevel += differencial.x;
+	BandTip::SetPullLeveL(pullLevel);
 
 	if (!tip->isGrabing)
 	{
