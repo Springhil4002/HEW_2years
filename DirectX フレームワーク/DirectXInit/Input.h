@@ -17,8 +17,10 @@
 #define XINPUT_BACK           0x0020
 #define XINPUT_LEFT_THUMB     0x0040 //左スティック押し込み
 #define XINPUT_RIGHT_THUMB    0x0080 //右スティック押し込み
-#define XINPUT_LEFT_SHOULDER  0x0100 //L
-#define XINPUT_RIGHT_SHOULDER 0x0200 //R
+#define XINPUT_LEFT_SHOULDER  0x0100 //LB
+#define XINPUT_RIGHT_SHOULDER 0x0200 //RB
+#define XINPUT_LEFT_TRIGGER	  0x0400 //LT
+#define XINPUT_RIGHT_TRIGGER  0x0800 //RT
 
 #define VK_0 0x30
 #define VK_1 0x31
