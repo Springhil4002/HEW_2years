@@ -4,6 +4,7 @@
 #include "Ground.h"
 #include "Player.h"
 #include "Band.h"
+#include "Coin.h"
 //GameScene::GameScene()
 //{
 //	bg.Init("asset/Texture/Beach.png");	// ”wŒi‚ð‰Šú‰»
@@ -72,8 +73,8 @@ void GameScene::Init()
 	bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
 	bg->layer = -1;
 
-	const bool stage[OBJECT_Y_VALUE][OBJECT_X_VALUE] = {
-		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+	const int stage[OBJECT_Y_VALUE][OBJECT_X_VALUE] = {
+		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1},
 		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -90,7 +91,7 @@ void GameScene::Init()
 		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1},
 		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1},
 		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,1},
-		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1}
 	};
 
 
@@ -98,8 +99,9 @@ void GameScene::Init()
 	{
 		for (int j = 0; j < OBJECT_Y_VALUE; j++)
 		{
-			if (stage[j][i])
+			switch (stage[j][i])
 			{
+			case 1:
 				auto ground = Object::Create<Ground>();
 				ground->SetPos(GROUND_OFFSET_X + i * BLOCK_SIZE, -(GROUND_OFFSET_Y + j * BLOCK_SIZE), 0.0f);	// À•W‚ð‰Šú‰»
 
@@ -107,6 +109,7 @@ void GameScene::Init()
 				{
 					ground->tags.AddTag("BandA");
 				}
+				break;
 			}
 		}
 	}
@@ -132,11 +135,14 @@ void GameScene::Init()
 	check->SetScale(100, 100, 0);
 	check->tags.AddTag("check");
 
+
+	auto coin = Object::Create<Coin>();
+
+
 	for (auto& obj : objectInstance)
 	{
 		obj->Init();
 	}
-	
 }
 
 void GameScene::Update()
@@ -153,8 +159,8 @@ void GameScene::Update()
 		ent->Update();
 	}*/
 
-
-	for (auto& obj : objectInstance)
+	auto objects = objectInstance;
+	for (auto& obj : objects)
 	{
 		obj->Update();
 	}

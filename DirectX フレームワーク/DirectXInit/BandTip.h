@@ -4,7 +4,7 @@
 class BandTip : public Physic
 {
 public:
-	static float pullLeveL;
+	float pullLeveL;
 	// ‚Â‚©‚Ü‚ê‚Ä‚é‚©
 	bool isGrabing = false;
 
@@ -12,6 +12,6 @@ public:
 	MOVEDIRECTION MoveDirection() const { return moveDirection; }
 
 	float GetPullLeveL() const { return pullLeveL; }
-	static void SetPullLeveL(float _pullLeveL) { pullLeveL = fabsf(_pullLeveL); }
+	void SetPullLeveL(float _pullLeveL) { pullLeveL = fabsf(_pullLeveL); }
 };
 

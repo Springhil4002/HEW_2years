@@ -36,6 +36,7 @@ void Object::Delete(Object* _object)
 	{
 		if (*itr == _object)
 		{
+			delete *itr;
 			Scene::GetInstance()->GetObjects()->erase(itr);
 			return;
 		}

@@ -226,6 +226,7 @@
     <ClCompile Include="SoundManager.cpp">
       <Filter>Sound関係</Filter>
     </ClCompile>
+    <ClCompile Include="Coin.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scene.h">
@@ -312,6 +313,7 @@
     <ClInclude Include="SoundManager.h">
       <Filter>Sound関係</Filter>
     </ClInclude>
+    <ClInclude Include="Coin.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader\common.hlsl">

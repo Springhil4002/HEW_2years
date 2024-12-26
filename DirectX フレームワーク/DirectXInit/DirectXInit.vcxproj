@@ -138,6 +138,7 @@
     <ClCompile Include="Band.cpp" />
     <ClCompile Include="BandTip.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Coin.cpp" />
     <ClCompile Include="dx11helper.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameScene.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="Band.h" />
     <ClInclude Include="BandTip.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Coin.h" />
     <ClInclude Include="dx11helper.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="GameScene.h" />
