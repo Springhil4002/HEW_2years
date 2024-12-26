@@ -44,8 +44,8 @@ void Player::Update()
 	{
 		if (x->tags.SearchTag("check"))
 		{
-			if ((Scene::input.GetButtonRelease(XINPUT_RIGHT_SHOULDER) ||
-				Scene::input.GetButtonRelease(XINPUT_LEFT_SHOULDER)))
+			if ((Scene::input.GetButtonRelease(XINPUT_RIGHT_TRIGGER) ||
+				Scene::input.GetButtonRelease(XINPUT_LEFT_TRIGGER)))
 			{
 				x->SetPos(200, 0, 0);
 			}
@@ -131,8 +131,8 @@ void Player::State() {
 	}
 
 	if (Scene::input.GetKeyPress(VK_E) ||
-	   (Scene::input.GetButtonPress(XINPUT_RIGHT_SHOULDER) && 
-		Scene::input.GetButtonPress(XINPUT_LEFT_SHOULDER) ) )
+	   (Scene::input.GetLeftTrigger()>=0.9 &&
+		Scene::input.GetRightTrigger()>=0.9 ) )
 	{
 		auto allBand = Scene::GetInstance()->GetObjects<BandTip>();
 		for (auto& band : allBand)
@@ -164,8 +164,8 @@ void Player::State() {
 	}
 
 	if (Scene::input.GetKeyRelease(VK_E) || 
-	   (Scene::input.GetButtonRelease(XINPUT_RIGHT_SHOULDER) ||
-		Scene::input.GetButtonRelease(XINPUT_LEFT_SHOULDER) ) )
+	   (Scene::input.GetLeftTrigger() <= 0.1 ||
+		Scene::input.GetRightTrigger() <= 0.1))
 	{
 		auto allBand = Scene::GetInstance()->GetObjects<BandTip>();
 		for (auto& band : allBand)
