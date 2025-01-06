@@ -8,6 +8,8 @@ public:
 	//—ñ‹“Œ^
 	enum SCENE {
 		TITLE,
+		HOME_1,
+		HOME_2,
 		GAME,
 		RESULT
 	};

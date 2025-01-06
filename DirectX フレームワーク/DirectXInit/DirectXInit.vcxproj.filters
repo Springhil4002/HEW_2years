@@ -227,6 +227,9 @@
       <Filter>Sound関係</Filter>
     </ClCompile>
     <ClCompile Include="Coin.cpp" />
+    <ClCompile Include="HomeScene.cpp">
+      <Filter>Scene関係\ソースファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scene.h">
@@ -314,6 +317,9 @@
       <Filter>Sound関係</Filter>
     </ClInclude>
     <ClInclude Include="Coin.h" />
+    <ClInclude Include="HomeScene.h">
+      <Filter>Scene関係\ヘッダーファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader\common.hlsl">

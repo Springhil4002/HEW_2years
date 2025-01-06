@@ -1,5 +1,6 @@
 #include "SceneManager.h"
 #include "TitleScene.h"
+#include "HomeScene.h"
 #include "GameScene.h"
 #include "ResultScene.h"
 #include "Quad.h"
@@ -21,6 +22,12 @@ void SceneManager::NewScene()
 	switch (nextScene) {
 	case SCENE::TITLE:
 		currentScene = new TitleScene();
+		break;
+	case SCENE::HOME_1:
+		currentScene = new HomeScene();
+		break;
+	case SCENE::HOME_2:
+		currentScene = new HomeScene();
 		break;
 	case SCENE::GAME:
 		currentScene = new GameScene();
