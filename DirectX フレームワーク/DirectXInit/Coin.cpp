@@ -15,9 +15,7 @@ void Coin::Update()
 	{
 		if (Object::Collision(this, pl))
 		{
-			//
-			// ‚Õ‚ê‚¢‚³‚¤‚ñ‚Ç
-			//
+			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE003);
 			
 			Object::Delete(this);
 		}

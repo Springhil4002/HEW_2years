@@ -1,6 +1,8 @@
 #pragma once
 #include "Quad.h"
-class Coin : public Quad
+
+class Coin 
+	: public Quad
 {
 public:
 	Coin() {}
@@ -8,6 +10,5 @@ public:
 
 	void Init();
 	void Update();
-
 };
 

@@ -11,7 +11,7 @@ enum SOUND_LABEL {
 	SOUND_LABEL_BGM005,			// BGM_5
 	SOUND_LABEL_SE001,			// SE_1
 	SOUND_LABEL_SE002,			// SE_2
-	//SOUND_LABEL_SE003,		// SE_3
+	SOUND_LABEL_SE003,			// SE_3
 
 	SOUND_LABEL_MAX				// サウンドファイルの総数
 };
@@ -35,7 +35,7 @@ private:
 		{"asset/BGM/Waltz-Antiqua.wav"			, true},	// BGM_5　ゲームオーバー
 		{"asset/SE/SE_Jump.wav"					, false},	// SE_1　 ジャンプ音
 		{"asset/SE/Button_1.wav"				, false},	// SE_2 　クリック音
-		//{"asset/SE/.wav", false}							// SE_3
+		{"asset/SE/コイン獲得音.wav"				, false}	// SE_3　 コイン獲得音
 	};
 
 	// XAudio2インターフェースへのポインタ
