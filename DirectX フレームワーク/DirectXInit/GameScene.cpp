@@ -65,7 +65,7 @@ GameScene::~GameScene()
 
 void GameScene::Init()
 {	
-	SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM001);	// サウンドを停止
+	SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM004);	// サウンドを停止
 	SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM002);	// サウンドを再生
 
 	auto bg = Object::Create<Quad>();

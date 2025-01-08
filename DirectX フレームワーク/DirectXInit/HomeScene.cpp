@@ -15,6 +15,7 @@ HomeScene::~HomeScene()
 void HomeScene::Init()
 {
 	SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM001);	// サウンド停止
+	SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM004);	// サウンド再生
 	switch (homeSceneNum) {
 	case 1: {
 		auto bg = Object::Create<Quad>();
@@ -81,14 +82,18 @@ void HomeScene::Init()
 
 void HomeScene::Update()
 {
-	if(input.GetButtonTrigger(XINPUT_UP)||
+	if(input.GetKeyTrigger(VK_W)||
+	   input.GetKeyTrigger(VK_S)||
+	   input.GetButtonTrigger(XINPUT_UP)||
 	   input.GetButtonTrigger(XINPUT_DOWN))
 	{
-		if (input.GetButtonTrigger(XINPUT_UP)&&
+		if ((input.GetButtonTrigger(XINPUT_UP) || 
+			 input.GetKeyTrigger(VK_W)) &&
 			frameNum > 1) {
 			frameNum -= 1;
 		}
-		if (input.GetButtonTrigger(XINPUT_DOWN)&&
+		if ((input.GetButtonTrigger(XINPUT_DOWN) ||
+			input.GetKeyTrigger(VK_S)) &&
 			frameNum < 3) {
 			frameNum += 1;
 		}
