@@ -141,6 +141,7 @@
     <ClCompile Include="Coin.cpp" />
     <ClCompile Include="dx11helper.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="GameOverScene.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="HomeScene.cpp" />
@@ -175,6 +176,7 @@
     <ClInclude Include="Coin.h" />
     <ClInclude Include="dx11helper.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="GameOverScene.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="HomeScene.h" />

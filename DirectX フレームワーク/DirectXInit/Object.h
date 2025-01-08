@@ -18,7 +18,7 @@ public:
 	// ƒ^ƒO
 	Tags tags;
 	
-	Object() {}
+	Object() { layer = 0; }
 	~Object() {}
 
 	virtual void Init() {}		// ‰Šú‰»ˆ—

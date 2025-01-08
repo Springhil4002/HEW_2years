@@ -2,6 +2,7 @@
 #include "TitleScene.h"
 #include "HomeScene.h"
 #include "GameScene.h"
+#include "GameOverScene.h"
 #include "ResultScene.h"
 #include "Quad.h"
 
@@ -24,13 +25,16 @@ void SceneManager::NewScene()
 		currentScene = new TitleScene();
 		break;
 	case SCENE::HOME_1:
-		currentScene = new HomeScene();
+		currentScene = new HomeScene(1);
 		break;
 	case SCENE::HOME_2:
-		currentScene = new HomeScene();
+		currentScene = new HomeScene(2);
 		break;
 	case SCENE::GAME:
 		currentScene = new GameScene();
+		break;
+	case SCENE::GAMEOVER:
+		currentScene = new GameOverScene();
 		break;
 	case SCENE::RESULT:
 		currentScene = new ResultScene();

@@ -172,6 +172,15 @@ void GameScene::Update()
 		//現在のシーンを「ResultScene」に切り替える
 		SceneManager::ChangeScene(SceneManager::RESULT);
 	}
+
+	auto players =GetInstance()->GetObjects<Player>();
+	for (auto& player : players)
+	{
+		if (GROUND_OFFSET_Y > player->GetPos().y + 120.0f)
+		{
+			SceneManager::ChangeScene(SceneManager::GAMEOVER);
+		}
+	}
 }
 
 //void GameScene::Draw()
