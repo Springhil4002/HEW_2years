@@ -30,8 +30,29 @@ void SceneManager::NewScene()
 	case SCENE::HOME_2:
 		currentScene = new HomeScene(2);
 		break;
-	case SCENE::GAME:
-		currentScene = new GameScene();
+	case SCENE::GAME_1:
+		currentScene = new GameScene(1);
+		break;
+	case SCENE::GAME_2:
+		currentScene = new GameScene(2);
+		break;
+	case SCENE::GAME_3:
+		currentScene = new GameScene(3);
+		break;
+	case SCENE::GAME_4:
+		currentScene = new GameScene(4);
+		break;
+	case SCENE::GAME_5:
+		currentScene = new GameScene(5);
+		break;
+	case SCENE::GAME_6:
+		currentScene = new GameScene(6);
+		break;
+	case SCENE::GAME_7:
+		currentScene = new GameScene(7);
+		break;
+	case SCENE::GAME_8:
+		currentScene = new GameScene(8);
 		break;
 	case SCENE::GAMEOVER:
 		currentScene = new GameOverScene();

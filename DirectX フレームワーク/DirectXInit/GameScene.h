@@ -13,12 +13,14 @@ private:
 	//Player player;	// プレイヤー
 	//std::vector<Ground*> ground;	// 地面
 	//Physic test;
+	int gameSceneNum = 0;
 public:
-	GameScene() {}	//コンストラクタ
-	~GameScene();	//デストラクタ
+	GameScene(int _num);	//コンストラクタ
+	~GameScene();			//デストラクタ
 
 	//オーバーライドした関数
-	void Init();
+	void Init() {};
+	void Init(int _num);
 	void Update();	// 更新処理関数
 	//void Draw();	// 描画処理関数
 };

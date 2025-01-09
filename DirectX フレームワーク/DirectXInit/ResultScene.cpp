@@ -15,8 +15,8 @@ ResultScene::~ResultScene()
 
 void ResultScene::Init()
 {
-	SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM002);	// サウンドを停止
-	SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM003);	// サウンドを再生
+	SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM003);	// サウンドを停止
+	SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM005);	// サウンドを再生
 	auto bg = Object::Create<Quad>();
 	bg->SetTex("asset/Texture/Night.jpg");
 	bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);

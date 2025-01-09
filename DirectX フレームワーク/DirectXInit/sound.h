@@ -29,10 +29,10 @@ private:
 	PARAM m_param[SOUND_LABEL_MAX] =
 	{
 		{"asset/BGM/黄金色のカーペット.wav"			, true},	// BGM_1　タイトル
-		{"asset/BGM/水底に沈む古城.wav"				, true},	// BGM_2　ゲーム
-		{"asset/BGM/シュトラールブルクの学び舎.wav"	, true},	// BGM_3　リザルト
-		{"asset/BGM/ほんのりいい感じなピアノ.wav"		, true},	// BGM_4　ホーム
-		{"asset/BGM/Waltz-Antiqua.wav"			, true},	// BGM_5　ゲームオーバー
+		{"asset/BGM/ほんのりいい感じなピアノ.wav"		, true},	// BGM_2　ホーム
+		{"asset/BGM/水底に沈む古城.wav"				, true},	// BGM_3　ゲーム
+		{"asset/BGM/Waltz-Antiqua.wav"			, true},	// BGM_4　ゲームオーバー
+		{"asset/BGM/シュトラールブルクの学び舎.wav"	, true},	// BGM_5　リザルト
 		{"asset/SE/SE_Jump.wav"					, false},	// SE_1　 ジャンプ音
 		{"asset/SE/Button_1.wav"				, false},	// SE_2 　クリック音
 		{"asset/SE/コイン獲得音.wav"				, false}	// SE_3　 コイン獲得音

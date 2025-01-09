@@ -17,8 +17,8 @@ GameOverScene::~GameOverScene()
 // 初期化処理
 void GameOverScene::Init()
 {
-	SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM002);	// サウンドを停止
-	SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM005);	// サウンドを再生
+	SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM003);	// サウンドを停止
+	SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM004);	// サウンドを再生
 	auto bg = Object::Create<Quad>();
 	auto logo = Object::Create<Quad>();
 	auto returnTitle = Object::Create<Quad>();

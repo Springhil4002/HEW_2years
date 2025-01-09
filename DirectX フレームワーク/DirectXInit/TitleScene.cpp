@@ -15,7 +15,7 @@ TitleScene::~TitleScene()
 
 void TitleScene::Init()
 {
-	SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM003);	// サウンド停止
+	SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM004);	// サウンド停止
 	SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM005);	// サウンド停止
 	SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM001);	// サウンド再生
 	auto bg = Object::Create<Quad>();
