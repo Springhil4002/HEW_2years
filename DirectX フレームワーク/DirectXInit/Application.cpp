@@ -2,6 +2,7 @@
 #include "SceneManager.h"
 #include "Renderer.h"
 #include "Camera.h"
+#include "Cursor.h"
 //#include "Player.h"
 
 const auto ClassName = TEXT("2024 フレームワーク");			// ウィンドウクラス名
@@ -277,6 +278,12 @@ LRESULT CALLBACK Application::WindowProc(HWND _hWnd, UINT _Msg, WPARAM _wP, LPAR
 		if (LOWORD(_wP) == VK_ESCAPE) { //入力されたキーがESCAPEなら
 			PostMessage(_hWnd, WM_CLOSE, _wP, _lP);//「WM_CLOSE」を送る
 		}
+	}
+	break;
+
+	//マウスが動いたら
+	case WM_MOUSEMOVE: {
+		Cursor::Update(_lP);
 	}
 	break;
 

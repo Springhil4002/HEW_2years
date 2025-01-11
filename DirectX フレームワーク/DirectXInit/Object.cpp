@@ -30,17 +30,7 @@ DirectX::SimpleMath::Vector3 Object::GetPos() const
 
 void Object::Delete(Object* _object)
 {
-	auto begin = Scene::GetInstance()->GetObjects()->begin();
-	auto end = Scene::GetInstance()->GetObjects()->end();
-	for (auto itr = begin; itr != end; itr++)
-	{
-		if (*itr == _object)
-		{
-			delete *itr;
-			Scene::GetInstance()->GetObjects()->erase(itr);
-			return;
-		}
-	}
+	SceneManager::SetDelete(_object);
 }
 
 bool Object::Collision(Object* _object1, Object* _object2)

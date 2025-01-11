@@ -5,9 +5,12 @@
 #include "GameOverScene.h"
 #include "ResultScene.h"
 #include "Quad.h"
+#include "MapEditor.h"
 
 Scene* SceneManager::currentScene = nullptr;
 bool SceneManager::changed = false;
+std::set<Object*> SceneManager::createObjects;
+std::set<Object*> SceneManager::deleteObjects;
 SCENE SceneManager::nextScene = TITLE;
 // 静的メンバー変数の定義
 SoundManager SceneManager::m_SoundManager;
@@ -69,6 +72,11 @@ void SceneManager::ChangeScene(SCENE _scene)
 	changed = true;
 }
 
+void SceneManager::SetDelete(Object* _object)
+{
+	deleteObjects.insert(_object);
+}
+
 void SceneManager::Init()
 {
 	m_SoundManager.Init();	// サウンドマネージャーを初期化
@@ -86,20 +94,35 @@ void SceneManager::Update()
 		changed = false;
 	}
 
-	// オブジェクトの初期化のタイミング
-	//for (auto& obj : *currentScene->GetObjects())
-	//{
-	//	if (obj.)
-	//	{
-	//		obj->Init();//後でやる
-	//	}
-	//}
+	// オブジェクトの生成と初期化のタイミング
+	if (!createObjects.empty())
+	{
+		auto buf = createObjects;
+		for (auto& obj : buf)
+		{
+			obj->Init();
+			currentScene->GetObjects()->insert(obj);
+			createObjects.erase(obj);
+		}
+	}
 
 	// 入力処理のタイミング
 	currentScene->Input();
 
 	// 更新処理のタイミング
 	currentScene->Update();
+
+	if (!deleteObjects.empty())
+	{
+		auto buf = deleteObjects;
+		for (auto& obj : buf)
+		{
+			obj->Uninit();
+			currentScene->GetObjects()->erase(obj);
+			deleteObjects.erase(obj);
+			delete obj;
+		}
+	}
 
 	// シーンが変わっていたらシーンの終了処理をするタイミング
 	if (changed)

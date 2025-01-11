@@ -2,7 +2,7 @@
 #include <math.h>
 #include <simpleMath.h>
 #include"Tags.h"
-#include"Scene.h"
+#include"SceneManager.h"
 
 class Object {
 protected:
@@ -17,7 +17,7 @@ public:
 
 	// タグ
 	Tags tags;
-	
+
 	Object() { layer = 0; }
 	~Object() {}
 
@@ -37,9 +37,7 @@ public:
 	template<class T>
 	static T* Create()
 	{
-		T* buf = new T;
-		Scene::GetInstance()->GetObjects()->insert(buf);
-		return buf;
+		return SceneManager::SetCreate<T>();
 	}
 
 	// オブジェクトの削除

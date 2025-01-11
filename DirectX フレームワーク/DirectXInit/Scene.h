@@ -16,7 +16,7 @@ protected:
 	std::set<Object*> objectInstance;	// オブジェクトのインスタンス
 public:
 	static Input input;		// 入力系インスタンス
-	
+
 	Scene(){			// コンストラクタ
 		delete sceneInstance;
 		sceneInstance = this;
@@ -31,11 +31,9 @@ public:
 	void Draw();			// 描画処理関数
 	void Uninit();			// 終了処理関数
 
-
 	// 純粋仮想関数
 	virtual void Init() = 0;	// 初期化処理関数
-	virtual void Update() = 0;	// 更新処理関数
-
+	virtual void Update() = 0;	// 更新処理関数	
 
 	// 今のSceneを返すぜ
 	static Scene* GetInstance();

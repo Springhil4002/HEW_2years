@@ -233,6 +233,8 @@
     <ClCompile Include="GameOverScene.cpp">
       <Filter>Scene関係\ソースファイル</Filter>
     </ClCompile>
+    <ClCompile Include="MapEditor.cpp" />
+    <ClCompile Include="Cursor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scene.h">
@@ -327,6 +329,8 @@
       <Filter>Scene関係\ヘッダーファイル</Filter>
     </ClInclude>
     <ClInclude Include="Enum.h" />
+    <ClInclude Include="MapEditor.h" />
+    <ClInclude Include="Cursor.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader\common.hlsl">

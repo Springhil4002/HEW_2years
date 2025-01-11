@@ -5,11 +5,14 @@
 
 class SceneManager
 {
-public:
-
-private:	
+private:
 	static Scene* currentScene;	//現在のシーン
 	static bool changed;
+
+	static std::set<Object*> createObjects;	// 生成するオブジェクト
+	static std::set<Object*> deleteObjects;	// 削除するオブジェクト
+
+
 	static void NewScene();
 public:
 	static SCENE nextScene;
@@ -23,4 +26,17 @@ public:
 	static void Uninit();	//解放処理関数
 
 	static void ChangeScene(SCENE _scene);	//現在のシーンを切り替える処理関数
+
+	// 生成するオブジェクトを作成
+	template<class T>
+	static T* SetCreate()
+	{
+		T* buf = new T;
+		createObjects.insert(buf);
+		return buf;
+	}
+
+	// 削除するオブジェクトを登録
+	static void SetDelete(Object* _object);
+
 };
