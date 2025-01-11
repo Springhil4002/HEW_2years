@@ -25,6 +25,7 @@ void GameOverScene::Init()
 	auto logo = Object::Create<Quad>();
 	auto returnTitle = Object::Create<Quad>();
 	auto returnHome = Object::Create<Quad>();
+	auto retryLogo = Object::Create<Quad>();
 	auto frame = Object::Create<Quad>();
 
 	bg->SetTex("asset/Texture/GameOver_bg.png");
@@ -36,15 +37,19 @@ void GameOverScene::Init()
 	logo->SetScale(600.0f, 400.0f, 0.0f);
 
 	returnTitle->SetTex("asset/Texture/Return_toTitle.png");
-	returnTitle->SetPos(-300.0f, -300.0f, 0.0f);
+	returnTitle->SetPos(-450.0f, -300.0f, 0.0f);
 	returnTitle->SetScale(420.0f, 150.0f, 0.0f);
 
 	returnHome->SetTex("asset/Texture/Return_toHome.png");
-	returnHome->SetPos(300.0f, -300.0f, 0.0f);
+	returnHome->SetPos(0.0f, -300.0f, 0.0f);
 	returnHome->SetScale(420.0f, 150.0f, 0.0f);
 
+	retryLogo->SetTex("asset/Texture/Retry.png");
+	retryLogo->SetPos(450.0f, -300.0f, 0.0f);
+	retryLogo->SetScale(420.0f, 150.0f, 0.0f);
+
 	frame->SetTex("asset/Texture/Frame.png");
-	frame->SetPos(-300.0f, 300.0f, 0.0f);
+	frame->SetPos(-450.0f, -300.0f, 0.0f);
 	frame->SetScale(420.0f, 150.0f, 0.0f);
 	frame->tags.AddTag("frame");
 }
@@ -58,7 +63,7 @@ void GameOverScene::Update()
 	{
 		if((input.GetButtonTrigger(XINPUT_RIGHT) ||
 			input.GetKeyTrigger(VK_D)) &&
-			frameNum < 2) {
+			frameNum < 3) {
 			frameNum += 1;
 		}
 		if ((input.GetButtonTrigger(XINPUT_LEFT) ||
@@ -76,7 +81,7 @@ void GameOverScene::Update()
 		{
 			if (quad->tags.SearchTag("frame"))
 			{
-				quad->SetPos(-300.0f, -300.0f, 0.0f);
+				quad->SetPos(-450.0f, -300.0f, 0.0f);
 			}
 		}
 
@@ -94,7 +99,25 @@ void GameOverScene::Update()
 		{
 			if (quad->tags.SearchTag("frame"))
 			{
-				quad->SetPos(300.0f, -300.0f, 0.0f);
+				quad->SetPos(0.0f, -300.0f, 0.0f);
+			}
+		}
+
+		if (input.GetKeyTrigger(VK_RETURN) ||
+			input.GetButtonTrigger(XINPUT_B))
+		{
+			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE001);
+			//現在のシーンを「GameScene」に切り替える
+			SceneManager::ChangeScene(HOME_1);
+		}
+		break; }
+	case 3: {
+		auto allQuad = GetInstance()->GetObjects<Quad>();
+		for (auto& quad : allQuad)
+		{
+			if (quad->tags.SearchTag("frame"))
+			{
+				quad->SetPos(450.0f, -300.0f, 0.0f);
 			}
 		}
 
