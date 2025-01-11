@@ -326,6 +326,7 @@
     <ClInclude Include="GameOverScene.h">
       <Filter>Scene関係\ヘッダーファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Enum.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader\common.hlsl">

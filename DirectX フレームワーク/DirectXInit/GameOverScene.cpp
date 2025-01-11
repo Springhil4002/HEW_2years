@@ -2,6 +2,8 @@
 #include "SceneManager.h"
 #include "Quad.h"
 
+SCENE GameOverScene::isEndSceneNum = GAME_1;
+
 // コンストラクタ(初期化処理)
 GameOverScene::GameOverScene()
 {
@@ -83,7 +85,7 @@ void GameOverScene::Update()
 		{
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE001);
 			//現在のシーンを「TitleScene」に切り替える
-			SceneManager::ChangeScene(SceneManager::TITLE);
+			SceneManager::ChangeScene(TITLE);
 		}
 		break; }
 	case 2: {
@@ -101,7 +103,7 @@ void GameOverScene::Update()
 		{
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE001);
 			//現在のシーンを「GameScene」に切り替える
-			SceneManager::ChangeScene(SceneManager::HOME_1);
+			SceneManager::ChangeScene(isEndSceneNum);
 		}
 		break; }
 	default:

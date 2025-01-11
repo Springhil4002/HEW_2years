@@ -1,4 +1,5 @@
 #include "GameScene.h"
+#include "GameOverScene.h"
 #include "SceneManager.h"
 #include "Quad.h"
 #include "Ground.h"
@@ -20,6 +21,7 @@ GameScene::~GameScene()
 void GameScene::Init(int _num)
 {	
 	gameSceneNum = _num;
+	GameOverScene::isEndSceneNum = (SCENE)(gameSceneNum + 2);
 	switch(gameSceneNum)
 	{
 	case 1: {
@@ -693,7 +695,7 @@ void GameScene::Update()
 	{
 		SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
 		//現在のシーンを「ResultScene」に切り替える
-		SceneManager::ChangeScene(SceneManager::RESULT);
+		SceneManager::ChangeScene(RESULT);
 	}
 
 	auto players =GetInstance()->GetObjects<Player>();
@@ -701,7 +703,7 @@ void GameScene::Update()
 	{
 		if (GROUND_OFFSET_Y > player->GetPos().y + 120.0f)
 		{
-			SceneManager::ChangeScene(SceneManager::GAMEOVER);
+			SceneManager::ChangeScene(GAMEOVER);
 		}
 	}
 }

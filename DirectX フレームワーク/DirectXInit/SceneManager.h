@@ -1,33 +1,18 @@
 #pragma once
 #include "Scene.h"
 #include "SoundManager.h"
+#include "Enum.h"
 
 class SceneManager
 {
 public:
-	//列挙型
-	enum SCENE {
-		TITLE,
-		HOME_1,
-		HOME_2,
-		GAME_1,
-		GAME_2,
-		GAME_3,
-		GAME_4,
-		GAME_5,
-		GAME_6,
-		GAME_7,
-		GAME_8,
-		GAMEOVER,
-		RESULT
-	};
 
 private:	
 	static Scene* currentScene;	//現在のシーン
-	static SCENE nextScene;
 	static bool changed;
 	static void NewScene();
 public:
+	static SCENE nextScene;
 	static SoundManager m_SoundManager;	// シーンマネージャーのインスタンス
 	SceneManager() {}		//コンストラクタ
 	~SceneManager() {}		//デストラクタ

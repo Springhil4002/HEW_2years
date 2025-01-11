@@ -30,7 +30,7 @@ void ResultScene::Update()
 	{
 		SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
 		//現在のシーンを「TitleScene」に切り替える
-		SceneManager::ChangeScene(SceneManager::TITLE);
+		SceneManager::ChangeScene(TITLE);
 	}
 }
 

@@ -176,6 +176,7 @@
     <ClInclude Include="Coin.h" />
     <ClInclude Include="dx11helper.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="Enum.h" />
     <ClInclude Include="GameOverScene.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Ground.h" />

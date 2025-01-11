@@ -134,13 +134,13 @@ void HomeScene::Update()
 	{
 		SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
 		//現在のシーンを「HomeScene」に切り替える
-		SceneManager::ChangeScene(SceneManager::HOME_2);
+		SceneManager::ChangeScene(HOME_2);
 	}
 	if (input.GetButtonTrigger(XINPUT_LEFT_SHOULDER))
 	{
 		SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
 		//現在のシーンを「HomeScene」に切り替える
-		SceneManager::ChangeScene(SceneManager::HOME_1);
+		SceneManager::ChangeScene(HOME_1);
 	}
 
 	switch (frameNum)
@@ -160,7 +160,7 @@ void HomeScene::Update()
 		{
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
 			//現在のシーンを「GameScene」に切り替える
-			SceneManager::ChangeScene(SceneManager::GAME_1);
+			SceneManager::ChangeScene(GAME_1);
 		}
 		break; }
 	case 2: {
@@ -178,7 +178,7 @@ void HomeScene::Update()
 		{
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
 			//現在のシーンを「GameScene」に切り替える
-			SceneManager::ChangeScene(SceneManager::GAME_2);
+			SceneManager::ChangeScene(GAME_2);
 		}
 		break; }
 	case 3: {
@@ -196,7 +196,7 @@ void HomeScene::Update()
 		{
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
 			//現在のシーンを「GameScene」に切り替える
-			SceneManager::ChangeScene(SceneManager::GAME_3);
+			SceneManager::ChangeScene(GAME_3);
 		}
 		break; }
 	case 4: {
@@ -214,7 +214,7 @@ void HomeScene::Update()
 		{
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
 			//現在のシーンを「GameScene」に切り替える
-			SceneManager::ChangeScene(SceneManager::GAME_4);
+			SceneManager::ChangeScene(GAME_4);
 		}
 		break; }
 	case 5: {
@@ -232,7 +232,7 @@ void HomeScene::Update()
 		{
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
 			//現在のシーンを「GameScene」に切り替える
-			SceneManager::ChangeScene(SceneManager::GAME_5);
+			SceneManager::ChangeScene(GAME_5);
 		}
 		break; }
 	case 6: {
@@ -250,7 +250,7 @@ void HomeScene::Update()
 		{
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
 			//現在のシーンを「GameScene」に切り替える
-			SceneManager::ChangeScene(SceneManager::GAME_6);
+			SceneManager::ChangeScene(GAME_6);
 		}
 		break; }
 	case 7: {
@@ -268,7 +268,7 @@ void HomeScene::Update()
 		{
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
 			//現在のシーンを「GameScene」に切り替える
-			SceneManager::ChangeScene(SceneManager::GAME_7);
+			SceneManager::ChangeScene(GAME_7);
 		}
 		break; }
 	case 8: {
@@ -286,7 +286,7 @@ void HomeScene::Update()
 		{
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
 			//現在のシーンを「GameScene」に切り替える
-			SceneManager::ChangeScene(SceneManager::GAME_8);
+			SceneManager::ChangeScene(GAME_8);
 		}
 		break; }
 	default:

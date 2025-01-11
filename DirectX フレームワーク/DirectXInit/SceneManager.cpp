@@ -7,8 +7,8 @@
 #include "Quad.h"
 
 Scene* SceneManager::currentScene = nullptr;
-SceneManager::SCENE SceneManager::nextScene = TITLE;
 bool SceneManager::changed = false;
+SCENE SceneManager::nextScene = TITLE;
 // 静的メンバー変数の定義
 SoundManager SceneManager::m_SoundManager;
 
