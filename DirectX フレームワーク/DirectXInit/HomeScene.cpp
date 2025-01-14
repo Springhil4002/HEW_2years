@@ -105,27 +105,38 @@ void HomeScene::Init(int _num)
 
 void HomeScene::Update()
 {
-	if(input.GetKeyTrigger(VK_W)||
-	   input.GetKeyTrigger(VK_S)||
-	   input.GetKeyTrigger(VK_D) ||
-	   input.GetKeyTrigger(VK_A) ||
-	   input.GetButtonTrigger(XINPUT_UP)||
-	   input.GetButtonTrigger(XINPUT_DOWN)||
-	   input.GetButtonTrigger(XINPUT_RIGHT)||
-	   input.GetButtonTrigger(XINPUT_LEFT))
+	
+	if (homeSceneNum == 1)
 	{
-		if ((input.GetButtonTrigger(XINPUT_DOWN) || 
-			 input.GetButtonTrigger(XINPUT_RIGHT) ||
-			 input.GetKeyTrigger(VK_S) ||
-			 input.GetKeyTrigger(VK_D)) &&
-			frameNum < 8) {
+		if ((input.GetButtonTrigger(XINPUT_DOWN) ||
+			input.GetButtonTrigger(XINPUT_RIGHT) ||
+			input.GetKeyTrigger(VK_S) ||
+			input.GetKeyTrigger(VK_D)) &&
+			frameNum < 3) {
 			frameNum += 1;
 		}
 		if ((input.GetButtonTrigger(XINPUT_UP) ||
-			 input.GetButtonTrigger(XINPUT_LEFT) ||
-			 input.GetKeyTrigger(VK_W) ||
-			 input.GetKeyTrigger(VK_A)) &&
+			input.GetButtonTrigger(XINPUT_LEFT) ||
+			input.GetKeyTrigger(VK_W) ||
+			input.GetKeyTrigger(VK_A)) &&
 			frameNum > 1) {
+			frameNum -= 1;
+		}
+	}
+	if (homeSceneNum == 2)
+	{
+		if ((input.GetButtonTrigger(XINPUT_DOWN) ||
+			input.GetButtonTrigger(XINPUT_RIGHT) ||
+			input.GetKeyTrigger(VK_S) ||
+			input.GetKeyTrigger(VK_D)) &&
+			frameNum < 8) {
+			frameNum += 1;
+			}
+		if ((input.GetButtonTrigger(XINPUT_UP) ||
+			input.GetButtonTrigger(XINPUT_LEFT) ||
+			input.GetKeyTrigger(VK_W) ||
+			input.GetKeyTrigger(VK_A)) &&
+			frameNum > 4) {
 			frameNum -= 1;
 		}
 	}
