@@ -3,6 +3,7 @@
 //—ñ‹“Œ^
 enum SCENE {
 	TITLE,
+	PLAYOPERATE,
 	HOME_1,
 	HOME_2,
 	GAME_1,

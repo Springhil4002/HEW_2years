@@ -4,13 +4,12 @@
 
 TitleScene::TitleScene()
 {
-	//bg.Init("asset/Texture/Future.jpg");	//背景を初期化
-	//bg.SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);		//大きさを設定
+	
 }
 
 TitleScene::~TitleScene()
 {
-	//bg.Uninit();	// 背景を終了
+	
 }
 
 void TitleScene::Init()
@@ -20,13 +19,13 @@ void TitleScene::Init()
 	SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM001);	// サウンド再生
 	
 	// オブジェクト作成
-	auto bg = Object::Create<Quad>();						
-	auto titleLogo = Object::Create<Quad>();
-	auto startLogo = Object::Create<Quad>();
-	auto playLogo = Object::Create<Quad>();
-	auto frame = Object::Create<Quad>();
+	auto bg				= Object::Create<Quad>();			// 背景
+	auto titleLogo		= Object::Create<Quad>();			// タイトルロゴ
+	auto gameStart		= Object::Create<Quad>();			// ゲームスタートのアイコン
+	auto playOperate	= Object::Create<Quad>();			// 遊び方のアイコン
+	auto frame			= Object::Create<Quad>();			// アイコンを囲むフレーム
 				
-	bg->SetTex("asset/Texture/Future.jpg");					// 画像読み込み
+	bg->SetTex("asset/Texture/Title_bg.jpg");				// 画像読み込み
 	bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);			// 大きさを設定
 	bg->layer = -1;											// レイヤー設定
 
@@ -34,13 +33,13 @@ void TitleScene::Init()
 	titleLogo->SetPos(0.0f, 200.0f, 0.0f);					// 座標を設定
 	titleLogo->SetScale(800.0f, 350.0f, 0.0f);				// 大きさを設定
 
-	startLogo->SetTex("asset/Texture/Start_Logo.png");		// 画像読み込み
-	startLogo->SetPos(0.0f, -200.0f, 0.0f);					// 座標を設定
-	startLogo->SetScale(600.0f, 200.0f, 0.0f);				// 大きさを設定
+	gameStart->SetTex("asset/Texture/Start_Logo.png");		// 画像読み込み
+	gameStart->SetPos(0.0f, -200.0f, 0.0f);					// 座標を設定
+	gameStart->SetScale(600.0f, 200.0f, 0.0f);				// 大きさを設定
 
-	playLogo->SetTex("asset/Texture/How_to_play.png");		// 画像読み込み
-	playLogo->SetPos(0.0f, -400.0f, 0.0f);					// 座標を設定
-	playLogo->SetScale(400.0f, 150.0f, 0.0f);				// 大きさを設定
+	playOperate->SetTex("asset/Texture/How_to_play.png");	// 画像読み込み
+	playOperate->SetPos(0.0f, -400.0f, 0.0f);				// 座標を設定
+	playOperate ->SetScale(400.0f, 150.0f, 0.0f);			// 大きさを設定
 
 	frame->SetTex("asset/Texture/Frame.png");				// 画像読み込み
 	frame->SetPos(0.0f, -200.0f, 0.0f);						// 座標を設定
@@ -50,6 +49,7 @@ void TitleScene::Init()
 
 void TitleScene::Update()
 {
+	// コントローラー・キーボードの入力処理
 	if ((input.GetButtonTrigger(XINPUT_DOWN) ||
 		input.GetButtonTrigger(XINPUT_RIGHT) ||
 		input.GetKeyTrigger(VK_S) ||
@@ -65,6 +65,7 @@ void TitleScene::Update()
 		frameNum -= 1;
 	}
 
+	// フレームの移動処理
 	switch (frameNum)
 	{
 	case 1: {
@@ -96,7 +97,14 @@ void TitleScene::Update()
 				quad->SetScale(400.0f, 150.0f, 0.0f);			// 大きさを設定
 			}
 		}
-		
+		// エンターキーorBボタンを押したら
+		if (input.GetKeyTrigger(VK_RETURN) ||
+			input.GetButtonTrigger(XINPUT_B))
+		{
+			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
+			//現在のシーンを「PlayOperateScene」に切り替える
+			SceneManager::ChangeScene(PLAYOPERATE);
+		}
 		break; }
 	default:
 		break;

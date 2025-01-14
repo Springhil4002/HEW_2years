@@ -154,6 +154,7 @@
     </ClCompile>
     <ClCompile Include="Physic.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayOperateScene.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ResultScene.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -193,6 +194,7 @@
     </ClInclude>
     <ClInclude Include="Physic.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayOperateScene.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="ResultScene.h" />
     <ClInclude Include="Scene.h" />

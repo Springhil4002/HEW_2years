@@ -21,7 +21,7 @@ GameScene::~GameScene()
 void GameScene::Init(int _num)
 {	
 	gameSceneNum = _num;
-	GameOverScene::isEndSceneNum = (SCENE)(gameSceneNum + 2);
+	GameOverScene::isEndSceneNum = (SCENE)(gameSceneNum + SCENE_ENUM_OFFSET);
 	switch(gameSceneNum)
 	{
 	case 1: {

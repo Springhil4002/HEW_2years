@@ -1,5 +1,6 @@
 #include "SceneManager.h"
 #include "TitleScene.h"
+#include "PlayOperateScene.h"
 #include "HomeScene.h"
 #include "GameScene.h"
 #include "GameOverScene.h"
@@ -26,6 +27,9 @@ void SceneManager::NewScene()
 	switch (nextScene) {
 	case SCENE::TITLE:
 		currentScene = new TitleScene();
+		break;
+	case SCENE::PLAYOPERATE:
+		currentScene = new PlayOperateScene();
 		break;
 	case SCENE::HOME_1:
 		currentScene = new HomeScene(1);

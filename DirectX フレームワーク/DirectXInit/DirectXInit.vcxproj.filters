@@ -235,6 +235,9 @@
     </ClCompile>
     <ClCompile Include="MapEditor.cpp" />
     <ClCompile Include="Cursor.cpp" />
+    <ClCompile Include="PlayOperateScene.cpp">
+      <Filter>Scene関係\ソースファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scene.h">
@@ -331,6 +334,9 @@
     <ClInclude Include="Enum.h" />
     <ClInclude Include="MapEditor.h" />
     <ClInclude Include="Cursor.h" />
+    <ClInclude Include="PlayOperateScene.h">
+      <Filter>Scene関係\ヘッダーファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader\common.hlsl">

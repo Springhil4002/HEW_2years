@@ -19,84 +19,86 @@ void HomeScene::Init(int _num)
 	SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM002);	// サウンド再生
 	homeSceneNum = _num;
 	
+	// ステージ選択シーンの描画分岐処理
 	switch (homeSceneNum) {
 	case 1: {
 		frameNum = 1;
-		auto bg = Object::Create<Quad>();
-		auto stage_Logo1 = Object::Create<Quad>();
-		auto stage_Logo2 = Object::Create<Quad>();
-		auto stage_Logo3 = Object::Create<Quad>();
-		auto rightArrow = Object::Create<Quad>();
-		auto frame = Object::Create<Quad>();
+		// オブジェクトの作成
+		auto bg = Object::Create<Quad>();					// 背景
+		auto stage_Logo1 = Object::Create<Quad>();			// ステージロゴ
+		auto stage_Logo2 = Object::Create<Quad>();			// ステージロゴ
+		auto stage_Logo3 = Object::Create<Quad>();			// ステージロゴ
+		auto rightArrow = Object::Create<Quad>();			// 矢印アイコン
+		auto frame = Object::Create<Quad>();				// アイコンの枠
 
-		bg->SetTex("asset/Texture/Home.jpg");
-		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
-		bg->layer = -1;
+		bg->SetTex("asset/Texture/Home.jpg");				// 画像読み込み
+		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);		// 大きさを設定
+		bg->layer = -1;										// レイヤーを設定
 
-		stage_Logo1->SetTex("asset/Texture/Stage1.png");
-		stage_Logo1->SetPos(300.0f, 300.0f, 0.0f);
-		stage_Logo1->SetScale(400.0f, 150.0f, 0.0f);
+		stage_Logo1->SetTex("asset/Texture/Stage1.png");	// 画像読み込み
+		stage_Logo1->SetPos(300.0f, 300.0f, 0.0f);			// 座標を設定
+		stage_Logo1->SetScale(400.0f, 150.0f, 0.0f);		// 大きさを設定
 
-		stage_Logo2->SetTex("asset/Texture/Stage2.png");
-		stage_Logo2->SetPos(400.0f, 0.0f, 0.0f);
-		stage_Logo2->SetScale(400.0f, 150.0f, 0.0f);
+		stage_Logo2->SetTex("asset/Texture/Stage2.png");	// 画像読み込み
+		stage_Logo2->SetPos(400.0f, 0.0f, 0.0f);			// 座標を設定
+		stage_Logo2->SetScale(400.0f, 150.0f, 0.0f);		// 大きさを設定
 
-		stage_Logo3->SetTex("asset/Texture/Stage3.png");
-		stage_Logo3->SetPos(300.0f, -300.0f, 0.0f);
-		stage_Logo3->SetScale(400.0f, 150.0f, 0.0f);
+		stage_Logo3->SetTex("asset/Texture/Stage3.png");	// 画像読み込み
+		stage_Logo3->SetPos(300.0f, -300.0f, 0.0f);			// 座標を設定
+		stage_Logo3->SetScale(400.0f, 150.0f, 0.0f);		// 大きさを設定
 
-		rightArrow->SetTex("asset/Texture/ToHome_2.png");
-		rightArrow->SetPos(800.0f, 0.0f, 0.0f);
-		rightArrow->SetScale(200.0f, 75.0f, 0.0f);
-
-		frame->SetTex("asset/Texture/Frame.png");
-		frame->SetPos(300.0f, 300.0f, 0.0f);
-		frame->SetScale(420.0f, 150.0f, 0.0f);
-		frame->tags.AddTag("frame");
+		rightArrow->SetTex("asset/Texture/ToHome_2.png");	// 画像読み込み
+		rightArrow->SetPos(800.0f, 0.0f, 0.0f);				// 座標を設定
+		rightArrow->SetScale(200.0f, 75.0f, 0.0f);			// 大きさを設定
+			
+		frame->SetTex("asset/Texture/Frame.png");			// 画像読み込み
+		frame->SetPos(300.0f, 300.0f, 0.0f);				// 座標を設定
+		frame->SetScale(420.0f, 150.0f, 0.0f);				// 大きさを設定
+		frame->tags.AddTag("frame");						// タグ付け
 		break; }
 	case 2: {
-		frameNum = 4;
-		auto bg = Object::Create<Quad>();
-		auto stage_Logo4 = Object::Create<Quad>();
-		auto stage_Logo5 = Object::Create<Quad>();
-		auto stage_Logo6 = Object::Create<Quad>();
-		auto stage_Logo7 = Object::Create<Quad>();
-		auto stage_Logo8 = Object::Create<Quad>();
-		auto leftArrow = Object::Create<Quad>();
-		auto frame = Object::Create<Quad>();
+		frameNum = 4;		
+		auto bg = Object::Create<Quad>();					// 背景
+		auto stage_Logo4 = Object::Create<Quad>();			// ステージロゴ
+		auto stage_Logo5 = Object::Create<Quad>();			// ステージロゴ
+		auto stage_Logo6 = Object::Create<Quad>();			// ステージロゴ
+		auto stage_Logo7 = Object::Create<Quad>();			// ステージロゴ
+		auto stage_Logo8 = Object::Create<Quad>();			// ステージロゴ
+		auto leftArrow = Object::Create<Quad>();			// 矢印アイコン
+		auto frame = Object::Create<Quad>();				// アイコンを囲むフレーム
 
-		bg->SetTex("asset/Texture/Home.jpg");
-		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
+		bg->SetTex("asset/Texture/Home.jpg");				// 画像読み込み
+		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);		
 		bg->layer = -1;
 
-		stage_Logo4->SetTex("asset/Texture/Stage4.png");
-		stage_Logo4->SetPos(-450.0f, 300.0f, 0.0f);
-		stage_Logo4->SetScale(400.0f, 150.0f, 0.0f);
+		stage_Logo4->SetTex("asset/Texture/Stage4.png");	// 画像読み込み
+		stage_Logo4->SetPos(-450.0f, 300.0f, 0.0f);			// 座標を設定
+		stage_Logo4->SetScale(400.0f, 150.0f, 0.0f);		// 大きさを設定
 
-		stage_Logo5->SetTex("asset/Texture/Stage5.png");
-		stage_Logo5->SetPos(0.0f, 300.0f, 0.0f);
-		stage_Logo5->SetScale(400.0f, 150.0f, 0.0f);
+		stage_Logo5->SetTex("asset/Texture/Stage5.png");	// 画像読み込み
+		stage_Logo5->SetPos(0.0f, 300.0f, 0.0f);			// 座標を設定
+		stage_Logo5->SetScale(400.0f, 150.0f, 0.0f);		// 大きさを設定
 
-		stage_Logo6->SetTex("asset/Texture/Stage6.png");
-		stage_Logo6->SetPos(450.0f, 300.0f, 0.0f);
-		stage_Logo6->SetScale(400.0f, 150.0f, 0.0f);
+		stage_Logo6->SetTex("asset/Texture/Stage6.png");	// 画像読み込み
+		stage_Logo6->SetPos(450.0f, 300.0f, 0.0f);			// 座標を設定
+		stage_Logo6->SetScale(400.0f, 150.0f, 0.0f);		// 大きさを設定
 
-		stage_Logo7->SetTex("asset/Texture/Stage7.png");
-		stage_Logo7->SetPos(-300.0f, -300.0f, 0.0f);
-		stage_Logo7->SetScale(400.0f, 150.0f, 0.0f);
+		stage_Logo7->SetTex("asset/Texture/Stage7.png");	// 画像読み込み
+		stage_Logo7->SetPos(-300.0f, -300.0f, 0.0f);		// 座標を設定
+		stage_Logo7->SetScale(400.0f, 150.0f, 0.0f);		// 大きさを設定
 
-		stage_Logo8->SetTex("asset/Texture/Stage8.png");
-		stage_Logo8->SetPos(300.0f, -300.0f, 0.0f);
-		stage_Logo8->SetScale(400.0f, 150.0f, 0.0f);
+		stage_Logo8->SetTex("asset/Texture/Stage8.png");	// 画像読み込み
+		stage_Logo8->SetPos(300.0f, -300.0f, 0.0f);			// 座標を設定
+		stage_Logo8->SetScale(400.0f, 150.0f, 0.0f);		// 大きさを設定
 
-		leftArrow->SetTex("asset/Texture/ToHome_1.png");
-		leftArrow->SetPos(-800.0f, 0.0f, 0.0f);
-		leftArrow->SetScale(200.0f, 75.0f, 0.0f);
+		leftArrow->SetTex("asset/Texture/ToHome_1.png");	// 画像読み込み
+		leftArrow->SetPos(-800.0f, 0.0f, 0.0f);				// 座標を設定
+		leftArrow->SetScale(200.0f, 75.0f, 0.0f);			// 大きさを設定
 
-		frame->SetTex("asset/Texture/Frame.png");
-		frame->SetPos(-450.0f, 300.0f, 0.0f);
-		frame->SetScale(420.0f, 150.0f, 0.0f);
-		frame->tags.AddTag("frame");
+		frame->SetTex("asset/Texture/Frame.png");			// 画像読み込み
+		frame->SetPos(-450.0f, 300.0f, 0.0f);				// 座標を設定
+		frame->SetScale(420.0f, 150.0f, 0.0f);				// 大きさを設定
+		frame->tags.AddTag("frame");						// タグ付け
 		break; }
 	default: {
 		break; }
@@ -105,7 +107,7 @@ void HomeScene::Init(int _num)
 
 void HomeScene::Update()
 {
-	
+	// ステージ選択の入力処理
 	if (homeSceneNum == 1)
 	{
 		if ((input.GetButtonTrigger(XINPUT_DOWN) ||
@@ -140,7 +142,7 @@ void HomeScene::Update()
 			frameNum -= 1;
 		}
 	}
-
+	// ホームシーン切り替えの入力処理
 	if (input.GetButtonTrigger(XINPUT_RIGHT_SHOULDER))
 	{
 		SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
@@ -154,6 +156,7 @@ void HomeScene::Update()
 		SceneManager::ChangeScene(HOME_1);
 	}
 
+	// フレームアイコンの移動処理
 	switch (frameNum)
 	{
 	case 1: {
