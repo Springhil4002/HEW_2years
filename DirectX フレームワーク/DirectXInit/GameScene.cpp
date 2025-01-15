@@ -7,17 +7,6 @@
 #include "Band.h"
 #include "Coin.h"
 
-//コンストラクタ
-GameScene::GameScene(int _num) 
-{
-	Init(_num); 
-}	
-
-GameScene::~GameScene()
-{
-	
-}
-
 void GameScene::Init(int _num)
 {	
 	gameSceneNum = _num;
@@ -672,18 +661,6 @@ void GameScene::Init(int _num)
 
 void GameScene::Update()
 {
-	
-	//input.Update();	//キー入力の判定
-
-	//player.Update();
-
-	//test.Update();
-
-	/*for (auto& ent : Object::GetObj<Entity>())
-	{
-		ent->Update();
-	}*/
-
 	auto objects = objectInstance;
 	for (auto& obj : objects)
 	{
@@ -707,19 +684,3 @@ void GameScene::Update()
 		}
 	}
 }
-
-//void GameScene::Draw()
-//{
-//	bg.Draw();		// 背景を描画
-//	player.Draw();	// プレイヤーを描画
-//	for (int i = 0; i < OBJECT_X_VALUE; ++i)
-//	{
-//		ground[i]->Draw();
-//	}
-//	test.Draw();
-//
-//	for (auto& ent : Object::GetObj<Entity>())
-//	{
-//		ent->Draw();
-//	}
-//}

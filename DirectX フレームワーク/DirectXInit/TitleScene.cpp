@@ -2,16 +2,6 @@
 #include "SceneManager.h"
 #include "Quad.h"
 
-TitleScene::TitleScene()
-{
-	
-}
-
-TitleScene::~TitleScene()
-{
-	
-}
-
 void TitleScene::Init()
 {
 	SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM004);	// サウンド停止
@@ -49,18 +39,23 @@ void TitleScene::Init()
 
 void TitleScene::Update()
 {
-	// コントローラー・キーボードの入力処理
-	if ((input.GetButtonTrigger(XINPUT_DOWN) ||
-		input.GetButtonTrigger(XINPUT_RIGHT) ||
-		input.GetKeyTrigger(VK_S) ||
-		input.GetKeyTrigger(VK_D)) &&
+	// フレーム移動入力処理
+
+	/* コントローラー :十字下キー
+	 *  キーボード   :↓矢印キー
+	 *  どちらかが押されたら
+	 */
+	if((input.GetButtonTrigger(XINPUT_DOWN) ||
+		input.GetKeyTrigger	  (VK_DOWN)) &&
 		frameNum < 2) {
 		frameNum += 1;
 	}
-	if ((input.GetButtonTrigger(XINPUT_UP) ||
-		input.GetButtonTrigger(XINPUT_LEFT) ||
-		input.GetKeyTrigger(VK_W) ||
-		input.GetKeyTrigger(VK_A)) &&
+	/* コントローラー :十字上キー
+	 *  キーボード   :↑矢印キー
+	 *  どちらかが押されたら
+	 */
+	if((input.GetButtonTrigger(XINPUT_UP) ||
+		input.GetKeyTrigger   (VK_UP)) &&
 		frameNum > 1) {
 		frameNum -= 1;
 	}
@@ -110,8 +105,3 @@ void TitleScene::Update()
 		break;
 	}
 }
-
-//void TitleScene::Draw()
-//{
-//	bg.Draw();		// 背景を描画
-//}

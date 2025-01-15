@@ -2,16 +2,6 @@
 #include "SceneManager.h"
 #include "Quad.h"
 
-PlayOperateScene::PlayOperateScene()
-{
-	
-}
-
-PlayOperateScene::~PlayOperateScene()
-{
-
-}
-
 void PlayOperateScene::Init()
 {
 	auto bg				= Object::Create<Quad>();			// îwåi

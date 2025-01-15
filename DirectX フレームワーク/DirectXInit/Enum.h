@@ -2,18 +2,18 @@
 
 //列挙型
 enum SCENE {
-	TITLE,
-	PLAYOPERATE,
-	HOME_1,
-	HOME_2,
-	GAME_1,
-	GAME_2,
-	GAME_3,
-	GAME_4,
-	GAME_5,
-	GAME_6,
-	GAME_7,
-	GAME_8,
-	GAMEOVER,
-	RESULT
+	TITLE,			// 0:タイトルシーン
+	PLAYOPERATE,	// 1:遊び方・操作説明シーン
+	HOME_1,			// 2:ステージ選択シーン (1枚目)
+	HOME_2,			// 3:ステージ選択シーン (2枚目)
+	GAME_1,			// 4:ゲームシーン  (ステージ1)
+	GAME_2,			// 5:ゲームシーン  (ステージ2)
+	GAME_3,			// 6:ゲームシーン  (ステージ3)
+	GAME_4,			// 7:ゲームシーン  (ステージ4)
+	GAME_5,			// 8:ゲームシーン  (ステージ5)
+	GAME_6,			// 9:ゲームシーン  (ステージ6)
+	GAME_7,			// 10:ゲームシーン (ステージ7)
+	GAME_8,			// 11:ゲームシーン (ステージ8)
+	GAMEOVER,		// 12:ゲームオーバーシーン
+	RESULT			// 13:リザルトシーン
 };

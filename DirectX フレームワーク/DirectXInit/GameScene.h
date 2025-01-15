@@ -10,18 +10,15 @@
 class GameScene : public Scene
 {
 private:
-	//Quad bg;		//背景オブジェクト
-	//Player player;	// プレイヤー
-	//std::vector<Ground*> ground;	// 地面
-	//Physic test;
-	int gameSceneNum = 0;
+	int gameSceneNum = 0;	// GameScene(ステージ)の識別用番号
 public:
-	GameScene(int _num);	//コンストラクタ
-	~GameScene();			//デストラクタ
+	GameScene(int _num)		//コンストラクタ
+	{ Init(_num); };	
+	~GameScene() {};		//デストラクタ
+
+	void Init(int _num);	// 基本的に初期化はこっち使う
 
 	//オーバーライドした関数
-	void Init() {};
-	void Init(int _num);
-	void Update();	// 更新処理関数
-	//void Draw();	// 描画処理関数
+	void Init() {};			// 初期化処理関数
+	void Update();			// 更新処理関数
 };

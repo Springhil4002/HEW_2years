@@ -4,75 +4,70 @@
 
 SCENE GameOverScene::isEndSceneNum = GAME_1;
 
-// コンストラクタ(初期化処理)
-GameOverScene::GameOverScene()
-{
-
-}
-
-// デストラクタ	(解放処理)
-GameOverScene::~GameOverScene()
-{
-
-}
-
 // 初期化処理
 void GameOverScene::Init()
 {
-	SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM003);	// サウンドを停止
-	SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM004);	// サウンドを再生
-	auto bg = Object::Create<Quad>();
-	auto logo = Object::Create<Quad>();
-	auto returnTitle = Object::Create<Quad>();
-	auto returnHome = Object::Create<Quad>();
-	auto retryLogo = Object::Create<Quad>();
-	auto frame = Object::Create<Quad>();
+	SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM003);		// サウンドを停止
+	SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM004);		// サウンドを再生
 
-	bg->SetTex("asset/Texture/GameOver_bg.png");
-	bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
-	bg->layer = -1;
+	// オブジェクトの作成
+	auto bg							= Object::Create<Quad>();	// 背景
+	auto logo						= Object::Create<Quad>();	// ゲームオーバーロゴ
+	auto returnTitle				= Object::Create<Quad>();	//「タイトルに戻る」アイコン
+	auto returnHome					= Object::Create<Quad>();	//「ステージ選択に戻る」アイコン
+	auto retryLogo					= Object::Create<Quad>();	//「リトライ」アイコン
+	auto frame						= Object::Create<Quad>();	// アイコンを囲むフレーム
 
-	logo->SetTex("asset/Texture/GameOver.png");
-	logo->SetPos(0.0f, 300.0f, 0.0f);
-	logo->SetScale(600.0f, 400.0f, 0.0f);
+	bg->SetTex("asset/Texture/GameOver_bg.png");				// 画像読み込み
+	bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);				// 大きさを設定
+	bg->layer = -1;												// レイヤーを設定
 
-	returnTitle->SetTex("asset/Texture/Return_toTitle.png");
-	returnTitle->SetPos(-450.0f, -300.0f, 0.0f);
-	returnTitle->SetScale(420.0f, 150.0f, 0.0f);
+	logo->SetTex("asset/Texture/GameOver.png");					// 画像読み込み
+	logo->SetPos(0.0f, 300.0f, 0.0f);							// 座標を設定
+	logo->SetScale(600.0f, 400.0f, 0.0f);						// 大きさを設定
 
-	returnHome->SetTex("asset/Texture/Return_toHome.png");
-	returnHome->SetPos(0.0f, -300.0f, 0.0f);
-	returnHome->SetScale(420.0f, 150.0f, 0.0f);
+	returnTitle->SetTex("asset/Texture/Return_toTitle.png");	// 画像読み込み
+	returnTitle->SetPos(-450.0f, -300.0f, 0.0f);				// 座標を設定
+	returnTitle->SetScale(420.0f, 150.0f, 0.0f);				// 大きさを設定
 
-	retryLogo->SetTex("asset/Texture/Retry.png");
-	retryLogo->SetPos(450.0f, -300.0f, 0.0f);
-	retryLogo->SetScale(420.0f, 150.0f, 0.0f);
+	returnHome->SetTex("asset/Texture/Return_toHome.png");		// 画像読み込み
+	returnHome->SetPos(0.0f, -300.0f, 0.0f);					// 座標を設定
+	returnHome->SetScale(420.0f, 150.0f, 0.0f);					// 大きさを設定
 
-	frame->SetTex("asset/Texture/Frame.png");
-	frame->SetPos(-450.0f, -300.0f, 0.0f);
-	frame->SetScale(420.0f, 150.0f, 0.0f);
-	frame->tags.AddTag("frame");
+	retryLogo->SetTex("asset/Texture/Retry.png");				// 画像読み込み
+	retryLogo->SetPos(450.0f, -300.0f, 0.0f);					// 座標を設定
+	retryLogo->SetScale(420.0f, 150.0f, 0.0f);					// 大きさを設定
+
+	frame->SetTex("asset/Texture/Frame.png");					// 画像読み込み
+	frame->SetPos(-450.0f, -300.0f, 0.0f);						// 座標を設定
+	frame->SetScale(420.0f, 150.0f, 0.0f);						// 大きさを設定
+	frame->tags.AddTag("frame");								// タグ付け
 }
 // 更新処理
 void GameOverScene::Update()
 {
-	if (input.GetKeyTrigger(VK_D) ||
-		input.GetKeyTrigger(VK_A) ||
-		input.GetButtonTrigger(XINPUT_RIGHT) ||
-		input.GetButtonTrigger(XINPUT_LEFT))
-	{
-		if((input.GetButtonTrigger(XINPUT_RIGHT) ||
-			input.GetKeyTrigger(VK_D)) &&
-			frameNum < 3) {
-			frameNum += 1;
-		}
-		if ((input.GetButtonTrigger(XINPUT_LEFT) ||
-			input.GetKeyTrigger(VK_A)) &&
-			frameNum > 1) {
-			frameNum -= 1;
-		}
+	// フレーム移動入力処理
+
+	/*コントローラー:十字右キー
+	 *キーボード　　:→矢印キー
+	 *どちらかが押されたら
+	 */
+	if((input.GetButtonTrigger(XINPUT_RIGHT) ||
+		input.GetKeyTrigger(VK_RIGHT)) &&
+		frameNum < 3) {
+		frameNum += 1;
+	}
+	/*コントローラー:十字左キー
+	 *キーボード　　:←矢印キー
+	 *どちらかが押されたら
+	 */
+	if((input.GetButtonTrigger(XINPUT_LEFT) ||
+		input.GetKeyTrigger(VK_LEFT)) &&
+		frameNum > 1) {
+		frameNum -= 1;
 	}
 
+	// フレーム移動処理・入力後の各シーン遷移処理
 	switch (frameNum)
 	{
 	case 1: {
@@ -84,7 +79,7 @@ void GameOverScene::Update()
 				quad->SetPos(-450.0f, -300.0f, 0.0f);
 			}
 		}
-
+		// エンターキーorBボタンを押したら
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_B))
 		{
@@ -102,7 +97,7 @@ void GameOverScene::Update()
 				quad->SetPos(0.0f, -300.0f, 0.0f);
 			}
 		}
-
+		// エンターキーorBボタンを押したら
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_B))
 		{
@@ -120,12 +115,12 @@ void GameOverScene::Update()
 				quad->SetPos(450.0f, -300.0f, 0.0f);
 			}
 		}
-
+		// エンターキーorBボタンを押したら
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_B))
 		{
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE001);
-			//現在のシーンを「GameScene」に切り替える
+			//現在のシーンを直前にゲームオーバーした「GameScene」に切り替える
 			SceneManager::ChangeScene(isEndSceneNum);
 		}
 		break; }
