@@ -2,11 +2,13 @@
 #include "SceneManager.h"
 #include "Quad.h"
 
+// コンストラクタ
 HomeScene::HomeScene(int _num)
 {
 	Init(_num);
 }
 
+// 初期化処理
 void HomeScene::Init(int _num)
 {
 	SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM001);			// サウンド停止
@@ -110,77 +112,76 @@ void HomeScene::Init(int _num)
 	}
 }
 
+// 更新処理
 void HomeScene::Update()
 {
-	// フレーム移動入力処理
-	if (homeSceneNum == 1)
+	Frame_Input();	// frame移動入力処理
+	Frame_Move();	// frame移動処理
+	ChangeHome();	// HomeScene切り替え処理
+}
+
+// フレーム移動入力処理
+void HomeScene::Frame_Input()
+{
+	if (GetHomeSceneNum() == 1)
 	{
 		/* コントローラー:十字下キー
 		*  キーボード   :↓矢印キー
 		*  どちらかが押されたら
 		*/
-		if((input.GetButtonTrigger(XINPUT_DOWN) ||
-		    input.GetKeyTrigger	  (VK_DOWN)) &&
-			frameNum < 3) {		  
-			frameNum += 1;		  
+		if ((input.GetButtonTrigger(XINPUT_DOWN) ||
+			input.GetKeyTrigger(VK_DOWN)) &&
+			GetFrameNum() < 3) {
+			SetFrameNum(GetFrameNum() + 1);
 		}
 		/* コントローラー:十字上キー
 		*  キーボード   :↑矢印キー
 		*  どちらかが押されたら
 		*/
-		if((input.GetButtonTrigger(XINPUT_UP) ||
-			input.GetKeyTrigger	  (VK_UP)) &&
-			frameNum > 0) {
-			frameNum -= 1;		  
+		if ((input.GetButtonTrigger(XINPUT_UP) ||
+			input.GetKeyTrigger(VK_UP)) &&
+			GetFrameNum() > 0) {
+			SetFrameNum(GetFrameNum() - 1);
 		}
 	}
-	if (homeSceneNum == 2)
+	if (GetHomeSceneNum() == 2)
 	{
 		/* コントローラー:十字右キー
 		*  キーボード   :→矢印キー
 		*  どちらかが押されたら
 		*/
-		if((input.GetButtonTrigger(XINPUT_RIGHT) ||
-			input.GetKeyTrigger   (VK_RIGHT)) &&
-			frameNum < 8) {
-			if (frameNum == 0) {
-				frameNum += 4;
-			} else {
-				frameNum += 1;
-			}	
+		if ((input.GetButtonTrigger(XINPUT_RIGHT) ||
+			input.GetKeyTrigger(VK_RIGHT)) &&
+			GetFrameNum() < 8) {
+			if (GetFrameNum() == 0) {
+				SetFrameNum(GetFrameNum() + 4);
+			}
+			else {
+				SetFrameNum(GetFrameNum() + 1);
+			}
 		}
 		/* コントローラー:十字左キー
 		*  キーボード   :←矢印キー
 		*  どちらかが押されたら
 		*/
-		if((input.GetButtonTrigger(XINPUT_LEFT) ||
-			input.GetKeyTrigger	  (VK_LEFT)) &&
-			frameNum >= 4) {
-			if (frameNum == 4) { 
-				frameNum -= 4;
-			} else { 
-				frameNum -= 1; 
+		if ((input.GetButtonTrigger(XINPUT_LEFT) ||
+			input.GetKeyTrigger(VK_LEFT)) &&
+			GetFrameNum() >= 4) {
+			if (GetFrameNum() == 4) {
+				SetFrameNum(GetFrameNum() - 4);
+			}
+			else {
+				SetFrameNum(GetFrameNum() - 1);
 			}
 		}
 	}
-	// ホームシーン切り替えの入力処理
-	if (input.GetButtonTrigger	  (XINPUT_RIGHT_SHOULDER) ||
-		input.GetKeyTrigger		  (VK_2))
-	{
-		SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
-		//現在のシーンを「HomeScene(2枚目)」に切り替える
-		SceneManager::ChangeScene(HOME_2);
-	}
-	if (input.GetButtonTrigger	  (XINPUT_LEFT_SHOULDER) ||
-		input.GetKeyTrigger		  (VK_1))
-	{
-		SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
-		//現在のシーンを「HomeScene(1枚目)」に切り替える
-		SceneManager::ChangeScene(HOME_1);
-	}
+}
 
+// フレーム移動処理
+void HomeScene::Frame_Move()
+{
 	// フレームアイコンの移動処理
-	switch (frameNum)
+	switch (GetFrameNum())
 	{
 	case 0: {
 		auto allQuad = GetInstance()->GetObjects<Quad>();
@@ -194,8 +195,8 @@ void HomeScene::Update()
 		}
 		// エンターキーorBボタンを押したら
 		if (input.GetButtonTrigger(XINPUT_B) ||
-			input.GetKeyTrigger   (VK_RETURN))
-			
+			input.GetKeyTrigger(VK_RETURN))
+
 		{
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
 			//現在のシーンを「TitleScene」に切り替える
@@ -356,5 +357,33 @@ void HomeScene::Update()
 		break; }
 	default:
 		break;
+	}
+}
+
+// HomwScene切り替え処理
+void HomeScene::ChangeHome()
+{
+	/*コントローラー:RBボタン
+	 *キーボード   :2キー
+	 * どちらかが押されたら
+	 */
+	if (input.GetButtonTrigger(XINPUT_RIGHT_SHOULDER) ||
+		input.GetKeyTrigger	  (VK_2))
+	{
+		SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
+		//現在のシーンを「HomeScene(2枚目)」に切り替える
+		SceneManager::ChangeScene(HOME_2);
+	}
+
+	/*コントローラー:LBボタン
+	 *キーボード   :1キー
+	 * どちらかが押されたら
+	 */
+	if (input.GetButtonTrigger(XINPUT_LEFT_SHOULDER) ||
+		input.GetKeyTrigger	  (VK_1))
+	{
+		SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
+		//現在のシーンを「HomeScene(1枚目)」に切り替える
+		SceneManager::ChangeScene(HOME_1);
 	}
 }

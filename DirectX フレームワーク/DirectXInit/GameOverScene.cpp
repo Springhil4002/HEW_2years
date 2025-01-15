@@ -46,29 +46,38 @@ void GameOverScene::Init()
 // 更新処理
 void GameOverScene::Update()
 {
-	// フレーム移動入力処理
+	Frame_Input();		// フレーム移動入力処理
+	Frame_Move();		// フレーム移動処理
+}
 
+// フレーム移動入力処理
+void GameOverScene::Frame_Input()
+{
 	/*コントローラー:十字右キー
 	 *キーボード　　:→矢印キー
 	 *どちらかが押されたら
 	 */
-	if((input.GetButtonTrigger(XINPUT_RIGHT) ||
+	if ((input.GetButtonTrigger(XINPUT_RIGHT) ||
 		input.GetKeyTrigger(VK_RIGHT)) &&
-		frameNum < 3) {
-		frameNum += 1;
+		GetFrameNum() < 3) {
+		SetFrameNum(GetFrameNum() + 1);
 	}
 	/*コントローラー:十字左キー
 	 *キーボード　　:←矢印キー
 	 *どちらかが押されたら
 	 */
-	if((input.GetButtonTrigger(XINPUT_LEFT) ||
+	if ((input.GetButtonTrigger(XINPUT_LEFT) ||
 		input.GetKeyTrigger(VK_LEFT)) &&
-		frameNum > 1) {
-		frameNum -= 1;
+		GetFrameNum() > 1) {
+		SetFrameNum(GetFrameNum() - 1);
 	}
+}
 
+// フレーム移動処理
+void GameOverScene::Frame_Move()
+{
 	// フレーム移動処理・入力後の各シーン遷移処理
-	switch (frameNum)
+	switch (GetFrameNum())
 	{
 	case 1: {
 		auto allQuad = GetInstance()->GetObjects<Quad>();

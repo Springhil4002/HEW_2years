@@ -146,6 +146,9 @@
     <Filter Include="Sound関係">
       <UniqueIdentifier>{22b0f575-509a-479e-afc1-a09124d25e60}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object関係\Coin関係%28ステージ上で拾うチップ%29">
+      <UniqueIdentifier>{1fe926e7-ed49-4ba1-9d72-a7cff1cb06ce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scene.cpp">
@@ -226,7 +229,6 @@
     <ClCompile Include="SoundManager.cpp">
       <Filter>Sound関係</Filter>
     </ClCompile>
-    <ClCompile Include="Coin.cpp" />
     <ClCompile Include="HomeScene.cpp">
       <Filter>Scene関係\ソースファイル</Filter>
     </ClCompile>
@@ -237,6 +239,9 @@
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="PlayOperateScene.cpp">
       <Filter>Scene関係\ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Coin.cpp">
+      <Filter>Object関係\Coin関係%28ステージ上で拾うチップ%29</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -324,17 +329,21 @@
     <ClInclude Include="SoundManager.h">
       <Filter>Sound関係</Filter>
     </ClInclude>
-    <ClInclude Include="Coin.h" />
     <ClInclude Include="HomeScene.h">
       <Filter>Scene関係\ヘッダーファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameOverScene.h">
       <Filter>Scene関係\ヘッダーファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Enum.h" />
     <ClInclude Include="MapEditor.h" />
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="PlayOperateScene.h">
+      <Filter>Scene関係\ヘッダーファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Coin.h">
+      <Filter>Object関係\Coin関係%28ステージ上で拾うチップ%29</Filter>
+    </ClInclude>
+    <ClInclude Include="Enum.h">
       <Filter>Scene関係\ヘッダーファイル</Filter>
     </ClInclude>
   </ItemGroup>

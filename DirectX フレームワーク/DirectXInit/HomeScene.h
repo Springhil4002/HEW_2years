@@ -16,4 +16,15 @@ public:
 	//オーバーライドした関数
 	void Init() {};			// 初期化処理
 	void Update();			// 更新処理
+
+	void Frame_Input();		// フレーム移動入力処理
+	void Frame_Move();		// フレーム移動処理
+	void ChangeHome();		// HomwScene切り替え処理
+
+	// ゲッター・セッター
+	int GetFrameNum() { return frameNum; }
+	void SetFrameNum(int _frameNum) { frameNum = _frameNum; }
+
+	int GetHomeSceneNum() { return homeSceneNum; }
+	void SetHomeSceneNum(int _homeSceneNum) { homeSceneNum = _homeSceneNum; }
 };

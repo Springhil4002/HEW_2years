@@ -39,29 +39,37 @@ void TitleScene::Init()
 
 void TitleScene::Update()
 {
-	// フレーム移動入力処理
+	Frame_Input();
+	Frame_Move();
+}
 
+// フレーム移動入力処理
+void TitleScene::Frame_Input()
+{
 	/* コントローラー :十字下キー
 	 *  キーボード   :↓矢印キー
 	 *  どちらかが押されたら
 	 */
 	if((input.GetButtonTrigger(XINPUT_DOWN) ||
 		input.GetKeyTrigger	  (VK_DOWN)) &&
-		frameNum < 2) {
-		frameNum += 1;
+		GetFrameNum() < 2) {
+		SetFrameNum(GetFrameNum() + 1);
 	}
 	/* コントローラー :十字上キー
 	 *  キーボード   :↑矢印キー
 	 *  どちらかが押されたら
 	 */
 	if((input.GetButtonTrigger(XINPUT_UP) ||
-		input.GetKeyTrigger   (VK_UP)) &&
-		frameNum > 1) {
-		frameNum -= 1;
+		input.GetKeyTrigger	  (VK_UP)) &&
+		GetFrameNum() > 1) {
+		SetFrameNum(GetFrameNum() - 1);
 	}
+}
 
-	// フレームの移動処理
-	switch (frameNum)
+// フレームの移動処理
+void TitleScene::Frame_Move()
+{
+	switch (GetFrameNum())
 	{
 	case 1: {
 		auto allQuad = GetInstance()->GetObjects<Quad>();
