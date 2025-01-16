@@ -13,4 +13,7 @@ public:
 	//void Update();	// XVˆ—
 	//void Draw();	// •`‰æˆ—
 	//void Uninit();	// ‰ğ•úˆ—
+
+	std::vector<std::string> GetData() const;
+	bool SetData(std::vector<std::string> _data);
 };

@@ -23,9 +23,50 @@ void Object::SetRotation(float _x, float _y, float _z)
 	m_Rotation.z = _z;
 }
 
+bool Object::SetData(std::vector<std::string> _data)
+{
+	if (_data[0] == "Object")
+	{
+		m_Position.x = stoi(_data[1]);
+		m_Position.y = stoi(_data[2]);
+		layer = stoi(_data[3]);
+		if (_data[4] == "Tags")
+		{
+			int size = stoi(_data[5]);
+			for (int i = 0; i < size; i++)
+			{
+				tags.AddTag(_data[i + 6]);
+			}
+		}
+		else
+		{
+			return false;
+		}
+
+		return true;
+	}
+	else
+	{
+		return false;
+	}	
+}
+
 DirectX::SimpleMath::Vector3 Object::GetPos() const
 {
 	return m_Position;
+}
+
+std::vector<std::string> Object::GetData() const
+{
+	std::vector<std::string> buf;
+	buf.push_back("Object");
+	buf.push_back(std::to_string(m_Position.x));
+	buf.push_back(std::to_string(m_Position.y));
+	buf.push_back(std::to_string(layer));
+	auto tagsData = tags.GetData();
+	buf.insert(buf.end(), tagsData.begin(), tagsData.end());
+
+	return buf;
 }
 
 void Object::Delete(Object* _object)

@@ -164,7 +164,7 @@ void Player::State() {
 	}
 
 	if (Scene::input.GetKeyRelease(VK_E) || 
-	   (Scene::input.GetLeftTrigger() <= 0.1 ||
+	   !(Scene::input.GetLeftTrigger() <= 0.1 ||
 		Scene::input.GetRightTrigger() <= 0.1))
 	{
 		auto allBand = Scene::GetInstance()->GetObjects<BandTip>();

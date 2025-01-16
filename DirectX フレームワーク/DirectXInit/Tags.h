@@ -1,7 +1,7 @@
 #pragma once
 #include<string>
 #include<set>
-
+#include<vector>
 // 符号を付与、削除、検索できる
 class Tags
 {
@@ -16,5 +16,6 @@ public:
 	void RemoveTag(const std::string _tag);			// タグの部分削除
 	bool SearchTag(const std::string _tag) const;	// タグを探す
 	void ClearTags();								// タグの全削除
+	std::vector<std::string> GetData() const;
 };
 

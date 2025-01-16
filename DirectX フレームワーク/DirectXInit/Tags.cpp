@@ -23,3 +23,15 @@ void Tags::ClearTags()
 {
 	tags.clear();
 }
+
+std::vector<std::string> Tags::GetData() const
+{
+	std::vector<std::string> buf;
+	buf.push_back("Tags");
+	buf.push_back(std::to_string(tags.size()));
+	for (auto& tag : tags)
+	{
+		buf.push_back(tag);
+	}
+	return buf;
+}

@@ -139,6 +139,7 @@
     <ClCompile Include="BandTip.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Coin.cpp" />
+    <ClCompile Include="CSV.cpp" />
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="dx11helper.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -177,6 +178,7 @@
     <ClInclude Include="BandTip.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Coin.h" />
+    <ClInclude Include="CSV.h" />
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="dx11helper.h" />
     <ClInclude Include="Entity.h" />

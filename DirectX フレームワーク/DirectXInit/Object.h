@@ -30,8 +30,11 @@ public:
 	void SetPos(float _x, float _y, float _z);				//座標をセット
 	void SetRotation(float _x, float _y, float _z);			//角度をセット
 	void SetScale(float _x, float _y, float _z);			//大きさをセット
-
+	virtual bool SetData(std::vector<std::string> _data);
+	
+	// ゲッター
 	DirectX::SimpleMath::Vector3 GetPos() const;
+	virtual std::vector<std::string> GetData() const;
 
 	// オブジェクトの生成
 	template<class T>

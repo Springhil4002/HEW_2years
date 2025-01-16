@@ -109,3 +109,28 @@ void Ground::Init()
 //{
 //	//delete this;
 //}
+
+std::vector<std::string> Ground::GetData() const
+{
+	std::vector<std::string> buf;
+	buf.push_back("Ground");
+	auto objectData = Object::GetData();
+	buf.insert(buf.end(), objectData.begin(), objectData.end());
+	return buf;
+}
+
+bool Ground::SetData(std::vector<std::string> _data)
+{
+	if (_data.front() == "Ground")
+	{
+		std::vector<std::string> objBuf(_data.size());
+		std::copy(_data.begin() + 1, _data.end(), objBuf.begin());
+		Object::SetData(objBuf);
+
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}

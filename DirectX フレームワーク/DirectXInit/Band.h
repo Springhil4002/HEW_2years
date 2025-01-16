@@ -17,15 +17,19 @@ private:
 	// 前の座標
 	DirectX::SimpleMath::Vector3 oldPos;
 public:
+	int L;
+	
 	// コンストラクタ・デストラクタで先端の管理
-	Band() { tip = Object::Create<BandTip>(); }
+	Band(): L(4) { tip = Object::Create<BandTip>(); }
 	~Band() { Object::Delete(tip); }
 
-public:
 	void Init();
 	void Update();
 	void Uninit();
 
 	void Add(Object* _object);
 	void Remove(Object* _object);
+
+	std::vector<std::string> GetData() const;
+	bool SetData(std::vector<std::string> _data);
 };

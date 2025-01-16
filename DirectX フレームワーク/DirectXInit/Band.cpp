@@ -1,6 +1,5 @@
 #include "Band.h"
 
-const int L = 5;
 
 void Band::Init()
 {
@@ -52,7 +51,7 @@ void Band::Update()
 
 	if (pullLevel < -(L - 1) * 60)
 	{
-		tip->SetPos(tip->GetPos().x + L * 60, tip->GetPos().y, 0);
+		tip->SetPos(tip->GetPos().x + (L - 1) * 60, tip->GetPos().y, 0);
 	}
 }
 
@@ -70,4 +69,36 @@ void Band::Add(Object* _object)
 void Band::Remove(Object* _object)
 {
 	objects.erase(_object);
+}
+
+std::vector<std::string> Band::GetData() const
+{
+	std::vector<std::string> buf;
+
+	// オブジェクト名
+	buf.push_back("Band");
+
+	// オブジェクトの基本情報
+	auto objData = Object::GetData();
+	buf.insert(buf.end(), objData.begin(), objData.end());
+
+	// 長さの情報
+	buf.push_back(std::to_string(L));
+
+	// 付属するオブジェクトの数
+	buf.push_back(std::to_string(objects.size()));
+
+	// 付属オブジェクトの情報
+	for (auto& obj : objects)
+	{
+		objData = obj->GetData();
+		buf.insert(buf.end(), objData.begin(), objData.end());
+	}
+	return buf;
+}
+
+bool Band::SetData(std::vector<std::string> _data)
+{
+
+	return true;
 }
