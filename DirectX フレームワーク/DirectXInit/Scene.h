@@ -13,7 +13,7 @@ class Scene
 {
 protected:
 	static Scene* sceneInstance;			// シーンのインスタンス
-	std::set<Object*> objectInstance;	// オブジェクトのインスタンス
+	std::set<Object*> objectInstance;		// オブジェクトのインスタンス
 public:
 	static Input input;		// 入力系インスタンス
 

@@ -6,6 +6,9 @@
 #include "Player.h"
 #include "Band.h"
 #include "Coin.h"
+#include "Goal.h"
+
+int GameScene::bandTipCount = 0;		// bandTipの獲得数
 
 void GameScene::Init(int _num)
 {	
@@ -36,7 +39,7 @@ void GameScene::Init(int _num)
 			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 			{1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 			{1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
+			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1},
 			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1},
 			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1},
@@ -79,14 +82,29 @@ void GameScene::Init(int _num)
 			}
 		}
 
-
 		auto check = Object::Create<Quad>();
 		check->SetTex("asset/Texture/explotion.png");
 		check->SetScale(100, 100, 0);
 		check->tags.AddTag("check");
+		
+		// バンドチップオブジェクトの作成
+		auto coin1 = Object::Create<Coin>();
+		auto coin2 = Object::Create<Coin>();
+		auto coin3 = Object::Create<Coin>();
+		auto coin4 = Object::Create<Coin>();
+		auto coin5 = Object::Create<Coin>();
+		auto coin6 = Object::Create<Coin>();
 
+		coin1->SetPos(-BLOCK_SIZE * 7.5,  -BLOCK_SIZE * 6.5, 0.0f);
+		coin2->SetPos(-BLOCK_SIZE * 8.5,  -BLOCK_SIZE * 6.5, 0.0f);
+		coin3->SetPos(-BLOCK_SIZE * 9.5,  -BLOCK_SIZE * 6.5, 0.0f);
+		coin4->SetPos( BLOCK_SIZE * 9.5,  -BLOCK_SIZE * 6.5, 0.0f);
+		coin5->SetPos( BLOCK_SIZE * 10.5, -BLOCK_SIZE * 6.5, 0.0f);
+		coin6->SetPos( BLOCK_SIZE * 11.5, -BLOCK_SIZE * 6.5, 0.0f);
 
-		auto coin = Object::Create<Coin>();
+		// ゴールオブジェクトの作成
+		auto goal = Object::Create<Goal>();
+		goal->SetPos(BLOCK_SIZE * 14.5, -BLOCK_SIZE * 7, 0.0f);
 
 
 		for (auto& obj : objectInstance)
@@ -675,14 +693,6 @@ void GameScene::Update()
 		obj->Update();
 	}
 	
-	// "3"キーを押したら
-	if (input.GetKeyTrigger(VK_3))
-	{
-		SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
-		//現在のシーンを「ResultScene」に切り替える
-		SceneManager::ChangeScene(RESULT);
-	}
-
 	auto players =GetInstance()->GetObjects<Player>();
 	for (auto& player : players)
 	{

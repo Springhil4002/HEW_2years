@@ -145,6 +145,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameOverScene.cpp" />
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="Goal.cpp" />
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="HomeScene.cpp" />
     <ClCompile Include="Input.cpp" />
@@ -185,6 +186,7 @@
     <ClInclude Include="Enum.h" />
     <ClInclude Include="GameOverScene.h" />
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="Goal.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="HomeScene.h" />
     <ClInclude Include="IndexBuffer.h" />

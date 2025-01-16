@@ -149,6 +149,9 @@
     <Filter Include="Object関係\Coin関係%28ステージ上で拾うチップ%29">
       <UniqueIdentifier>{1fe926e7-ed49-4ba1-9d72-a7cff1cb06ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object関係\Goal関係%28ゴール%29">
+      <UniqueIdentifier>{da9460eb-db6e-4700-82d9-409199c3a733}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scene.cpp">
@@ -242,6 +245,9 @@
     </ClCompile>
     <ClCompile Include="Coin.cpp">
       <Filter>Object関係\Coin関係%28ステージ上で拾うチップ%29</Filter>
+    </ClCompile>
+    <ClCompile Include="Goal.cpp">
+      <Filter>Object関係\Goal関係%28ゴール%29</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -345,6 +351,9 @@
     </ClInclude>
     <ClInclude Include="Enum.h">
       <Filter>Scene関係\ヘッダーファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Goal.h">
+      <Filter>Object関係\Goal関係%28ゴール%29</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

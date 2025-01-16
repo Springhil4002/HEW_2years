@@ -10,15 +10,21 @@
 class GameScene : public Scene
 {
 private:
-	int gameSceneNum = 0;	// GameScene(ステージ)の識別用番号
+	int gameSceneNum = 0;		// GameScene(ステージ)の識別用番号
 public:
-	GameScene(int _num)		//コンストラクタ
-	{ Init(_num); };	
-	~GameScene() {};		//デストラクタ
+	static int bandTipCount;	// bandTipの獲得数
 
-	void Init(int _num);	// 基本的に初期化はこっち使う
+	GameScene(int _num)			//コンストラクタ
+	{ Init(_num); };	
+	~GameScene() {};			//デストラクタ
+
+	void Init(int _num);		// 基本的に初期化はこっち使う
 
 	//オーバーライドした関数
-	void Init() {};			// 初期化処理関数
-	void Update();			// 更新処理関数
+	void Init() {};				// 初期化処理関数
+	void Update();				// 更新処理関数
+
+	// ゲッター・セッター
+	int GetGameSceneNum() { return gameSceneNum; }
+	void SetGameSceneNum(int _gameSceneNum) { gameSceneNum = _gameSceneNum; }
 };

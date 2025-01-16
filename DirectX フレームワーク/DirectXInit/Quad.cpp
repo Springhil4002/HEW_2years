@@ -24,10 +24,10 @@ void Quad::Update()
 
 		vertices.resize(4);
 
-		vertices[0].position = Vector3(-0.5f, 0.5f, 0);
-		vertices[1].position = Vector3(0.5f, 0.5f, 0);
+		vertices[0].position = Vector3(-0.5f,  0.5f, 0);
+		vertices[1].position = Vector3( 0.5f,  0.5f, 0);
 		vertices[2].position = Vector3(-0.5f, -0.5f, 0);
-		vertices[3].position = Vector3(0.5f, -0.5f, 0);
+		vertices[3].position = Vector3( 0.5f, -0.5f, 0);
 
 		vertices[0].color = Color(1, 1, 1, 1);
 		vertices[1].color = Color(1, 1, 1, 1);
@@ -38,7 +38,7 @@ void Quad::Update()
 		{
 			vertices[0].uv = Vector2(0, 0);
 			vertices[1].uv = Vector2(1, 0);
-			vertices[2].uv = Vector2(0, 1);
+			vertices[2].uv = Vector2(0 ,1);
 			vertices[3].uv = Vector2(1, 1);
 		}
 		else
@@ -108,7 +108,7 @@ void Quad::Uninit()
 	
 }
 
-void Quad::SetTex(const std::string& _filename)
+void Quad::SetTex(const std::string& _filename,int _splitX,int _splitY)
 {
 	// 頂点データ
 	std::vector<VERTEX_3D>	vertices;
@@ -134,8 +134,8 @@ void Quad::SetTex(const std::string& _filename)
 	}
 	else
 	{
-		vertices[0].uv = Vector2(1, 0);
-		vertices[1].uv = Vector2(0, 0);
+		vertices[0].uv = Vector2(0, 0);
+		vertices[1].uv = Vector2(0, 1);
 		vertices[2].uv = Vector2(1, 1);
 		vertices[3].uv = Vector2(0, 1);
 	}

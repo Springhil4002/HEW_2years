@@ -31,7 +31,8 @@ public:
 	// 描画の為の情報（見た目に関わる部分）
 	static Shader m_Shader; // シェーダー
 	
-
+	int splitX = 1;
+	int splitY = 1;
 
 	Quad() {}
 	~Quad() {}
@@ -42,5 +43,7 @@ public:
 	void Draw();	// 描画処理
 	void Uninit();	// 解放処理
 
-	void SetTex(const std::string& filename);
+	void SetTex(const std::string& filename, int _splitX = 1, int _splitY = 1);
+	void SetSplit(int _splitX, int _splitY) 
+	{ splitX = _splitX; splitY = _splitY; }
 };
