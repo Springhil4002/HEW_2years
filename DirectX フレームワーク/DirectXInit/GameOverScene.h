@@ -2,6 +2,8 @@
 #include "Scene.h"
 #include "Enum.h"
 
+#define SCENE_ENUM_OFFSET	(3)
+
 class GameOverScene 
 	: public Scene
 {

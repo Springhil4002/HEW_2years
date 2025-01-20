@@ -1,6 +1,7 @@
 #pragma once
 #include "Quad.h"
 
+class GameScene;
 class Goal
 	: public Quad
 {

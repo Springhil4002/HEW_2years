@@ -112,7 +112,7 @@ void GameOverScene::Frame_Move()
 		{
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE001);
 			//現在のシーンを「GameScene」に切り替える
-			SceneManager::ChangeScene(HOME_1);
+			SceneManager::ChangeScene(HOME_1,1);
 		}
 		break; }
 	case 3: {
@@ -129,8 +129,9 @@ void GameOverScene::Frame_Move()
 			input.GetButtonTrigger(XINPUT_B))
 		{
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE001);
+			int stageNum = (int)(GameOverScene::isEndSceneNum - SCENE_ENUM_OFFSET);
 			//現在のシーンを直前にゲームオーバーした「GameScene」に切り替える
-			SceneManager::ChangeScene(isEndSceneNum);
+			SceneManager::ChangeScene(isEndSceneNum,stageNum);
 		}
 		break; }
 	default:

@@ -87,7 +87,7 @@ void TitleScene::Frame_Move()
 		{
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
 			//現在のシーンを「HomeScene」に切り替える
-			SceneManager::ChangeScene(HOME_1);
+			SceneManager::ChangeScene(HOME_1,1);
 		}
 		break; }
 	case 2: {

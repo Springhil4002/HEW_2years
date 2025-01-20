@@ -75,9 +75,10 @@ void GameScene::Init(int _num)
 		player->layer = 1;
 
 		auto band = Object::Create<Band>();
-		band->SetTex("asset/Texture/ground.png");
+		band->SetTex("asset/Texture/band_Block.png");
 		band->SetPos(30, -422, 0);
 		band->SetScale(60, 60, 0);
+		band->layer = 1;
 		for (auto& obj : objectInstance)
 		{
 			if (obj->tags.SearchTag("BandA"))
@@ -98,14 +99,27 @@ void GameScene::Init(int _num)
 		auto coin4 = Object::Create<Coin>();
 		auto coin5 = Object::Create<Coin>();
 		auto coin6 = Object::Create<Coin>();
+		auto coin7 = Object::Create<Coin>();
+		auto coin8 = Object::Create<Coin>();
+		auto coin9 = Object::Create<Coin>();
+		auto coin10 = Object::Create<Coin>();
+		auto coin11 = Object::Create<Coin>();
+		auto coin12 = Object::Create<Coin>();
 
 		// バンドチップオブジェクトの座標設定
-		coin1->SetPos( BLOCK_SIZE *-7.5,   BLOCK_SIZE *-6.5, 0.0f);
+		coin1->SetPos( BLOCK_SIZE *-9.5,   BLOCK_SIZE *-6.5, 0.0f);
 		coin2->SetPos( BLOCK_SIZE *-8.5,   BLOCK_SIZE *-6.5, 0.0f);
-		coin3->SetPos( BLOCK_SIZE *-9.5,   BLOCK_SIZE *-6.5, 0.0f);
-		coin4->SetPos( BLOCK_SIZE * 9.5,   BLOCK_SIZE *-6.5, 0.0f);
-		coin5->SetPos( BLOCK_SIZE * 10.5,  BLOCK_SIZE *-6.5, 0.0f);
-		coin6->SetPos( BLOCK_SIZE * 11.5,  BLOCK_SIZE *-6.5, 0.0f);
+		coin3->SetPos( BLOCK_SIZE *-7.5,   BLOCK_SIZE *-6.5, 0.0f);
+		coin4->SetPos( BLOCK_SIZE *-6.5,   BLOCK_SIZE *-6.5, 0.0f);
+		coin5->SetPos( BLOCK_SIZE *-5.5,   BLOCK_SIZE *-6.5, 0.0f);
+		coin6->SetPos( BLOCK_SIZE *-4.5,   BLOCK_SIZE *-6.5, 0.0f);
+		coin7->SetPos( BLOCK_SIZE *-3.5,   BLOCK_SIZE *-6.5, 0.0f);
+		coin8->SetPos( BLOCK_SIZE *-2.5,   BLOCK_SIZE *-6.5, 0.0f);
+		coin9->SetPos( BLOCK_SIZE *-1.5,   BLOCK_SIZE *-6.5, 0.0f);
+
+		coin10->SetPos( BLOCK_SIZE * 9.5,   BLOCK_SIZE *-6.5, 0.0f);
+		coin11->SetPos( BLOCK_SIZE * 10.5,  BLOCK_SIZE *-6.5, 0.0f);
+		coin12->SetPos( BLOCK_SIZE * 11.5,  BLOCK_SIZE *-6.5, 0.0f);
 
 		// ゴールオブジェクトの作成
 		auto goal = Object::Create<Goal>();
@@ -701,18 +715,31 @@ void GameScene::Init(int _num)
 	default:
 		break;
 	}
-	
 }
 
 void GameScene::Update()
 {
-
+	// コイン獲得数UIの各桁更新処理
 	auto coinUIs = GetInstance()->GetObjects<CoinNum>();
 	for (auto& coinUI : coinUIs)
 	{
-		if (coinUI->tags.SearchTag("1"))
-		{
-			coinUI->SetNumU(GameScene::bandTipCount % 10);
+		if (coinUI->tags.SearchTag("100")) {
+			int coinCount = 0;
+			coinCount = GameScene::bandTipCount / 100;
+			if (coinCount >= 10) { coinCount -= 10; }
+			coinUI->SetNumU(coinCount);
+		}
+		if (coinUI->tags.SearchTag("10")) {
+			int coinCount = 0;
+			coinCount = GameScene::bandTipCount / 10;
+			if (coinCount >= 10) { coinCount -= 10; }
+			coinUI->SetNumU(coinCount);
+		}
+		
+		if (coinUI->tags.SearchTag("1")) {
+			int coinCount = 0;
+			coinCount = GameScene::bandTipCount % 10;
+			coinUI->SetNumU(coinCount);
 		}
 	}
 

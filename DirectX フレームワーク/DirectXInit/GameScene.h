@@ -7,11 +7,13 @@
 #define GROUND_OFFSET_Y		(-510.0f)
 #define SCENE_ENUM_OFFSET	(3)
 
+class Goal;
 class GameScene : public Scene
 {
 private:
-	int gameSceneNum = 0;		// GameScene(ステージ)の識別用番号
+	int gameSceneNum;		// GameScene(ステージ)の識別用番号
 public:
+	
 	static int bandTipCount;	// bandTipの獲得数
 
 	GameScene(int _num)			//コンストラクタ

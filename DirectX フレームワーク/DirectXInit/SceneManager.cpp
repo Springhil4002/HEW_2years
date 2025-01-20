@@ -8,6 +8,7 @@
 #include "Quad.h"
 #include "MapEditor.h"
 
+int SceneManager::num = 0;
 Scene* SceneManager::currentScene = nullptr;
 bool SceneManager::changed = false;
 std::set<Object*> SceneManager::createObjects;
@@ -16,7 +17,7 @@ SCENE SceneManager::nextScene = TITLE;
 // 静的メンバー変数の定義
 SoundManager SceneManager::m_SoundManager;
 
-void SceneManager::NewScene()
+void SceneManager::NewScene(int _num)
 {
 	if (currentScene != nullptr)
 	{
@@ -32,47 +33,48 @@ void SceneManager::NewScene()
 		currentScene = new PlayOperateScene();
 		break;
 	case SCENE::HOME_1:
-		currentScene = new HomeScene(1);
+		currentScene = new HomeScene(_num);
 		break;
 	case SCENE::HOME_2:
-		currentScene = new HomeScene(2);
+		currentScene = new HomeScene(_num);
 		break;
 	case SCENE::GAME_1:
-		currentScene = new GameScene(1);
+		currentScene = new GameScene(_num);
 		break;
 	case SCENE::GAME_2:
-		currentScene = new GameScene(2);
+		currentScene = new GameScene(_num);
 		break;
 	case SCENE::GAME_3:
-		currentScene = new GameScene(3);
+		currentScene = new GameScene(_num);
 		break;
 	case SCENE::GAME_4:
-		currentScene = new GameScene(4);
+		currentScene = new GameScene(_num);
 		break;
 	case SCENE::GAME_5:
-		currentScene = new GameScene(5);
+		currentScene = new GameScene(_num);
 		break;
 	case SCENE::GAME_6:
-		currentScene = new GameScene(6);
+		currentScene = new GameScene(_num);
 		break;
 	case SCENE::GAME_7:
-		currentScene = new GameScene(7);
+		currentScene = new GameScene(_num);
 		break;
 	case SCENE::GAME_8:
-		currentScene = new GameScene(8);
+		currentScene = new GameScene(_num);
 		break;
 	case SCENE::GAMEOVER:
 		currentScene = new GameOverScene();
 		break;
 	case SCENE::RESULT:
-		currentScene = new ResultScene();
+		currentScene = new ResultScene(_num);
 		break;
 	}
 }
 
-void SceneManager::ChangeScene(SCENE _scene)
+void SceneManager::ChangeScene(SCENE _scene, int _num)
 {
 	nextScene = _scene;
+	num = _num;
 	changed = true;
 }
 
@@ -91,9 +93,9 @@ void SceneManager::Init()
 void SceneManager::Update()
 {
 	// シーンが変わっていたらシーンの初期化をするタイミング
-	if (changed)
+	if (changed && num >= 0)
 	{
-		NewScene();
+		NewScene(num);
 		currentScene->Init();
 		changed = false;
 	}

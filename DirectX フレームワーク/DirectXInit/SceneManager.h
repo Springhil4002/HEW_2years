@@ -13,8 +13,9 @@ private:
 	static std::set<Object*> deleteObjects;	// 削除するオブジェクト
 
 
-	static void NewScene();
+	static void NewScene(int _num);
 public:
+	static int num;
 	static SCENE nextScene;
 	static SoundManager m_SoundManager;	// シーンマネージャーのインスタンス
 	SceneManager() {}		//コンストラクタ
@@ -25,7 +26,8 @@ public:
 	static void Draw();		//描画処理関数
 	static void Uninit();	//解放処理関数
 
-	static void ChangeScene(SCENE _scene);	//現在のシーンを切り替える処理関数
+	//現在のシーンを切り替える処理関数
+	static void ChangeScene(SCENE _scene, int _num = 0);
 
 	// 生成するオブジェクトを作成
 	template<class T>

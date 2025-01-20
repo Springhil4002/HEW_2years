@@ -1,5 +1,6 @@
 #include "Goal.h"
 #include "Player.h"
+#include "GameScene.h"
 
 void Goal::Init()
 {
@@ -19,7 +20,7 @@ void Goal::Update()
 				Scene::input.GetLeftTrigger() >= 0.9) ||
 				Scene::input.GetKeyTrigger(VK_E))
 			{
-				SceneManager::ChangeScene(RESULT);
+				SceneManager::ChangeScene(RESULT,GameScene::bandTipCount);
 			}
 		}
 	}
