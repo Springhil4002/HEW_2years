@@ -9,12 +9,13 @@
 #include "CoinNum.h"
 #include "Goal.h"
 
-#include "iostream"
+//#include "iostream"
 
 int GameScene::bandTipCount = 0;		// bandTip‚ÌŠl“¾”
 
 void GameScene::Init(int _num)
 {	
+	bandTipCount = 0;
 	gameSceneNum = _num;
 	GameOverScene::isEndSceneNum = (SCENE)(gameSceneNum + SCENE_ENUM_OFFSET);
 	switch(gameSceneNum)
@@ -711,9 +712,7 @@ void GameScene::Update()
 	{
 		if (coinUI->tags.SearchTag("1"))
 		{
-			std::cout << "Score:" << bandTipCount << std::endl;
 			coinUI->SetNumU(GameScene::bandTipCount % 10);
-			std::cout << "numU:" << coinUI->GetNumU() << std::endl;		// ‚±‚±‚Ü‚Å‚Í1‚É‚¿‚á‚ñ‚Æ‚È‚Á‚Ä‚é
 		}
 	}
 

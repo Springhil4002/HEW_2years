@@ -27,15 +27,14 @@ protected:
 private:
 	MOVEDIRECTION old = moveDirection;
 
-public:
-	// 描画の為の情報（見た目に関わる部分）
-	static Shader m_Shader; // シェーダー
-	
 	int splitX = 1;
 	int splitY = 1;
 	int numU = 0;
 	int numV = 0;
-
+public:
+	// 描画の為の情報（見た目に関わる部分）
+	static Shader m_Shader; // シェーダー
+	
 	Quad() {}
 	~Quad() {}
 

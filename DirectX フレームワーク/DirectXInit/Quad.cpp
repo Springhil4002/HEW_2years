@@ -9,7 +9,7 @@ Shader Quad::m_Shader; // シェーダー
 //===================================================================
 void Quad::Init()
 {
-
+	
 }
 
 //===================================================================
@@ -17,8 +17,8 @@ void Quad::Init()
 //===================================================================
 void Quad::Update()
 {
-	if (old != moveDirection)
-	{
+	/*if (old != moveDirection)
+	{*/
 		// 頂点データ
 		std::vector<VERTEX_3D>	vertices;
 
@@ -52,9 +52,9 @@ void Quad::Update()
 		// 頂点バッファ生成
 		m_VertexBuffer.Create(vertices);
 
-		// 更新
-		old = moveDirection;
-	}
+	//	// 更新
+	//	old = moveDirection;
+	//}
 }
 
 //===================================================================
@@ -110,6 +110,11 @@ void Quad::Uninit()
 
 void Quad::SetTex(const std::string& _filename, int _splitX, int _splitY, int _numU, int _numV)
 {
+	SetSplitX(_splitX);
+	SetSplitY(_splitY);
+	SetNumU(_numU);
+	SetNumV(_numV);
+
 	// 頂点データ
 	std::vector<VERTEX_3D>	vertices;
 
