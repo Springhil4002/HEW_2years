@@ -36,17 +36,17 @@ void Quad::Update()
 
 		if (moveDirection == RIGHT)
 		{
-			vertices[0].uv = Vector2(0, 0);
-			vertices[1].uv = Vector2(1, 0);
-			vertices[2].uv = Vector2(0 ,1);
-			vertices[3].uv = Vector2(1, 1);
+			vertices[0].uv = Vector2(1.0f/GetSplitX()* GetNumU(),	 1.0f/GetSplitY()* GetNumV());
+			vertices[1].uv = Vector2(1.0f/GetSplitX()*(GetNumU()+1), 1.0f/GetSplitY()* GetNumV());
+			vertices[2].uv = Vector2(1.0f/GetSplitX()* GetNumU(),	 1.0f/GetSplitY()*(GetNumV()+1));
+			vertices[3].uv = Vector2(1.0f/GetSplitX()*(GetNumU()+1), 1.0f/GetSplitY()*(GetNumV()+1));
 		}
 		else
 		{
-			vertices[0].uv = Vector2(1, 0);
-			vertices[1].uv = Vector2(0, 0);
-			vertices[2].uv = Vector2(1, 1);
-			vertices[3].uv = Vector2(0, 1);
+			vertices[0].uv = Vector2(1.0f/GetSplitX()*(GetNumU()+1), 1.0f/GetSplitY()* GetNumV());
+			vertices[1].uv = Vector2(1.0f/GetSplitX()* GetNumU(),	 1.0f/GetSplitY()* GetNumV());
+			vertices[2].uv = Vector2(1.0f/GetSplitX()*(GetNumU()+1), 1.0f/GetSplitY()*(GetNumV()+1));
+			vertices[3].uv = Vector2(1.0f/GetSplitX()* GetNumU(),	 1.0f/GetSplitY()*(GetNumV()+1));
 		}
 
 		// 頂点バッファ生成
@@ -108,7 +108,7 @@ void Quad::Uninit()
 	
 }
 
-void Quad::SetTex(const std::string& _filename,int _splitX,int _splitY)
+void Quad::SetTex(const std::string& _filename, int _splitX, int _splitY, int _numU, int _numV)
 {
 	// 頂点データ
 	std::vector<VERTEX_3D>	vertices;
@@ -127,17 +127,17 @@ void Quad::SetTex(const std::string& _filename,int _splitX,int _splitY)
 
 	if (moveDirection == RIGHT)
 	{
-		vertices[0].uv = Vector2(0, 0);
-		vertices[1].uv = Vector2(1, 0);
-		vertices[2].uv = Vector2(0, 1);
-		vertices[3].uv = Vector2(1, 1);
+		vertices[0].uv = Vector2(1.0f/_splitX* _numU,	  1.0f/_splitY*  _numV);
+		vertices[1].uv = Vector2(1.0f/_splitX*(_numU+1),  1.0f/_splitY*  _numV);
+		vertices[2].uv = Vector2(1.0f/_splitX* _numU,	  1.0f/_splitY* (_numV+1));
+		vertices[3].uv = Vector2(1.0f/_splitX*(_numU+1),  1.0f/_splitY* (_numV+1));
 	}
 	else
 	{
-		vertices[0].uv = Vector2(0, 0);
-		vertices[1].uv = Vector2(0, 1);
-		vertices[2].uv = Vector2(1, 1);
-		vertices[3].uv = Vector2(0, 1);
+		vertices[0].uv = Vector2(1.0f/_splitX*(_numU+1), 1.0f/_splitY* _numV);
+		vertices[1].uv = Vector2(1.0f/_splitX* _numU,	 1.0f/_splitY* _numV);
+		vertices[2].uv = Vector2(1.0f/_splitX*(_numU+1), 1.0f/_splitY*(_numV+1));
+		vertices[3].uv = Vector2(1.0f/_splitX* _numU,	 1.0f/_splitY*(_numV+1));
 	}
 
 	// 頂点バッファ生成

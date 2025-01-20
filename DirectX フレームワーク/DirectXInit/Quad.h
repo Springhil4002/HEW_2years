@@ -33,6 +33,8 @@ public:
 	
 	int splitX = 1;
 	int splitY = 1;
+	int numU = 0;
+	int numV = 0;
 
 	Quad() {}
 	~Quad() {}
@@ -43,7 +45,23 @@ public:
 	void Draw();	// 描画処理
 	void Uninit();	// 解放処理
 
-	void SetTex(const std::string& filename, int _splitX = 1, int _splitY = 1);
-	void SetSplit(int _splitX, int _splitY) 
-	{ splitX = _splitX; splitY = _splitY; }
+	// 画像読み込み
+	// ※第一引数:画像名、第二引数:横の分割数、第三引数:縦の分割数、第四引数:横から何番目、第五引数:縦から何番目
+	void SetTex(const std::string& filename, 
+				int _splitX = 1, int _splitY = 1, 
+				int _numU = 0, int _numV = 0);
+
+	// ゲッター・セッター
+
+	// splitX・splitY関係
+	int GetSplitX() { return splitX; }
+	int GetSplitY() { return splitY; }
+	void SetSplitX(int _splitX) { splitX = _splitX; }
+	void SetSplitY(int _splitY) { splitY = _splitY; }
+
+	// numU・numV関係
+	int GetNumU() { return numU; }
+	int GetNumV() { return numV; }
+	void SetNumU(int _numU) { numU = _numU; }
+	void SetNumV(int _numV) { numV = _numV; }
 };
