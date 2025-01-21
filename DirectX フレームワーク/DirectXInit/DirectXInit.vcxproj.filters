@@ -155,6 +155,9 @@
     <Filter Include="Object関係\CoinNum関係%28コイン獲得数%29">
       <UniqueIdentifier>{362be786-ec3c-4c01-a3ed-dc524cb00b34}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object関係\StarTip関係%28スターチップ%29">
+      <UniqueIdentifier>{ddc5359a-084c-4e20-b38e-9b316306cb9d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scene.cpp">
@@ -258,6 +261,9 @@
     </ClCompile>
     <ClCompile Include="CoinNum.h">
       <Filter>Object関係\CoinNum関係%28コイン獲得数%29</Filter>
+    </ClCompile>
+    <ClCompile Include="StarTip.cpp">
+      <Filter>Object関係\StarTip関係%28スターチップ%29</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -366,6 +372,9 @@
       <Filter>Object関係\Goal関係%28ゴール%29</Filter>
     </ClInclude>
     <ClInclude Include="CSV.h" />
+    <ClInclude Include="StarTip.h">
+      <Filter>Object関係\StarTip関係%28スターチップ%29</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader\common.hlsl">

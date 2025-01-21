@@ -5,15 +5,17 @@
 #define OBJECT_Y_VALUE		(18)
 #define GROUND_OFFSET_X		(-1890.0f)
 #define GROUND_OFFSET_Y		(-510.0f)
+#define SET_STARTIP			(3)
 
 class ResultScene
 	: public Scene
 {
 private:
-	static int count;	// bandTipの獲得数
+	static int tipCount;			// bandTipの獲得数
+	static int meterCount;		// 引っぱったバンドカウント
 public:
 	ResultScene(int _num) { Init(_num); };		//コンストラクタ(初期化処理関数)
-	~ResultScene() {};		//デストラクタ　(解放処理関数)
+	~ResultScene() {};							//デストラクタ　(解放処理関数)
 
 	void Init(int _num);
 

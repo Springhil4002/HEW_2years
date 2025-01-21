@@ -5,15 +5,17 @@
 #include "Player.h"
 #include "Band.h"
 #include "CoinNum.h"
+#include "StarTip.h"
 
 #include "iostream"
 
-int ResultScene::count = 0;
+int ResultScene::tipCount = 0;
+int ResultScene::meterCount = 0;
 
 void ResultScene::Init(int _num)
 {
 	//std::cout << "bandTipCount:" << _num << std::endl;
-	count = _num;
+	tipCount = _num;
 	SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM003);	// サウンドを停止
 	SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM005);	// サウンドを再生
 
@@ -58,7 +60,7 @@ void ResultScene::Init(int _num)
 				auto ground = Object::Create<Ground>();
 				ground->SetPos(GROUND_OFFSET_X + i * BLOCK_SIZE, -(GROUND_OFFSET_Y + j * BLOCK_SIZE), 0.0f);	// 座標を初期化
 
-				if (47<=i && i<=(47+count))
+				if (47<=i && i<=(47+tipCount))
 				{
 					ground->tags.AddTag("BandA");
 				}
@@ -67,12 +69,13 @@ void ResultScene::Init(int _num)
 		}
 	}
 
+	// 結束バンドオブジェクトの作成
 	auto band = Object::Create<Band>();
 	band->SetTex("asset/Texture/Band_Block.png");
 	band->SetPos(30.0f, -420.0f, 0.0f);
 	band->SetScale(BLOCK_SIZE, BLOCK_SIZE, 0.0f);
 	band->layer = 1;
-	band->SetLength(count);
+	band->SetLength(tipCount);
 
 	// コイン獲得数オブジェクトの作成
 	auto coinNum1 = Object::Create<CoinNum>();
@@ -88,6 +91,13 @@ void ResultScene::Init(int _num)
 	coinNum1->tags.AddTag("1");
 	coinNum10->tags.AddTag("10");
 	coinNum100->tags.AddTag("100");
+
+	StarTip* starTip[SET_STARTIP];
+	for (int i = 0; i < SET_STARTIP; i++)
+	{
+		starTip[i] = Object::Create<StarTip>();
+		starTip[i]->SetPos(-120.0f + (i * BLOCK_SIZE * 2), 100.0f, 0.0f);
+	}
 
 	for (auto& obj : objectInstance)
 	{
@@ -111,20 +121,19 @@ void ResultScene::Update()
 	{
 		if (coinUI->tags.SearchTag("100")) {
 			int coinCount = 0;
-			coinCount = count / 100;
+			coinCount = meterCount / 100;
 			if (coinCount >= 10) { coinCount -= 10; }
 			coinUI->SetNumU(coinCount);
 		}
 		if (coinUI->tags.SearchTag("10")) {
 			int coinCount = 0;
-			coinCount = count / 10;
+			coinCount = meterCount / 10;
 			if (coinCount >= 10) { coinCount -= 10; }
 			coinUI->SetNumU(coinCount);
 		}
-
 		if (coinUI->tags.SearchTag("1")) {
 			int coinCount = 0;
-			coinCount = count % 10;
+			coinCount = meterCount % 10;
 			coinUI->SetNumU(coinCount);
 		}
 	}
