@@ -10,7 +10,7 @@ class ResultScene
 	: public Scene
 {
 private:
-	
+	static int count;	// bandTipの獲得数
 public:
 	ResultScene(int _num) { Init(_num); };		//コンストラクタ(初期化処理関数)
 	~ResultScene() {};		//デストラクタ　(解放処理関数)

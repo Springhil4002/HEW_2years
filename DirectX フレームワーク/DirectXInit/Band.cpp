@@ -4,15 +4,15 @@
 void Band::Init()
 {
 	// æ’[‚Ì‰ŠúÝ’è
-	tip->SetTex("asset/Texture/explotion.png");
+	tip->SetTex("asset/Texture/Band_Tip.png");
 	tip->SetPos(m_Position.x - 60, m_Position.y, 0);
 	oldPos = { m_Position.x - 60, m_Position.y, 0 };
-	tip->SetScale(10, 10, 0);
+	tip->SetScale(BLOCK_SIZE, BLOCK_SIZE, 0.0f);
 
 	for (int i = 0; i < L; i++)
 	{
 		auto buf = Object::Create<Quad>();
-		buf->SetTex("asset/Texture/ground.png");
+		buf->SetTex("asset/Texture/Band_meter.png");
 		buf->SetPos(m_Position.x + 60 * i, m_Position.y, 0);
 		buf->SetScale(60, 30, 0);
 		jagged.insert(buf);
@@ -87,7 +87,7 @@ void Band::SetLength(int _length)
 	for (int i = 0; i < L; i++)
 	{
 		auto buf = Object::Create<Quad>();
-		buf->SetTex("asset/Texture/ground.png");
+		buf->SetTex("asset/Texture/Band_meter.png");
 		buf->SetPos(m_Position.x + 60 * i, m_Position.y, 0);
 		buf->SetScale(60, 30, 0);
 		jagged.insert(buf);

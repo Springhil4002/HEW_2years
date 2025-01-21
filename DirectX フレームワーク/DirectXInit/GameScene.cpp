@@ -76,8 +76,8 @@ void GameScene::Init(int _num)
 
 		auto band = Object::Create<Band>();
 		band->SetTex("asset/Texture/band_Block.png");
-		band->SetPos(30, -422, 0);
-		band->SetScale(60, 60, 0);
+		band->SetPos(30.0f, -420.0f, 0.0f);
+		band->SetScale(BLOCK_SIZE, BLOCK_SIZE, 0.0f);
 		band->layer = 1;
 		for (auto& obj : objectInstance)
 		{
@@ -93,41 +93,19 @@ void GameScene::Init(int _num)
 		check->tags.AddTag("check");
 		
 
-		//const int coinCount = 12;
-		//Coin* coin[coinCount];
-		//for (int i = 0; i < coinCount; i++)
-		//{
-		//	coin[i] = Object::Create<Coin>();
-		//}
-
 		// バンドチップオブジェクトの作成
-		auto coin1 = Object::Create<Coin>();
-		auto coin2 = Object::Create<Coin>();
-		auto coin3 = Object::Create<Coin>();
-		auto coin4 = Object::Create<Coin>();
-		auto coin5 = Object::Create<Coin>();
-		auto coin6 = Object::Create<Coin>();
-		auto coin7 = Object::Create<Coin>();
-		auto coin8 = Object::Create<Coin>();
-		auto coin9 = Object::Create<Coin>();
-		auto coin10 = Object::Create<Coin>();
-		auto coin11 = Object::Create<Coin>();
-		auto coin12 = Object::Create<Coin>();
+		Coin* coin[SET_COIN];
+		for (int i = 0; i < SET_COIN; i++)
+		{
+			coin[i] = Object::Create<Coin>();
+		}
 
+		
 		// バンドチップオブジェクトの座標設定
-		coin1->SetPos( BLOCK_SIZE *-9.5,   BLOCK_SIZE *-6.5, 0.0f);
-		coin2->SetPos( BLOCK_SIZE *-8.5,   BLOCK_SIZE *-6.5, 0.0f);
-		coin3->SetPos( BLOCK_SIZE *-7.5,   BLOCK_SIZE *-6.5, 0.0f);
-		coin4->SetPos( BLOCK_SIZE *-6.5,   BLOCK_SIZE *-6.5, 0.0f);
-		coin5->SetPos( BLOCK_SIZE *-5.5,   BLOCK_SIZE *-6.5, 0.0f);
-		coin6->SetPos( BLOCK_SIZE *-4.5,   BLOCK_SIZE *-6.5, 0.0f);
-		coin7->SetPos( BLOCK_SIZE *-3.5,   BLOCK_SIZE *-6.5, 0.0f);
-		coin8->SetPos( BLOCK_SIZE *-2.5,   BLOCK_SIZE *-6.5, 0.0f);
-		coin9->SetPos( BLOCK_SIZE *-1.5,   BLOCK_SIZE *-6.5, 0.0f);
-
-		coin10->SetPos( BLOCK_SIZE * 9.5,   BLOCK_SIZE *-6.5, 0.0f);
-		coin11->SetPos( BLOCK_SIZE * 10.5,  BLOCK_SIZE *-6.5, 0.0f);
-		coin12->SetPos( BLOCK_SIZE * 11.5,  BLOCK_SIZE *-6.5, 0.0f);
+		for (int i = 0; i < SET_COIN; i++)
+		{
+			coin[i]->SetPos(BLOCK_SIZE*(-12.5+i), BLOCK_SIZE*-6.5, 0.0f);
+		}
 
 		// ゴールオブジェクトの作成
 		auto goal = Object::Create<Goal>();

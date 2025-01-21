@@ -6,6 +6,7 @@
 #define GROUND_OFFSET_X		(-930.0f)
 #define GROUND_OFFSET_Y		(-510.0f)
 #define SCENE_ENUM_OFFSET	(3)
+#define SET_COIN			(12)
 
 class Goal;
 class GameScene : public Scene
