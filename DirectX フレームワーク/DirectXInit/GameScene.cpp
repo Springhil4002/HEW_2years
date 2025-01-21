@@ -92,6 +92,14 @@ void GameScene::Init(int _num)
 		check->SetScale(100, 100, 0);
 		check->tags.AddTag("check");
 		
+
+		//const int coinCount = 12;
+		//Coin* coin[coinCount];
+		//for (int i = 0; i < coinCount; i++)
+		//{
+		//	coin[i] = Object::Create<Coin>();
+		//}
+
 		// バンドチップオブジェクトの作成
 		auto coin1 = Object::Create<Coin>();
 		auto coin2 = Object::Create<Coin>();
