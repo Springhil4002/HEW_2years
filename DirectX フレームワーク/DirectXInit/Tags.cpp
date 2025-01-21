@@ -33,5 +33,6 @@ std::vector<std::string> Tags::GetData() const
 	{
 		buf.push_back(tag);
 	}
+
 	return buf;
 }

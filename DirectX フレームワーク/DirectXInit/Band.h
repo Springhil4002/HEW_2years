@@ -5,7 +5,9 @@
 #include "BandTip.h"
 class Band : public Entity
 {
-private:
+private: 
+	// 引かれるObject用のタグ
+	std::string objectTag;
 	// 先端のインスタンス
 	BandTip* tip;
 	// ギザギザ部分のインスタンス
@@ -29,6 +31,8 @@ public:
 
 	void Add(Object* _object);
 	void Remove(Object* _object);
+
+	void SetLength(int _length);
 
 	std::vector<std::string> GetData() const;
 	bool SetData(std::vector<std::string> _data);

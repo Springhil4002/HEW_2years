@@ -80,6 +80,7 @@ void MapEditor::Save(std::string _fileName_csv)
 	unsigned int cnt = 0;
 	for (auto& obj : objs)
 	{
+		std::vector<std::string> buf;
 		mapData.push_back(obj->GetData());
 		cnt++;
 	}
