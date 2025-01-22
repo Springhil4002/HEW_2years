@@ -8,6 +8,7 @@
 #include "Coin.h"
 #include "CoinNum.h"
 #include "Goal.h"
+#include "MapEditor.h"
 
 //#include "iostream"
 
@@ -33,6 +34,7 @@ void GameScene::Init(int _num)
 		bg->layer = -1;
 
 		// Stage1のCSV読み込み
+		MapEditor::Load("Stage1.csv");
 		
 		// コイン獲得数オブジェクトの作成
 		auto coinNum1	= Object::Create<CoinNum>();

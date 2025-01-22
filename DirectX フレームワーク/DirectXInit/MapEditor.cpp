@@ -266,6 +266,10 @@ bool MapEditor::Load(std::string _fileName_csv)
 		{
 			object = Object::Create<Entity>();
 		}
+		else if (objData.front() == "Player")
+		{
+			object = Object::Create<Player>();
+		}
 		else
 		{
 			printf("error:読込データがバグってるよ\n");

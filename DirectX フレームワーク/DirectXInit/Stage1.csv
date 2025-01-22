@@ -88,3 +88,4 @@ Ground,Object,90,-330,0,Tags,0,,
 Goal,Object,870,-180,0,Tags,0,,
 Band,Object,-390,-270,2,Tags,0,4,BandB
 Band,Object,390,-210,2,Tags,0,4,BandA
+Player,Object,0,0,1,Tags,0,,

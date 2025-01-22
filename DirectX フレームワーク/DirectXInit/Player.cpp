@@ -250,3 +250,30 @@ void Player::Jump() {
 void Player::Resist() {
 	m_Velocity /= 1.2f;
 }
+
+
+
+std::vector<std::string> Player::GetData() const
+{
+	std::vector<std::string> buf;
+	buf.push_back("Player");
+	auto objectData = Object::GetData();
+	buf.insert(buf.end(), objectData.begin(), objectData.end());
+	return buf;
+}
+
+bool Player::SetData(std::vector<std::string> _data)
+{
+	if (_data.front() == "Player")
+	{
+		std::vector<std::string> objBuf(_data.size());
+		std::copy(_data.begin() + 1, _data.end(), objBuf.begin());
+		Object::SetData(objBuf);
+
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
