@@ -38,7 +38,6 @@ public:
 	float GetPullLevel()				// ‚Ç‚ê‚¾‚¯ˆø‚Á’£‚Á‚Ä‚é‚©‚ğæ‚Á‚Ä‚­‚éŠÖ”
 	{return pullLevel; }
 
-	void SetLength(int _length);
 	void SetObject(std::string _tag);
 
 	std::vector<std::string> GetData() const;
