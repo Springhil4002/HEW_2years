@@ -41,4 +41,7 @@ public:
 	// 削除するオブジェクトを登録
 	static void SetDelete(Object* _object);
 
+	static std::set<Object*> ListCreate() { return createObjects; }
+	static std::set<Object*> ListDelete() { return deleteObjects; }
+
 };

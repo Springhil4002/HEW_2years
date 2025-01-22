@@ -163,3 +163,45 @@ void Quad::SetTex(const std::string& _filename, int _splitX, int _splitY, int _n
 	bool sts = m_Texture.Load(_filename);
 	assert(sts == true);
 }
+
+std::vector<std::string> Quad::GetData() const
+{
+	std::vector<std::string> buf;
+
+	// オブジェクト名
+	buf.push_back("Quad");
+
+	// オブジェクトの基本情報
+	auto objData = Object::GetData();
+	buf.insert(buf.end(), objData.begin(), objData.end());
+
+	// サイズの情報
+	buf.push_back(std::to_string(m_Scale.x));
+	buf.push_back(std::to_string(m_Scale.y));
+
+	// テクスチャの情報
+	buf.push_back(m_Texture.FileName());
+
+	return buf;
+}
+
+bool Quad::SetData(std::vector<std::string> _data)
+{
+	if (_data.front() == "Quad")
+	{
+		std::vector<std::string> objBuf(6 + stoi(_data[6]));
+		std::copy(_data.begin() + 1, _data.begin() + 7 + stoi(_data[6]), objBuf.begin());
+		Object::SetData(objBuf);
+
+		m_Scale.x = stoi(_data[7 + stoi(_data[6])]);
+		m_Scale.y = stoi(_data[8 + stoi(_data[6])]);
+
+		SetTex(_data[9 + stoi(_data[6])]);
+
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}

@@ -7,12 +7,25 @@
 class MapEditor : public Scene
 {
 private:
-	Player* player;
+	enum ObjectType
+	{
+		PLAYER,
+		GROUND,
+		BAND,
+		GOAL,
+		COIN,
+
+
+
+		MAX
+	};
+
+	int select;
 
 	static CSV mapData;
 	static Quad* cursor;
 public:
-	MapEditor() : player(nullptr) {}
+	MapEditor() : select(PLAYER) {}
 	~MapEditor() {}
 
 	void Init();

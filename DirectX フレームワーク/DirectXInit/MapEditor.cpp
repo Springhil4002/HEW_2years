@@ -2,7 +2,11 @@
 #include "Cursor.h"
 #include "Ground.h"
 #include "Band.h"
+#include "Goal.h"
+#include "Coin.h"
 #include "main.h"
+#include <iostream>
+
 
 Quad* MapEditor::cursor = nullptr;
 CSV MapEditor::mapData;
@@ -23,10 +27,82 @@ void MapEditor::Update()
 		obj->Update();
 	}
 
-	int x = Cursor::GetX() - Cursor::GetX() % 60 - (int)SCREEN_WIDTH / 2 + 30;
-	int y = -(Cursor::GetY() - Cursor::GetY() % 60 - (int)SCREEN_HEIGHT / 2 + 30);
+	int x = Cursor::GetX() - Cursor::GetX() % 60 - (int)SCREEN_WIDTH / 2;
+	int y = -(Cursor::GetY() - Cursor::GetY() % 60 - (int)SCREEN_HEIGHT / 2);
+
+	switch (select)
+	{
+	case PLAYER:
+		x += 30;
+		break;
+	case GROUND:
+		x += 30;
+		y -= 30;
+		break;
+	case BAND:
+		x += 30;
+		y -= 30;
+		break;
+	case GOAL:
+		x += 30;
+		break;
+	case COIN:
+		x += 30;
+		y -= 30;
+		break;
+	}
 
 	cursor->SetPos(x, y, 0);
+
+	if (input.GetKeyTrigger(VK_RIGHT))
+	{
+		if (select < ObjectType::MAX - 1)
+		{
+			select++;
+		}
+		else
+		{
+			select = 0;
+		}
+	}
+
+	if (input.GetKeyTrigger(VK_LEFT))
+	{
+		if (select > 0)
+		{
+			select--;
+		}
+		else
+		{
+			select = ObjectType::MAX - 1;
+		}
+	}
+
+	switch (select)
+	{
+	case PLAYER:
+		cursor->SetTex("asset/Texture/player.png");
+		cursor->SetScale(60.0f, 120.0f, 0.0f);
+		break;
+	case GROUND:
+		cursor->SetTex("asset/Texture/ground.png");
+		cursor->SetScale(60.0f, 60.0f, 0.0f);
+		break;
+	case BAND:
+		cursor->SetTex("asset/Texture/Band_Block.png");
+		cursor->SetScale(60.0f, 60.0f, 0.0f);
+		break;
+	case GOAL:
+		cursor->SetTex("asset/Texture/Door.png");
+		cursor->SetScale(60.0f, 120.0f, 0.0f);
+		break;
+	case COIN:
+		cursor->SetTex("asset/Texture/Coin.png");
+		cursor->SetScale(60.0f, 60.0f, 0.0f);
+		break;
+	}
+
+
 	if (input.GetKeyTrigger(VK_LBUTTON))
 	{
 		bool flg = true;
@@ -44,58 +120,128 @@ void MapEditor::Update()
 
 		if (flg)
 		{
-			auto ground = Object::Create<Band>();
-			ground->SetPos(x, y, 0);
-			ground->SetTex("asset/Texture/ground.png");
-			ground->SetScale(60, 60, 0);
+			switch (select)
+			{
+			case PLAYER:
+			{
+				auto player = Object::Create<Player>();
+				player->SetPos(x, y, 0);
+			}
+				break;
+			case GROUND:
+			{
+				auto ground = Object::Create<Ground>();
+				ground->SetPos(x, y, 0);
+			}
+				break;
+			case BAND:
+			{
+				auto band = Object::Create<Band>();
+				band->SetPos(x, y, 0);
+
+				std::string bufTag;
+				std::cin >> bufTag;
+				band->SetObject(bufTag);
+			}
+				break;
+			case GOAL:
+			{
+				auto goal = Object::Create<Goal>();
+				goal->SetPos(x, y, 0);
+			}
+				break;
+			case COIN:
+			{
+				auto goal = Object::Create<Coin>();
+				goal->SetPos(x, y, 0);
+			}
+			break;
+
+			}
+		}
+	}
+
+	if (input.GetKeyTrigger(VK_RBUTTON))
+	{
+		auto objects = objectInstance;
+		objects.erase(cursor);
+		for (auto& obj : objects)
+		{
+			if (obj->GetPos() == DirectX::SimpleMath::Vector3(x, y, 0))
+			{
+				std::string bufTag;
+				std::cin >> bufTag;
+				obj->tags.AddTag(bufTag);
+				break;
+			}
 		}
 	}
 
 	if (input.GetKeyTrigger(VK_S))
 	{
-		Save("MapData.csv");
+		std::cout << "セーブするファイルの名前(.csv)を入力してください" << std::endl;
+		std::string bufName;
+		std::cin >> bufName;
+		Save(bufName);
 	}
 
 	if (input.GetKeyTrigger(VK_L))
 	{
-		Load("MapData.csv");
+		std::cout << "ロードするファイルの名前(.csv)を入力してください" << std::endl;
+		std::string bufName;
+		std::cin >> bufName;
+		Load(bufName);
 	}
 
-	if (input.GetKeyTrigger(VK_P))
-	{
-		player = Object::Create<Player>();
-		player->layer = 1;
-	}
+	//if (input.GetKeyTrigger(VK_P))
+	//{
+	//	player = Object::Create<Player>();
+	//	player->layer = 1;
+	//}
 
-	if (input.GetKeyRelease(VK_P))
-	{
-		Object::Delete(player);
-	}
+	//if (input.GetKeyRelease(VK_P))
+	//{
+	//	Object::Delete(player);
+	//}
 }
 
 void MapEditor::Save(std::string _fileName_csv)
 {
-	auto objs = *Scene::GetInstance()->GetObjects();
-	objs.erase(cursor);
-	unsigned int cnt = 0;
-	for (auto& obj : objs)
+	mapData.clear();
+
+	auto gnds = Scene::GetInstance()->GetObjects<Ground>();
+	auto gols = Scene::GetInstance()->GetObjects<Goal>();
+	auto bnds = Scene::GetInstance()->GetObjects<Band>();
+	auto cons = Scene::GetInstance()->GetObjects<Coin>();
+
+	for (auto& gnd : gnds)
 	{
-		std::vector<std::string> buf;
-		mapData.push_back(obj->GetData());
-		cnt++;
+		mapData.push_back(gnd->GetData());
+	}
+	for (auto& gol : gols)
+	{
+		mapData.push_back(gol->GetData());
+	}
+	for (auto& con : cons)
+	{
+		mapData.push_back(con->GetData());
+	}
+	for (auto& bnd : bnds)
+	{
+		mapData.push_back(bnd->GetData());
 	}
 
-	mapData.Save("MapData.csv");
+	mapData.Save(_fileName_csv);
 }
 
 bool MapEditor::Load(std::string _fileName_csv)
 {
-	mapData.Load("MapData.csv");
+	mapData.Load(_fileName_csv);
 
 	auto objects = *Scene::GetInstance()->GetObjects();
 	objects.erase(cursor);
 	for (auto& obj : objects)
-		Object::Delete(obj);	
+		Object::Delete(obj);
 	
 	for (auto& objData : mapData)
 	{
@@ -104,12 +250,25 @@ bool MapEditor::Load(std::string _fileName_csv)
 		{
 			object = Object::Create<Ground>();
 		}
-		if (objData.front() == "Band")
+		else if (objData.front() == "Band")
 		{
 			object = Object::Create<Band>();
 		}
-		if (objData.front() == "Object")
+		else if (objData.front() == "Goal")
 		{
+			object = Object::Create<Goal>();
+		}
+		else if (objData.front() == "Coin")
+		{
+			object = Object::Create<Coin>();
+		}
+		else if (objData.front() == "Entity")
+		{
+			object = Object::Create<Entity>();
+		}
+		else
+		{
+			printf("error:読込データがバグってるよ\n");
 			break;
 		}
 

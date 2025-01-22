@@ -23,7 +23,7 @@ public:
 	
 	// コンストラクタ・デストラクタで先端の管理
 	Band(): L(4) { tip = Object::Create<BandTip>(); }
-	~Band() { Object::Delete(tip); }
+	~Band() {  }
 
 	void Init();
 	void Update();
@@ -37,6 +37,9 @@ public:
 								
 	float GetPullLevel()				// どれだけ引っ張ってるかを取ってくる関数
 	{return pullLevel; }
+
+	void SetLength(int _length);
+	void SetObject(std::string _tag);
 
 	std::vector<std::string> GetData() const;
 	bool SetData(std::vector<std::string> _data);

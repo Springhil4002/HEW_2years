@@ -30,5 +30,7 @@ public:
 
 	// 読み込んだテクスチャの全削除
 	static void Clear();
+
+	std::string FileName() const { return filename; }
 };
 

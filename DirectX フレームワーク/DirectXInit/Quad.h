@@ -63,4 +63,7 @@ public:
 	int GetNumV() { return numV; }
 	void SetNumU(int _numU) { numU = _numU; }
 	void SetNumV(int _numV) { numV = _numV; }
+
+	std::vector<std::string> GetData() const;
+	bool SetData(std::vector<std::string> _data);
 };

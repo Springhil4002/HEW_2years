@@ -17,6 +17,11 @@ void CSV::push_back(std::vector<std::string> _strs)
     data.push_back(_strs);
 }
 
+void CSV::clear()
+{
+    data.clear();
+}
+
 void CSV::Load(std::string _fileName)
 {
     std::string str_buf;

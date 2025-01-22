@@ -3,6 +3,9 @@
 
 void Band::Init()
 {
+	SetTex("asset/Texture/Band_Block.png");
+	SetScale(60, 60, 0);
+	
 	// æ’[‚Ì‰ŠúÝ’è
 	tip->SetTex("asset/Texture/Band_Tip.png");
 	tip->SetPos(m_Position.x - 60, m_Position.y, 0);
@@ -15,8 +18,11 @@ void Band::Init()
 		buf->SetTex("asset/Texture/Band_meter.png");
 		buf->SetPos(m_Position.x + 60 * i, m_Position.y, 0);
 		buf->SetScale(60, 30, 0);
+		buf->layer = layer - 1;
 		jagged.insert(buf);
 	}
+
+	SetObject(objectTag);
 }
 
 void Band::Update()
@@ -51,14 +57,20 @@ void Band::Update()
 
 	if (pullLevel < -(L - 1) * 60)
 	{
-		tip->SetPos(tip->GetPos().x + (L - 1) * 60, tip->GetPos().y, 0);
+		tip->SetPos(m_Position.x - BLOCK_SIZE, m_Position.y, 0);
 	}
 }
 
 void Band::Uninit()
 {
-	for (auto& obj : jagged)
+	Object::Delete(tip);
+
+	auto bufJagged = jagged;
+	for (auto& obj : bufJagged)
+	{
 		Object::Delete(obj);
+		jagged.erase(obj);
+	}
 }
 
 void Band::Add(Object* _object)
@@ -95,6 +107,18 @@ void Band::SetLength(int _length)
 
 }
 
+void Band::SetObject(std::string _tag)
+{
+	objectTag = _tag;
+	for (auto& obj : *Scene::GetInstance()->GetObjects())
+	{
+		if (obj->tags.SearchTag(_tag))
+		{
+			Add(obj);
+		}
+	}
+}
+
 std::vector<std::string> Band::GetData() const
 {
 	std::vector<std::string> buf;
@@ -119,18 +143,19 @@ bool Band::SetData(std::vector<std::string> _data)
 {
 	if (_data.front() == "Band")
 	{
-		std::vector<std::string> objBuf(_data.size());
-		std::copy(_data.begin() + 1, _data.begin() + 6 + stoi(_data[6]), objBuf.begin());
+		std::vector<std::string> objBuf(7 + stoi(_data[6]));
+		std::copy(_data.begin() + 1, _data.begin() + 7 + stoi(_data[6]), objBuf.begin());
 		Object::SetData(objBuf);
 
-		L = stoi(_data[7 + stoi(_data[6])]);
+		SetLength(stoi(_data[7 + stoi(_data[6])]));
 
-		for (auto& obj : *Scene::GetInstance()->GetObjects())
+		objectTag = _data[8 + stoi(_data[6])];
+
+		for (auto& obj : SceneManager::ListCreate())
 		{
-			if (obj->tags.SearchTag("BandA"))
+			if (obj->tags.SearchTag(objectTag))
 			{
-				//obj->Add(obj);
-				//obj->Add(obj);
+				Add(obj);
 			}
 		}
 

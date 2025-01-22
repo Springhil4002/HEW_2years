@@ -24,3 +24,28 @@ void Coin::Update()
 		}
 	}
 }
+
+std::vector<std::string> Coin::GetData() const
+{
+	std::vector<std::string> buf;
+	buf.push_back("Coin");
+	auto objectData = Object::GetData();
+	buf.insert(buf.end(), objectData.begin(), objectData.end());
+	return buf;
+}
+
+bool Coin::SetData(std::vector<std::string> _data)
+{
+	if (_data.front() == "Coin")
+	{
+		std::vector<std::string> objBuf(_data.size());
+		std::copy(_data.begin() + 1, _data.end(), objBuf.begin());
+		Object::SetData(objBuf);
+
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}

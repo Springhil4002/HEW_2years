@@ -14,6 +14,7 @@ public:
     std::vector<std::vector<std::string>>::const_iterator begin() const;
     std::vector<std::vector<std::string>>::const_iterator end() const;
     void push_back(std::vector<std::string> _strs);
+    void clear();
 
     // ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş(.csv)
     void Load(std::string _fileName);
