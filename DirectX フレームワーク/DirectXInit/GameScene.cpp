@@ -300,6 +300,20 @@ void GameScene::Init(int _num)
 void GameScene::Update()
 {
 	// コイン獲得数UIの各桁更新処理
+	CoinCounter();
+	// コイン獲得数UIの各桁更新処理
+	FallIsPlayer();
+	
+	auto objects = objectInstance;
+	for (auto& obj : objects)
+	{
+		obj->Update();
+	}
+}
+
+// コイン獲得数UIの各桁更新処理
+void GameScene::CoinCounter()
+{
 	auto coinUIs = GetInstance()->GetObjects<CoinNum>();
 	for (auto& coinUI : coinUIs)
 	{
@@ -315,21 +329,19 @@ void GameScene::Update()
 			if (coinCount >= 10) { coinCount -= 10; }
 			coinUI->SetNumU(coinCount);
 		}
-		
+
 		if (coinUI->tags.SearchTag("一の位")) {
 			int coinCount = 0;
 			coinCount = GameScene::bandTipCount % 10;
 			coinUI->SetNumU(coinCount);
 		}
 	}
+}
 
-	auto objects = objectInstance;
-	for (auto& obj : objects)
-	{
-		obj->Update();
-	}
-
-	auto players =GetInstance()->GetObjects<Player>();
+// playerの落下判定処理と遷移処理
+void GameScene::FallIsPlayer()
+{
+	auto players = GetInstance()->GetObjects<Player>();
 	for (auto& player : players)
 	{
 		if (GROUND_OFFSET_Y > player->GetPos().y + 120.0f)

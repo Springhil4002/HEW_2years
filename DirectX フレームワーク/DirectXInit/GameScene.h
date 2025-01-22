@@ -33,6 +33,6 @@ public:
 
 	static int GetAllBandTipCount() { return allBandTipCount; }
 
-	// コイン獲得数UIの各桁更新処理
-	void CoinCounter();
+	void CoinCounter();			// コイン獲得数UIの各桁更新処理
+	void FallIsPlayer();		// playerの落下判定処理と遷移処理
 };
