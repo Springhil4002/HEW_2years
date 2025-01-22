@@ -19,11 +19,9 @@ Player::Player() : velocity(1.5f), gravity(3.0f), jumpSpeed(50.0f), isJumping(tr
 //===================================================================
 void Player::Init()
 {
-	const float playerX = GROUND_OFFSET_X + (1.5f * BLOCK_SIZE);
-	const float playerY = GROUND_OFFSET_Y + (2.5f * BLOCK_SIZE);
-	SetTex("asset/Texture/player.png");// プレイヤーを初期化
-	SetPos(playerX, playerY, 0.0f);	// 座標を設定
+	SetTex("asset/Texture/player.png");			// プレイヤーを初期化
 	SetScale(BLOCK_SIZE, 2 * BLOCK_SIZE, 0.0f);	// 大きさを設定
+	layer = 1;				
 	m_Acceleration.y = -gravity;
 }
 

@@ -27,9 +27,12 @@ public:
 	void Init() {};				// 初期化処理関数
 	void Update();				// 更新処理関数
 
-	static int GetAllBandTipCount() { return allBandTipCount; }
-
 	// ゲッター・セッター
 	int GetGameSceneNum() { return gameSceneNum; }
 	void SetGameSceneNum(int _gameSceneNum) { gameSceneNum = _gameSceneNum; }
+
+	static int GetAllBandTipCount() { return allBandTipCount; }
+
+	// コイン獲得数UIの各桁更新処理
+	void CoinCounter();
 };
