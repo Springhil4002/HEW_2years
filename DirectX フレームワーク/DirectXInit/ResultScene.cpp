@@ -1,5 +1,6 @@
 #include "ResultScene.h"
 #include "SceneManager.h"
+#include "GameScene.h"
 #include "Quad.h"
 #include "Ground.h"
 #include "Player.h"
@@ -28,7 +29,7 @@ void ResultScene::Init(int _num)
 	auto player = Object::Create<Player>();
 	player->layer = 1;
 
-	const int stage[OBJECT_Y_VALUE][OBJECT_X_VALUE] = {
+	const int stage[18][64] = {
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -50,15 +51,15 @@ void ResultScene::Init(int _num)
 	};
 
 
-	for (int i = 0; i < OBJECT_X_VALUE; i++)
+	for (int i = 0; i < 64; i++)
 	{
-		for (int j = 0; j < OBJECT_Y_VALUE; j++)
+		for (int j = 0; j < 18; j++)
 		{
 			switch (stage[j][i])
 			{
 			case 1:
 				auto ground = Object::Create<Ground>();
-				ground->SetPos(GROUND_OFFSET_X + i * BLOCK_SIZE, -(GROUND_OFFSET_Y + j * BLOCK_SIZE), 0.0f);	// 座標を初期化
+				ground->SetPos(-1890.0f + i * BLOCK_SIZE, -(-510.0f + j * BLOCK_SIZE), 0.0f);	// 座標を初期化
 
 				if (47<=i && i<=(47+tipCount))
 				{
@@ -75,7 +76,7 @@ void ResultScene::Init(int _num)
 	band->SetPos(30.0f, -420.0f, 0.0f);
 	band->SetScale(BLOCK_SIZE, BLOCK_SIZE, 0.0f);
 	band->layer = 1;
-	band->SetLength(tipCount);
+	band->SetLength(tipCount+1);
 
 	// コイン獲得数オブジェクトの作成
 	auto coinNum1 = Object::Create<CoinNum>();
@@ -83,20 +84,37 @@ void ResultScene::Init(int _num)
 	auto coinNum100 = Object::Create<CoinNum>();
 
 	// コイン獲得数オブジェクトの座標設定
-	coinNum1->SetPos(50.0f, 0.0f, 0.0f);
+	coinNum1->SetPos(200.0f, 0.0f, 0.0f);
 	coinNum10->SetPos(0.0f, 0.0f, 0.0f);
-	coinNum100->SetPos(-50.0f, 0.0f, 0.0f);
+	coinNum100->SetPos(-200.0f, 0.0f, 0.0f);
+
+	// コイン獲得数の拡大表示
+	coinNum1->SetScale(200.0f, 400.0f, 0.0f);
+	coinNum10->SetScale(200.0f, 400.0f, 0.0f);
+	coinNum100->SetScale(200.0f, 400.0f, 0.0f);
 
 	// コイン獲得数オブジェクトのタグ付け
-	coinNum1->tags.AddTag("1");
-	coinNum10->tags.AddTag("10");
-	coinNum100->tags.AddTag("100");
+	coinNum1->tags.AddTag("一の位");
+	coinNum10->tags.AddTag("十の位");
+	coinNum100->tags.AddTag("百の位");
 
 	StarTip* starTip[SET_STARTIP];
 	for (int i = 0; i < SET_STARTIP; i++)
 	{
 		starTip[i] = Object::Create<StarTip>();
-		starTip[i]->SetPos(-120.0f + (i * BLOCK_SIZE * 2), 100.0f, 0.0f);
+		starTip[i]->SetPos(-300.0f + (i * BLOCK_SIZE * 5), 300.0f, 0.0f);
+		switch (i)
+		{
+		case 0:
+			starTip[i]->tags.AddTag("1枚目");
+			break;
+		case 1:
+			starTip[i]->tags.AddTag("2枚目");
+			break;
+		case 2:
+			starTip[i]->tags.AddTag("3枚目");
+			break;
+		}
 	}
 
 	for (auto& obj : objectInstance)
@@ -115,26 +133,60 @@ void ResultScene::Init(int _num)
 
 void ResultScene::Update()
 {
+	// 引っ張った長さに応じてスコアを更新
+	auto bandPullLevels = GetInstance()->GetObjects<Band>();
+	for (auto& bandPullLevel : bandPullLevels)
+	{
+		meterCount = (int)(bandPullLevel->GetPullLevel() / -60.0f);
+	}
+
 	// コイン獲得数UIの各桁更新処理
 	auto coinUIs = GetInstance()->GetObjects<CoinNum>();
 	for (auto& coinUI : coinUIs)
 	{
-		if (coinUI->tags.SearchTag("100")) {
+		if (coinUI->tags.SearchTag("百の位")) {
 			int coinCount = 0;
 			coinCount = meterCount / 100;
 			if (coinCount >= 10) { coinCount -= 10; }
 			coinUI->SetNumU(coinCount);
 		}
-		if (coinUI->tags.SearchTag("10")) {
+		if (coinUI->tags.SearchTag("十の位")) {
 			int coinCount = 0;
 			coinCount = meterCount / 10;
 			if (coinCount >= 10) { coinCount -= 10; }
 			coinUI->SetNumU(coinCount);
 		}
-		if (coinUI->tags.SearchTag("1")) {
+		if (coinUI->tags.SearchTag("一の位")) {
 			int coinCount = 0;
 			coinCount = meterCount % 10;
 			coinUI->SetNumU(coinCount);
+		}
+	}
+
+	// コイン獲得数の割合に応じてStarTipの獲得状況の更新
+	auto star_s = GetInstance()->GetObjects<StarTip>();
+	for (auto& star : star_s)
+	{
+		if (star->tags.SearchTag("1枚目"))
+		{
+			if (meterCount >=(GameScene::GetAllBandTipCount()*3/10))
+			{
+				star->SetGeting(true);
+			}
+		}
+		if (star->tags.SearchTag("2枚目"))
+		{
+			if (meterCount >= (GameScene::GetAllBandTipCount()*3/5))
+			{
+				star->SetGeting(true);
+			}
+		}
+		if (star->tags.SearchTag("3枚目"))
+		{
+			if (meterCount >= (GameScene::GetAllBandTipCount()*9/10))
+			{
+				star->SetGeting(true);
+			}
 		}
 	}
 
@@ -156,7 +208,7 @@ void ResultScene::Update()
 	auto players = GetInstance()->GetObjects<Player>();
 	for (auto& player : players)
 	{
-		if (GROUND_OFFSET_Y > player->GetPos().y + 120.0f)
+		if (-510.0f > player->GetPos().y + 120.0f)
 		{
 			SceneManager::ChangeScene(TITLE);
 		}

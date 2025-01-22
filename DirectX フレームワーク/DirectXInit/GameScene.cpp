@@ -11,7 +11,8 @@
 
 //#include "iostream"
 
-int GameScene::bandTipCount = 0;		// bandTipの獲得数
+int GameScene::bandTipCount = 0;			// bandTipの獲得数
+int GameScene::allBandTipCount = SET_COIN;	// bandTipの総数
 
 void GameScene::Init(int _num)
 {	
@@ -120,11 +121,16 @@ void GameScene::Init(int _num)
 		coinNum1	->SetPos(860.0f, 430.0f, 0.0f);
 		coinNum10	->SetPos(800.0f, 430.0f, 0.0f);
 		coinNum100	->SetPos(740.0f, 430.0f, 0.0f);
+		
+		// コイン獲得数オブジェクトの大きさを設定
+		coinNum1	->SetScale(50.0f, 100.0f, 0.0f);						
+		coinNum10	->SetScale(50.0f, 100.0f, 0.0f);
+		coinNum100	->SetScale(50.0f, 100.0f, 0.0f);
 
 		// コイン獲得数オブジェクトのタグ付け
-		coinNum1	->tags.AddTag("1");
-		coinNum10	->tags.AddTag("10");
-		coinNum100	->tags.AddTag("100");
+		coinNum1	->tags.AddTag("一の位");
+		coinNum10	->tags.AddTag("十の位");
+		coinNum100	->tags.AddTag("百の位");
 		
 		for (auto& obj : objectInstance)
 		{
@@ -709,20 +715,20 @@ void GameScene::Update()
 	auto coinUIs = GetInstance()->GetObjects<CoinNum>();
 	for (auto& coinUI : coinUIs)
 	{
-		if (coinUI->tags.SearchTag("100")) {
+		if (coinUI->tags.SearchTag("百の位")) {
 			int coinCount = 0;
 			coinCount = GameScene::bandTipCount / 100;
 			if (coinCount >= 10) { coinCount -= 10; }
 			coinUI->SetNumU(coinCount);
 		}
-		if (coinUI->tags.SearchTag("10")) {
+		if (coinUI->tags.SearchTag("十の位")) {
 			int coinCount = 0;
 			coinCount = GameScene::bandTipCount / 10;
 			if (coinCount >= 10) { coinCount -= 10; }
 			coinUI->SetNumU(coinCount);
 		}
 		
-		if (coinUI->tags.SearchTag("1")) {
+		if (coinUI->tags.SearchTag("一の位")) {
 			int coinCount = 0;
 			coinCount = GameScene::bandTipCount % 10;
 			coinUI->SetNumU(coinCount);

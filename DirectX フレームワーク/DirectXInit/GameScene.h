@@ -13,8 +13,8 @@ class GameScene : public Scene
 {
 private:
 	int gameSceneNum;		// GameScene(ステージ)の識別用番号
+	static int allBandTipCount;	// bandTipの総数
 public:
-	
 	static int bandTipCount;	// bandTipの獲得数
 
 	GameScene(int _num)			//コンストラクタ
@@ -26,6 +26,8 @@ public:
 	//オーバーライドした関数
 	void Init() {};				// 初期化処理関数
 	void Update();				// 更新処理関数
+
+	static int GetAllBandTipCount() { return allBandTipCount; }
 
 	// ゲッター・セッター
 	int GetGameSceneNum() { return gameSceneNum; }

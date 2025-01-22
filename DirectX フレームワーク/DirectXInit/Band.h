@@ -32,7 +32,11 @@ public:
 	void Add(Object* _object);
 	void Remove(Object* _object);
 
-	void SetLength(int _length);
+	// ゲッター・セッター
+	void SetLength(int _length);		// bandの引く長さを渡す関数
+								
+	float GetPullLevel()				// どれだけ引っ張ってるかを取ってくる関数
+	{return pullLevel; }
 
 	std::vector<std::string> GetData() const;
 	bool SetData(std::vector<std::string> _data);
