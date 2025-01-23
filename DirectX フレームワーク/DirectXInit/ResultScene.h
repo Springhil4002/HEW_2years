@@ -20,7 +20,7 @@ public:
 	{ Init(_num); };		
 	~ResultScene() {};				//デストラクタ　(解放処理関数)
 
-	void Init(int _num);
+	void Init(int _num);			// 基本的に使う初期化処理
 
 	//オーバーライドした関数
 	void Init() {}					// 初期化処理
