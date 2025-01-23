@@ -7,7 +7,6 @@
 #include "main.h"
 #include <iostream>
 
-
 Quad* MapEditor::cursor = nullptr;
 CSV MapEditor::mapData;
 
