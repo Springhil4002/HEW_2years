@@ -13,7 +13,7 @@
 //#include "iostream"
 
 int GameScene::bandTipCount = 0;			// bandTip‚ÌŠl“¾”
-int GameScene::allBandTipCount = SET_COIN;	// bandTip‚Ì‘”
+int GameScene::allBandTipCount = 0;			// bandTip‚Ì‘”
 
 void GameScene::Init(int _num)
 {	

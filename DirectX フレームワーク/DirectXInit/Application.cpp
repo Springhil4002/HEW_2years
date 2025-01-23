@@ -3,8 +3,6 @@
 #include "Renderer.h"
 #include "Camera.h"
 #include "Cursor.h"
-#include "FPS.h"
-//#include "Player.h"
 
 const auto ClassName = TEXT("2024 フレームワーク");			// ウィンドウクラス名
 const auto WindowName = TEXT("2024 フレームワーク (描画)");	// ウィンドウ名
@@ -218,7 +216,7 @@ void Application::MainLoop()
 			QueryPerformanceCounter(&liWork);	//現在時間を取得
 			nowCount = liWork.QuadPart;
 			//1/60秒が経過したか?
-			if (nowCount >= oldCount + frequency / FPS) {	//元:60
+			if (nowCount >= oldCount + frequency / 60) {	//元:60
 				// ゲーム処理実行
 
 				// シーンマネージャー更新処理

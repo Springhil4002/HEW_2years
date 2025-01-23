@@ -19,5 +19,10 @@ public:
 	//オーバーライドした関数
 	void Init() {}			// 初期化処理
 	void Update();			// 更新処理関数
+
+	void PullScoreUpdate();	// 引っ張った長さに応じてスコアを更新
+	void CoinCounter();		// コイン獲得数UIの各桁更新処理
+	void CoinGetPercent();	// コイン獲得数の割合に応じてStarTipの獲得状況の更新
+	void ClearDraw();		// CLEARのロゴ表示演出
 };
 

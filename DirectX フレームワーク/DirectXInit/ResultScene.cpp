@@ -28,7 +28,14 @@ void ResultScene::Init(int _num)
 
 	auto player = Object::Create<Player>();
 	player->SetPos(-800.0f, -400.0f, 0.0f);
-	player->layer = 1;
+
+	// CLEARのロゴオブジェクトの作成
+	auto clear_Logo = Object::Create<Quad>();
+	clear_Logo->SetTex("asset/Texture/Clear_Logo.png");
+	clear_Logo->SetPos(0.0f, 0.0f, 0.0f);
+	clear_Logo->SetScale(0.0f, 0.0f, 0.0f);
+	clear_Logo->tags.AddTag("CLEAR");
+	clear_Logo->layer = 2;
 
 	Ground* ground[SET_BLOCK];
 	for(int i = 0; i < SET_BLOCK; i++)
@@ -51,14 +58,14 @@ void ResultScene::Init(int _num)
 	auto coinNum100 = Object::Create<CoinNum>();
 
 	// コイン獲得数オブジェクトの座標設定
-	coinNum1->SetPos(200.0f, 0.0f, 0.0f);
+	coinNum1->SetPos(150.0f, 0.0f, 0.0f);
 	coinNum10->SetPos(0.0f, 0.0f, 0.0f);
-	coinNum100->SetPos(-200.0f, 0.0f, 0.0f);
+	coinNum100->SetPos(-150.0f, 0.0f, 0.0f);
 
 	// コイン獲得数の拡大表示
-	coinNum1->SetScale(200.0f, 400.0f, 0.0f);
-	coinNum10->SetScale(200.0f, 400.0f, 0.0f);
-	coinNum100->SetScale(200.0f, 400.0f, 0.0f);
+	coinNum1->SetScale(150.0f, 300.0f, 0.0f);
+	coinNum10->SetScale(150.0f, 300.0f, 0.0f);
+	coinNum100->SetScale(150.0f, 300.0f, 0.0f);
 
 	// コイン獲得数オブジェクトのタグ付け
 	coinNum1->tags.AddTag("一の位");
@@ -101,13 +108,52 @@ void ResultScene::Init(int _num)
 void ResultScene::Update()
 {
 	// 引っ張った長さに応じてスコアを更新
+	PullScoreUpdate();
+
+	// コイン獲得数UIの各桁更新処理
+	CoinCounter();
+
+	// コイン獲得数の割合に応じてStarTipの獲得状況の更新
+	CoinGetPercent();
+
+	auto bandPullLevels = GetInstance()->GetObjects<Band>();
+	for (auto* bandPullLevel : bandPullLevels)
+	{
+		if ((int)(bandPullLevel->GetPullLevel() / -60.0f) == tipCount)
+		{
+			ClearDraw();
+		}
+	}
+
+	auto objects = objectInstance;
+	for (auto& obj : objects)
+	{
+		obj->Update();
+	}
+
+	// Bボタンorエンターキーを押したら
+	if (input.GetButtonTrigger(XINPUT_B) || 
+		input.GetKeyTrigger(VK_RETURN))
+	{
+		SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
+		//現在のシーンを「TitleScene」に切り替える
+		SceneManager::ChangeScene(TITLE);
+	}
+}
+
+// 引っ張った長さに応じてスコアを更新
+void ResultScene::PullScoreUpdate()
+{
 	auto bandPullLevels = GetInstance()->GetObjects<Band>();
 	for (auto& bandPullLevel : bandPullLevels)
 	{
 		meterCount = (int)(bandPullLevel->GetPullLevel() / -60.0f);
 	}
+}
 
-	// コイン獲得数UIの各桁更新処理
+// コイン獲得数UIの各桁更新処理
+void ResultScene::CoinCounter()
+{
 	auto coinUIs = GetInstance()->GetObjects<CoinNum>();
 	for (auto& coinUI : coinUIs)
 	{
@@ -129,55 +175,52 @@ void ResultScene::Update()
 			coinUI->SetNumU(coinCount);
 		}
 	}
+}
 
-	// コイン獲得数の割合に応じてStarTipの獲得状況の更新
+// コイン獲得数の割合に応じてStarTipの獲得状況の更新
+void ResultScene::CoinGetPercent()
+{
 	auto star_s = GetInstance()->GetObjects<StarTip>();
 	for (auto& star : star_s)
 	{
 		if (star->tags.SearchTag("1枚目"))
 		{
-			if (meterCount >=(GameScene::GetAllBandTipCount()*3/10))
+			if (meterCount >=(GameScene::GetAllBandTipCount() * 3 / 10))
 			{
 				star->SetGeting(true);
 			}
 		}
 		if (star->tags.SearchTag("2枚目"))
 		{
-			if (meterCount >= (GameScene::GetAllBandTipCount()*3/5))
+			if (meterCount >= (GameScene::GetAllBandTipCount() * 6 / 10))
 			{
 				star->SetGeting(true);
 			}
 		}
 		if (star->tags.SearchTag("3枚目"))
 		{
-			if (meterCount >= (GameScene::GetAllBandTipCount()*9/10))
+			if (meterCount >= (GameScene::GetAllBandTipCount() * 9 / 10))
 			{
 				star->SetGeting(true);
 			}
 		}
 	}
+}
 
-	auto objects = objectInstance;
-	for (auto& obj : objects)
+void ResultScene::ClearDraw()
+{
+	auto object = GetInstance()->GetObjects<Quad>();
+	for (auto& obj : object)
 	{
-		obj->Update();
-	}
-
-	// Bボタンorエンターキーを押したら
-	if (input.GetButtonTrigger(XINPUT_B) || 
-		input.GetKeyTrigger(VK_RETURN))
-	{
-		SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
-		//現在のシーンを「TitleScene」に切り替える
-		SceneManager::ChangeScene(TITLE);
-	}
-
-	auto players = GetInstance()->GetObjects<Player>();
-	for (auto& player : players)
-	{
-		if (-510.0f > player->GetPos().y + 120.0f)
+		if (obj->tags.SearchTag("CLEAR"))
 		{
-			SceneManager::ChangeScene(TITLE);
+			while(obj->GetScale().x < 850.0f &&
+				  obj->GetScale().y < 250.0f)
+			{
+				obj->SetScale((obj->GetScale().x + 3.5f),
+							  (obj->GetScale().y + 1.0f),
+							   0.0f);
+			}
 		}
 	}
 }

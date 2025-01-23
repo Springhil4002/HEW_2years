@@ -56,6 +56,11 @@ DirectX::SimpleMath::Vector3 Object::GetPos() const
 	return m_Position;
 }
 
+DirectX::SimpleMath::Vector3 Object::GetScale() const
+{
+	return m_Scale;
+}
+
 std::vector<std::string> Object::GetData() const
 {
 	std::vector<std::string> buf;

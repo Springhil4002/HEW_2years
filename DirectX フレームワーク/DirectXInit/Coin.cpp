@@ -6,6 +6,7 @@ void Coin::Init()
 {
 	SetTex("asset/Texture/Coin.png");// ƒvƒŒƒCƒ„[‚ğ‰Šú‰»
 	SetScale(BLOCK_SIZE, BLOCK_SIZE, 0.0f);	// ‘å‚«‚³‚ğİ’è
+	GameScene::SetAllBandTipCount(GameScene::GetAllBandTipCount() + 1);
 }
 
 void Coin::Update()

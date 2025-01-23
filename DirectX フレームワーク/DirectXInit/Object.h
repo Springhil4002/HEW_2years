@@ -34,6 +34,7 @@ public:
 	
 	// ゲッター
 	DirectX::SimpleMath::Vector3 GetPos() const;
+	DirectX::SimpleMath::Vector3 GetScale() const;
 	virtual std::vector<std::string> GetData() const;
 
 	// オブジェクトの生成

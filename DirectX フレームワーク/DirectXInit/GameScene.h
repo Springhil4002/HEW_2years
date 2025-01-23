@@ -6,7 +6,6 @@
 #define GROUND_OFFSET_X		(-930.0f)
 #define GROUND_OFFSET_Y		(-510.0f)
 #define SCENE_ENUM_OFFSET	(3)
-#define SET_COIN			(12)
 
 class Goal;
 class GameScene : public Scene
@@ -32,6 +31,7 @@ public:
 	void SetGameSceneNum(int _gameSceneNum) { gameSceneNum = _gameSceneNum; }
 
 	static int GetAllBandTipCount() { return allBandTipCount; }
+	static void SetAllBandTipCount(int _allBandTipCount) { allBandTipCount = _allBandTipCount; }
 
 	void CoinCounter();			// コイン獲得数UIの各桁更新処理
 	void FallIsPlayer();		// playerの落下判定処理と遷移処理

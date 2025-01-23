@@ -19,9 +19,9 @@ void TitleScene::Init()
 	bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);			// 大きさを設定
 	bg->layer = -1;											// レイヤー設定
 
-	titleLogo->SetTex("asset/Texture/Title_Logo.png");		// 画像読み込み
+	titleLogo->SetTex("asset/Texture/Title_Logo.jpg");		// 画像読み込み
 	titleLogo->SetPos(0.0f, 200.0f, 0.0f);					// 座標を設定
-	titleLogo->SetScale(800.0f, 350.0f, 0.0f);				// 大きさを設定
+	titleLogo->SetScale(1000.0f, 600.0f, 0.0f);				// 大きさを設定
 
 	gameStart->SetTex("asset/Texture/Start_Logo.png");		// 画像読み込み
 	gameStart->SetPos(0.0f, -200.0f, 0.0f);					// 座標を設定
