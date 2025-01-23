@@ -11,6 +11,8 @@ private:
 	static int tipCount;		// bandTipの獲得数
 	static int meterCount;		// 引っぱったバンドカウント
 public:
+	bool flag = false;			// フラグ設定フラグ
+	bool Check_Clear = false;	// CLEARロゴ描画完了フラグ
 	ResultScene(int _num) { Init(_num); };		//コンストラクタ(初期化処理関数)
 	~ResultScene() {};							//デストラクタ　(解放処理関数)
 
@@ -24,5 +26,6 @@ public:
 	void CoinCounter();		// コイン獲得数UIの各桁更新処理
 	void CoinGetPercent();	// コイン獲得数の割合に応じてStarTipの獲得状況の更新
 	void ClearDraw();		// CLEARのロゴ表示演出
+	void ClearMove();		// CLEARのロゴ移動
 };
 

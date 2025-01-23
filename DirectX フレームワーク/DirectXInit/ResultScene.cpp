@@ -7,6 +7,7 @@
 #include "Band.h"
 #include "CoinNum.h"
 #include "StarTip.h"
+#include "Delay.h"
 
 #include "iostream"
 
@@ -20,12 +21,13 @@ void ResultScene::Init(int _num)
 	SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM003);	// サウンドを停止
 	SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM005);	// サウンドを再生
 
+	// 背景オブジェクトの作成
 	auto bg = Object::Create<Quad>();
-	
 	bg->SetTex("asset/Texture/Night.jpg");
 	bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
 	bg->layer = -1;
 
+	// プレイヤーオブジェクトの作成
 	auto player = Object::Create<Player>();
 	player->SetPos(-800.0f, -400.0f, 0.0f);
 
@@ -37,6 +39,11 @@ void ResultScene::Init(int _num)
 	clear_Logo->tags.AddTag("CLEAR");
 	clear_Logo->layer = 2;
 
+	// Delayオブジェクトの作成
+	auto delay = Object::Create<Delay>();
+	delay->tags.AddTag("Delay");
+
+	// 地面オブジェクトの作成
 	Ground* ground[SET_BLOCK];
 	for(int i = 0; i < SET_BLOCK; i++)
 	{
@@ -72,6 +79,7 @@ void ResultScene::Init(int _num)
 	coinNum10->tags.AddTag("十の位");
 	coinNum100->tags.AddTag("百の位");
 
+	// スターチップオブジェクトの作成
 	StarTip* starTip[SET_STARTIP];
 	for (int i = 0; i < SET_STARTIP; i++)
 	{
@@ -90,15 +98,6 @@ void ResultScene::Init(int _num)
 			break;
 		}
 	}
-
-	for (auto& obj : objectInstance)
-	{
-		if (obj->tags.SearchTag("BandA"))
-		{
-			band->Add(obj);
-		}
-	}
-
 	for (auto& obj : objectInstance)
 	{
 		obj->Init();
@@ -119,9 +118,27 @@ void ResultScene::Update()
 	auto bandPullLevels = GetInstance()->GetObjects<Band>();
 	for (auto* bandPullLevel : bandPullLevels)
 	{
-		if ((int)(bandPullLevel->GetPullLevel() / -60.0f) == tipCount)
+		if ((int)(bandPullLevel->GetPullLevel() / -60.0f) >= tipCount)
 		{
+			// フラグ書くこと
 			ClearDraw();
+			auto object = GetInstance()->GetObjects<Delay>();
+			for(auto& obj : object)
+			{
+				if(obj->tags.SearchTag("Delay"))
+				{
+					if(Check_Clear == true && flag == false)
+					{
+						obj->SetSignal(120);
+						Check_Clear = true;
+					}
+					if(obj->GetSignal() == true)
+					{
+						//ClearMove();	// 内容かけ
+					}
+				}
+			}
+			
 		}
 	}
 
@@ -214,12 +231,19 @@ void ResultScene::ClearDraw()
 	{
 		if (obj->tags.SearchTag("CLEAR"))
 		{
-			while(obj->GetScale().x < 850.0f &&
-				  obj->GetScale().y < 250.0f)
+			if(obj->GetScale().x < 850.0f &&
+			   obj->GetScale().y < 250.0f)
 			{
-				obj->SetScale((obj->GetScale().x + 3.5f),
-							  (obj->GetScale().y + 1.0f),
+				obj->SetScale((obj->GetScale().x + 7.0f),
+							  (obj->GetScale().y + 2.0f),
 							   0.0f);
+			}
+			else
+			{
+				if (flag == false)
+				{
+					Check_Clear = true;
+				}
 			}
 		}
 	}
