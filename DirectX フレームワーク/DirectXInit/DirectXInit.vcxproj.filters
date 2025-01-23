@@ -376,8 +376,8 @@
     <ClInclude Include="StarTip.h">
       <Filter>Object関係\StarTip関係%28スターチップ%29</Filter>
     </ClInclude>
-    <ClInclude Include="FPS.h" />
     <ClInclude Include="Delay.h" />
+    <ClInclude Include="FPS.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader\common.hlsl">
