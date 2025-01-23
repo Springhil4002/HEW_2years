@@ -90,7 +90,7 @@ void GameOverScene::Frame_Move()
 		}
 		// エンターキーorBボタンを押したら
 		if (input.GetKeyTrigger(VK_RETURN) ||
-			input.GetButtonTrigger(XINPUT_B))
+			input.GetButtonTrigger(XINPUT_A))
 		{
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE001);
 			//現在のシーンを「TitleScene」に切り替える
@@ -108,7 +108,7 @@ void GameOverScene::Frame_Move()
 		}
 		// エンターキーorBボタンを押したら
 		if (input.GetKeyTrigger(VK_RETURN) ||
-			input.GetButtonTrigger(XINPUT_B))
+			input.GetButtonTrigger(XINPUT_A))
 		{
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE001);
 			//現在のシーンを「GameScene」に切り替える
@@ -126,7 +126,7 @@ void GameOverScene::Frame_Move()
 		}
 		// エンターキーorBボタンを押したら
 		if (input.GetKeyTrigger(VK_RETURN) ||
-			input.GetButtonTrigger(XINPUT_B))
+			input.GetButtonTrigger(XINPUT_A))
 		{
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE001);
 			int stageNum = (int)(GameOverScene::isEndSceneNum - SCENE_ENUM_OFFSET);

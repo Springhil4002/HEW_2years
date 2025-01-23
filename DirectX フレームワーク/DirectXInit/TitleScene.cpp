@@ -83,7 +83,7 @@ void TitleScene::Frame_Move()
 		}
 		// エンターキーorBボタンを押したら
 		if (input.GetKeyTrigger(VK_RETURN) ||
-			input.GetButtonTrigger(XINPUT_B))
+			input.GetButtonTrigger(XINPUT_A))
 		{
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
 			//現在のシーンを「HomeScene」に切り替える
@@ -102,7 +102,7 @@ void TitleScene::Frame_Move()
 		}
 		// エンターキーorBボタンを押したら
 		if (input.GetKeyTrigger(VK_RETURN) ||
-			input.GetButtonTrigger(XINPUT_B))
+			input.GetButtonTrigger(XINPUT_A))
 		{
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
 			//現在のシーンを「PlayOperateScene」に切り替える

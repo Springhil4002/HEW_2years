@@ -21,7 +21,7 @@ void Player::Init()
 {
 	SetTex("asset/Texture/player.png");			// ƒvƒŒƒCƒ„[‚ğ‰Šú‰»
 	SetScale(BLOCK_SIZE, 2 * BLOCK_SIZE, 0.0f);	// ‘å‚«‚³‚ğİ’è
-	layer = 1;				
+	layer = 10;				
 	m_Acceleration.y = -gravity;
 }
 

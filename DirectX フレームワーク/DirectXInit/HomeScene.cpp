@@ -194,7 +194,7 @@ void HomeScene::Frame_Move()
 			}
 		}
 		// エンターキーorBボタンを押したら
-		if (input.GetButtonTrigger(XINPUT_B) ||
+		if (input.GetButtonTrigger(XINPUT_A) ||
 			input.GetKeyTrigger(VK_RETURN))
 
 		{
@@ -215,7 +215,7 @@ void HomeScene::Frame_Move()
 		}
 		// エンターキーorBボタンを押したら
 		if (input.GetKeyTrigger(VK_RETURN) ||
-			input.GetButtonTrigger(XINPUT_B))
+			input.GetButtonTrigger(XINPUT_A))
 		{
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
 			//現在のシーンを「GameScene」に切り替える
@@ -234,7 +234,7 @@ void HomeScene::Frame_Move()
 		}
 		// エンターキーorBボタンを押したら
 		if (input.GetKeyTrigger(VK_RETURN) ||
-			input.GetButtonTrigger(XINPUT_B))
+			input.GetButtonTrigger(XINPUT_A))
 		{
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
 			//現在のシーンを「GameScene」に切り替える
@@ -253,7 +253,7 @@ void HomeScene::Frame_Move()
 		}
 		// エンターキーorBボタンを押したら
 		if (input.GetKeyTrigger(VK_RETURN) ||
-			input.GetButtonTrigger(XINPUT_B))
+			input.GetButtonTrigger(XINPUT_A))
 		{
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
 			//現在のシーンを「GameScene」に切り替える
@@ -272,7 +272,7 @@ void HomeScene::Frame_Move()
 		}
 		// エンターキーorBボタンを押したら
 		if (input.GetKeyTrigger(VK_RETURN) ||
-			input.GetButtonTrigger(XINPUT_B))
+			input.GetButtonTrigger(XINPUT_A))
 		{
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
 			//現在のシーンを「GameScene」に切り替える
@@ -291,7 +291,7 @@ void HomeScene::Frame_Move()
 		}
 		// エンターキーorBボタンを押したら
 		if (input.GetKeyTrigger(VK_RETURN) ||
-			input.GetButtonTrigger(XINPUT_B))
+			input.GetButtonTrigger(XINPUT_A))
 		{
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
 			//現在のシーンを「GameScene」に切り替える
@@ -310,7 +310,7 @@ void HomeScene::Frame_Move()
 		}
 		// エンターキーorBボタンを押したら
 		if (input.GetKeyTrigger(VK_RETURN) ||
-			input.GetButtonTrigger(XINPUT_B))
+			input.GetButtonTrigger(XINPUT_A))
 		{
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
 			//現在のシーンを「GameScene」に切り替える
@@ -329,7 +329,7 @@ void HomeScene::Frame_Move()
 		}
 		// エンターキーorBボタンを押したら
 		if (input.GetKeyTrigger(VK_RETURN) ||
-			input.GetButtonTrigger(XINPUT_B))
+			input.GetButtonTrigger(XINPUT_A))
 		{
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
 			//現在のシーンを「GameScene」に切り替える
@@ -348,7 +348,7 @@ void HomeScene::Frame_Move()
 		}
 		// エンターキーorBボタンを押したら
 		if (input.GetKeyTrigger(VK_RETURN) ||
-			input.GetButtonTrigger(XINPUT_B))
+			input.GetButtonTrigger(XINPUT_A))
 		{
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
 			//現在のシーンを「GameScene」に切り替える

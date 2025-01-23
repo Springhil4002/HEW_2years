@@ -2,6 +2,7 @@
 #include "Scene.h"
 
 #define SET_STARTIP			(3)
+#define SET_BLOCK			(100)
 
 class ResultScene
 	: public Scene
