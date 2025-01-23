@@ -110,7 +110,7 @@ void MapEditor::Update()
 		objects.erase(cursor);
 		for (auto& obj : objects)
 		{
-			if (obj->GetPos() == DirectX::SimpleMath::Vector3(x, y, 0))
+			if (Object::Collision(obj, cursor))
 			{
 				Object::Delete(obj);
 				flg = false;
@@ -167,7 +167,7 @@ void MapEditor::Update()
 		objects.erase(cursor);
 		for (auto& obj : objects)
 		{
-			if (obj->GetPos() == DirectX::SimpleMath::Vector3(x, y, 0))
+			if (Object::Collision(obj, cursor))
 			{
 				std::string bufTag;
 				std::cin >> bufTag;
@@ -212,6 +212,7 @@ void MapEditor::Save(std::string _fileName_csv)
 	auto gnds = Scene::GetInstance()->GetObjects<Ground>();
 	auto gols = Scene::GetInstance()->GetObjects<Goal>();
 	auto bnds = Scene::GetInstance()->GetObjects<Band>();
+	auto plys = Scene::GetInstance()->GetObjects<Player>();
 	auto cons = Scene::GetInstance()->GetObjects<Coin>();
 
 	for (auto& gnd : gnds)
@@ -225,6 +226,10 @@ void MapEditor::Save(std::string _fileName_csv)
 	for (auto& con : cons)
 	{
 		mapData.push_back(con->GetData());
+	}
+	for (auto& ply : plys)
+	{
+		mapData.push_back(ply->GetData());
 	}
 	for (auto& bnd : bnds)
 	{

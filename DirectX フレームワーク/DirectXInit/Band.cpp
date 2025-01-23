@@ -11,6 +11,7 @@ void Band::Init()
 	tip->SetPos(m_Position.x - 60, m_Position.y, 0);
 	oldPos = { m_Position.x - 60, m_Position.y, 0 };
 	tip->SetScale(BLOCK_SIZE, BLOCK_SIZE, 0.0f);
+	tip->moveDirection = moveDirection;
 
 	for (int i = 0; i < L; i++)
 	{
@@ -58,6 +59,7 @@ void Band::Update()
 	if (pullLevel < -(L - 1) * 60)
 	{
 		tip->SetPos(m_Position.x - BLOCK_SIZE, m_Position.y, 0);
+		tip->SetVelo(0, 0, 0);
 	}
 }
 

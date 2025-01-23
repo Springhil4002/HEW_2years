@@ -132,27 +132,27 @@ void Player::State() {
 	   (Scene::input.GetLeftTrigger()>=0.9 &&
 		Scene::input.GetRightTrigger()>=0.9 ) )
 	{
-		auto allBand = Scene::GetInstance()->GetObjects<BandTip>();
-		for (auto& band : allBand)
+		auto allBandTip = Scene::GetInstance()->GetObjects<BandTip>();
+		for (auto& bandTip : allBandTip)
 		{
-			if (Object::Collision(this, band))
+			if (Object::Collision(this, bandTip))
 			{
-				if (moveDirection == band->MoveDirection())
+				if (moveDirection == bandTip->MoveDirection())
 				{
 					grabState = GRAB;
 					if (m_Velocity.x > -0.01f && moveDirection == LEFT || m_Velocity.x < 0.01f && moveDirection == RIGHT)
 					{
-						band->isGrabing = true;
-						band->SetVelo(m_Velocity.x, 0, 0);
+						bandTip->isGrabing = true;
+						bandTip->SetVelo(m_Velocity.x, 0, 0);
 						// ‘æˆêˆø”:ŽžŠÔA‘æ“ñˆø”:‹­‚³
-						Scene::input.SetVibration(30, 10 * band->GetPullLeveL());	
+						Scene::input.SetVibration(30, 10 * bandTip->pullLeveL);
 					}
 				}
 			}
 			else
 			{
-				band->isGrabing = false;
-				band->SetPullLeveL(0);
+				bandTip->isGrabing = false;
+				bandTip->SetPullLeveL(0);
 			}
 		}
 	}

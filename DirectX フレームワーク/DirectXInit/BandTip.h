@@ -3,6 +3,7 @@
 #include "Physic.h"
 class BandTip : public Physic
 {
+	friend class Band;
 public:
 	float pullLeveL;
 	// ‚Â‚©‚Ü‚ê‚Ä‚é‚©
