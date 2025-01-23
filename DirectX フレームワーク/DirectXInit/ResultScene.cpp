@@ -7,13 +7,13 @@
 #include "Band.h"
 #include "CoinNum.h"
 #include "StarTip.h"
-#include "Delay.h"
 
 #include "iostream"
 
 int ResultScene::tipCount = 0;
 int ResultScene::meterCount = 0;
 
+// 初期化処理
 void ResultScene::Init(int _num)
 {
 	//std::cout << "bandTipCount:" << _num << std::endl;
@@ -38,10 +38,6 @@ void ResultScene::Init(int _num)
 	clear_Logo->SetScale(0.0f, 0.0f, 0.0f);
 	clear_Logo->tags.AddTag("CLEAR");
 	clear_Logo->layer = 2;
-
-	// Delayオブジェクトの作成
-	auto delay = Object::Create<Delay>();
-	delay->tags.AddTag("Delay");
 
 	// 地面オブジェクトの作成
 	Ground* ground[SET_BLOCK];
@@ -104,6 +100,7 @@ void ResultScene::Init(int _num)
 	}
 }
 
+// 更新処理
 void ResultScene::Update()
 {
 	// 引っ張った長さに応じてスコアを更新
@@ -115,32 +112,8 @@ void ResultScene::Update()
 	// コイン獲得数の割合に応じてStarTipの獲得状況の更新
 	CoinGetPercent();
 
-	auto bandPullLevels = GetInstance()->GetObjects<Band>();
-	for (auto* bandPullLevel : bandPullLevels)
-	{
-		if ((int)(bandPullLevel->GetPullLevel() / -60.0f) >= tipCount)
-		{
-			// フラグ書くこと
-			ClearDraw();
-			auto object = GetInstance()->GetObjects<Delay>();
-			for(auto& obj : object)
-			{
-				if(obj->tags.SearchTag("Delay"))
-				{
-					if(Check_Clear == true && flag == false)
-					{
-						obj->SetSignal(120);
-						Check_Clear = true;
-					}
-					if(obj->GetSignal() == true)
-					{
-						//ClearMove();	// 内容かけ
-					}
-				}
-			}
-			
-		}
-	}
+	// CLEARロゴの拡大表示と表示後の移動
+	ClearDraw();
 
 	auto objects = objectInstance;
 	for (auto& obj : objects)
@@ -224,26 +197,107 @@ void ResultScene::CoinGetPercent()
 	}
 }
 
+// CLEARロゴの描画処理
 void ResultScene::ClearDraw()
+{
+	// バンドオブジェクトの探索
+	auto bandPullLevels = GetInstance()->GetObjects<Band>();
+	for (auto* bandPullLevel : bandPullLevels)
+	{
+		// バンドを引ききったら
+		if ((int)(bandPullLevel->GetPullLevel() / -60.0f) >= tipCount)
+		{
+			// CLEARロゴの拡大描画中なら
+			if (drawFlag == true)
+			{
+				ClearBig();
+			}
+
+			// CLEARロゴが拡大描画完了したら
+			if (drawFlag == true &&
+				drawClearFlag == true)
+			{
+				count += 1;
+				
+				// 1秒後(60frame)
+				if (count >= 60)
+				{
+					drawFlag = false;	// 拡大描画処理終了
+					moveFlag = true;	// CLEARロゴ移動処理開始
+				}
+			}
+
+			// CLEARロゴが移動中なら
+			if (moveFlag == true)
+			{
+				ClearMove();
+			}
+		}
+	}
+}
+
+// CLEARのロゴ拡大表示
+void ResultScene::ClearBig()
 {
 	auto object = GetInstance()->GetObjects<Quad>();
 	for (auto& obj : object)
-	{
+	{	
+		// CLEARロゴの検索
 		if (obj->tags.SearchTag("CLEAR"))
 		{
+			// 拡大出来たか？
 			if(obj->GetScale().x < 850.0f &&
 			   obj->GetScale().y < 250.0f)
 			{
+				// 拡大描画処理
 				obj->SetScale((obj->GetScale().x + 7.0f),
 							  (obj->GetScale().y + 2.0f),
 							   0.0f);
 			}
 			else
 			{
-				if (flag == false)
-				{
-					Check_Clear = true;
-				}
+				// 拡大描画完了
+				drawClearFlag = true;	
+			}
+		}
+	}
+}
+
+// CLEARのロゴ縮小移動
+void ResultScene::ClearMove()
+{
+	auto object = GetInstance()->GetObjects<Quad>();
+	for (auto& obj : object)
+	{
+		// CLEARロゴの検索
+		if (obj->tags.SearchTag("CLEAR"))
+		{
+			// 特定座標までにいなかったら
+			if (obj->GetPos().x > -750.0f &&
+				obj->GetPos().y < 440.0f)
+			{
+				// 移動処理
+				obj->SetPos((obj->GetPos().x - 5.0f),
+							(obj->GetPos().y + 3.0f),
+							 0.0f);
+			}
+			// 特定サイズまでじゃなかったら
+			if(obj->GetScale().x > 400.0f &&
+			   obj->GetScale().y > 100.0f)
+			{
+				// 縮小処理
+				obj->SetScale((obj->GetScale().x - 3.0f),
+							  (obj->GetScale().y - 1.0f),
+							   0.0f);
+			}
+			// 特定の条件に達したら
+			if (obj->GetPos().x < -750.0f &&
+				obj->GetPos().y > 440.0f &&
+				obj->GetScale().x < 400.0f &&
+				obj->GetScale().y < 100.0f)
+			{
+				// 移動処理完了
+				moveFlag = false;
 			}
 		}
 	}
