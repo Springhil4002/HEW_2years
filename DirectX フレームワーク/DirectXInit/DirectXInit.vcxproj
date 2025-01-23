@@ -142,6 +142,7 @@
     <ClCompile Include="CoinNum.cpp" />
     <ClCompile Include="CSV.cpp" />
     <ClCompile Include="Cursor.cpp" />
+    <ClCompile Include="Delay.cpp" />
     <ClCompile Include="dx11helper.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="CoinNum.h" />
@@ -184,6 +185,7 @@
     <ClInclude Include="Coin.h" />
     <ClInclude Include="CSV.h" />
     <ClInclude Include="Cursor.h" />
+    <ClInclude Include="Delay.h" />
     <ClInclude Include="dx11helper.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Enum.h" />
