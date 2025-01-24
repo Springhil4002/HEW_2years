@@ -11,7 +11,7 @@ class Goal;
 class GameScene : public Scene
 {
 private:
-	int gameSceneNum;		// GameScene(ステージ)の識別用番号
+	int gameSceneNum;			// GameScene(ステージ)の識別用番号
 	static int allBandTipCount;	// bandTipの総数
 public:
 	static int bandTipCount;	// bandTipの獲得数

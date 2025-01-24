@@ -13,6 +13,7 @@ void HomeScene::Init(int _num)
 {
 	SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM001);			// サウンド停止
 	SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM004);			// サウンド停止
+	SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM005);			// サウンド停止
 	SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM002);			// サウンド再生
 	homeSceneNum = _num;
 	

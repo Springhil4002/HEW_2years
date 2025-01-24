@@ -1,6 +1,7 @@
 #include "ResultScene.h"
 #include "SceneManager.h"
 #include "GameScene.h"
+#include "GameOverScene.h"
 #include "Quad.h"
 #include "Ground.h"
 #include "Player.h"
@@ -16,8 +17,7 @@ int ResultScene::meterCount = 0;
 // 初期化処理
 void ResultScene::Init(int _num)
 {
-	//std::cout << "bandTipCount:" << _num << std::endl;
-	tipCount = _num;
+	tipCount = _num;										// コイン獲得数を設定
 	SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM003);	// サウンドを停止
 	SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM005);	// サウンドを再生
 
@@ -115,19 +115,30 @@ void ResultScene::Update()
 	// CLEARロゴの拡大表示と表示後の移動
 	ClearDraw();
 
+	// UIが描画OKなら
+	if (uiFlag == true)
+	{
+		UI_Draw();
+	}
+
+	// フレーム更新処理
+	Frame_Update();
+
+	// 各オブジェクト更新処理
 	auto objects = objectInstance;
 	for (auto& obj : objects)
 	{
-		obj->Update();
-	}
-
-	// Bボタンorエンターキーを押したら
-	if (input.GetButtonTrigger(XINPUT_B) || 
-		input.GetKeyTrigger(VK_RETURN))
-	{
-		SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
-		//現在のシーンを「TitleScene」に切り替える
-		SceneManager::ChangeScene(TITLE);
+		if (obj->tags.SearchTag("Player"))
+		{
+			if (movePlayerFlag == true)
+			{
+				obj->Update();
+			}
+		}
+		else
+		{
+			obj->Update();
+		}
 	}
 }
 
@@ -230,7 +241,7 @@ void ResultScene::ClearDraw()
 			// CLEARロゴが移動中なら
 			if (moveFlag == true)
 			{
-				ClearMove();
+				ClearMove();		// CLEARのロゴ縮小移動
 			}
 		}
 	}
@@ -250,8 +261,8 @@ void ResultScene::ClearBig()
 			   obj->GetScale().y < 250.0f)
 			{
 				// 拡大描画処理
-				obj->SetScale((obj->GetScale().x + 7.0f),
-							  (obj->GetScale().y + 2.0f),
+				obj->SetScale((obj->GetScale().x + 14.0f),
+							  (obj->GetScale().y + 4.0f),
 							   0.0f);
 			}
 			else
@@ -277,8 +288,8 @@ void ResultScene::ClearMove()
 				obj->GetPos().y < 440.0f)
 			{
 				// 移動処理
-				obj->SetPos((obj->GetPos().x - 5.0f),
-							(obj->GetPos().y + 3.0f),
+				obj->SetPos((obj->GetPos().x - 10.0f),
+							(obj->GetPos().y + 6.0f),
 							 0.0f);
 			}
 			// 特定サイズまでじゃなかったら
@@ -286,19 +297,163 @@ void ResultScene::ClearMove()
 			   obj->GetScale().y > 100.0f)
 			{
 				// 縮小処理
-				obj->SetScale((obj->GetScale().x - 3.0f),
-							  (obj->GetScale().y - 1.0f),
+				obj->SetScale((obj->GetScale().x - 6.0f),
+							  (obj->GetScale().y - 2.0f),
 							   0.0f);
 			}
 			// 特定の条件に達したら
-			if (obj->GetPos().x < -750.0f &&
-				obj->GetPos().y > 440.0f &&
-				obj->GetScale().x < 400.0f &&
+			if (obj->GetPos().x < -750.0f ||
+				obj->GetPos().y > 440.0f ||
+				obj->GetScale().x < 400.0f ||
 				obj->GetScale().y < 100.0f)
 			{
 				// 移動処理完了
 				moveFlag = false;
+				uiFlag = true;
 			}
 		}
+	}
+}
+
+// UI描画処理
+void ResultScene::UI_Draw()
+{
+	if (layerFlag == false)
+	{
+		//「タイトルに戻る」のオブジェクト作成
+		auto returnTitle = Object::Create<Quad>();
+		returnTitle->SetTex("asset/Texture/Return_toTitle.png");	// 画像読み込み
+		returnTitle->SetPos(450.0f, 0.0f, 0.0f);					// 座標を設定
+		returnTitle->SetScale(420.0f, 150.0f, 0.0f);				// 大きさを設定
+		returnTitle->tags.AddTag("UI");								// タグ付け
+		returnTitle->layer = 2;										// レイヤーを設定
+
+		//「ステージ選択に戻る」のオブジェクト作成
+		auto returnHome = Object::Create<Quad>();
+		returnHome->SetTex("asset/Texture/Return_toHome.png");		// 画像読み込み
+		returnHome->SetPos(450.0f, -150.0f, 0.0f);					// 座標を設定
+		returnHome->SetScale(420.0f, 150.0f, 0.0f);					// 大きさを設定
+		returnHome->tags.AddTag("UI");								// タグ付け
+		returnHome->layer = 2;										// レイヤーを設定
+
+		//「リトライ」のオブジェクト作成
+		auto retryLogo = Object::Create<Quad>();
+		retryLogo->SetTex("asset/Texture/Retry.png");				// 画像読み込み
+		retryLogo->SetPos(450.0f, -300.0f, 0.0f);					// 座標を設定
+		retryLogo->SetScale(420.0f, 150.0f, 0.0f);					// 大きさを設定
+		retryLogo->tags.AddTag("UI");								// タグ付け
+		retryLogo->layer = 2;										// レイヤーを設定
+
+		// フレームオブジェクト作成
+		auto frame = Object::Create<Quad>();
+		frame->SetTex("asset/Texture/Frame.png");					// 画像読み込み
+		frame->SetPos(450.0f, 0.0f, 0.0f);							// 座標を設定
+		frame->SetScale(420.0f, 150.0f, 0.0f);						// 大きさを設定
+		frame->tags.AddTag("UI");									// タグ付け
+		frame->tags.AddTag("frame");								// タグ付け
+		frame->layer = 2;											// レイヤーを設定
+
+		layerFlag = true;											// レイヤー描画完了
+		movePlayerFlag = false;										// プレイヤー停止
+	}
+}
+
+// フレーム更新処理
+void ResultScene::Frame_Update()
+{
+	// 遷移選択
+	if (movePlayerFlag == false)
+	{
+		Frame_Input();				// フレーム移動入力処理
+		Frame_Move();				// フレーム移動処理
+	}
+}
+
+// フレーム移動入力処理
+void ResultScene::Frame_Input()
+{
+	/*コントローラー:十字下キー
+	 *キーボード　　:↓矢印キー
+	 *どちらかが押されたら
+	 */
+	if ((input.GetButtonTrigger(XINPUT_DOWN) ||
+		input.GetKeyTrigger(VK_DOWN)) &&
+		GetFrameNum() < 3) {
+		SetFrameNum(GetFrameNum() + 1);
+	}
+	/*コントローラー:十字上キー
+	 *キーボード　　:↑矢印キー
+	 *どちらかが押されたら
+	 */
+	if ((input.GetButtonTrigger(XINPUT_UP) ||
+		input.GetKeyTrigger(VK_UP)) &&
+		GetFrameNum() > 1) {
+		SetFrameNum(GetFrameNum() - 1);
+	}
+}
+
+// フレーム移動処理
+void ResultScene::Frame_Move()
+{
+	// フレーム移動処理・入力後の各シーン遷移処理
+	switch (GetFrameNum())
+	{
+	case 1: {
+		auto allQuad = GetInstance()->GetObjects<Quad>();
+		for (auto& quad : allQuad)
+		{
+			if (quad->tags.SearchTag("frame"))
+			{
+				quad->SetPos(450.0f, 0.0f, 0.0f);
+			}
+		}
+		// エンターキーorBボタンを押したら
+		if (input.GetKeyTrigger(VK_RETURN) ||
+			input.GetButtonTrigger(XINPUT_A))
+		{
+			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE001);
+			//現在のシーンを「TitleScene」に切り替える
+			SceneManager::ChangeScene(TITLE);
+		}
+		break; }
+	case 2: {
+		auto allQuad = GetInstance()->GetObjects<Quad>();
+		for (auto& quad : allQuad)
+		{
+			if (quad->tags.SearchTag("frame"))
+			{
+				quad->SetPos(450.0f, -150.0f, 0.0f);
+			}
+		}
+		// エンターキーorBボタンを押したら
+		if (input.GetKeyTrigger(VK_RETURN) ||
+			input.GetButtonTrigger(XINPUT_A))
+		{
+			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE001);
+			//現在のシーンを「GameScene」に切り替える
+			SceneManager::ChangeScene(HOME_1, 1);
+		}
+		break; }
+	case 3: {
+		auto allQuad = GetInstance()->GetObjects<Quad>();
+		for (auto& quad : allQuad)
+		{
+			if (quad->tags.SearchTag("frame"))
+			{
+				quad->SetPos(450.0f, -300.0f, 0.0f);
+			}
+		}
+		// エンターキーorBボタンを押したら
+		if (input.GetKeyTrigger(VK_RETURN) ||
+			input.GetButtonTrigger(XINPUT_A))
+		{
+			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE001);
+			int stageNum = (int)(GameOverScene::isEndSceneNum - SCENE_ENUM_OFFSET);
+			//現在のシーンを直前にゲームオーバーした「GameScene」に切り替える
+			SceneManager::ChangeScene(GameOverScene::isEndSceneNum, stageNum);
+		}
+		break; }
+	default:
+		break;
 	}
 }

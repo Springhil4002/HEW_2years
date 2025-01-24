@@ -17,15 +17,18 @@ int GameScene::allBandTipCount = 0;			// bandTipの総数
 
 void GameScene::Init(int _num)
 {	
-	bandTipCount = 0;
+	SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM002);	// サウンドを停止
+	SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM004);	// サウンドを停止
+	SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM005);	// サウンドを停止
+	SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM003);	// サウンドを再生
+
+	bandTipCount = 0;		// 獲得数を初期化
+	allBandTipCount = 0;	// ステージ内にあるコインの総数
 	gameSceneNum = _num;
 	GameOverScene::isEndSceneNum = (SCENE)(gameSceneNum + SCENE_ENUM_OFFSET);
 	switch(gameSceneNum)
 	{
 	case 1: {
-		SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM002);	// サウンドを停止
-		SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM004);	// サウンドを停止
-		SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM003);	// サウンドを再生
 
 		// 背景オブジェクトの作成
 		auto bg = Object::Create<Quad>();
@@ -58,9 +61,6 @@ void GameScene::Init(int _num)
 		
 		break; }
 	case 2: {
-		SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM002);	// サウンドを停止
-		SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM004);	// サウンドを停止
-		SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM003);	// サウンドを再生
 
 		// 背景オブジェクトの作成
 		auto bg = Object::Create<Quad>();
@@ -92,10 +92,7 @@ void GameScene::Init(int _num)
 
 		break; }
 	case 3: {
-		SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM002);	// サウンドを停止
-		SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM004);	// サウンドを停止
-		SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM003);	// サウンドを再生
-
+	
 		// 背景オブジェクトの作成
 		auto bg = Object::Create<Quad>();
 		bg->SetTex("asset/Texture/Game_3.jpg");
@@ -126,10 +123,7 @@ void GameScene::Init(int _num)
 
 		break; }
 	case 4: {
-		SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM002);	// サウンドを停止
-		SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM004);	// サウンドを停止
-		SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM003);	// サウンドを再生
-
+	
 		// 背景オブジェクトの作成
 		auto bg = Object::Create<Quad>();
 		bg->SetTex("asset/Texture/Game_4.png");
@@ -159,10 +153,7 @@ void GameScene::Init(int _num)
 		coinNum100->tags.AddTag("百の位");
 		break; }
 	case 5: {
-		SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM002);	// サウンドを停止
-		SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM004);	// サウンドを停止
-		SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM003);	// サウンドを再生
-
+		
 		// 背景オブジェクトの作成
 		auto bg = Object::Create<Quad>();
 		bg->SetTex("asset/Texture/Game_5.jpg");
@@ -193,10 +184,7 @@ void GameScene::Init(int _num)
 
 		break; }
 	case 6: {
-		SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM002);	// サウンドを停止
-		SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM004);	// サウンドを停止
-		SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM003);	// サウンドを再生
-
+		
 		// 背景オブジェクトの作成
 		auto bg = Object::Create<Quad>();
 		bg->SetTex("asset/Texture/Game_6.png");
@@ -227,10 +215,7 @@ void GameScene::Init(int _num)
 
 		break; }
 	case 7: {
-		SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM002);	// サウンドを停止
-		SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM004);	// サウンドを停止
-		SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM003);	// サウンドを再生
-
+	
 		// 背景オブジェクトの作成
 		auto bg = Object::Create<Quad>();
 		bg->SetTex("asset/Texture/Game_7.jpg");
@@ -261,10 +246,7 @@ void GameScene::Init(int _num)
 
 		break; }
 	case 8: {
-		SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM002);	// サウンドを停止
-		SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM004);	// サウンドを停止
-		SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM003);	// サウンドを再生
-
+	
 		// 背景オブジェクトの作成
 		auto bg = Object::Create<Quad>();
 		bg->SetTex("asset/Texture/Game_8.png");
