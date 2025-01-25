@@ -20,6 +20,7 @@ void Goal::Update()
 				Scene::input.GetLeftTrigger() >= 0.9) ||
 				Scene::input.GetKeyTrigger(VK_E))
 			{
+				SceneManager::m_SoundManager.Play(SOUND_LABEL_SE010);	// ƒS[ƒ‹‰¹
 				SceneManager::ChangeScene(RESULT,GameScene::bandTipCount);
 			}
 		}

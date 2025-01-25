@@ -60,57 +60,6 @@ void Player::Update()
 }
 
 //===================================================================
-// 描画処理
-//===================================================================
-//void Player::Draw()
-//{
-//	// SRT情報作成
-//	Matrix r = Matrix::CreateFromYawPitchRoll(
-//		m_Rotation.y,
-//		m_Rotation.x,
-//		m_Rotation.z);
-//
-//	Matrix t = Matrix::CreateTranslation(
-//		m_Position.x,
-//		m_Position.y,
-//		m_Position.z);
-//
-//	Matrix s = Matrix::CreateScale(
-//		m_Scale.x,
-//		m_Scale.y,
-//		m_Scale.z);
-//
-//	Matrix worldmtx;
-//	worldmtx = s * r * t;
-//	Renderer::SetWorldMatrix(&worldmtx);	// GPUにセット
-//
-//	// 描画の処理
-//	ID3D11DeviceContext* deviceContext;
-//	deviceContext = Renderer::GetDeviceContext();
-//
-//	// トポロジーをセット(プリミティブタイプ)
-//	deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
-//
-//	m_Shader.SetGPU();
-//	m_VertexBuffer.SetGPU();
-//	m_IndexBuffer.SetGPU();
-//	m_Texture.SetGPU();
-//
-//	deviceContext->DrawIndexed(
-//		4,			// 描画するインデックスの数(四角形だから4)
-//		0,			// 最初のインデックスバッファの位置
-//		0);
-//}
-
-//===================================================================
-// 終了処理
-//===================================================================
-//void Player::Uninit()
-//{
-//	
-//}
-
-//===================================================================
 // プレイヤーの状態遷移処理
 //===================================================================
 void Player::State() {
@@ -141,10 +90,12 @@ void Player::State() {
 				if (moveDirection == bandTip->MoveDirection())
 				{
 					grabState = GRAB;
+					SceneManager::m_SoundManager.Play(SOUND_LABEL_SE006);	// 掴む音
 					if (m_Velocity.x > -0.01f && moveDirection == LEFT || m_Velocity.x < 0.01f && moveDirection == RIGHT)
 					{
 						bandTip->isGrabing = true;
 						bandTip->SetVelo(m_Velocity.x, 0, 0);
+						SceneManager::m_SoundManager.Play(SOUND_LABEL_SE007);	// バンドを引っぱる音
 						// 第一引数:時間、第二引数:強さ
 						Scene::input.SetVibration(30, 10 * bandTip->pullLeveL);
 					}
@@ -196,9 +147,15 @@ void Player::Walk() {
 		{
 			moveDirection = RIGHT;
 			if (state == ONGROUND)
+			{
+				SceneManager::m_SoundManager.Play(SOUND_LABEL_SE004);	// 足音
 				m_Velocity.x += velocity;
+			}	
 			else
+			{
 				m_Velocity.x += velocity / 1.5f;
+			}
+			
 		}
 		else
 		{
@@ -216,9 +173,14 @@ void Player::Walk() {
 		{
 			moveDirection = LEFT;
 			if (state == ONGROUND)
+			{
+				SceneManager::m_SoundManager.Play(SOUND_LABEL_SE004);	// 足音
 				m_Velocity.x -= velocity;
+			}
 			else
+			{
 				m_Velocity.x -= velocity / 1.5f;
+			}
 		}
 		else
 		{
@@ -239,7 +201,7 @@ void Player::Jump() {
 		if (Scene::input.GetKeyTrigger(VK_SPACE) ||
 			Scene::input.GetButtonTrigger(XINPUT_A))
 		{
-			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE001);
+			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE005);	// ジャンプ音
 			m_Velocity.y += jumpSpeed;
 		}
 	}

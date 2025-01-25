@@ -9,9 +9,17 @@ enum SOUND_LABEL {
 	SOUND_LABEL_BGM003,			// BGM_3
 	SOUND_LABEL_BGM004,			// BGM_4
 	SOUND_LABEL_BGM005,			// BGM_5
+
 	SOUND_LABEL_SE001,			// SE_1
 	SOUND_LABEL_SE002,			// SE_2
 	SOUND_LABEL_SE003,			// SE_3
+	SOUND_LABEL_SE004,			// SE_4
+	SOUND_LABEL_SE005,			// SE_5
+	SOUND_LABEL_SE006,			// SE_6
+	SOUND_LABEL_SE007,			// SE_7
+	SOUND_LABEL_SE008,			// SE_8
+	SOUND_LABEL_SE009,			// SE_9
+	SOUND_LABEL_SE010,			// SE_10
 
 	SOUND_LABEL_MAX				// サウンドファイルの総数
 };
@@ -33,9 +41,17 @@ private:
 		{"asset/BGM/水底に沈む古城.wav"				, true},	// BGM_3　ゲーム
 		{"asset/BGM/Waltz-Antiqua.wav"			, true},	// BGM_4　ゲームオーバー
 		{"asset/BGM/シュトラールブルクの学び舎.wav"	, true},	// BGM_5　リザルト
-		{"asset/SE/SE_Jump.wav"					, false},	// SE_1　 ジャンプ音
-		{"asset/SE/Button_1.wav"				, false},	// SE_2 　クリック音
-		{"asset/SE/コイン獲得音.wav"				, false}	// SE_3　 コイン獲得音
+
+		{"asset/SE/タイトル決定音.wav"				, false},	// SE_1　 タイトル決定音
+		{"asset/SE/アイコン決定音.wav"				, false},	// SE_2	　アイコン決定音　
+		{"asset/SE/アイコン選択音.wav"				, false},	// SE_3　 アイコン選択音
+		{"asset/SE/足音.wav"						, false},	// SE_4　 プレイヤー足音
+		{"asset/SE/ジャンプ音.wav"					, false},	// SE_5　 プレイヤージャンプ音
+		{"asset/SE/掴む.wav"						, false},	// SE_6　 バンドを掴む音
+		{"asset/SE/Band_Pull.wav"				, false},	// SE_7　 バンドを引く音
+		{"asset/SE/Band_OverPull.wav"			, false},	// SE_8　 バンドを引きすぎた音
+		{"asset/SE/破片獲得音.wav"					, false},	// SE_9　 チップ獲得音
+		{"asset/SE/ゴール扉開閉音.wav"				, false}	// SE_10　ゴール音
 	};
 
 	// XAudio2インターフェースへのポインタ

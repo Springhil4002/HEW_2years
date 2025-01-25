@@ -133,6 +133,7 @@ void HomeScene::Frame_Input()
 		if ((input.GetButtonTrigger(XINPUT_DOWN) ||
 			input.GetKeyTrigger(VK_DOWN)) &&
 			GetFrameNum() < 3) {
+			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE003);	// 選択音
 			SetFrameNum(GetFrameNum() + 1);
 		}
 		/* コントローラー:十字上キー
@@ -142,6 +143,7 @@ void HomeScene::Frame_Input()
 		if ((input.GetButtonTrigger(XINPUT_UP) ||
 			input.GetKeyTrigger(VK_UP)) &&
 			GetFrameNum() > 0) {
+			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE003);	// 選択音
 			SetFrameNum(GetFrameNum() - 1);
 		}
 	}
@@ -155,9 +157,11 @@ void HomeScene::Frame_Input()
 			input.GetKeyTrigger(VK_RIGHT)) &&
 			GetFrameNum() < 8) {
 			if (GetFrameNum() == 0) {
+				SceneManager::m_SoundManager.Play(SOUND_LABEL_SE003);	// 選択音
 				SetFrameNum(GetFrameNum() + 4);
 			}
 			else {
+				SceneManager::m_SoundManager.Play(SOUND_LABEL_SE003);	// 選択音
 				SetFrameNum(GetFrameNum() + 1);
 			}
 		}
@@ -169,9 +173,11 @@ void HomeScene::Frame_Input()
 			input.GetKeyTrigger(VK_LEFT)) &&
 			GetFrameNum() >= 4) {
 			if (GetFrameNum() == 4) {
+				SceneManager::m_SoundManager.Play(SOUND_LABEL_SE003);	// 選択音
 				SetFrameNum(GetFrameNum() - 4);
 			}
 			else {
+				SceneManager::m_SoundManager.Play(SOUND_LABEL_SE003);	// 選択音
 				SetFrameNum(GetFrameNum() - 1);
 			}
 		}
@@ -199,7 +205,7 @@ void HomeScene::Frame_Move()
 			input.GetKeyTrigger(VK_RETURN))
 
 		{
-			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
+			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
 			//現在のシーンを「TitleScene」に切り替える
 			SceneManager::ChangeScene(TITLE);
 		}
@@ -218,7 +224,7 @@ void HomeScene::Frame_Move()
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_A))
 		{
-			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
+			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
 			//現在のシーンを「GameScene」に切り替える
 			SceneManager::ChangeScene(GAME_1,1);
 		}
@@ -237,7 +243,7 @@ void HomeScene::Frame_Move()
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_A))
 		{
-			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
+			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
 			//現在のシーンを「GameScene」に切り替える
 			SceneManager::ChangeScene(GAME_2,2);
 		}
@@ -256,7 +262,7 @@ void HomeScene::Frame_Move()
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_A))
 		{
-			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
+			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
 			//現在のシーンを「GameScene」に切り替える
 			SceneManager::ChangeScene(GAME_3,3);
 		}
@@ -275,7 +281,7 @@ void HomeScene::Frame_Move()
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_A))
 		{
-			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
+			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
 			//現在のシーンを「GameScene」に切り替える
 			SceneManager::ChangeScene(GAME_4,4);
 		}
@@ -294,7 +300,7 @@ void HomeScene::Frame_Move()
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_A))
 		{
-			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
+			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
 			//現在のシーンを「GameScene」に切り替える
 			SceneManager::ChangeScene(GAME_5,5);
 		}
@@ -313,7 +319,7 @@ void HomeScene::Frame_Move()
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_A))
 		{
-			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
+			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
 			//現在のシーンを「GameScene」に切り替える
 			SceneManager::ChangeScene(GAME_6,6);
 		}
@@ -332,7 +338,7 @@ void HomeScene::Frame_Move()
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_A))
 		{
-			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
+			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
 			//現在のシーンを「GameScene」に切り替える
 			SceneManager::ChangeScene(GAME_7,7);
 		}
@@ -351,7 +357,7 @@ void HomeScene::Frame_Move()
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_A))
 		{
-			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
+			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
 			//現在のシーンを「GameScene」に切り替える
 			SceneManager::ChangeScene(GAME_8,8);
 		}
@@ -371,7 +377,7 @@ void HomeScene::ChangeHome()
 	if (input.GetButtonTrigger(XINPUT_RIGHT_SHOULDER) ||
 		input.GetKeyTrigger	  (VK_2))
 	{
-		SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
+		SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
 		//現在のシーンを「HomeScene(2枚目)」に切り替える
 		SceneManager::ChangeScene(HOME_2,2);
 	}
@@ -383,7 +389,7 @@ void HomeScene::ChangeHome()
 	if (input.GetButtonTrigger(XINPUT_LEFT_SHOULDER) ||
 		input.GetKeyTrigger	  (VK_1))
 	{
-		SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
+		SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
 		//現在のシーンを「HomeScene(1枚目)」に切り替える
 		SceneManager::ChangeScene(HOME_1,1);
 	}

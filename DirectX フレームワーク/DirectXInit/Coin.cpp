@@ -17,7 +17,7 @@ void Coin::Update()
 	{
 		if (Object::Collision(this, pl))
 		{
-			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE003);
+			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE009);
 			
 			GameScene::bandTipCount += 1;
 			

@@ -53,6 +53,7 @@ void TitleScene::Frame_Input()
 	if((input.GetButtonTrigger(XINPUT_DOWN) ||
 		input.GetKeyTrigger	  (VK_DOWN)) &&
 		GetFrameNum() < 2) {
+		SceneManager::m_SoundManager.Play(SOUND_LABEL_SE003);	// 選択音
 		SetFrameNum(GetFrameNum() + 1);
 	}
 	/* コントローラー :十字上キー
@@ -62,6 +63,7 @@ void TitleScene::Frame_Input()
 	if((input.GetButtonTrigger(XINPUT_UP) ||
 		input.GetKeyTrigger	  (VK_UP)) &&
 		GetFrameNum() > 1) {
+		SceneManager::m_SoundManager.Play(SOUND_LABEL_SE003);	// 選択音
 		SetFrameNum(GetFrameNum() - 1);
 	}
 }
@@ -85,7 +87,7 @@ void TitleScene::Frame_Move()
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_A))
 		{
-			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
+			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE001);	// 決定音
 			//現在のシーンを「HomeScene」に切り替える
 			SceneManager::ChangeScene(HOME_1,1);
 		}
@@ -104,7 +106,7 @@ void TitleScene::Frame_Move()
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_A))
 		{
-			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);
+			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
 			//現在のシーンを「PlayOperateScene」に切り替える
 			SceneManager::ChangeScene(PLAYOPERATE);
 		}

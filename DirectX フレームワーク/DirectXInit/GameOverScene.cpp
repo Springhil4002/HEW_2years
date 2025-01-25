@@ -60,6 +60,7 @@ void GameOverScene::Frame_Input()
 	if ((input.GetButtonTrigger(XINPUT_RIGHT) ||
 		input.GetKeyTrigger(VK_RIGHT)) &&
 		GetFrameNum() < 3) {
+		SceneManager::m_SoundManager.Play(SOUND_LABEL_SE003);	// 選択音
 		SetFrameNum(GetFrameNum() + 1);
 	}
 	/*コントローラー:十字左キー
@@ -69,6 +70,7 @@ void GameOverScene::Frame_Input()
 	if ((input.GetButtonTrigger(XINPUT_LEFT) ||
 		input.GetKeyTrigger(VK_LEFT)) &&
 		GetFrameNum() > 1) {
+		SceneManager::m_SoundManager.Play(SOUND_LABEL_SE003);	// 選択音
 		SetFrameNum(GetFrameNum() - 1);
 	}
 }
@@ -92,7 +94,7 @@ void GameOverScene::Frame_Move()
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_A))
 		{
-			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE001);
+			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
 			//現在のシーンを「TitleScene」に切り替える
 			SceneManager::ChangeScene(TITLE);
 		}
@@ -110,7 +112,7 @@ void GameOverScene::Frame_Move()
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_A))
 		{
-			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE001);
+			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
 			//現在のシーンを「GameScene」に切り替える
 			SceneManager::ChangeScene(HOME_1,1);
 		}
@@ -128,7 +130,7 @@ void GameOverScene::Frame_Move()
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_A))
 		{
-			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE001);
+			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
 			int stageNum = (int)(GameOverScene::isEndSceneNum - SCENE_ENUM_OFFSET);
 			//現在のシーンを直前にゲームオーバーした「GameScene」に切り替える
 			SceneManager::ChangeScene(isEndSceneNum,stageNum);
