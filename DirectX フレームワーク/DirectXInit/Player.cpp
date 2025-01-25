@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Ground.h"
 #include "Band.h"
+#include "Application.h"
 using namespace DirectX::SimpleMath;
 
 #define GROUND_OFFSET_X (-930.0f)
@@ -145,10 +146,13 @@ void Player::Walk() {
 	{
 		if (grabState == DEFAULT)
 		{
+			if (Application::GetFpsCounter() % 15 == 0)
+			{
+				SceneManager::m_SoundManager.Play(SOUND_LABEL_SE004);	// ‘«‰¹
+			}
 			moveDirection = RIGHT;
 			if (state == ONGROUND)
 			{
-				SceneManager::m_SoundManager.Play(SOUND_LABEL_SE004);	// ‘«‰¹
 				m_Velocity.x += velocity;
 			}	
 			else
@@ -171,10 +175,13 @@ void Player::Walk() {
 	{
 		if (grabState == DEFAULT)
 		{
+			if (Application::GetFpsCounter() % 15 == 0)
+			{
+				SceneManager::m_SoundManager.Play(SOUND_LABEL_SE004);	// ‘«‰¹
+			}
 			moveDirection = LEFT;
 			if (state == ONGROUND)
 			{
-				SceneManager::m_SoundManager.Play(SOUND_LABEL_SE004);	// ‘«‰¹
 				m_Velocity.x -= velocity;
 			}
 			else

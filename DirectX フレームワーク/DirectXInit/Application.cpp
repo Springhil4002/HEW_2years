@@ -15,6 +15,7 @@ HINSTANCE	Application::m_hInst;		// インスタンスハンドル
 HWND		Application::m_hWnd;		// ウィンドウハンドル
 uint32_t	Application::m_Width;		// ウィンドウの横幅
 uint32_t	Application::m_Height;		// ウィンドウの縦幅
+int Application::fpsCounter = 0;		// fpsカウント
 
 //===================================================================
 // コンストラクタ
@@ -182,7 +183,7 @@ void Application::MainLoop()
 	camera.Init();
 
 	// FPS計測用変数
-	int fpsCounter = 0;
+	fpsCounter = 0;
 	long long oldTick = GetTickCount64();	// 前回計測時の時間
 	long long nowTick = oldTick;			// 今回計測時の時間
 

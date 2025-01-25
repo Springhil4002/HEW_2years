@@ -13,7 +13,7 @@ void PlayOperateScene::Init()
 	bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);			// ‘å‚«‚³‚ðÝ’è
 	bg->layer = -1;											// ƒŒƒCƒ„[‚ðÝ’è
 
-	keyPad->SetTex("asset/Texture/KeyPad.png");				// ‰æ‘œ“Ç‚Ýž‚Ý
+	keyPad->SetTex("asset/Texture/KeyPad.jpg");				// ‰æ‘œ“Ç‚Ýž‚Ý
 	keyPad->SetPos(0.0f, 0.0f, 0.0f);						// À•W‚ðÝ’è
 	keyPad->SetScale(1000.0f, 600.0f, 0.0f);				// ‘å‚«‚³‚ðÝ’è
 

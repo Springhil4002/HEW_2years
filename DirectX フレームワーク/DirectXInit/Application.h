@@ -6,6 +6,8 @@
 //=============================================================================
 // Applicationクラス
 //=============================================================================
+
+class Player;
 class Application
 {
 private:
@@ -13,6 +15,8 @@ private:
 	static HWND			m_hWnd;		// ウィンドウハンドル
 	static uint32_t		m_Width;	// ウィンドウの横幅
 	static uint32_t		m_Height;	// ウィンドウの縦幅
+
+	static int fpsCounter;			// fpsカウント変数
 
 	static bool InitApp();			// 初期化処理
 	static bool InitWindow();		// ウィンドウの初期化処理
@@ -43,6 +47,10 @@ public:
 	static HWND GetWindow() {
 		return m_hWnd;
 	}
+
+	// ゲッター・セッター
+	static int GetFpsCounter() { return Application::fpsCounter; }
+	static void SetFpsCounter(int _fpsCounter) { Application::fpsCounter = _fpsCounter; }
 };
 
 
