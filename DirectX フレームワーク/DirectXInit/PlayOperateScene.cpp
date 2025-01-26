@@ -13,9 +13,9 @@ void PlayOperateScene::Init()
 	bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);			// 大きさを設定
 	bg->layer = -1;											// レイヤーを設定
 
-	keyPad->SetTex("asset/Texture/KeyPad.jpg");				// 画像読み込み
-	keyPad->SetPos(0.0f, 0.0f, 0.0f);						// 座標を設定
-	keyPad->SetScale(1000.0f, 600.0f, 0.0f);				// 大きさを設定
+	keyPad->SetTex("asset/Texture/KeyPad.png");				// 画像読み込み
+	keyPad->SetPos(0.0f, 100.0f, 0.0f);						// 座標を設定
+	keyPad->SetScale(1000.0f, 800.0f, 0.0f);				// 大きさを設定
 
 	close->SetTex("asset/Texture/Close.png");				// 画像読み込み
 	close->SetPos(0.0f, -400.0f, 0.0f);						// 座標を設定

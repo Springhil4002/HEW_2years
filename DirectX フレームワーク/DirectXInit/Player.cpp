@@ -20,8 +20,8 @@ Player::Player() : velocity(1.5f), gravity(3.0f), jumpSpeed(50.0f), isJumping(tr
 //===================================================================
 void Player::Init()
 {
-	SetTex("asset/Texture/player.png");			// プレイヤーを初期化
-	SetScale(BLOCK_SIZE, 2 * BLOCK_SIZE, 0.0f);	// 大きさを設定
+	SetTex("asset/Texture/Player_Animation.png",6,1,0,0);			// プレイヤーを初期化
+	SetScale(BLOCK_SIZE, 2 * BLOCK_SIZE, 0.0f);				// 大きさを設定
 	tags.AddTag("Player");
 	layer = 10;				
 	m_Acceleration.y = -gravity;
@@ -146,9 +146,10 @@ void Player::Walk() {
 	{
 		if (grabState == DEFAULT)
 		{
-			if (Application::GetFpsCounter() % 15 == 0)
+			if (Application::GetFpsCounter() % 10 == 0)
 			{
 				SceneManager::m_SoundManager.Play(SOUND_LABEL_SE004);	// 足音
+				AnimationTex();			// アニメーション更新処理
 			}
 			moveDirection = RIGHT;
 			if (state == ONGROUND)
@@ -175,9 +176,10 @@ void Player::Walk() {
 	{
 		if (grabState == DEFAULT)
 		{
-			if (Application::GetFpsCounter() % 15 == 0)
+			if (Application::GetFpsCounter() % 10 == 0)
 			{
 				SceneManager::m_SoundManager.Play(SOUND_LABEL_SE004);	// 足音
+				AnimationTex();			// アニメーション更新処理
 			}
 			moveDirection = LEFT;
 			if (state == ONGROUND)
@@ -221,7 +223,23 @@ void Player::Resist() {
 	m_Velocity /= 1.2f;
 }
 
-
+//===================================================================
+// プレイヤーのアニメーション更新処理
+//===================================================================
+void Player::AnimationTex() {
+	auto player = Scene::GetInstance()->GetObjects<Player>();
+	for (auto& playerAnim : player)
+	{
+		if(playerAnim->GetNumU() < 5)
+		{
+			playerAnim->SetNumU(playerAnim->GetNumU() + 1);
+		}
+		else if (playerAnim->GetNumU() == 5)
+		{
+			playerAnim->SetNumU(playerAnim->GetNumU() - 5);
+		}
+	}
+}
 
 std::vector<std::string> Player::GetData() const
 {

@@ -50,6 +50,7 @@ private:
 	void Resist();		// 抵抗
 	void GrabBand();	// 結束バンドを触る(掴む)
 	void PullBand();	// 結束バンドを引っ張る
+	void AnimationTex();	// アニメーション更新処理
 
 	std::vector<std::string> GetData() const;
 	bool SetData(std::vector<std::string> _data);
