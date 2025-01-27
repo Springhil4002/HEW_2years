@@ -1,5 +1,6 @@
 #include "Band.h"
 #include "GameScene.h"
+#include "Ground.h"
 #include "Player.h"
 
 void Band::Init()
@@ -76,7 +77,7 @@ void Band::Update()
 		bool flg = false;
 		for (auto& obj : objects)
 		{
-			for (auto& col : *Scene::GetInstance()->GetObjects())
+			for (auto& col : Scene::GetInstance()->GetObjects<Ground>())
 			{
 				if (Object::Collision(obj, col))
 				{
@@ -88,7 +89,7 @@ void Band::Update()
 				break;
 		}
 
-		if (pullLevel < -(L - 1) * 60 || flg)
+		if (flg)
 		{
 			status = STOP;
 			//tip->SetPos(m_Position.x - BLOCK_SIZE * L, m_Position.y, 0);
