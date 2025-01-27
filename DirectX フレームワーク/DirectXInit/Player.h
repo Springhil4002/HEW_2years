@@ -21,7 +21,9 @@ private:
 	enum GRABSTATE
 	{
 		DEFAULT,
-		GRAB
+		GRAB,
+		UP_GRAB,
+		DOWN_GRAB
 	};
 
 	float velocity; 		// 速度
@@ -42,6 +44,7 @@ private:
 	// オーバーライドした関数
 	void Init();	// 初期化処理
 	void Update();	// 更新処理
+	void Uninit();	// 終了処理
 
 	// プレイヤーの挙動
 	void State();		// 状態遷移

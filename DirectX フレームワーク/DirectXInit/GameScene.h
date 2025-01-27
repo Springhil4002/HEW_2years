@@ -14,6 +14,7 @@ private:
 	int gameSceneNum;			// GameScene(ステージ)の識別用番号
 	static int allBandTipCount;	// bandTipの総数
 public:
+	static Object* player;
 	static int bandTipCount;	// bandTipの獲得数
 
 	GameScene(int _num)			//コンストラクタ

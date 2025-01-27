@@ -266,6 +266,7 @@
       <Filter>Object関係\StarTip関係%28スターチップ%29</Filter>
     </ClCompile>
     <ClCompile Include="Delay.cpp" />
+    <ClCompile Include="UpBand.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scene.h">
@@ -377,7 +378,8 @@
       <Filter>Object関係\StarTip関係%28スターチップ%29</Filter>
     </ClInclude>
     <ClInclude Include="Delay.h" />
-    <ClInclude Include="FPS.h" />
+    <ClInclude Include="Direction.h" />
+    <ClInclude Include="UpBand.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader\common.hlsl">

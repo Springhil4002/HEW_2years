@@ -5,6 +5,7 @@
 #include "Goal.h"
 #include "Coin.h"
 #include "main.h"
+#include "UpBand.h"
 #include <iostream>
 
 
@@ -17,6 +18,14 @@ void MapEditor::Init()
 	cursor->SetTex("asset/Texture/Ground.png");
 	cursor->SetPos(0.0f, 0.0f, 0.0f);
 	cursor->SetScale(60.0f, 60.0f, 0.0f);
+
+	auto upBand = Object::Create<UpBand>();
+	upBand->SetPos(30, -150, 0);
+
+	for (int i = 0; i < 3; i++)
+	{
+
+	}
 }
 
 void MapEditor::Update()
@@ -177,7 +186,7 @@ void MapEditor::Update()
 		}
 	}
 
-	if (input.GetKeyTrigger(VK_S))
+	if (input.GetKeyPress(VK_CONTROL) && input.GetKeyTrigger(VK_S))
 	{
 		std::cout << "セーブするファイルの名前(.csv)を入力してください" << std::endl;
 		std::string bufName;
@@ -185,7 +194,7 @@ void MapEditor::Update()
 		Save(bufName);
 	}
 
-	if (input.GetKeyTrigger(VK_L))
+	if (input.GetKeyPress(VK_CONTROL) && input.GetKeyTrigger(VK_L))
 	{
 		std::cout << "ロードするファイルの名前(.csv)を入力してください" << std::endl;
 		std::string bufName;

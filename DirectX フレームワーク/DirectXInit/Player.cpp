@@ -2,6 +2,7 @@
 #include "Ground.h"
 #include "Band.h"
 #include "Application.h"
+#include "GameScene.h"
 using namespace DirectX::SimpleMath;
 
 #define GROUND_OFFSET_X (-930.0f)
@@ -20,6 +21,11 @@ Player::Player() : velocity(1.5f), gravity(3.0f), jumpSpeed(50.0f), isJumping(tr
 //===================================================================
 void Player::Init()
 {
+	if (GameScene::player != nullptr)
+	{
+		Object::Delete(GameScene::player);
+	}
+	GameScene::player = this;
 	SetTex("asset/Texture/Player_Animation.png",6,1,0,0);			// プレイヤーを初期化
 	SetScale(BLOCK_SIZE, 2 * BLOCK_SIZE, 0.0f);				// 大きさを設定
 	tags.AddTag("Player");
@@ -58,6 +64,18 @@ void Player::Update()
 		}
 	}
 
+}
+
+//===================================================================
+// 終了処理
+//===================================================================
+void Player::Uninit()
+{
+	auto player = Scene::GetInstance()->GetObjects<Player>();
+	if (player.size() <= 1)
+	{
+		GameScene::player = nullptr;
+	}
 }
 
 //===================================================================
