@@ -17,6 +17,7 @@ public:
 	bool fadeOut_Start = false;		// フェード開始フラグ
 	bool fadeOut_End = false;		// フェード終了フラグ
 	static int bandTipCount;		// bandTipの獲得数
+	static Object* player;
 
 	GameScene(int _num)				//コンストラクタ
 	{ Init(_num); };	

@@ -12,6 +12,8 @@
 
 //#include "iostream"
 
+Object* GameScene::player = nullptr;
+
 int GameScene::bandTipCount = 0;			// bandTip‚ÌŠl“¾”
 int GameScene::allBandTipCount = 0;			// bandTip‚Ì‘”
 

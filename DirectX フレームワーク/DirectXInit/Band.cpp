@@ -1,8 +1,14 @@
 #include "Band.h"
-
+#include "GameScene.h"
+#include "Player.h"
 
 void Band::Init()
 {
+	delay = Object::Create<Delay>();
+	sendDelay = false;
+
+	status = DEFAULT;
+
 	SetTex("asset/Texture/Band_Block.png");
 	SetScale(60, 60, 0);
 	
@@ -12,6 +18,7 @@ void Band::Init()
 	oldPos = { m_Position.x - 60, m_Position.y, 0 };
 	tip->SetScale(BLOCK_SIZE, BLOCK_SIZE, 0.0f);
 	tip->moveDirection = moveDirection;
+	tip->band = this;
 
 	for (int i = 0; i < L; i++)
 	{
@@ -46,20 +53,64 @@ void Band::Update()
 	oldPos = tip->GetPos();
 	pullLevel += differencial.x;
 	tip->SetPullLeveL(pullLevel);
-
-	if (!tip->isGrabing)
+	
+	if (status == DEFAULT)
 	{
-		if ((int)tip->GetPos().x % 60 < 30)
+		if (!tip->isGrabing)
 		{
-			tip->SetPos((int)tip->GetPos().x / 60 * 60 - 30, tip->GetPos().y, 0);
+			if ((int)tip->GetPos().x > 0)
+			{
+				tip->SetPos((int)tip->GetPos().x / 60 * 60 + 30, tip->GetPos().y, 0);
+			}
+			else
+			{
+				tip->SetPos((int)tip->GetPos().x / 60 * 60 - 30, tip->GetPos().y, 0);
+			}
 			tip->SetVelo(0, 0, 0);
+		}
+
+		if (pullLevel < -(L - 1) * 60)
+		{
+			status = STOP;
+			tip->SetPos(m_Position.x - BLOCK_SIZE * L, m_Position.y, 0);
+			tip->SetVelo(0, 0, 0);
+			dynamic_cast<Player*>(GameScene::player)->SetVelo(-10, 10, 0);
 		}
 	}
 
-	if (pullLevel < -(L - 1) * 60)
+	if (status == STOP)
 	{
-		tip->SetPos(m_Position.x - BLOCK_SIZE, m_Position.y, 0);
 		tip->SetVelo(0, 0, 0);
+		if (sendDelay == false)
+		{
+			delay->SetSignal(60);
+			sendDelay = true;
+		}
+		if (delay->GetSignal())
+		{
+			status = LIMIT;
+			sendDelay = false;
+		}
+	}
+
+	if (status == LIMIT)
+	{
+		if (tip->m_Velocity.x < 0)
+		{
+			status = REVERSE;
+			dynamic_cast<Player*>(GameScene::player)->SetVelo(15, 10, 0);
+		}
+	}
+
+	if (status == REVERSE)
+	{
+		tip->SetVelo(30, 0, 0);
+		if (tip->m_Position.x > m_Position.x)
+		{
+			tip->SetPos(m_Position.x - BLOCK_SIZE, m_Position.y, 0);
+			tip->SetVelo(0, 0, 0);
+			status = DEFAULT;
+		}
 	}
 }
 
