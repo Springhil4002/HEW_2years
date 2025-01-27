@@ -12,6 +12,9 @@ public:
 	Tags() {}	// コンストラクタ
 	~Tags() {}	// デストラクタ
 
+	std::set<std::string>::const_iterator begin() const;
+	std::set<std::string>::const_iterator end() const;
+
 	void AddTag(const std::string _tag);			// タグの追加
 	void RemoveTag(const std::string _tag);			// タグの部分削除
 	bool SearchTag(const std::string _tag) const;	// タグを探す

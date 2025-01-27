@@ -12,6 +12,7 @@ private:
 		PLAYER,
 		GROUND,
 		BAND,
+		UPBAND,
 		GOAL,
 		COIN,
 

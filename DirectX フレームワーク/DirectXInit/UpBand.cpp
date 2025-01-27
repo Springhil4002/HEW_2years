@@ -13,6 +13,10 @@ void UpBand::Init()
 	tipBuf->SetPos(m_Position.x, m_Position.y + 60, 0);
 	tipBuf->SetRotation(0, 0, -PIE / 2);
 	tipBuf->SetScale(BLOCK_SIZE, BLOCK_SIZE, 0.0f);
+	for (auto& tag : tags)
+	{
+		tipBuf->tags.AddTag(tag);
+	}
 	jagged.insert(tipBuf);
 
 	for (int i = 0; i < L; i++)
@@ -100,7 +104,7 @@ void UpBand::Update()
 	}
 
 	// ˆÊ’u–ß‚·
-	if (pullLevel > L * BLOCK_SIZE)
+	if (pullLevel > (L - 1) * BLOCK_SIZE)
 	{
 		for (auto& obj : jagged)
 		{
@@ -203,7 +207,7 @@ bool UpBand::SetData(std::vector<std::string> _data)
 		std::copy(_data.begin() + 1, _data.begin() + 7 + stoi(_data[6]), objBuf.begin());
 		Object::SetData(objBuf);
 
-		SetLength(stoi(_data[7 + stoi(_data[6])]));
+		L = stoi(_data[7 + stoi(_data[6])]);
 
 		objectTag = _data[8 + stoi(_data[6])];
 

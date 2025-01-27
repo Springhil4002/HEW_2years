@@ -13,23 +13,17 @@ Quad* MapEditor::cursor = nullptr;
 CSV MapEditor::mapData;
 
 void MapEditor::Init()
-{
+{	
 	cursor = Object::Create<Quad>();
 	cursor->SetTex("asset/Texture/Ground.png");
 	cursor->SetPos(0.0f, 0.0f, 0.0f);
 	cursor->SetScale(60.0f, 60.0f, 0.0f);
 
-	auto upBand = Object::Create<UpBand>();
-	upBand->SetPos(30, -150, 0);
-
-	for (int i = 0; i < 3; i++)
-	{
-
-	}
+	Load("TEST_STAGE2.csv");
 }
 
 void MapEditor::Update()
-{
+{	
 	auto objects = objectInstance;
 	for (auto& obj : objects)
 	{
@@ -49,6 +43,10 @@ void MapEditor::Update()
 		y -= 30;
 		break;
 	case BAND:
+		x += 30;
+		y -= 30;
+		break;
+	case UPBAND:
 		x += 30;
 		y -= 30;
 		break;
@@ -92,22 +90,32 @@ void MapEditor::Update()
 	case PLAYER:
 		cursor->SetTex("asset/Texture/player.png");
 		cursor->SetScale(60.0f, 120.0f, 0.0f);
+		cursor->SetRotation(0,0,0);
 		break;
 	case GROUND:
 		cursor->SetTex("asset/Texture/ground.png");
 		cursor->SetScale(60.0f, 60.0f, 0.0f);
+		cursor->SetRotation(0, 0, 0);
 		break;
 	case BAND:
-		cursor->SetTex("asset/Texture/Band_Block.png");
+		cursor->SetTex("asset/Texture/Band_Tip.png");
 		cursor->SetScale(60.0f, 60.0f, 0.0f);
+		cursor->SetRotation(0, 0, 0);
+		break;
+	case UPBAND:
+		cursor->SetTex("asset/Texture/Band_Tip.png");
+		cursor->SetScale(60.0f, 60.0f, 0.0f);
+		cursor->SetRotation(0, 0, -3.14f / 2);
 		break;
 	case GOAL:
 		cursor->SetTex("asset/Texture/Door.png");
 		cursor->SetScale(60.0f, 120.0f, 0.0f);
+		cursor->SetRotation(0, 0, 0);
 		break;
 	case COIN:
 		cursor->SetTex("asset/Texture/Coin.png");
 		cursor->SetScale(60.0f, 60.0f, 0.0f);
+		cursor->SetRotation(0, 0, 0);
 		break;
 	}
 
@@ -148,11 +156,25 @@ void MapEditor::Update()
 				auto band = Object::Create<Band>();
 				band->SetPos(x, y, 0);
 
-				std::string bufTag;
-				std::cin >> bufTag;
-				band->SetObject(bufTag);
+				std::string bufStr;
+				std::cin >> bufStr;
+				band->SetObject(bufStr);
+				std::cin >> bufStr;
+				band->SetLength(stoi(bufStr));
 			}
-				break;
+			break;
+			case UPBAND:
+			{
+				auto upBand = Object::Create<UpBand>();
+				upBand->SetPos(x, y, 0);
+
+				std::string bufStr;
+				std::cin >> bufStr;
+				upBand->SetObject(bufStr);
+				std::cin >> bufStr;
+				upBand->L = stoi(bufStr);
+			}
+			break;
 			case GOAL:
 			{
 				auto goal = Object::Create<Goal>();

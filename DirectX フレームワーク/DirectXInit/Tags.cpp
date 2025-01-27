@@ -1,5 +1,15 @@
 #include "Tags.h"
 
+std::set<std::string>::const_iterator Tags::begin() const
+{
+	return tags.begin();
+}
+
+std::set<std::string>::const_iterator Tags::end() const
+{
+	return tags.end();
+}
+
 // ƒ^ƒO‚Ì•t—^
 void Tags::AddTag(const std::string _tag)
 {

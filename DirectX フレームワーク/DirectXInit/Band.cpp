@@ -19,6 +19,10 @@ void Band::Init()
 	tip->SetScale(BLOCK_SIZE, BLOCK_SIZE, 0.0f);
 	tip->moveDirection = moveDirection;
 	tip->band = this;
+	for (auto& tag : tags)
+	{
+		tip->tags.AddTag(tag);
+	}
 
 	for (int i = 0; i < L; i++)
 	{
@@ -69,12 +73,27 @@ void Band::Update()
 			tip->SetVelo(0, 0, 0);
 		}
 
-		if (pullLevel < -(L - 1) * 60)
+		bool flg = false;
+		for (auto& obj : objects)
+		{
+			for (auto& col : *Scene::GetInstance()->GetObjects())
+			{
+				if (Object::Collision(obj, col))
+				{
+					flg = true;
+					break;
+				}
+			}
+			if (flg)
+				break;
+		}
+
+		if (pullLevel < -(L - 1) * 60 || flg)
 		{
 			status = STOP;
-			tip->SetPos(m_Position.x - BLOCK_SIZE * L, m_Position.y, 0);
+			//tip->SetPos(m_Position.x - BLOCK_SIZE * L, m_Position.y, 0);
 			tip->SetVelo(0, 0, 0);
-			dynamic_cast<Player*>(GameScene::player)->SetVelo(-10, 10, 0);
+			dynamic_cast<Player*>(GameScene::player)->SetVelo(-15, 10, 0);
 		}
 	}
 
@@ -200,7 +219,8 @@ bool Band::SetData(std::vector<std::string> _data)
 		std::copy(_data.begin() + 1, _data.begin() + 7 + stoi(_data[6]), objBuf.begin());
 		Object::SetData(objBuf);
 
-		SetLength(stoi(_data[7 + stoi(_data[6])]));
+		//SetLength(stoi(_data[7 + stoi(_data[6])]));
+		L = stoi(_data[7 + stoi(_data[6])]);
 
 		objectTag = _data[8 + stoi(_data[6])];
 
