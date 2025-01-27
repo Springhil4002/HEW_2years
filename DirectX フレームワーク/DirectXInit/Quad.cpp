@@ -16,44 +16,38 @@ void Quad::Init()
 //===================================================================
 void Quad::Update()
 {
-	/*if (old != moveDirection)
-	{*/
-		// 頂点データ
-		std::vector<VERTEX_3D>	vertices;
+	// 頂点データ
+	std::vector<VERTEX_3D>	vertices;
 
-		vertices.resize(4);
+	vertices.resize(4);
+	
+	vertices[0].position = Vector3(-0.5f,  0.5f, 0);
+	vertices[1].position = Vector3( 0.5f,  0.5f, 0);
+	vertices[2].position = Vector3(-0.5f, -0.5f, 0);
+	vertices[3].position = Vector3( 0.5f, -0.5f, 0);
 
-		vertices[0].position = Vector3(-0.5f,  0.5f, 0);
-		vertices[1].position = Vector3( 0.5f,  0.5f, 0);
-		vertices[2].position = Vector3(-0.5f, -0.5f, 0);
-		vertices[3].position = Vector3( 0.5f, -0.5f, 0);
+	vertices[0].color = Color(GetColor());
+	vertices[1].color = Color(GetColor());
+	vertices[2].color = Color(GetColor());
+	vertices[3].color = Color(GetColor());
 
-		vertices[0].color = Color(1, 1, 1, 1);
-		vertices[1].color = Color(1, 1, 1, 1);
-		vertices[2].color = Color(1, 1, 1, 1);
-		vertices[3].color = Color(1, 1, 1, 1);
+	if (moveDirection == RIGHT)
+	{
+		vertices[0].uv = Vector2(1.0f/GetSplitX()* GetNumU(),	 1.0f/GetSplitY()* GetNumV());
+		vertices[1].uv = Vector2(1.0f/GetSplitX()*(GetNumU()+1), 1.0f/GetSplitY()* GetNumV());
+		vertices[2].uv = Vector2(1.0f/GetSplitX()* GetNumU(),	 1.0f/GetSplitY()*(GetNumV()+1));
+		vertices[3].uv = Vector2(1.0f/GetSplitX()*(GetNumU()+1), 1.0f/GetSplitY()*(GetNumV()+1));
+	}
+	else
+	{
+		vertices[0].uv = Vector2(1.0f/GetSplitX()*(GetNumU()+1), 1.0f/GetSplitY()* GetNumV());
+		vertices[1].uv = Vector2(1.0f/GetSplitX()* GetNumU(),	 1.0f/GetSplitY()* GetNumV());
+		vertices[2].uv = Vector2(1.0f/GetSplitX()*(GetNumU()+1), 1.0f/GetSplitY()*(GetNumV()+1));
+		vertices[3].uv = Vector2(1.0f/GetSplitX()* GetNumU(),	 1.0f/GetSplitY()*(GetNumV()+1));
+	}
 
-		if (moveDirection == RIGHT)
-		{
-			vertices[0].uv = Vector2(1.0f/GetSplitX()* GetNumU(),	 1.0f/GetSplitY()* GetNumV());
-			vertices[1].uv = Vector2(1.0f/GetSplitX()*(GetNumU()+1), 1.0f/GetSplitY()* GetNumV());
-			vertices[2].uv = Vector2(1.0f/GetSplitX()* GetNumU(),	 1.0f/GetSplitY()*(GetNumV()+1));
-			vertices[3].uv = Vector2(1.0f/GetSplitX()*(GetNumU()+1), 1.0f/GetSplitY()*(GetNumV()+1));
-		}
-		else
-		{
-			vertices[0].uv = Vector2(1.0f/GetSplitX()*(GetNumU()+1), 1.0f/GetSplitY()* GetNumV());
-			vertices[1].uv = Vector2(1.0f/GetSplitX()* GetNumU(),	 1.0f/GetSplitY()* GetNumV());
-			vertices[2].uv = Vector2(1.0f/GetSplitX()*(GetNumU()+1), 1.0f/GetSplitY()*(GetNumV()+1));
-			vertices[3].uv = Vector2(1.0f/GetSplitX()* GetNumU(),	 1.0f/GetSplitY()*(GetNumV()+1));
-		}
-
-		// 頂点バッファ生成
-		m_VertexBuffer.Create(vertices);
-
-	//	// 更新
-	//	old = moveDirection;
-	//}
+	// 頂点バッファ生成
+	m_VertexBuffer.Create(vertices);
 }
 
 //===================================================================
@@ -107,7 +101,7 @@ void Quad::Uninit()
 	
 }
 
-void Quad::SetTex(const std::string& _filename, int _splitX, int _splitY, int _numU, int _numV)
+void Quad::SetTex(const std::string& _filename, int _splitX, int _splitY, int _numU, int _numV, float _r, float _g, float _b, float _a)
 {
 	SetSplitX(_splitX);
 	SetSplitY(_splitY);
@@ -124,10 +118,10 @@ void Quad::SetTex(const std::string& _filename, int _splitX, int _splitY, int _n
 	vertices[2].position = Vector3(-0.5f, -0.5f, 0);
 	vertices[3].position = Vector3(0.5f, -0.5f, 0);
 
-	vertices[0].color = Color(1, 1, 1, 1);
-	vertices[1].color = Color(1, 1, 1, 1);
-	vertices[2].color = Color(1, 1, 1, 1);
-	vertices[3].color = Color(1, 1, 1, 1);
+	vertices[0].color = Color(_r, _g, _b, _a);
+	vertices[1].color = Color(_r, _g, _b, _a);
+	vertices[2].color = Color(_r, _g, _b, _a);
+	vertices[3].color = Color(_r, _g, _b, _a);
 
 	if (moveDirection == RIGHT)
 	{

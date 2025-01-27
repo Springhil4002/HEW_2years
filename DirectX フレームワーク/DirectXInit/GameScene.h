@@ -11,21 +11,25 @@ class Goal;
 class GameScene : public Scene
 {
 private:
-	int gameSceneNum;			// GameScene(ステージ)の識別用番号
-	static int allBandTipCount;	// bandTipの総数
+	int gameSceneNum;				// GameScene(ステージ)の識別用番号
+	static int allBandTipCount;		// bandTipの総数
 public:
+	bool fadeOut_Start = false;		// フェード開始フラグ
+	bool fadeOut_End = false;		// フェード終了フラグ
+	static int bandTipCount;		// bandTipの獲得数
 	static Object* player;
-	static int bandTipCount;	// bandTipの獲得数
 
-	GameScene(int _num)			//コンストラクタ
+	GameScene(int _num)				//コンストラクタ
 	{ Init(_num); };	
-	~GameScene() {};			//デストラクタ
+	~GameScene() {};				//デストラクタ
 
-	void Init(int _num);		// 基本的に初期化はこっち使う
+	void Init(int _num);			// 基本的に初期化はこっち使う
+	void Fade_In();					// フェードイン処理		(明るくなる)
+	void Fade_Out();				// フェードアウト処理	(暗くなる)
 
 	//オーバーライドした関数
-	void Init() {};				// 初期化処理関数
-	void Update();				// 更新処理関数
+	void Init() {};					// 初期化処理関数
+	void Update();					// 更新処理関数
 
 	// ゲッター・セッター
 	int GetGameSceneNum() { return gameSceneNum; }
