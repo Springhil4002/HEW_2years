@@ -22,6 +22,15 @@ void GameOverScene::Init()
 	bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);				// 大きさを設定
 	bg->layer = -1;												// レイヤーを設定
 
+	// フェードイン・フェードアウト用
+	auto fade = Object::Create<Quad>();
+	fade->SetTex("asset/Texture/Fade_Black.png",				// 画像読み込み
+		1, 1, 0, 0, 1.0f, 1.0f, 1.0f, 1.0f);
+	fade->SetPos(0.0f, 0.0f, 0.0f);								// 座標設定
+	fade->SetScale(1920.0f, 1080.0f, 0.0f);						// 大きさを設定
+	fade->tags.AddTag("Fade");									// タグ付け
+	fade->layer = 2;											// レイヤーを設定
+
 	logo->SetTex("asset/Texture/GameOver.png");					// 画像読み込み
 	logo->SetPos(0.0f, 300.0f, 0.0f);							// 座標を設定
 	logo->SetScale(600.0f, 400.0f, 0.0f);						// 大きさを設定
@@ -46,8 +55,22 @@ void GameOverScene::Init()
 // 更新処理
 void GameOverScene::Update()
 {
+	Fade_In();
+
 	Frame_Input();		// フレーム移動入力処理
 	Frame_Move();		// フレーム移動処理
+
+	// フェードアウト処理	(暗くなる)
+	if (fadeOut_Start == true)
+	{
+		Fade_Out();
+	}
+
+	auto objects = objectInstance;
+	for (auto& obj : objects)
+	{
+		obj->Update();
+	}
 }
 
 // フレーム移動入力処理
@@ -94,7 +117,11 @@ void GameOverScene::Frame_Move()
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_A))
 		{
+			fadeOut_Start = true;
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
+		}
+		if (fadeOut_End == true)
+		{
 			//現在のシーンを「TitleScene」に切り替える
 			SceneManager::ChangeScene(TITLE);
 		}
@@ -112,9 +139,13 @@ void GameOverScene::Frame_Move()
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_A))
 		{
+			fadeOut_Start = true;
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
+		}
+		if (fadeOut_End == true)
+		{
 			//現在のシーンを「GameScene」に切り替える
-			SceneManager::ChangeScene(HOME_1,1);
+			SceneManager::ChangeScene(HOME_1, 1);
 		}
 		break; }
 	case 3: {
@@ -130,13 +161,53 @@ void GameOverScene::Frame_Move()
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_A))
 		{
+			fadeOut_Start = true;
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
+		}
+		if (fadeOut_End == true)
+		{
 			int stageNum = (int)(GameOverScene::isEndSceneNum - SCENE_ENUM_OFFSET);
 			//現在のシーンを直前にゲームオーバーした「GameScene」に切り替える
-			SceneManager::ChangeScene(isEndSceneNum,stageNum);
+			SceneManager::ChangeScene(isEndSceneNum, stageNum);
 		}
 		break; }
 	default:
 		break;
+	}
+}
+
+// フェードイン処理		(明るくなる)
+void GameOverScene::Fade_In()
+{
+	auto Fade = GetInstance()->GetObjects<Quad>();
+	for (auto& fade : Fade)
+	{
+		if (fade->tags.SearchTag("Fade"))
+		{
+			if (fade->GetColor().w >= 0.0f)
+			{
+				fade->SetColor(1.0f, 1.0f, 1.0f, fade->GetColor().w - 0.01f);
+			}
+		}
+	}
+}
+
+// フェードアウト処理	(暗くなる)
+void GameOverScene::Fade_Out()
+{
+	auto Fade = GetInstance()->GetObjects<Quad>();
+	for (auto& fade : Fade)
+	{
+		if (fade->tags.SearchTag("Fade"))
+		{
+			if (fade->GetColor().w <= 1.0f)
+			{
+				fade->SetColor(1.0f, 1.0f, 1.0f, fade->GetColor().w + 0.05f);
+			}
+			else
+			{
+				fadeOut_End = true;
+			}
+		}
 	}
 }

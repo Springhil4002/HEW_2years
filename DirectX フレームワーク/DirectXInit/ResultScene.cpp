@@ -27,6 +27,15 @@ void ResultScene::Init(int _num)
 	bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
 	bg->layer = -1;
 
+	// フェードイン・フェードアウト用
+	auto fade = Object::Create<Quad>();
+	fade->SetTex("asset/Texture/Fade_Black.png",			// 画像読み込み
+		1, 1, 0, 0, 1.0f, 1.0f, 1.0f, 1.0f);
+	fade->SetPos(0.0f, 0.0f, 0.0f);							// 座標設定
+	fade->SetScale(1920.0f, 1080.0f, 0.0f);					// 大きさを設定
+	fade->tags.AddTag("Fade");								// タグ付け
+	fade->layer = 10;										// レイヤーを設定
+
 	// プレイヤーオブジェクトの作成
 	auto player = Object::Create<Player>();
 	player->SetPos(-800.0f, -400.0f, 0.0f);
@@ -37,7 +46,7 @@ void ResultScene::Init(int _num)
 	clear_Logo->SetPos(0.0f, 0.0f, 0.0f);
 	clear_Logo->SetScale(0.0f, 0.0f, 0.0f);
 	clear_Logo->tags.AddTag("CLEAR");
-	clear_Logo->layer = 2;
+	clear_Logo->layer = 1;
 
 	// 地面オブジェクトの作成
 	Ground* ground[SET_BLOCK];
@@ -103,6 +112,9 @@ void ResultScene::Init(int _num)
 // 更新処理
 void ResultScene::Update()
 {
+	// フェードイン処理
+	Fade_In();
+
 	// 引っ張った長さに応じてスコアを更新
 	PullScoreUpdate();
 
@@ -123,6 +135,12 @@ void ResultScene::Update()
 
 	// フレーム更新処理
 	Frame_Update();
+
+	// フェードアウト処理	(暗くなる)
+	if (fadeOut_Start == true)
+	{
+		Fade_Out();
+	}
 
 	// 各オブジェクト更新処理
 	auto objects = objectInstance;
@@ -326,7 +344,7 @@ void ResultScene::UI_Draw()
 		returnTitle->SetPos(450.0f, 0.0f, 0.0f);					// 座標を設定
 		returnTitle->SetScale(420.0f, 150.0f, 0.0f);				// 大きさを設定
 		returnTitle->tags.AddTag("UI");								// タグ付け
-		returnTitle->layer = 2;										// レイヤーを設定
+		returnTitle->layer = 1;										// レイヤーを設定
 
 		//「ステージ選択に戻る」のオブジェクト作成
 		auto returnHome = Object::Create<Quad>();
@@ -334,7 +352,7 @@ void ResultScene::UI_Draw()
 		returnHome->SetPos(450.0f, -150.0f, 0.0f);					// 座標を設定
 		returnHome->SetScale(420.0f, 150.0f, 0.0f);					// 大きさを設定
 		returnHome->tags.AddTag("UI");								// タグ付け
-		returnHome->layer = 2;										// レイヤーを設定
+		returnHome->layer = 1;										// レイヤーを設定
 
 		//「リトライ」のオブジェクト作成
 		auto retryLogo = Object::Create<Quad>();
@@ -342,7 +360,7 @@ void ResultScene::UI_Draw()
 		retryLogo->SetPos(450.0f, -300.0f, 0.0f);					// 座標を設定
 		retryLogo->SetScale(420.0f, 150.0f, 0.0f);					// 大きさを設定
 		retryLogo->tags.AddTag("UI");								// タグ付け
-		retryLogo->layer = 2;										// レイヤーを設定
+		retryLogo->layer = 1;										// レイヤーを設定
 
 		// フレームオブジェクト作成
 		auto frame = Object::Create<Quad>();
@@ -351,7 +369,7 @@ void ResultScene::UI_Draw()
 		frame->SetScale(420.0f, 150.0f, 0.0f);						// 大きさを設定
 		frame->tags.AddTag("UI");									// タグ付け
 		frame->tags.AddTag("frame");								// タグ付け
-		frame->layer = 2;											// レイヤーを設定
+		frame->layer = 1;											// レイヤーを設定
 
 		layerFlag = true;											// レイヤー描画完了
 		movePlayerFlag = false;										// プレイヤー停止
@@ -411,7 +429,11 @@ void ResultScene::Frame_Move()
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_A))
 		{
+			fadeOut_Start = true;
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
+		}
+		if (fadeOut_End == true)
+		{
 			//現在のシーンを「TitleScene」に切り替える
 			SceneManager::ChangeScene(TITLE);
 		}
@@ -429,7 +451,11 @@ void ResultScene::Frame_Move()
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_A))
 		{
+			fadeOut_Start = true;
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
+		}
+		if (fadeOut_End == true)
+		{
 			//現在のシーンを「GameScene」に切り替える
 			SceneManager::ChangeScene(HOME_1, 1);
 		}
@@ -447,7 +473,11 @@ void ResultScene::Frame_Move()
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_A))
 		{
+			fadeOut_Start = true;
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
+		}
+		if (fadeOut_End == true)
+		{
 			int stageNum = (int)(GameOverScene::isEndSceneNum - SCENE_ENUM_OFFSET);
 			//現在のシーンを直前にゲームオーバーした「GameScene」に切り替える
 			SceneManager::ChangeScene(GameOverScene::isEndSceneNum, stageNum);
@@ -455,5 +485,41 @@ void ResultScene::Frame_Move()
 		break; }
 	default:
 		break;
+	}
+}
+
+// フェードイン処理		(明るくなる)
+void ResultScene::Fade_In()
+{
+	auto Fade = GetInstance()->GetObjects<Quad>();
+	for (auto& fade : Fade)
+	{
+		if (fade->tags.SearchTag("Fade"))
+		{
+			if (fade->GetColor().w >= 0.0f)
+			{
+				fade->SetColor(1.0f, 1.0f, 1.0f, fade->GetColor().w - 0.01f);
+			}
+		}
+	}
+}
+
+// フェードアウト処理	(暗くなる)
+void ResultScene::Fade_Out()
+{
+	auto Fade = GetInstance()->GetObjects<Quad>();
+	for (auto& fade : Fade)
+	{
+		if (fade->tags.SearchTag("Fade"))
+		{
+			if (fade->GetColor().w <= 1.0f)
+			{
+				fade->SetColor(1.0f, 1.0f, 1.0f, fade->GetColor().w + 0.05f);
+			}
+			else
+			{
+				fadeOut_End = true;
+			}
+		}
 	}
 }

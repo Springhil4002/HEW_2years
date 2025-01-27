@@ -359,7 +359,6 @@ void GameScene::Update()
 {
 	// フェードイン処理		(明るくなる)
 	Fade_In();		
-
 	// コイン獲得数UIの各桁更新処理
 	CoinCounter();
 	// コイン獲得数UIの各桁更新処理
@@ -412,7 +411,6 @@ void GameScene::FallIsPlayer()
 		if (GROUND_OFFSET_Y > player->GetPos().y + 120.0f)
 		{
 			fadeOut_Start = true;
-			
 		}
 	}
 	if (fadeOut_End == true)

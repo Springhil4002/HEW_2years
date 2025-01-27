@@ -21,6 +21,8 @@ public:
 	bool layerFlag = false;			// UIレイヤーフラグ
 	bool movePlayerFlag = true;		// playerMoveフラグ
 
+	bool fadeOut_Start = false;		// フェード開始フラグ
+	bool fadeOut_End = false;		// フェード終了フラグ
 
 	int count = 0;					// frameCount
 
@@ -45,6 +47,9 @@ public:
 	void Frame_Update();			// フレーム更新処理
 	void Frame_Input();				// フレーム移動入力処理
 	void Frame_Move();				// フレーム移動処理
+
+	void Fade_In();					// フェードイン処理		(明るくなる)
+	void Fade_Out();				// フェードアウト処理	(暗くなる)
 
 	// ゲッター・セッター
 	int GetFrameNum() { return frameNum; }

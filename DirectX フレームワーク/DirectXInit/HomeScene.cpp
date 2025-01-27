@@ -34,6 +34,15 @@ void HomeScene::Init(int _num)
 		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);				// 大きさを設定
 		bg->layer = -1;												// レイヤーを設定
 
+		// フェードイン・フェードアウト用
+		auto fade = Object::Create<Quad>();
+		fade->SetTex("asset/Texture/Fade_Black.png",			// 画像読み込み
+			1, 1, 0, 0, 1.0f, 1.0f, 1.0f, 1.0f);
+		fade->SetPos(0.0f, 0.0f, 0.0f);							// 座標設定
+		fade->SetScale(1920.0f, 1080.0f, 0.0f);					// 大きさを設定
+		fade->tags.AddTag("Fade");								// タグ付け
+		fade->layer = 2;										// レイヤーを設定
+
 		stage_Logo1->SetTex("asset/Texture/Stage1.png");			// 画像読み込み
 		stage_Logo1->SetPos(300.0f, 300.0f, 0.0f);					// 座標を設定
 		stage_Logo1->SetScale(400.0f, 150.0f, 0.0f);				// 大きさを設定
@@ -74,6 +83,16 @@ void HomeScene::Init(int _num)
 		bg->SetTex("asset/Texture/Home.jpg");						// 画像読み込み
 		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);				// 大きさを設定
 		bg->layer = -1;												// レイヤーを設定
+
+		// フェードイン・フェードアウト用
+		auto fade = Object::Create<Quad>();
+		fade->SetTex("asset/Texture/Fade_Black.png",			// 画像読み込み
+			1, 1, 0, 0, 1.0f, 1.0f, 1.0f, 1.0f);
+		fade->SetPos(0.0f, 0.0f, 0.0f);							// 座標設定
+		fade->SetScale(1920.0f, 1080.0f, 0.0f);					// 大きさを設定
+		fade->tags.AddTag("Fade");								// タグ付け
+		fade->layer = 2;										// レイヤーを設定
+
 
 		stage_Logo4->SetTex("asset/Texture/Stage4.png");			// 画像読み込み
 		stage_Logo4->SetPos(-450.0f, 300.0f, 0.0f);					// 座標を設定
@@ -116,9 +135,24 @@ void HomeScene::Init(int _num)
 // 更新処理
 void HomeScene::Update()
 {
+	// フェードイン処理	(明るくなる)
+	Fade_In();
+
 	Frame_Input();	// frame移動入力処理
 	Frame_Move();	// frame移動処理
 	ChangeHome();	// HomeScene切り替え処理
+
+	// フェードアウト処理	(暗くなる)
+	if (fadeOut_Start == true)
+	{
+		Fade_Out();	
+	}
+
+	auto objects = objectInstance;
+	for (auto& obj : objects)
+	{
+		obj->Update();
+	}
 }
 
 // フレーム移動入力処理
@@ -203,9 +237,12 @@ void HomeScene::Frame_Move()
 		// エンターキーorBボタンを押したら
 		if (input.GetButtonTrigger(XINPUT_A) ||
 			input.GetKeyTrigger(VK_RETURN))
-
 		{
+			fadeOut_Start = true;
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
+		}
+		if (fadeOut_End == true)
+		{
 			//現在のシーンを「TitleScene」に切り替える
 			SceneManager::ChangeScene(TITLE);
 		}
@@ -224,9 +261,13 @@ void HomeScene::Frame_Move()
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_A))
 		{
+			fadeOut_Start = true;
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
+		}
+		if (fadeOut_End == true)
+		{
 			//現在のシーンを「GameScene」に切り替える
-			SceneManager::ChangeScene(GAME_1,1);
+			SceneManager::ChangeScene(GAME_1, 1);
 		}
 		break; }
 	case 2: {
@@ -243,9 +284,13 @@ void HomeScene::Frame_Move()
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_A))
 		{
+			fadeOut_Start = true;
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
+		}
+		if (fadeOut_End == true)
+		{
 			//現在のシーンを「GameScene」に切り替える
-			SceneManager::ChangeScene(GAME_2,2);
+			SceneManager::ChangeScene(GAME_2, 2);
 		}
 		break; }
 	case 3: {
@@ -262,9 +307,13 @@ void HomeScene::Frame_Move()
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_A))
 		{
+			fadeOut_Start = true;
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
+		}
+		if (fadeOut_End == true)
+		{
 			//現在のシーンを「GameScene」に切り替える
-			SceneManager::ChangeScene(GAME_3,3);
+			SceneManager::ChangeScene(GAME_3, 3);
 		}
 		break; }
 	case 4: {
@@ -281,9 +330,13 @@ void HomeScene::Frame_Move()
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_A))
 		{
+			fadeOut_Start = true;
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
+		}
+		if (fadeOut_End == true)
+		{
 			//現在のシーンを「GameScene」に切り替える
-			SceneManager::ChangeScene(GAME_4,4);
+			SceneManager::ChangeScene(GAME_4, 4);
 		}
 		break; }
 	case 5: {
@@ -300,9 +353,13 @@ void HomeScene::Frame_Move()
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_A))
 		{
+			fadeOut_Start = true;
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
+		}
+		if (fadeOut_End == true)
+		{
 			//現在のシーンを「GameScene」に切り替える
-			SceneManager::ChangeScene(GAME_5,5);
+			SceneManager::ChangeScene(GAME_5, 5);
 		}
 		break; }
 	case 6: {
@@ -319,9 +376,14 @@ void HomeScene::Frame_Move()
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_A))
 		{
+			fadeOut_Start = true;
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
+			
+		}
+		if (fadeOut_End == true)
+		{
 			//現在のシーンを「GameScene」に切り替える
-			SceneManager::ChangeScene(GAME_6,6);
+			SceneManager::ChangeScene(GAME_6, 6);
 		}
 		break; }
 	case 7: {
@@ -338,9 +400,13 @@ void HomeScene::Frame_Move()
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_A))
 		{
+			fadeOut_Start = true;
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
+		}
+		if (fadeOut_End == true)
+		{
 			//現在のシーンを「GameScene」に切り替える
-			SceneManager::ChangeScene(GAME_7,7);
+			SceneManager::ChangeScene(GAME_7, 7);
 		}
 		break; }
 	case 8: {
@@ -357,9 +423,13 @@ void HomeScene::Frame_Move()
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_A))
 		{
+			fadeOut_Start = true;
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
+		}
+		if (fadeOut_End == true)
+		{
 			//現在のシーンを「GameScene」に切り替える
-			SceneManager::ChangeScene(GAME_8,8);
+			SceneManager::ChangeScene(GAME_8, 8);
 		}
 		break; }
 	default:
@@ -392,5 +462,41 @@ void HomeScene::ChangeHome()
 		SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
 		//現在のシーンを「HomeScene(1枚目)」に切り替える
 		SceneManager::ChangeScene(HOME_1,1);
+	}
+}
+
+// フェードイン処理		(明るくなる)
+void HomeScene::Fade_In()
+{
+	auto Fade = GetInstance()->GetObjects<Quad>();
+	for (auto& fade : Fade)
+	{
+		if (fade->tags.SearchTag("Fade"))
+		{
+			if (fade->GetColor().w >= 0.0f)
+			{
+				fade->SetColor(1.0f, 1.0f, 1.0f, fade->GetColor().w - 0.01f);
+			}
+		}
+	}
+}
+
+// フェードアウト処理	(暗くなる)
+void HomeScene::Fade_Out()
+{
+	auto Fade = GetInstance()->GetObjects<Quad>();
+	for (auto& fade : Fade)
+	{
+		if (fade->tags.SearchTag("Fade"))
+		{
+			if (fade->GetColor().w <= 1.0f)
+			{
+				fade->SetColor(1.0f, 1.0f, 1.0f, fade->GetColor().w + 0.05f);
+			}
+			else
+			{
+				fadeOut_End = true;
+			}
+		}
 	}
 }
