@@ -36,6 +36,15 @@ void GameScene::Init(int _num)
 		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
 		bg->layer = -1;
 
+		// フェードイン・フェードアウト用
+		auto fade = Object::Create<Quad>();	
+		fade->SetTex("asset/Texture/Fade_Black.png",			// 画像読み込み
+			1, 1, 0, 0, 1.0f, 1.0f, 1.0f, 1.0f);
+		fade->SetPos(0.0f, 0.0f, 0.0f);							// 座標設定
+		fade->SetScale(1920.0f, 1080.0f, 0.0f);					// 大きさを設定
+		fade->tags.AddTag("Fade");								// タグ付け
+		fade->layer = 2;										// レイヤーを設定
+
 		// Stage1のCSV読み込み
 		MapEditor::Load("Stage1.csv");
 		
@@ -68,6 +77,15 @@ void GameScene::Init(int _num)
 		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
 		bg->layer = -1;
 
+		// フェードイン・フェードアウト用
+		auto fade = Object::Create<Quad>();
+		fade->SetTex("asset/Texture/Fade_Black.png",			// 画像読み込み
+			1, 1, 0, 0, 1.0f, 1.0f, 1.0f, 1.0f);
+		fade->SetPos(0.0f, 0.0f, 0.0f);							// 座標設定
+		fade->SetScale(1920.0f, 1080.0f, 0.0f);					// 大きさを設定
+		fade->tags.AddTag("Fade");								// タグ付け
+		fade->layer = 2;										// レイヤーを設定
+
 		// Stage2のCSV読み込み
 
 		// コイン獲得数オブジェクトの作成
@@ -98,6 +116,15 @@ void GameScene::Init(int _num)
 		bg->SetTex("asset/Texture/Game_3.jpg");
 		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
 		bg->layer = -1;
+
+		// フェードイン・フェードアウト用
+		auto fade = Object::Create<Quad>();
+		fade->SetTex("asset/Texture/Fade_Black.png",			// 画像読み込み
+			1, 1, 0, 0, 1.0f, 1.0f, 1.0f, 1.0f);
+		fade->SetPos(0.0f, 0.0f, 0.0f);							// 座標設定
+		fade->SetScale(1920.0f, 1080.0f, 0.0f);					// 大きさを設定
+		fade->tags.AddTag("Fade");								// タグ付け
+		fade->layer = 2;										// レイヤーを設定
 		
 		// Stage3のCSV読み込み
 
@@ -130,6 +157,15 @@ void GameScene::Init(int _num)
 		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
 		bg->layer = -1;
 
+		// フェードイン・フェードアウト用
+		auto fade = Object::Create<Quad>();
+		fade->SetTex("asset/Texture/Fade_Black.png",			// 画像読み込み
+			1, 1, 0, 0, 1.0f, 1.0f, 1.0f, 1.0f);
+		fade->SetPos(0.0f, 0.0f, 0.0f);							// 座標設定
+		fade->SetScale(1920.0f, 1080.0f, 0.0f);					// 大きさを設定
+		fade->tags.AddTag("Fade");								// タグ付け
+		fade->layer = 2;										// レイヤーを設定
+
 		// Stage4のCSV読み込み
 
 		// コイン獲得数オブジェクトの作成
@@ -160,6 +196,15 @@ void GameScene::Init(int _num)
 		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
 		bg->layer = -1;
 		
+		// フェードイン・フェードアウト用
+		auto fade = Object::Create<Quad>();
+		fade->SetTex("asset/Texture/Fade_Black.png",			// 画像読み込み
+			1, 1, 0, 0, 1.0f, 1.0f, 1.0f, 1.0f);
+		fade->SetPos(0.0f, 0.0f, 0.0f);							// 座標設定
+		fade->SetScale(1920.0f, 1080.0f, 0.0f);					// 大きさを設定
+		fade->tags.AddTag("Fade");								// タグ付け
+		fade->layer = 2;										// レイヤーを設定
+
 		// Stage5のCSV読み込み
 
 		// コイン獲得数オブジェクトの作成
@@ -190,6 +235,15 @@ void GameScene::Init(int _num)
 		bg->SetTex("asset/Texture/Game_6.png");
 		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
 		bg->layer = -1;
+
+		// フェードイン・フェードアウト用
+		auto fade = Object::Create<Quad>();
+		fade->SetTex("asset/Texture/Fade_Black.png",			// 画像読み込み
+			1, 1, 0, 0, 1.0f, 1.0f, 1.0f, 1.0f);
+		fade->SetPos(0.0f, 0.0f, 0.0f);							// 座標設定
+		fade->SetScale(1920.0f, 1080.0f, 0.0f);					// 大きさを設定
+		fade->tags.AddTag("Fade");								// タグ付け
+		fade->layer = 2;										// レイヤーを設定
 
 		// Stage6のCSV読み込み
 
@@ -222,6 +276,15 @@ void GameScene::Init(int _num)
 		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
 		bg->layer = -1;
 
+		// フェードイン・フェードアウト用
+		auto fade = Object::Create<Quad>();
+		fade->SetTex("asset/Texture/Fade_Black.png",			// 画像読み込み
+			1, 1, 0, 0, 1.0f, 1.0f, 1.0f, 1.0f);
+		fade->SetPos(0.0f, 0.0f, 0.0f);							// 座標設定
+		fade->SetScale(1920.0f, 1080.0f, 0.0f);					// 大きさを設定
+		fade->tags.AddTag("Fade");								// タグ付け
+		fade->layer = 2;										// レイヤーを設定
+
 		// Stage7のCSV読み込み
 
 		// コイン獲得数オブジェクトの作成
@@ -253,6 +316,15 @@ void GameScene::Init(int _num)
 		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
 		bg->layer = -1;
 
+		// フェードイン・フェードアウト用
+		auto fade = Object::Create<Quad>();
+		fade->SetTex("asset/Texture/Fade_Black.png",			// 画像読み込み
+			1, 1, 0, 0, 1.0f, 1.0f, 1.0f, 1.0f);
+		fade->SetPos(0.0f, 0.0f, 0.0f);							// 座標設定
+		fade->SetScale(1920.0f, 1080.0f, 0.0f);					// 大きさを設定
+		fade->tags.AddTag("Fade");								// タグ付け
+		fade->layer = 2;										// レイヤーを設定
+
 		// Stage8のCSV読み込み
 
 		// コイン獲得数オブジェクトの作成
@@ -283,10 +355,17 @@ void GameScene::Init(int _num)
 
 void GameScene::Update()
 {
+	// フェードイン処理		(明るくなる)
+	Fade_In();		
+
 	// コイン獲得数UIの各桁更新処理
 	CoinCounter();
 	// コイン獲得数UIの各桁更新処理
 	FallIsPlayer();
+	if (fadeOut_Start == true)
+	{
+		Fade_Out();	// フェードアウト処理	(暗くなる)
+	}
 	
 	auto objects = objectInstance;
 	for (auto& obj : objects)
@@ -330,7 +409,49 @@ void GameScene::FallIsPlayer()
 	{
 		if (GROUND_OFFSET_Y > player->GetPos().y + 120.0f)
 		{
-			SceneManager::ChangeScene(GAMEOVER);
+			fadeOut_Start = true;
+			
+		}
+	}
+	if (fadeOut_End == true)
+	{
+		SceneManager::ChangeScene(GAMEOVER);
+	}
+}
+
+
+// フェードイン処理		(明るくなる)
+void GameScene::Fade_In()
+{
+	auto Fade = GetInstance()->GetObjects<Quad>();
+	for (auto& fade : Fade)
+	{
+		if (fade->tags.SearchTag("Fade"))
+		{
+			if (fade->GetColor().w >= 0.0f)
+			{
+				fade->SetColor(1.0f, 1.0f, 1.0f, fade->GetColor().w - 0.01f);
+			}
+		}
+	}
+}
+
+// フェードアウト処理	(暗くなる)
+void GameScene::Fade_Out()
+{
+	auto Fade = GetInstance()->GetObjects<Quad>();
+	for (auto& fade : Fade)
+	{
+		if (fade->tags.SearchTag("Fade"))
+		{
+			if (fade->GetColor().w <= 1.0f)
+			{
+				fade->SetColor(1.0f, 1.0f, 1.0f, fade->GetColor().w + 0.05f);
+			}
+			else
+			{
+				fadeOut_End = true;
+			}
 		}
 	}
 }

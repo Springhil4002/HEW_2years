@@ -14,6 +14,7 @@ void TitleScene::Init()
 	auto gameStart		= Object::Create<Quad>();			// ゲームスタートのアイコン
 	auto playOperate	= Object::Create<Quad>();			// 遊び方のアイコン
 	auto frame			= Object::Create<Quad>();			// アイコンを囲むフレーム
+	auto fade			= Object::Create<Quad>();			// フェードイン・フェードアウト用
 				
 	bg->SetTex("asset/Texture/Title_bg.jpg");				// 画像読み込み
 	bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);			// 大きさを設定
@@ -29,18 +30,37 @@ void TitleScene::Init()
 
 	playOperate->SetTex("asset/Texture/How_to_play.png");	// 画像読み込み
 	playOperate->SetPos(0.0f, -400.0f, 0.0f);				// 座標を設定
-	playOperate ->SetScale(400.0f, 150.0f, 0.0f);			// 大きさを設定
+	playOperate->SetScale(400.0f, 150.0f, 0.0f);			// 大きさを設定
 
 	frame->SetTex("asset/Texture/Frame.png");				// 画像読み込み
 	frame->SetPos(0.0f, -200.0f, 0.0f);						// 座標を設定
 	frame->SetScale(600.0f, 200.0f, 0.0f);					// 大きさを設定
 	frame->tags.AddTag("frame");							// タグ付け
+
+	fade->SetTex("asset/Texture/Fade_Black.png",			// 画像読み込み
+			1,1,0,0,	1.0f,1.0f,1.0f,1.0f);								
+	fade->SetPos(0.0f, 0.0f, 0.0f);							// 座標設定
+	fade->SetScale(1920.0f, 1080.0f, 0.0f);					// 大きさを設定
+	fade->tags.AddTag("Fade");								// タグ付け
+	fade->layer = 2;										// レイヤーを設定
 }
 
 void TitleScene::Update()
 {
-	Frame_Input();
-	Frame_Move();
+	Fade_In();		// フェードイン処理		(明るくなる)
+	
+	Frame_Input();	// フレーム移動入力処理
+	Frame_Move();	// フレームの移動処理
+	if (fadeOut_Start == true)
+	{
+		Fade_Out();	// フェードアウト処理	(暗くなる)
+	}
+
+	auto objects = objectInstance;
+	for (auto& obj : objects)
+	{
+		obj->Update();
+	}
 }
 
 // フレーム移動入力処理
@@ -87,9 +107,14 @@ void TitleScene::Frame_Move()
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_A))
 		{
+			fadeOut_Start = true;
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE001);	// 決定音
+		}
+		// 暗くなりきると遷移する
+		if (fadeOut_End == true)
+		{
 			//現在のシーンを「HomeScene」に切り替える
-			SceneManager::ChangeScene(HOME_1,1);
+			SceneManager::ChangeScene(HOME_1, 1);
 		}
 		break; }
 	case 2: {
@@ -106,12 +131,53 @@ void TitleScene::Frame_Move()
 		if (input.GetKeyTrigger(VK_RETURN) ||
 			input.GetButtonTrigger(XINPUT_A))
 		{
+			fadeOut_Start = true;
 			SceneManager::m_SoundManager.Play(SOUND_LABEL_SE002);	// 決定音
+		}
+		// 暗くなりきると遷移する
+		if (fadeOut_End == true)
+		{
 			//現在のシーンを「PlayOperateScene」に切り替える
 			SceneManager::ChangeScene(PLAYOPERATE);
 		}
 		break; }
 	default:
 		break;
+	}
+}
+
+// フェードイン処理		(明るくなる)
+void TitleScene::Fade_In()
+{
+	auto Fade = GetInstance()->GetObjects<Quad>();
+	for (auto& fade : Fade)
+	{
+		if (fade->tags.SearchTag("Fade"))
+		{
+			if (fade->GetColor().w >= 0.0f)
+			{
+				fade->SetColor(1.0f, 1.0f, 1.0f, fade->GetColor().w - 0.01f);
+			}
+		}
+	}
+}
+
+// フェードアウト処理	(暗くなる)
+void TitleScene::Fade_Out()
+{
+	auto Fade = GetInstance()->GetObjects<Quad>();
+	for (auto& fade : Fade)
+	{
+		if (fade->tags.SearchTag("Fade"))
+		{
+			if (fade->GetColor().w <= 1.0f)
+			{
+				fade->SetColor(1.0f, 1.0f, 1.0f, fade->GetColor().w + 0.05f);
+			}
+			else
+			{
+				fadeOut_End = true;
+			}
+		}
 	}
 }
