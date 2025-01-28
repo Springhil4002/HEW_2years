@@ -45,7 +45,7 @@ void GameScene::Init(int _num)
 		fade->SetPos(0.0f, 0.0f, 0.0f);							// 座標設定
 		fade->SetScale(1920.0f, 1080.0f, 0.0f);					// 大きさを設定
 		fade->tags.AddTag("Fade");								// タグ付け
-		fade->layer = 2;										// レイヤーを設定
+		fade->layer = 10;										// レイヤーを設定
 
 		// Stage1のCSV読み込み
 		MapEditor::Load("Stage1.csv");
@@ -86,7 +86,7 @@ void GameScene::Init(int _num)
 		fade->SetPos(0.0f, 0.0f, 0.0f);							// 座標設定
 		fade->SetScale(1920.0f, 1080.0f, 0.0f);					// 大きさを設定
 		fade->tags.AddTag("Fade");								// タグ付け
-		fade->layer = 2;										// レイヤーを設定
+		fade->layer = 10;										// レイヤーを設定
 
 		// Stage2のCSV読み込み
 
@@ -126,7 +126,7 @@ void GameScene::Init(int _num)
 		fade->SetPos(0.0f, 0.0f, 0.0f);							// 座標設定
 		fade->SetScale(1920.0f, 1080.0f, 0.0f);					// 大きさを設定
 		fade->tags.AddTag("Fade");								// タグ付け
-		fade->layer = 2;										// レイヤーを設定
+		fade->layer = 10;										// レイヤーを設定
 		
 		// Stage3のCSV読み込み
 
@@ -166,7 +166,7 @@ void GameScene::Init(int _num)
 		fade->SetPos(0.0f, 0.0f, 0.0f);							// 座標設定
 		fade->SetScale(1920.0f, 1080.0f, 0.0f);					// 大きさを設定
 		fade->tags.AddTag("Fade");								// タグ付け
-		fade->layer = 2;										// レイヤーを設定
+		fade->layer = 10;										// レイヤーを設定
 
 		// Stage4のCSV読み込み
 
@@ -205,7 +205,7 @@ void GameScene::Init(int _num)
 		fade->SetPos(0.0f, 0.0f, 0.0f);							// 座標設定
 		fade->SetScale(1920.0f, 1080.0f, 0.0f);					// 大きさを設定
 		fade->tags.AddTag("Fade");								// タグ付け
-		fade->layer = 2;										// レイヤーを設定
+		fade->layer = 10;										// レイヤーを設定
 
 		// Stage5のCSV読み込み
 
@@ -245,7 +245,7 @@ void GameScene::Init(int _num)
 		fade->SetPos(0.0f, 0.0f, 0.0f);							// 座標設定
 		fade->SetScale(1920.0f, 1080.0f, 0.0f);					// 大きさを設定
 		fade->tags.AddTag("Fade");								// タグ付け
-		fade->layer = 2;										// レイヤーを設定
+		fade->layer = 10;										// レイヤーを設定
 
 		// Stage6のCSV読み込み
 
@@ -285,7 +285,7 @@ void GameScene::Init(int _num)
 		fade->SetPos(0.0f, 0.0f, 0.0f);							// 座標設定
 		fade->SetScale(1920.0f, 1080.0f, 0.0f);					// 大きさを設定
 		fade->tags.AddTag("Fade");								// タグ付け
-		fade->layer = 2;										// レイヤーを設定
+		fade->layer = 10;										// レイヤーを設定
 
 		// Stage7のCSV読み込み
 
@@ -325,7 +325,7 @@ void GameScene::Init(int _num)
 		fade->SetPos(0.0f, 0.0f, 0.0f);							// 座標設定
 		fade->SetScale(1920.0f, 1080.0f, 0.0f);					// 大きさを設定
 		fade->tags.AddTag("Fade");								// タグ付け
-		fade->layer = 2;										// レイヤーを設定
+		fade->layer = 10;										// レイヤーを設定
 
 		// Stage8のCSV読み込み
 

@@ -29,7 +29,7 @@ void Player::Init()
 	SetTex("asset/Texture/Player_Animation.png",6,1,0,0);			// ƒvƒŒƒCƒ„[‚ğ‰Šú‰»
 	SetScale(BLOCK_SIZE, 2 * BLOCK_SIZE, 0.0f);				// ‘å‚«‚³‚ğİ’è
 	tags.AddTag("Player");
-	layer = 10;				
+	layer = 3;				
 	m_Acceleration.y = -gravity;
 }
 

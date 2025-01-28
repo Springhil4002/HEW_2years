@@ -235,7 +235,15 @@ void ResultScene::ClearDraw()
 	{
 		// バンドを引ききったら
 		if ((int)(bandPullLevel->GetPullLevel() / -60.0f) >= tipCount)
-		{
+		{				
+			auto bandTips = GetInstance()->GetObjects<BandTip>();
+			for (auto* bandTip : bandTips)
+			{
+				bandTip->SetVelo(0.0f, 0.0f, 0.0f);
+			}
+			// プレイヤー停止
+			movePlayerFlag = false;
+			
 			// CLEARロゴの拡大描画中なら
 			if (drawFlag == true)
 			{
@@ -371,8 +379,8 @@ void ResultScene::UI_Draw()
 		frame->tags.AddTag("frame");								// タグ付け
 		frame->layer = 1;											// レイヤーを設定
 
-		layerFlag = true;											// レイヤー描画完了
-		movePlayerFlag = false;										// プレイヤー停止
+		// レイヤー描画完了
+		layerFlag = true;											
 	}
 }
 
