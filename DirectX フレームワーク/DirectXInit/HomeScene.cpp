@@ -125,7 +125,7 @@ void HomeScene::Init(int _num)
 
 		backTitle->SetTex("asset/Texture/BackTitle.png");			// ‰æ‘œ“Ç‚İ‚İ
 		backTitle->SetPos(-900.0f, 480.0f, 0.0f);					// À•W‚ğİ’è
-		backTitle->SetScale(100.0f, 80.0f, 0.0f);					// ‘å‚«‚³‚ğİ’è
+		backTitle->SetScale(100.0f, 100.0f, 0.0f);					// ‘å‚«‚³‚ğİ’è
 		break; }
 	default: {
 		break; }

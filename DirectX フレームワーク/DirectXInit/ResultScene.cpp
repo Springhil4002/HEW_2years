@@ -23,7 +23,7 @@ void ResultScene::Init(int _num)
 
 	// 背景オブジェクトの作成
 	auto bg = Object::Create<Quad>();
-	bg->SetTex("asset/Texture/Night.jpg");
+	bg->SetTex("asset/Texture/Night_Loom.jpg");
 	bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
 	bg->layer = -1;
 
@@ -59,7 +59,7 @@ void ResultScene::Init(int _num)
 	// 結束バンドオブジェクトの作成
 	auto band = Object::Create<Band>();
 	band->SetTex("asset/Texture/Band_Block.png");
-	band->SetPos(30.0f, -420.0f, 0.0f);
+	band->SetPos(30.0f, -450.0f, 0.0f);
 	band->SetScale(BLOCK_SIZE, BLOCK_SIZE, 0.0f);
 	band->layer = 1;
 	band->SetLength(tipCount+1);
@@ -349,7 +349,7 @@ void ResultScene::UI_Draw()
 		//「タイトルに戻る」のオブジェクト作成
 		auto returnTitle = Object::Create<Quad>();
 		returnTitle->SetTex("asset/Texture/Return_toTitle.png");	// 画像読み込み
-		returnTitle->SetPos(450.0f, 0.0f, 0.0f);					// 座標を設定
+		returnTitle->SetPos(700.0f, 0.0f, 0.0f);					// 座標を設定
 		returnTitle->SetScale(420.0f, 150.0f, 0.0f);				// 大きさを設定
 		returnTitle->tags.AddTag("UI");								// タグ付け
 		returnTitle->layer = 1;										// レイヤーを設定
@@ -357,7 +357,7 @@ void ResultScene::UI_Draw()
 		//「ステージ選択に戻る」のオブジェクト作成
 		auto returnHome = Object::Create<Quad>();
 		returnHome->SetTex("asset/Texture/Return_toHome.png");		// 画像読み込み
-		returnHome->SetPos(450.0f, -150.0f, 0.0f);					// 座標を設定
+		returnHome->SetPos(700.0f, -150.0f, 0.0f);					// 座標を設定
 		returnHome->SetScale(420.0f, 150.0f, 0.0f);					// 大きさを設定
 		returnHome->tags.AddTag("UI");								// タグ付け
 		returnHome->layer = 1;										// レイヤーを設定
@@ -365,7 +365,7 @@ void ResultScene::UI_Draw()
 		//「リトライ」のオブジェクト作成
 		auto retryLogo = Object::Create<Quad>();
 		retryLogo->SetTex("asset/Texture/Retry.png");				// 画像読み込み
-		retryLogo->SetPos(450.0f, -300.0f, 0.0f);					// 座標を設定
+		retryLogo->SetPos(700.0f, -300.0f, 0.0f);					// 座標を設定
 		retryLogo->SetScale(420.0f, 150.0f, 0.0f);					// 大きさを設定
 		retryLogo->tags.AddTag("UI");								// タグ付け
 		retryLogo->layer = 1;										// レイヤーを設定
@@ -373,7 +373,7 @@ void ResultScene::UI_Draw()
 		// フレームオブジェクト作成
 		auto frame = Object::Create<Quad>();
 		frame->SetTex("asset/Texture/Frame.png");					// 画像読み込み
-		frame->SetPos(450.0f, 0.0f, 0.0f);							// 座標を設定
+		frame->SetPos(700.0f, 0.0f, 0.0f);							// 座標を設定
 		frame->SetScale(420.0f, 150.0f, 0.0f);						// 大きさを設定
 		frame->tags.AddTag("UI");									// タグ付け
 		frame->tags.AddTag("frame");								// タグ付け
@@ -430,7 +430,7 @@ void ResultScene::Frame_Move()
 		{
 			if (quad->tags.SearchTag("frame"))
 			{
-				quad->SetPos(450.0f, 0.0f, 0.0f);
+				quad->SetPos(700.0f, 0.0f, 0.0f);
 			}
 		}
 		// エンターキーorBボタンを押したら
@@ -452,7 +452,7 @@ void ResultScene::Frame_Move()
 		{
 			if (quad->tags.SearchTag("frame"))
 			{
-				quad->SetPos(450.0f, -150.0f, 0.0f);
+				quad->SetPos(700.0f, -150.0f, 0.0f);
 			}
 		}
 		// エンターキーorBボタンを押したら
@@ -474,7 +474,7 @@ void ResultScene::Frame_Move()
 		{
 			if (quad->tags.SearchTag("frame"))
 			{
-				quad->SetPos(450.0f, -300.0f, 0.0f);
+				quad->SetPos(700.0f, -300.0f, 0.0f);
 			}
 		}
 		// エンターキーorBボタンを押したら

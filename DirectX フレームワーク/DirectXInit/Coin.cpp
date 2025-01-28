@@ -4,7 +4,7 @@
 
 void Coin::Init()
 {
-	SetTex("asset/Texture/Coin.png");// プレイヤーを初期化
+	SetTex("asset/Texture/Band_Tip.png");// プレイヤーを初期化
 	SetScale(BLOCK_SIZE, BLOCK_SIZE, 0.0f);	// 大きさを設定
 	GameScene::SetAllBandTipCount(GameScene::GetAllBandTipCount() + 1);
 }

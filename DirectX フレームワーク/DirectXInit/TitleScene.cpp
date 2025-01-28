@@ -20,13 +20,13 @@ void TitleScene::Init()
 	bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);			// 大きさを設定
 	bg->layer = -1;											// レイヤー設定
 
-	titleLogo->SetTex("asset/Texture/Title_Logo.jpg");		// 画像読み込み
+	titleLogo->SetTex("asset/Texture/Title_Logo.png");		// 画像読み込み
 	titleLogo->SetPos(0.0f, 200.0f, 0.0f);					// 座標を設定
 	titleLogo->SetScale(1000.0f, 600.0f, 0.0f);				// 大きさを設定
 
 	gameStart->SetTex("asset/Texture/Start_Logo.png");		// 画像読み込み
 	gameStart->SetPos(0.0f, -200.0f, 0.0f);					// 座標を設定
-	gameStart->SetScale(600.0f, 200.0f, 0.0f);				// 大きさを設定
+	gameStart->SetScale(500.0f, 150.0f, 0.0f);				// 大きさを設定
 
 	playOperate->SetTex("asset/Texture/How_to_play.png");	// 画像読み込み
 	playOperate->SetPos(0.0f, -400.0f, 0.0f);				// 座標を設定
@@ -99,8 +99,8 @@ void TitleScene::Frame_Move()
 		{
 			if (quad->tags.SearchTag("frame"))
 			{
-				quad->SetPos(0.0f, -200.0f, 0.0f);				// 座標を設定
-				quad->SetScale(600.0f, 200.0f, 0.0f);			// 大きさを設定
+				quad->SetPos(0.0f, -210.0f, 0.0f);				// 座標を設定
+				quad->SetScale(520.0f, 200.0f, 0.0f);			// 大きさを設定
 			}
 		}
 		// エンターキーorBボタンを押したら
