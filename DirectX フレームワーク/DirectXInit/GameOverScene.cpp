@@ -17,10 +17,25 @@ void GameOverScene::Init()
 	auto returnHome					= Object::Create<Quad>();	//「ステージ選択に戻る」アイコン
 	auto retryLogo					= Object::Create<Quad>();	//「リトライ」アイコン
 	auto frame						= Object::Create<Quad>();	// アイコンを囲むフレーム
+	auto white_Logo1				= Object::Create<Quad>();	// ロゴ背景
+	auto white_Logo2				= Object::Create<Quad>();	// ロゴ背景
+	auto white_Logo3				= Object::Create<Quad>();	// ロゴ背景
 
-	bg->SetTex("asset/Texture/GameOver_bg.png");				// 画像読み込み
+	bg->SetTex("asset/Texture/GameOver_bg.jpg");				// 画像読み込み
 	bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);				// 大きさを設定
 	bg->layer = -1;												// レイヤーを設定
+
+	white_Logo1->SetTex("asset/Texture/White_Logo.png");		// 画像読み込み
+	white_Logo1->SetPos(-450.0f, -300.0f, 0.0f);				// 座標を設定
+	white_Logo1->SetScale(400.0f, 110.0f, 0.0f);				// 大きさを設定
+
+	white_Logo2->SetTex("asset/Texture/White_Logo.png");		// 画像読み込み
+	white_Logo2->SetPos(0.0f, -300.0f, 0.0f);					// 座標を設定
+	white_Logo2->SetScale(400.0f, 110.0f, 0.0f);				// 大きさを設定
+
+	white_Logo3->SetTex("asset/Texture/White_Logo.png");		// 画像読み込み
+	white_Logo3->SetPos(450.0f, -300.0f, 0.0f);					// 座標を設定
+	white_Logo3->SetScale(400.0f, 110.0f, 0.0f);				// 大きさを設定
 
 	// フェードイン・フェードアウト用
 	auto fade = Object::Create<Quad>();
@@ -29,7 +44,7 @@ void GameOverScene::Init()
 	fade->SetPos(0.0f, 0.0f, 0.0f);								// 座標設定
 	fade->SetScale(1920.0f, 1080.0f, 0.0f);						// 大きさを設定
 	fade->tags.AddTag("Fade");									// タグ付け
-	fade->layer = 2;											// レイヤーを設定
+	fade->layer = 5;											// レイヤーを設定
 
 	logo->SetTex("asset/Texture/GameOver.png");					// 画像読み込み
 	logo->SetPos(0.0f, 300.0f, 0.0f);							// 座標を設定
@@ -38,19 +53,23 @@ void GameOverScene::Init()
 	returnTitle->SetTex("asset/Texture/Return_toTitle.png");	// 画像読み込み
 	returnTitle->SetPos(-450.0f, -300.0f, 0.0f);				// 座標を設定
 	returnTitle->SetScale(420.0f, 150.0f, 0.0f);				// 大きさを設定
+	returnTitle->layer = 1;
 
 	returnHome->SetTex("asset/Texture/Return_toHome.png");		// 画像読み込み
 	returnHome->SetPos(0.0f, -300.0f, 0.0f);					// 座標を設定
 	returnHome->SetScale(420.0f, 150.0f, 0.0f);					// 大きさを設定
+	returnHome->layer = 1;
 
 	retryLogo->SetTex("asset/Texture/Retry.png");				// 画像読み込み
 	retryLogo->SetPos(450.0f, -300.0f, 0.0f);					// 座標を設定
 	retryLogo->SetScale(420.0f, 150.0f, 0.0f);					// 大きさを設定
+	retryLogo->layer = 1;
 
 	frame->SetTex("asset/Texture/Frame.png");					// 画像読み込み
 	frame->SetPos(-450.0f, -300.0f, 0.0f);						// 座標を設定
 	frame->SetScale(420.0f, 150.0f, 0.0f);						// 大きさを設定
 	frame->tags.AddTag("frame");								// タグ付け
+	frame->layer = 1;
 }
 // 更新処理
 void GameOverScene::Update()
