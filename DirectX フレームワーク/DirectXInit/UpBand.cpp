@@ -145,7 +145,7 @@ void UpBand::Update()
 	}
 
 	// ˆÊ’u–ß‚·
-	if (pullLevel > (L - 1) * BLOCK_SIZE || flg)
+	if (flg)
 	{
 		for (auto& obj : jagged)
 		{

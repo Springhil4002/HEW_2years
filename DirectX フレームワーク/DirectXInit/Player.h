@@ -34,6 +34,8 @@ private:
 	bool isGrabing;			// ˆø‚Á’£‚Á‚Ä‚é‚©‚Ìƒtƒ‰ƒO
 	bool isMoving;
 
+	Object* grabArea;
+
 	STATE state;
 	MOVESTATE groundState;
 	GRABSTATE grabState;

@@ -19,7 +19,9 @@ void MapEditor::Init()
 	cursor->SetPos(0.0f, 0.0f, 0.0f);
 	cursor->SetScale(60.0f, 60.0f, 0.0f);
 
-	Load("TEST3_STAGE2.csv");
+	Load("TEST5_STAGE2.csv");
+
+	//auto katen = Object::Create<Quad>();
 }
 
 void MapEditor::Update()

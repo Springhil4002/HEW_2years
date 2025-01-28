@@ -31,6 +31,9 @@ void Player::Init()
 	tags.AddTag("Player");
 	layer = 3;				
 	m_Acceleration.y = -gravity;
+
+	grabArea = Object::Create<Object>();
+	grabArea->SetScale(BLOCK_SIZE, BLOCK_SIZE, 0);
 }
 
 //===================================================================
@@ -102,9 +105,10 @@ void Player::State() {
 		Scene::input.GetRightTrigger()>=0.9 ) )
 	{
 		auto allBandTip = Scene::GetInstance()->GetObjects<BandTip>();
+		grabArea->SetPos(m_Position.x, m_Position.y - BLOCK_SIZE / 2, m_Position.z);
 		for (auto& bandTip : allBandTip)
 		{
-			if (Object::Collision(this, bandTip))
+			if (Object::Collision(grabArea, bandTip))
 			{
 				if (moveDirection == bandTip->MoveDirection())
 				{

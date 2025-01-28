@@ -76,11 +76,11 @@ void Band::Update()
 		{
 			if (tip->m_Position.x > 0)
 			{
-				tip->m_Position.x = -((int)(-tip->GetPos().x + 30) / 60 * 60 - 30);
+				tip->m_Position.x = (int)(tip->m_Position.x + 29.9f) / 60 * 60 + 30;
 			}
 			else
 			{
-				tip->m_Position.x = (int)(tip->GetPos().x + 30) / 60 * 60 - 30;
+				tip->m_Position.x = (int)(tip->m_Position.x + 30) / 60 * 60 - 30;
 			}
 			tip->SetVelo(0, 0, 0);
 		}
@@ -148,7 +148,7 @@ void Band::Update()
 		if (tip->m_Velocity.x < 0)
 		{
 			status = REVERSE;
-			dynamic_cast<Player*>(GameScene::player)->SetVelo(15, 10, 0);
+			dynamic_cast<Player*>(GameScene::player)->SetVelo(-15, 10, 0);
 		}
 	}
 
