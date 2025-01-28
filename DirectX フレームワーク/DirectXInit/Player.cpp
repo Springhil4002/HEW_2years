@@ -79,6 +79,7 @@ void Player::Uninit()
 	{
 		GameScene::player = nullptr;
 	}
+	Object::Delete(grabArea);
 }
 
 //===================================================================
@@ -105,7 +106,7 @@ void Player::State() {
 		Scene::input.GetRightTrigger()>=0.9 ) )
 	{
 		auto allBandTip = Scene::GetInstance()->GetObjects<BandTip>();
-		grabArea->SetPos(m_Position.x, m_Position.y - BLOCK_SIZE / 2, m_Position.z);
+		grabArea->SetPos(m_Position.x, m_Position.y - BLOCK_SIZE / 2.05f, m_Position.z);
 		for (auto& bandTip : allBandTip)
 		{
 			if (Object::Collision(grabArea, bandTip))

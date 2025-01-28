@@ -10,16 +10,9 @@ void UpBand::Init()
 	SetScale(60, 60, 0);
 
 	// æ’[‚Ì‰Šúİ’è
-	auto tipBuf = Object::Create<Quad>();
-	tipBuf->SetTex("asset/Texture/Band_Tip.png");
-	tipBuf->SetPos(m_Position.x, m_Position.y + 60, 0);
-	tipBuf->SetRotation(0, 0, -PIE / 2);
-	tipBuf->SetScale(BLOCK_SIZE, BLOCK_SIZE, 0.0f);
-	for (auto& tag : tags)
-	{
-		tipBuf->tags.AddTag(tag);
-	}
-	jagged.insert(tipBuf);
+	tip->SetTex("asset/Texture/Band_Tip.png");
+	tip->SetPos(m_Position.x, m_Position.y + BLOCK_SIZE, 0);
+	jagged.insert(tip);
 
 
 	for (int i = 0; i < L; i++)
@@ -33,11 +26,27 @@ void UpBand::Init()
 		jagged.insert(jaggedBuf);
 	}
 
-	SetObject(objectTag);
+	ResetObject();
+
+	oldPos = m_Position;
 }
 
 void UpBand::Update()
 {
+	auto d = m_Position - oldPos;
+	for (auto& obj : jagged)
+	{
+		auto temp = obj->GetPos();
+		obj->SetPos(temp.x + d.x, temp.y + d.y, 0);
+	}
+	for (auto& obj : objects)
+	{
+		auto temp = obj->GetPos();
+		obj->SetPos(temp.x + d.x, temp.y + d.y, 0);
+	}
+	oldPos = m_Position;
+
+	
 	bool moveFlg = false;
 	if (GameScene::player)
 	{
@@ -56,7 +65,7 @@ void UpBand::Update()
 			}
 		}
 	}
-
+	
 	if (moveFlg)
 	{
 		// ˆÊ’u‚Ì’²®
@@ -75,7 +84,8 @@ void UpBand::Update()
 		}
 
 	}
-	else
+	
+	if (!(Scene::input.GetKeyPress(VK_E) && Scene::input.GetKeyPress(VK_W)))
 	{
 		pullLevel = (int)(pullLevel + 30) / 60 * 60;
 		// ˆÊ’u‚Ì’²®
@@ -165,7 +175,7 @@ void UpBand::Update()
 
 void UpBand::Uninit()
 {
-	//Object::Delete(tip);
+	Object::Delete(tip);
 
 	auto bufJagged = jagged;
 	for (auto& obj : bufJagged)
@@ -173,6 +183,8 @@ void UpBand::Uninit()
 		Object::Delete(obj);
 		jagged.erase(obj);
 	}
+
+	//Object::Delete(delay);
 }
 
 void UpBand::Add(Object* _object)
@@ -211,10 +223,22 @@ void UpBand::SetLength(int _length)
 void UpBand::SetObject(std::string _tag)
 {
 	objectTag = _tag;
+	ResetObject();
+}
+
+void UpBand::ResetObject()
+{
+	for (auto& obj : SceneManager::ListCreate())
+	{
+		if (obj->tags.SearchTag(objectTag))
+		{			
+			Add(obj);
+		}
+	}
 	for (auto& obj : *Scene::GetInstance()->GetObjects())
 	{
-		if (obj->tags.SearchTag(_tag))
-		{
+		if (obj->tags.SearchTag(objectTag))
+		{			
 			Add(obj);
 		}
 	}
@@ -252,13 +276,12 @@ bool UpBand::SetData(std::vector<std::string> _data)
 
 		objectTag = _data[8 + stoi(_data[6])];
 
-		for (auto& obj : SceneManager::ListCreate())
-		{
-			if (obj->tags.SearchTag(objectTag))
-			{
-				Add(obj);
-			}
-		}
+		tip->SetRotation(0, 0, -PIE / 2);
+		tip->SetScale(BLOCK_SIZE, BLOCK_SIZE, 0.0f);
+		//for (auto& tag : tags)
+		//{
+		//	tip->tags.AddTag(tag);
+		//}
 
 		return true;
 	}

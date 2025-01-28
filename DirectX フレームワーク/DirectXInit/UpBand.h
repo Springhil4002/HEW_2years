@@ -8,17 +8,19 @@ class UpBand : public Entity
 private:
 	// 引かれるObject用のタグ
 	std::string objectTag;
+	Quad* tip;
 	// 引っ張れる部分のオブジェクト
 	std::set<Quad*> jagged;
 	// 引かれるObject達
 	std::set<Object*> objects;
 	// どんだけ引っ張ってるか度
 	float pullLevel;
+	DirectX::SimpleMath::Vector3 oldPos;
 public:
 	int L;
 
 	// コンストラクタ・デストラクタで先端の管理
-	UpBand() : L(4) {}
+	UpBand() : L(4) { tip = Object::Create<Quad>(); }
 	~UpBand() { }
 
 	void Init();
@@ -37,6 +39,7 @@ public:
 	}
 
 	void SetObject(std::string _tag);
+	void ResetObject();
 
 	std::vector<std::string> GetData() const;
 	bool SetData(std::vector<std::string> _data);

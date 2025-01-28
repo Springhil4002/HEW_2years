@@ -19,9 +19,27 @@ void MapEditor::Init()
 	cursor->SetPos(0.0f, 0.0f, 0.0f);
 	cursor->SetScale(60.0f, 60.0f, 0.0f);
 
-	//Load("TEST5_STAGE2.csv");
+	Load("TEST10_STAGE2.csv");
 
 	//auto katen = Object::Create<Quad>();
+	//katen->SetTex("asset/Texture/Band_Block.png");
+	//katen->SetPos(BLOCK_SIZE * 8.5f, BLOCK_SIZE * -1, 0.0f);
+	//katen->SetScale(BLOCK_SIZE * 5, BLOCK_SIZE * 4, 0.0f);
+	//katen->layer = -1;
+	//katen->tags.AddTag("BandD");
+
+	//for (auto& obj : SceneManager::ListCreate())
+	//{
+	//	if (dynamic_cast<Ground*>(obj) != nullptr || dynamic_cast<Band*>(obj) != nullptr || dynamic_cast<UpBand*>(obj) != nullptr)
+	//	{
+	//		if (Object::Collision(obj, katen))
+	//		{
+	//			obj->tags.AddTag("BandD");
+	//		}
+	//	}
+	//}
+
+	//Object::Delete(katen);
 }
 
 void MapEditor::Update()

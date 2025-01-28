@@ -61,4 +61,26 @@ public:
 		// 返すやつを返す
 		return ret;
 	}
+
+	// その型のオブジェクトを返すぜ
+	template<class T>
+	std::set<T*> GetObjects(std::set<Object*> _objects)
+	{
+		// 返すやつを入れる変数
+		std::set<T*> ret;
+
+		// 全オブジェクトから探そう
+		for (auto& obj : _objects)
+		{
+			// ダイナミックキャストして有るならretにいれる
+			T* buf = dynamic_cast<T*>(obj);
+			if (buf != nullptr)
+			{
+				ret.insert(buf);
+			}
+		}
+		// 返すやつを返す
+		return ret;
+	}
+
 };

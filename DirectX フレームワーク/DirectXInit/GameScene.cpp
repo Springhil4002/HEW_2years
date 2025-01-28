@@ -12,7 +12,7 @@
 
 //#include "iostream"
 
-Object* GameScene::player = nullptr;
+Player* GameScene::player = nullptr;
 
 int GameScene::bandTipCount = 0;			// bandTipの獲得数
 int GameScene::allBandTipCount = 0;			// bandTipの総数
@@ -36,7 +36,7 @@ void GameScene::Init(int _num)
 		auto bg = Object::Create<Quad>();
 		bg->SetTex("asset/Texture/Game_1.jpg");
 		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
-		bg->layer = -1;
+		bg->layer = -2;
 
 		// フェードイン・フェードアウト用
 		auto fade = Object::Create<Quad>();	

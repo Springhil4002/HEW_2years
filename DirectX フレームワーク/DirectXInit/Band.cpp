@@ -4,6 +4,11 @@
 #include "UpBand.h"
 #include "Player.h"
 
+Band::Band() : L(4)
+{
+	tip = Object::Create<BandTip>(); 
+}
+
 void Band::Init()
 {
 	delay = Object::Create<Delay>();
@@ -18,13 +23,6 @@ void Band::Init()
 	//tip->SetTex("asset/Texture/Band_Tip.png");
 	tip->SetPos(m_Position.x - BLOCK_SIZE * 2.0f, m_Position.y, 0);
 	oldPos = { m_Position.x - BLOCK_SIZE * 2.0f, m_Position.y, 0 };
-	tip->SetScale(BLOCK_SIZE, BLOCK_SIZE, 0.0f);
-	tip->moveDirection = moveDirection;
-	tip->band = this;
-	for (auto& tag : tags)
-	{
-		tip->tags.AddTag(tag);
-	}
 
 	for (int i = 0; i < L + 1; i++)
 	{
@@ -46,7 +44,7 @@ void Band::Init()
 		jagged.insert(buf);
 	}
 
-	SetObject(objectTag);
+	ResetObject();
 }
 
 void Band::Update()
@@ -60,32 +58,39 @@ void Band::Update()
 		obj->SetPos(temp.x, temp.y, temp.z);
 	}
 
-	for (auto& obj : objects)
+	if (status == DEFAULT || status == REVERSE)
 	{
-		auto temp = obj->GetPos() + differencial;
-		obj->SetPos(temp.x, temp.y, temp.z);
+		for (auto& obj : objects)
+		{
+			auto temp = obj->GetPos() + differencial;
+			obj->SetPos(temp.x, temp.y, temp.z);
+		}
 	}
-
+	
 	oldPos = tip->GetPos();
 	pullLevel += differencial.x;
 	tip->SetPullLeveL(pullLevel);
-	
-	if (status == DEFAULT)
+
+	bool flg = false;
+	switch (status)
 	{
-		if (!tip->isGrabing)
+	case Band::DEFAULT:
+		if (GameScene::player)
 		{
-			if (tip->m_Position.x > 0)
+			if (GameScene::player->grabState == Player::DEFAULT)
 			{
-				tip->m_Position.x = (int)(tip->m_Position.x + 29.9f) / 60 * 60 + 30;
+				if (tip->m_Position.x > 0)
+				{
+					tip->m_Position.x = (int)(tip->m_Position.x + 29.9f) / 60 * 60 + 30;
+				}
+				else
+				{
+					tip->m_Position.x = (int)(tip->m_Position.x + 30) / 60 * 60 - 30;
+				}
+				tip->SetVelo(0, 0, 0);
 			}
-			else
-			{
-				tip->m_Position.x = (int)(tip->m_Position.x + 30) / 60 * 60 - 30;
-			}
-			tip->SetVelo(0, 0, 0);
 		}
 
-		bool flg = false;
 		for (auto& obj : objects)
 		{
 			if (dynamic_cast<Ground*>(obj) != nullptr || dynamic_cast<Band*>(obj) != nullptr || dynamic_cast<UpBand*>(obj) != nullptr)
@@ -122,14 +127,11 @@ void Band::Update()
 		if (flg)
 		{
 			status = STOP;
-			//tip->SetPos(m_Position.x - BLOCK_SIZE * L, m_Position.y, 0);
 			tip->SetVelo(0, 0, 0);
 			dynamic_cast<Player*>(GameScene::player)->SetVelo(-15, 10, 0);
 		}
-	}
-
-	if (status == STOP)
-	{
+		break;
+	case Band::STOP:
 		tip->SetVelo(0, 0, 0);
 		if (sendDelay == false)
 		{
@@ -141,26 +143,22 @@ void Band::Update()
 			status = LIMIT;
 			sendDelay = false;
 		}
-	}
-
-	if (status == LIMIT)
-	{
+		break;
+	case Band::LIMIT:
 		if (sendDelay == false)
 		{
-			delay->SetSignal(60);
+			delay->SetSignal(120);
 			sendDelay = true;
 		}
 		if (delay->GetSignal())
 		{
 			status = REVERSE;
-			//dynamic_cast<Player*>(GameScene::player)->SetVelo(-15, 10, 0);
 			sendDelay = false;
 		}
-	}
-
-	if (status == REVERSE)
-	{
-		tip->m_Position.x += 30;
+		break;
+	case Band::REVERSE:
+		tip->m_Position.x += 60;
+		break;
 	}
 
 	if (tip->m_Position.x + BLOCK_SIZE >= m_Position.x)
@@ -181,6 +179,8 @@ void Band::Uninit()
 		Object::Delete(obj);
 		jagged.erase(obj);
 	}
+
+	Object::Delete(delay);
 }
 
 void Band::Add(Object* _object)
@@ -202,7 +202,7 @@ void Band::SetLength(int _length)
 		jagged.erase(jag);
 	}
 
-	L = _length;
+	L = _length + 1;
 
 	tip->SetPos(m_Position.x - 60, m_Position.y, 0);
 	oldPos = { m_Position.x - 60, m_Position.y, 0 };
@@ -220,9 +220,21 @@ void Band::SetLength(int _length)
 void Band::SetObject(std::string _tag)
 {
 	objectTag = _tag;
+	ResetObject();
+}
+
+void Band::ResetObject()
+{
+	for (auto& obj : SceneManager::ListCreate())
+	{
+		if (obj->tags.SearchTag(objectTag))
+		{
+			Add(obj);
+		}
+	}
 	for (auto& obj : *Scene::GetInstance()->GetObjects())
 	{
-		if (obj->tags.SearchTag(_tag))
+		if (obj->tags.SearchTag(objectTag))
 		{
 			Add(obj);
 		}
@@ -262,13 +274,14 @@ bool Band::SetData(std::vector<std::string> _data)
 
 		objectTag = _data[8 + stoi(_data[6])];
 
-		for (auto& obj : SceneManager::ListCreate())
+		tip->SetScale(BLOCK_SIZE, BLOCK_SIZE, 0.0f);
+		tip->moveDirection = moveDirection;
+		tip->band = this;
+		for (auto& tag : tags)
 		{
-			if (obj->tags.SearchTag(objectTag))
-			{
-				Add(obj);
-			}
+			tip->tags.AddTag(tag);
 		}
+
 
 		return true;
 	}

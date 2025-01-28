@@ -38,7 +38,7 @@ public:
 	int L;
 	
 	// コンストラクタ・デストラクタで先端の管理
-	Band(): L(4) { tip = Object::Create<BandTip>(); }
+	Band();
 	~Band() {  }
 
 	void Init();
@@ -55,6 +55,7 @@ public:
 	{return pullLevel; }
 
 	void SetObject(std::string _tag);
+	void ResetObject();
 
 	std::vector<std::string> GetData() const;
 	bool SetData(std::vector<std::string> _data);

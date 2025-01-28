@@ -4,6 +4,7 @@
 #include "SceneManager.h"
 
 class Player : public Entity {
+	friend class Band;
 private:
 	enum STATE
 	{

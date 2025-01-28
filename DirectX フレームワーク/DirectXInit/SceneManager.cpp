@@ -27,7 +27,7 @@ void SceneManager::NewScene(int _num)
 
 	switch (nextScene) {
 	case SCENE::TITLE:
-		currentScene = new TitleScene();	/*MapEditor();*/
+		currentScene = new MapEditor();
 		break;
 	case SCENE::PLAYOPERATE:
 		currentScene = new PlayOperateScene();

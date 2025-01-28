@@ -1,5 +1,6 @@
 #pragma once
 #include "Scene.h"
+#include "Player.h"
 
 #define OBJECT_X_VALUE		(32)
 #define OBJECT_Y_VALUE		(18)
@@ -17,7 +18,7 @@ public:
 	bool fadeOut_Start = false;		// フェード開始フラグ
 	bool fadeOut_End = false;		// フェード終了フラグ
 	static int bandTipCount;		// bandTipの獲得数
-	static Object* player;
+	static Player* player;
 
 	GameScene(int _num)				//コンストラクタ
 	{ Init(_num); };	
