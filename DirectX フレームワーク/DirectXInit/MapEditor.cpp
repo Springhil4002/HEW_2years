@@ -19,7 +19,7 @@ void MapEditor::Init()
 	cursor->SetPos(0.0f, 0.0f, 0.0f);
 	cursor->SetScale(60.0f, 60.0f, 0.0f);
 
-	Load("TEST_STAGE2.csv");
+	Load("TEST3_STAGE2.csv");
 }
 
 void MapEditor::Update()
@@ -243,6 +243,7 @@ void MapEditor::Save(std::string _fileName_csv)
 	auto gnds = Scene::GetInstance()->GetObjects<Ground>();
 	auto gols = Scene::GetInstance()->GetObjects<Goal>();
 	auto bnds = Scene::GetInstance()->GetObjects<Band>();
+	auto ubds = Scene::GetInstance()->GetObjects<UpBand>();
 	auto plys = Scene::GetInstance()->GetObjects<Player>();
 	auto cons = Scene::GetInstance()->GetObjects<Coin>();
 
@@ -265,6 +266,10 @@ void MapEditor::Save(std::string _fileName_csv)
 	for (auto& bnd : bnds)
 	{
 		mapData.push_back(bnd->GetData());
+	}
+	for (auto& ubd : ubds)
+	{
+		mapData.push_back(ubd->GetData());
 	}
 
 	mapData.Save(_fileName_csv);
@@ -289,6 +294,10 @@ bool MapEditor::Load(std::string _fileName_csv)
 		else if (objData.front() == "Band")
 		{
 			object = Object::Create<Band>();
+		}
+		else if (objData.front() == "UpBand")
+		{
+			object = Object::Create<UpBand>();
 		}
 		else if (objData.front() == "Goal")
 		{

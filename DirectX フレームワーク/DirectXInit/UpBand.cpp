@@ -1,5 +1,7 @@
 #include "UpBand.h"
 #include "GameScene.h"
+#include "Ground.h"
+#include "Band.h"
 #define PIE (3.14159265)
 
 void UpBand::Init()
@@ -18,6 +20,7 @@ void UpBand::Init()
 		tipBuf->tags.AddTag(tag);
 	}
 	jagged.insert(tipBuf);
+
 
 	for (int i = 0; i < L; i++)
 	{
@@ -40,7 +43,7 @@ void UpBand::Update()
 	{
 		if (GameScene::player->GetPos().y > m_Position.y)
 		{
-			if (Scene::input.GetKeyPress(VK_W))
+			if (Scene::input.GetKeyPress(VK_E) && Scene::input.GetKeyPress(VK_W))
 			{
 				for (auto& jag : jagged)
 				{
@@ -57,7 +60,7 @@ void UpBand::Update()
 	if (moveFlg)
 	{
 		// 位置の調整
-		const float differencial = 0.8f;
+		const float differencial = 1.0f;
 		pullLevel += differencial;
 		for (auto& obj : jagged)
 		{
@@ -103,8 +106,46 @@ void UpBand::Update()
 		}
 	}
 
+	bool flg = false;
+	for (auto& obj : objects)
+	{
+		if (dynamic_cast<Ground*>(obj) != nullptr || dynamic_cast<Band*>(obj) != nullptr || dynamic_cast<UpBand*>(obj) != nullptr)
+		{
+			for (auto& col : Scene::GetInstance()->GetObjects<Ground>())
+			{
+				if (Object::Collision(obj, col))
+				{
+					flg = true;
+					break;
+				}
+			}
+			if (flg)
+				break;
+			for (auto& col : Scene::GetInstance()->GetObjects<Band>())
+			{
+				if (Object::Collision(obj, col))
+				{
+					flg = true;
+					break;
+				}
+			}
+			if (flg)
+				break;
+			for (auto& col : Scene::GetInstance()->GetObjects<UpBand>())
+			{
+				if (Object::Collision(obj, col))
+				{
+					flg = true;
+					break;
+				}
+			}
+			if (flg)
+				break;
+		}
+	}
+
 	// 位置戻す
-	if (pullLevel > (L - 1) * BLOCK_SIZE)
+	if (pullLevel > (L - 1) * BLOCK_SIZE || flg)
 	{
 		for (auto& obj : jagged)
 		{
@@ -184,7 +225,7 @@ std::vector<std::string> UpBand::GetData() const
 	std::vector<std::string> buf;
 
 	// オブジェクト名
-	buf.push_back("Band");
+	buf.push_back("UpBand");
 
 	// オブジェクトの基本情報
 	auto objData = Object::GetData();
@@ -201,7 +242,7 @@ std::vector<std::string> UpBand::GetData() const
 
 bool UpBand::SetData(std::vector<std::string> _data)
 {
-	if (_data.front() == "Band")
+	if (_data.front() == "UpBand")
 	{
 		std::vector<std::string> objBuf(7 + stoi(_data[6]));
 		std::copy(_data.begin() + 1, _data.begin() + 7 + stoi(_data[6]), objBuf.begin());

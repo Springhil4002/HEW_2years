@@ -1,6 +1,7 @@
 #include "Band.h"
 #include "GameScene.h"
 #include "Ground.h"
+#include "UpBand.h"
 #include "Player.h"
 
 void Band::Init()
@@ -14,9 +15,9 @@ void Band::Init()
 	SetScale(60, 60, 0);
 	
 	// æ’[‚Ì‰ŠúÝ’è
-	tip->SetTex("asset/Texture/Band_Tip.png");
-	tip->SetPos(m_Position.x - 60, m_Position.y, 0);
-	oldPos = { m_Position.x - 60, m_Position.y, 0 };
+	//tip->SetTex("asset/Texture/Band_Tip.png");
+	tip->SetPos(m_Position.x - BLOCK_SIZE * 2.0f, m_Position.y, 0);
+	oldPos = { m_Position.x - BLOCK_SIZE * 2.0f, m_Position.y, 0 };
 	tip->SetScale(BLOCK_SIZE, BLOCK_SIZE, 0.0f);
 	tip->moveDirection = moveDirection;
 	tip->band = this;
@@ -25,12 +26,22 @@ void Band::Init()
 		tip->tags.AddTag(tag);
 	}
 
-	for (int i = 0; i < L; i++)
+	for (int i = 0; i < L + 1; i++)
 	{
-		auto buf = Object::Create<Quad>();
-		buf->SetTex("asset/Texture/Band_meter.png");
-		buf->SetPos(m_Position.x + 60 * i, m_Position.y, 0);
-		buf->SetScale(60, 30, 0);
+		Quad* buf;
+		if (i == 0)
+		{
+			buf = Object::Create<Entity>();
+			buf->SetTex("asset/Texture/Band_Tip.png");
+			buf->SetScale(BLOCK_SIZE, BLOCK_SIZE, 0);
+		}
+		else
+		{
+			buf = Object::Create<Quad>();
+			buf->SetTex("asset/Texture/Band_meter.png");
+			buf->SetScale(BLOCK_SIZE, BLOCK_SIZE / 2, 0);
+		}
+		buf->SetPos(m_Position.x + 60 * (i - 1), m_Position.y, 0);
 		buf->layer = layer - 1;
 		jagged.insert(buf);
 	}
@@ -63,13 +74,13 @@ void Band::Update()
 	{
 		if (!tip->isGrabing)
 		{
-			if ((int)tip->GetPos().x > 0)
+			if (tip->m_Position.x > 0)
 			{
-				tip->SetPos((int)tip->GetPos().x / 60 * 60 + 30, tip->GetPos().y, 0);
+				tip->m_Position.x = -((int)(-tip->GetPos().x + 30) / 60 * 60 - 30);
 			}
 			else
 			{
-				tip->SetPos((int)tip->GetPos().x / 60 * 60 - 30, tip->GetPos().y, 0);
+				tip->m_Position.x = (int)(tip->GetPos().x + 30) / 60 * 60 - 30;
 			}
 			tip->SetVelo(0, 0, 0);
 		}
@@ -77,16 +88,35 @@ void Band::Update()
 		bool flg = false;
 		for (auto& obj : objects)
 		{
-			for (auto& col : Scene::GetInstance()->GetObjects<Ground>())
+			if (dynamic_cast<Ground*>(obj) != nullptr || dynamic_cast<Band*>(obj) != nullptr || dynamic_cast<UpBand*>(obj) != nullptr)
 			{
-				if (Object::Collision(obj, col))
+				for (auto& col : Scene::GetInstance()->GetObjects<Ground>())
 				{
-					flg = true;
-					break;
+					if (Object::Collision(obj, col))
+					{
+						flg = true;
+						break;
+					}
 				}
+				for (auto& col : Scene::GetInstance()->GetObjects<Band>())
+				{
+					if (Object::Collision(obj, col))
+					{
+						flg = true;
+						break;
+					}
+				}
+				for (auto& col : Scene::GetInstance()->GetObjects<UpBand>())
+				{
+					if (Object::Collision(obj, col))
+					{
+						flg = true;
+						break;
+					}
+				}
+				if (flg)
+					break;
 			}
-			if (flg)
-				break;
 		}
 
 		if (flg)
@@ -125,12 +155,13 @@ void Band::Update()
 	if (status == REVERSE)
 	{
 		tip->SetVelo(30, 0, 0);
-		if (tip->m_Position.x > m_Position.x)
-		{
-			tip->SetPos(m_Position.x - BLOCK_SIZE, m_Position.y, 0);
-			tip->SetVelo(0, 0, 0);
-			status = DEFAULT;
-		}
+	}
+
+	if (tip->m_Position.x + BLOCK_SIZE >= m_Position.x)
+	{
+		tip->SetPos(m_Position.x - BLOCK_SIZE * 2, m_Position.y, 0);
+		tip->SetVelo(0, 0, 0);
+		status = DEFAULT;
 	}
 }
 
