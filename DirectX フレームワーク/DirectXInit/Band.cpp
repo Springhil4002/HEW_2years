@@ -145,16 +145,22 @@ void Band::Update()
 
 	if (status == LIMIT)
 	{
-		if (tip->m_Velocity.x < 0)
+		if (sendDelay == false)
+		{
+			delay->SetSignal(60);
+			sendDelay = true;
+		}
+		if (delay->GetSignal())
 		{
 			status = REVERSE;
-			dynamic_cast<Player*>(GameScene::player)->SetVelo(-15, 10, 0);
+			//dynamic_cast<Player*>(GameScene::player)->SetVelo(-15, 10, 0);
+			sendDelay = false;
 		}
 	}
 
 	if (status == REVERSE)
 	{
-		tip->SetVelo(30, 0, 0);
+		tip->m_Position.x += 30;
 	}
 
 	if (tip->m_Position.x + BLOCK_SIZE >= m_Position.x)

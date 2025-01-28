@@ -3,7 +3,7 @@
 
 void BandTip::Update()
 {
-	if (band->status != Band::STOP)
+	if (band->status == Band::DEFAULT)
 	{
 		Physic::Update();
 	}
