@@ -129,6 +129,7 @@ void GameScene::Init(int _num)
 		fade->tags.AddTag("Fade");								// タグ付け
 		fade->layer = 10;										// レイヤーを設定
 		
+		// Stage3のCSV読み込み
 		MapEditor::Load("Stage3.csv");
 
 		// コイン獲得数オブジェクトの作成
