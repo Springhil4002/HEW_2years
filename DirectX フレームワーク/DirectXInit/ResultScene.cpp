@@ -62,7 +62,7 @@ void ResultScene::Init(int _num)
 	band->SetPos(30.0f, -450.0f, 0.0f);
 	band->SetScale(BLOCK_SIZE, BLOCK_SIZE, 0.0f);
 	band->layer = 1;
-	band->SetLength(tipCount+1);
+	band->SetLength(tipCount);
 
 	// コイン獲得数オブジェクトの作成
 	auto coinNum1 = Object::Create<CoinNum>();
