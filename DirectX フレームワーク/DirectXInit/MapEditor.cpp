@@ -19,7 +19,7 @@ void MapEditor::Init()
 	cursor->SetPos(0.0f, 0.0f, 0.0f);
 	cursor->SetScale(60.0f, 60.0f, 0.0f);
 
-	Load("TEST10_STAGE2.csv");
+	//Load("TEST10_STAGE2.csv");
 
 	//auto katen = Object::Create<Quad>();
 	//katen->SetTex("asset/Texture/Band_Block.png");
