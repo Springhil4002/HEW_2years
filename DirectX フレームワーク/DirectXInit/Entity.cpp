@@ -28,13 +28,6 @@ void Entity::Update()
 				m_Position.x -= m_Velocity.x / 8;
 				cnt++;
 			}
-
-			if (cnt == 8)
-			{
-				float buf = m_Position.x - sub->GetPos().x;
-				m_Position.x += BLOCK_SIZE / buf + 1;
-				break;
-			}
 		}
 
 		cnt = 0;
@@ -46,13 +39,6 @@ void Entity::Update()
 				// 8‰ñ‚Ü‚Å–ß‚é
 				m_Position.y -= m_Velocity.y / 8;
 				cnt++;
-			}
-
-			if (cnt == 8)
-			{
-				float buf = m_Position.y - sub->GetPos().y;
-				m_Position.y += BLOCK_SIZE / buf;
-				break;
 			}
 		}
 

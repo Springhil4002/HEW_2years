@@ -49,6 +49,15 @@ void Player::Update()
 	Jump();		// ’µ–ôˆ—
 	Resist();	// ’ïRˆ—
 	Entity::Update();	// Õ“Ëˆ—
+	for (auto& obj : Scene::GetInstance()->GetObjects<Entity>())
+	{
+		if (Object::Collision(obj, this))
+		{
+			float xBuf = m_Position.x - obj->GetPos().x;
+			m_Position.x += BLOCK_SIZE / xBuf;
+			m_Position.y += BLOCK_SIZE / 2;
+		}
+	}
 
 	auto allQuad = Scene::GetInstance()->GetObjects<Quad>();
 	for (auto& x : allQuad)

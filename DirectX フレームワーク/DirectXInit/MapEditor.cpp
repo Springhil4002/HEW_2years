@@ -176,11 +176,15 @@ void MapEditor::Update()
 				auto band = Object::Create<Band>();
 				band->SetPos(x, y, 0);
 
+				std::cout << "バンド名を入力してください" << std::endl;
 				std::string bufStr;
 				std::cin >> bufStr;
 				band->SetObject(bufStr);
+				std::cout << "バンド名「" +bufStr + "」を保存しました" << std::endl;
+				std::cout << "バンドの長さを入力してください" << std::endl;
 				std::cin >> bufStr;
 				band->SetLength(stoi(bufStr));
+				std::cout << "バンドの長さを" + bufStr + "マスで保存しました" << std::endl;
 			}
 			break;
 			case UPBAND:
@@ -188,11 +192,15 @@ void MapEditor::Update()
 				auto upBand = Object::Create<UpBand>();
 				upBand->SetPos(x, y, 0);
 
+				std::cout << "バンド名を入力してください" << std::endl;
 				std::string bufStr;
 				std::cin >> bufStr;
+				std::cout << "バンド名「" + bufStr + "」を保存しました" << std::endl;
+				std::cout << "バンドの長さを入力してください" << std::endl;
 				upBand->SetObject(bufStr);
 				std::cin >> bufStr;
 				upBand->L = stoi(bufStr);
+				std::cout << "バンドの長さを" + bufStr + "マスで保存しました" << std::endl;
 			}
 			break;
 			case GOAL:
@@ -220,9 +228,11 @@ void MapEditor::Update()
 		{
 			if (Object::Collision(obj, cursor))
 			{
+				std::cout << "タグ名を入力してください" << std::endl;
 				std::string bufTag;
 				std::cin >> bufTag;
 				obj->tags.AddTag(bufTag);
+				std::cout << "タグ「" + bufTag + "」を保存しました" << std::endl;
 				break;
 			}
 		}
@@ -234,6 +244,7 @@ void MapEditor::Update()
 		std::string bufName;
 		std::cin >> bufName;
 		Save(bufName);
+		std::cout << "ファイル名「" + bufName + "」をセーブしました" << std::endl;
 	}
 
 	if (input.GetKeyPress(VK_CONTROL) && input.GetKeyTrigger(VK_L))
@@ -242,6 +253,7 @@ void MapEditor::Update()
 		std::string bufName;
 		std::cin >> bufName;
 		Load(bufName);
+		std::cout << "ファイル名「" + bufName + "」をロードしました" << std::endl;
 	}
 
 	//if (input.GetKeyTrigger(VK_P))

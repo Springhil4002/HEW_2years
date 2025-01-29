@@ -52,7 +52,7 @@ void UpBand::Update()
 	{
 		if (GameScene::player->GetPos().y > m_Position.y)
 		{
-			if (Scene::input.GetKeyPress(VK_E) && Scene::input.GetKeyPress(VK_W))
+			if (Scene::input.GetKeyPress(VK_E))
 			{
 				for (auto& jag : jagged)
 				{
@@ -85,7 +85,7 @@ void UpBand::Update()
 
 	}
 	
-	if (!(Scene::input.GetKeyPress(VK_E) && Scene::input.GetKeyPress(VK_W)))
+	if (!(Scene::input.GetKeyPress(VK_E)))
 	{
 		pullLevel = (int)(pullLevel + 30) / 60 * 60;
 		// ˆÊ’u‚Ì’²®
