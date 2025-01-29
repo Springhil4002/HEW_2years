@@ -32,21 +32,7 @@ void UpBand::Init()
 }
 
 void UpBand::Update()
-{
-	auto d = m_Position - oldPos;
-	for (auto& obj : jagged)
-	{
-		auto temp = obj->GetPos();
-		obj->SetPos(temp.x + d.x, temp.y + d.y, 0);
-	}
-	for (auto& obj : objects)
-	{
-		auto temp = obj->GetPos();
-		obj->SetPos(temp.x + d.x, temp.y + d.y, 0);
-	}
-	oldPos = m_Position;
-
-	
+{	
 	bool moveFlg = false;
 	if (GameScene::player)
 	{
@@ -68,6 +54,19 @@ void UpBand::Update()
 	
 	if (moveFlg)
 	{
+		auto d = m_Position - oldPos;
+		for (auto& obj : jagged)
+		{
+			auto temp = obj->GetPos();
+			obj->SetPos(temp.x + d.x, temp.y + d.y, 0);
+		}
+		for (auto& obj : objects)
+		{
+			auto temp = obj->GetPos();
+			obj->SetPos(temp.x + d.x, temp.y + d.y, 0);
+		}
+		oldPos = m_Position;
+		
 		// И╩ТuВ╠Т▓Ро
 		const float differencial = 1.0f;
 		pullLevel += differencial;
