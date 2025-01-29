@@ -36,7 +36,7 @@ void GameScene::Init(int _num)
 		auto bg = Object::Create<Quad>();
 		bg->SetTex("asset/Texture/Game_1.jpg");
 		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
-		bg->layer = -2;
+		bg->layer = -5;
 
 		// フェードイン・フェードアウト用
 		auto fade = Object::Create<Quad>();	
@@ -77,7 +77,7 @@ void GameScene::Init(int _num)
 		auto bg = Object::Create<Quad>();
 		bg->SetTex("asset/Texture/Game_2.png");
 		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
-		bg->layer = -1;
+		bg->layer = -5;
 
 		// フェードイン・フェードアウト用
 		auto fade = Object::Create<Quad>();
@@ -118,7 +118,7 @@ void GameScene::Init(int _num)
 		auto bg = Object::Create<Quad>();
 		bg->SetTex("asset/Texture/Game_3.jpg");
 		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
-		bg->layer = -1;
+		bg->layer = -5;
 
 		// フェードイン・フェードアウト用
 		auto fade = Object::Create<Quad>();
@@ -129,7 +129,7 @@ void GameScene::Init(int _num)
 		fade->tags.AddTag("Fade");								// タグ付け
 		fade->layer = 10;										// レイヤーを設定
 		
-		// Stage3のCSV読み込み
+		MapEditor::Load("Stage3.csv");
 
 		// コイン獲得数オブジェクトの作成
 		auto coinNum1 = Object::Create<CoinNum>();
@@ -158,7 +158,7 @@ void GameScene::Init(int _num)
 		auto bg = Object::Create<Quad>();
 		bg->SetTex("asset/Texture/Game_4.png");
 		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
-		bg->layer = -1;
+		bg->layer = -5;
 
 		// フェードイン・フェードアウト用
 		auto fade = Object::Create<Quad>();
@@ -197,7 +197,7 @@ void GameScene::Init(int _num)
 		auto bg = Object::Create<Quad>();
 		bg->SetTex("asset/Texture/Game_5.jpg");
 		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
-		bg->layer = -1;
+		bg->layer = -5;
 		
 		// フェードイン・フェードアウト用
 		auto fade = Object::Create<Quad>();
@@ -237,7 +237,7 @@ void GameScene::Init(int _num)
 		auto bg = Object::Create<Quad>();
 		bg->SetTex("asset/Texture/Game_6.png");
 		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
-		bg->layer = -1;
+		bg->layer = -5;
 
 		// フェードイン・フェードアウト用
 		auto fade = Object::Create<Quad>();
@@ -277,7 +277,7 @@ void GameScene::Init(int _num)
 		auto bg = Object::Create<Quad>();
 		bg->SetTex("asset/Texture/Game_7.jpg");
 		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
-		bg->layer = -1;
+		bg->layer = -5;
 
 		// フェードイン・フェードアウト用
 		auto fade = Object::Create<Quad>();
@@ -317,7 +317,7 @@ void GameScene::Init(int _num)
 		auto bg = Object::Create<Quad>();
 		bg->SetTex("asset/Texture/Game_8.png");
 		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
-		bg->layer = -1;
+		bg->layer = -5;
 
 		// フェードイン・フェードアウト用
 		auto fade = Object::Create<Quad>();

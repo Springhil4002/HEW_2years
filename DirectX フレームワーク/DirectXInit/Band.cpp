@@ -7,6 +7,7 @@
 Band::Band() : L(4)
 {
 	tip = Object::Create<BandTip>(); 
+	tip->band = this;
 }
 
 void Band::Init()

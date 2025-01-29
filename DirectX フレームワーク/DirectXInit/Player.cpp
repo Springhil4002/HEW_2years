@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Ground.h"
 #include "Band.h"
+#include "UpBand.h"
 #include "Application.h"
 #include "GameScene.h"
 using namespace DirectX::SimpleMath;
@@ -34,6 +35,7 @@ void Player::Init()
 
 	grabArea = Object::Create<Object>();
 	grabArea->SetScale(BLOCK_SIZE, BLOCK_SIZE, 0);
+	state = ONGROUND;
 }
 
 //===================================================================
@@ -86,17 +88,17 @@ void Player::Uninit()
 // ƒvƒŒƒCƒ„[‚Ìó‘Ô‘JˆÚˆ—
 //===================================================================
 void Player::State() {
-	if (m_Velocity.y < -0.001f)
+	if (m_Velocity.y < -1)
 	{
 		state = FALLING;
 	}
 
-	if (m_Velocity.y > 0.001f)
+	if (m_Velocity.y > 1)
 	{
 		state = FLYING;
 	}
 
-	if (state == FALLING && -0.001f < m_Velocity.y && m_Velocity.y < 0.001f)
+	if (state == FALLING && -1 < m_Velocity.y && m_Velocity.y < 1)
 	{
 		state = ONGROUND;
 	}
