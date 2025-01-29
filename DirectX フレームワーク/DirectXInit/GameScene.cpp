@@ -66,10 +66,17 @@ void GameScene::Init(int _num)
 		coinNum100	->SetScale(50.0f, 100.0f, 0.0f);
 
 		// コイン獲得数オブジェクトのタグ付け
-		coinNum1	->tags.AddTag("一の位");
+		coinNum1	->tags.AddTag("一の位");	
 		coinNum10	->tags.AddTag("十の位");
 		coinNum100	->tags.AddTag("百の位");
 		
+		// リトライUI表示オブジェクト作成
+		auto retry = Object::Create<Quad>();
+		retry->SetTex("asset/Texture/Retry_UI.png");			// 画像読み込み
+		retry->SetPos(-900.0f, 480.0f, 0.0f);					// 座標設定
+		retry->SetScale(100.0f, 100.0f, 100.0f);				// 大きさを設定
+		retry->tags.AddTag("Retry");							// タグ付け
+
 		break; }
 	case 2: {
 
@@ -110,6 +117,13 @@ void GameScene::Init(int _num)
 		coinNum1->tags.AddTag("一の位");
 		coinNum10->tags.AddTag("十の位");
 		coinNum100->tags.AddTag("百の位");
+
+		// リトライUI表示オブジェクト作成
+		auto retry = Object::Create<Quad>();					// 画像読み込み
+		retry->SetTex("asset/Texture/Retry_UI.png");			// 画像読み込み
+		retry->SetPos(-900.0f, 480.0f, 0.0f);					// 座標設定
+		retry->SetScale(100.0f, 100.0f, 100.0f);				// 大きさを設定
+		retry->tags.AddTag("Retry");							// タグ付け
 
 		break; }
 	case 3: {
@@ -152,6 +166,13 @@ void GameScene::Init(int _num)
 		coinNum10->tags.AddTag("十の位");
 		coinNum100->tags.AddTag("百の位");
 
+		// リトライUI表示オブジェクト作成
+		auto retry = Object::Create<Quad>();					// 画像読み込み
+		retry->SetTex("asset/Texture/Retry_UI.png");			// 画像読み込み
+		retry->SetPos(-900.0f, 480.0f, 0.0f);					// 座標設定
+		retry->SetScale(100.0f, 100.0f, 100.0f);				// 大きさを設定
+		retry->tags.AddTag("Retry");							// タグ付け
+
 		break; }
 	case 4: {
 	
@@ -192,6 +213,14 @@ void GameScene::Init(int _num)
 		coinNum1->tags.AddTag("一の位");
 		coinNum10->tags.AddTag("十の位");
 		coinNum100->tags.AddTag("百の位");
+
+		// リトライUI表示オブジェクト作成
+		auto retry = Object::Create<Quad>();					// 画像読み込み
+		retry->SetTex("asset/Texture/Retry_UI.png");			// 画像読み込み
+		retry->SetPos(-900.0f, 480.0f, 0.0f);					// 座標設定
+		retry->SetScale(100.0f, 100.0f, 100.0f);				// 大きさを設定
+		retry->tags.AddTag("Retry");							// タグ付け
+
 		break; }
 	case 5: {
 		
@@ -211,6 +240,7 @@ void GameScene::Init(int _num)
 		fade->layer = 10;										// レイヤーを設定
 
 		// Stage5のCSV読み込み
+		MapEditor::Load("Stage5.csv");
 
 		// コイン獲得数オブジェクトの作成
 		auto coinNum1 = Object::Create<CoinNum>();
@@ -231,6 +261,13 @@ void GameScene::Init(int _num)
 		coinNum1->tags.AddTag("一の位");
 		coinNum10->tags.AddTag("十の位");
 		coinNum100->tags.AddTag("百の位");
+
+		// リトライUI表示オブジェクト作成
+		auto retry = Object::Create<Quad>();					// 画像読み込み
+		retry->SetTex("asset/Texture/Retry_UI.png");			// 画像読み込み
+		retry->SetPos(-900.0f, 480.0f, 0.0f);					// 座標設定
+		retry->SetScale(100.0f, 100.0f, 100.0f);				// 大きさを設定
+		retry->tags.AddTag("Retry");							// タグ付け
 
 		break; }
 	case 6: {
@@ -272,6 +309,13 @@ void GameScene::Init(int _num)
 		coinNum10->tags.AddTag("十の位");
 		coinNum100->tags.AddTag("百の位");
 
+		// リトライUI表示オブジェクト作成
+		auto retry = Object::Create<Quad>();					// 画像読み込み
+		retry->SetTex("asset/Texture/Retry_UI.png");			// 画像読み込み
+		retry->SetPos(-900.0f, 480.0f, 0.0f);					// 座標設定
+		retry->SetScale(100.0f, 100.0f, 100.0f);				// 大きさを設定
+		retry->tags.AddTag("Retry");							// タグ付け
+
 		break; }
 	case 7: {
 	
@@ -311,6 +355,13 @@ void GameScene::Init(int _num)
 		coinNum1->tags.AddTag("一の位");
 		coinNum10->tags.AddTag("十の位");
 		coinNum100->tags.AddTag("百の位");
+
+		// リトライUI表示オブジェクト作成
+		auto retry = Object::Create<Quad>();					// 画像読み込み
+		retry->SetTex("asset/Texture/Retry_UI.png");			// 画像読み込み
+		retry->SetPos(-900.0f, 480.0f, 0.0f);					// 座標設定
+		retry->SetScale(100.0f, 100.0f, 100.0f);				// 大きさを設定
+		retry->tags.AddTag("Retry");							// タグ付け
 
 		break; }
 	case 8: {
@@ -352,6 +403,13 @@ void GameScene::Init(int _num)
 		coinNum10->tags.AddTag("十の位");
 		coinNum100->tags.AddTag("百の位");
 
+		// リトライUI表示オブジェクト作成
+		auto retry = Object::Create<Quad>();					// 画像読み込み
+		retry->SetTex("asset/Texture/Retry_UI.png");			// 画像読み込み
+		retry->SetPos(-900.0f, 480.0f, 0.0f);					// 座標設定
+		retry->SetScale(100.0f, 100.0f, 100.0f);				// 大きさを設定
+		retry->tags.AddTag("Retry");							// タグ付け
+
 		break; }
 	default:
 		break;
@@ -366,6 +424,8 @@ void GameScene::Update()
 	CoinCounter();
 	// コイン獲得数UIの各桁更新処理
 	FallIsPlayer();
+	// ゲーム中のリトライ機能
+	RetryGame();
 	if (fadeOut_Start == true)
 	{
 		Fade_Out();	// フェードアウト処理	(暗くなる)
@@ -456,5 +516,16 @@ void GameScene::Fade_Out()
 				fadeOut_End = true;
 			}
 		}
+	}
+}
+
+// ゲーム中のリトライ機能
+void GameScene::RetryGame()
+{
+	if(input.GetKeyTrigger(VK_R)||
+	   input.GetButtonTrigger(XINPUT_START))
+	{
+		int stageNum = (int)(GameOverScene::isEndSceneNum - SCENE_ENUM_OFFSET);					
+		SceneManager::ChangeScene(GameOverScene::isEndSceneNum, stageNum);
 	}
 }

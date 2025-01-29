@@ -51,8 +51,11 @@ void UpBand::Update()
 	{
 		if (GameScene::player->GetPos().y > m_Position.y)
 		{
-			if (Scene::input.GetKeyPress(VK_E))
+			if (Scene::input.GetKeyPress(VK_E) ||
+			   (Scene::input.GetLeftTrigger() >= 0.9 &&
+				Scene::input.GetRightTrigger() >= 0.9))
 			{
+				SceneManager::m_SoundManager.Play(SOUND_LABEL_SE007);	// バンド引っ張る音
 				for (auto& jag : jagged)
 				{
 					if (Object::Collision(GameScene::player, jag))
@@ -74,6 +77,8 @@ void UpBand::Update()
 		{
 			auto temp = obj->GetPos();
 			obj->SetPos(temp.x, temp.y + differencial, temp.z);
+			// 第一引数:時間、第二引数:強さ
+			Scene::input.SetVibration(30, 10 * pullLevel);
 		}
 
 		for (auto& obj : objects)
@@ -84,7 +89,11 @@ void UpBand::Update()
 
 	}
 	
-	if (!(Scene::input.GetKeyPress(VK_E)))
+	if ((!(Scene::input.GetKeyPress(VK_E))) ||
+		 (Scene::input.GetLeftTrigger() <= 0.1 &&
+		  Scene::input.GetLeftTrigger() > 0) ||
+		(Scene::input.GetRightTrigger() <= 0.1 &&
+		  Scene::input.GetRightTrigger() > 0))
 	{
 		pullLevel = (int)(pullLevel + 30) / 60 * 60;
 		// 位置の調整

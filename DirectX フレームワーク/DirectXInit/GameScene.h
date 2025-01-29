@@ -27,6 +27,7 @@ public:
 	void Init(int _num);			// 基本的に初期化はこっち使う
 	void Fade_In();					// フェードイン処理		(明るくなる)
 	void Fade_Out();				// フェードアウト処理	(暗くなる)
+	void RetryGame();				// ゲーム中のリトライ機能
 
 	//オーバーライドした関数
 	void Init() {};					// 初期化処理関数
