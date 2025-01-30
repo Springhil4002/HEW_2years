@@ -384,6 +384,7 @@ void GameScene::Init(int _num)
 		fade->layer = 10;										// レイヤーを設定
 
 		// Stage8のCSV読み込み
+		MapEditor::Load("Stage8.csv");
 
 		// コイン獲得数オブジェクトの作成
 		auto coinNum1 = Object::Create<CoinNum>();
