@@ -143,12 +143,16 @@ void UpBand::Update()
 			pullLevel = 0;
 		}
 	}
-	
-
-	if ((!(Scene::input.GetKeyPress(VK_E))) &&
-		((Scene::input.GetLeftTrigger() <= 0.1 && Scene::input.GetLeftTrigger() >= 0) ||
-		(Scene::input.GetRightTrigger() <= 0.1 && Scene::input.GetRightTrigger() >= 0)))
+	else
 	{
+
+	//}
+	//
+
+	//if ((!(Scene::input.GetKeyPress(VK_E))) &&
+	//	((Scene::input.GetLeftTrigger() <= 0.1 && Scene::input.GetLeftTrigger() >= 0) ||
+	//	(Scene::input.GetRightTrigger() <= 0.1 && Scene::input.GetRightTrigger() >= 0)))
+	//{
 		pullLevel = (int)(pullLevel + 30) / 60 * 60;
 		// à íuÇÃí≤êÆ
 		for (auto& obj : jagged)
