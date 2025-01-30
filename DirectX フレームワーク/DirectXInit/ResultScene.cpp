@@ -46,7 +46,7 @@ void ResultScene::Init(int _num)
 	clear_Logo->SetPos(0.0f, 0.0f, 0.0f);
 	clear_Logo->SetScale(0.0f, 0.0f, 0.0f);
 	clear_Logo->tags.AddTag("CLEAR");
-	clear_Logo->layer = 1;
+	clear_Logo->layer = 3;
 
 	// 地面オブジェクトの作成
 	Ground* ground[SET_BLOCK];
@@ -350,7 +350,7 @@ void ResultScene::UI_Draw()
 		auto returnTitle = Object::Create<Quad>();
 		returnTitle->SetTex("asset/Texture/Return_toTitle.png");	// 画像読み込み
 		returnTitle->SetPos(700.0f, 0.0f, 0.0f);					// 座標を設定
-		returnTitle->SetScale(420.0f, 150.0f, 0.0f);				// 大きさを設定
+		returnTitle->SetScale(300.0f, 100.0f, 0.0f);				// 大きさを設定
 		returnTitle->tags.AddTag("UI");								// タグ付け
 		returnTitle->layer = 1;										// レイヤーを設定
 
@@ -358,7 +358,7 @@ void ResultScene::UI_Draw()
 		auto returnHome = Object::Create<Quad>();
 		returnHome->SetTex("asset/Texture/Return_toHome.png");		// 画像読み込み
 		returnHome->SetPos(700.0f, -150.0f, 0.0f);					// 座標を設定
-		returnHome->SetScale(420.0f, 150.0f, 0.0f);					// 大きさを設定
+		returnHome->SetScale(300.0f, 100.0f, 0.0f);					// 大きさを設定
 		returnHome->tags.AddTag("UI");								// タグ付け
 		returnHome->layer = 1;										// レイヤーを設定
 
@@ -366,7 +366,7 @@ void ResultScene::UI_Draw()
 		auto retryLogo = Object::Create<Quad>();
 		retryLogo->SetTex("asset/Texture/Retry.png");				// 画像読み込み
 		retryLogo->SetPos(700.0f, -300.0f, 0.0f);					// 座標を設定
-		retryLogo->SetScale(420.0f, 150.0f, 0.0f);					// 大きさを設定
+		retryLogo->SetScale(300.0f, 100.0f, 0.0f);					// 大きさを設定
 		retryLogo->tags.AddTag("UI");								// タグ付け
 		retryLogo->layer = 1;										// レイヤーを設定
 
@@ -374,10 +374,10 @@ void ResultScene::UI_Draw()
 		auto frame = Object::Create<Quad>();
 		frame->SetTex("asset/Texture/Frame.png");					// 画像読み込み
 		frame->SetPos(700.0f, 0.0f, 0.0f);							// 座標を設定
-		frame->SetScale(420.0f, 150.0f, 0.0f);						// 大きさを設定
+		frame->SetScale(400.0f, 130.0f, 0.0f);						// 大きさを設定
 		frame->tags.AddTag("UI");									// タグ付け
 		frame->tags.AddTag("frame");								// タグ付け
-		frame->layer = 1;											// レイヤーを設定
+		frame->layer = 2;											// レイヤーを設定
 
 		// レイヤー描画完了
 		layerFlag = true;											

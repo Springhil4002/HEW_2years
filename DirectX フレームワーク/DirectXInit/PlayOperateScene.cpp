@@ -10,7 +10,7 @@ void PlayOperateScene::Init()
 	auto frame			= Object::Create<Quad>();			// アイコンを囲むフレーム
 	auto fade			= Object::Create<Quad>();			// フェードイン・フェードアウト用
 
-	bg->SetTex("asset/Texture/PlayOperate_bg.jpg");			// 画像読み込み
+	bg->SetTex("asset/Texture/Bg.png");			// 画像読み込み
 	bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);			// 大きさを設定
 	bg->layer = -1;											// レイヤーを設定
 
@@ -20,11 +20,11 @@ void PlayOperateScene::Init()
 
 	close->SetTex("asset/Texture/Close.png");				// 画像読み込み
 	close->SetPos(0.0f, -400.0f, 0.0f);						// 座標を設定
-	close->SetScale(200.0f, 100.0f, 0.0f);					// 大きさを設定
+	close->SetScale(300.0f, 150.0f, 0.0f);					// 大きさを設定
 
 	frame->SetTex("asset/Texture/Frame.png");				// 画像読み込み
 	frame->SetPos(0.0f, -400.0f, 0.0f);						// 座標を設定
-	frame->SetScale(200.0f, 100.0f, 0.0f);					// 大きさを設定
+	frame->SetScale(300.0f, 150.0f, 0.0f);					// 大きさを設定
 	frame->tags.AddTag("frame");							// タグ付け
 
 	fade->SetTex("asset/Texture/Fade_Black.png",			// 画像読み込み

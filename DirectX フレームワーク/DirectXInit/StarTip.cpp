@@ -13,6 +13,7 @@ void StarTip::Update()
 
 	if (geting == true && seting == false) {
 		SetTex("asset/Texture/Band_StarTip.png");		// ‰æ‘œ“Ç‚İ‚İ
+		SetScale(BLOCK_SIZE * 4, BLOCK_SIZE * 4, 0.0f);	// ‘å‚«‚³‚ğİ’è
 		seting = true;
 	}
 }
