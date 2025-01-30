@@ -50,6 +50,7 @@ void Band::Init()
 
 void Band::Update()
 {
+	
 	// æ’[‚Ì·‚ÌŒvŽZ
 	DirectX::SimpleMath::Vector3 differencial = tip->GetPos() - oldPos;
 	// ˆÊ’u‚Ì’²®
@@ -80,48 +81,48 @@ void Band::Update()
 		{
 			if (GameScene::player->grabState == Player::DEFAULT)
 			{
-				if (tip->m_Position.x > 0)
+				tip->m_Position.x = (int)(tip->m_Position.x - 1230) / 60 * 60 + 1230;
+				for (auto& obj : objects)
 				{
-					tip->m_Position.x = (int)(tip->m_Position.x + 29.9f) / 60 * 60 + 30;
-				}
-				else
-				{
-					tip->m_Position.x = (int)(tip->m_Position.x + 30) / 60 * 60 - 30;
+					auto temp = obj->GetPos();
+					obj->SetPos((int)(temp.x - 1260) / 60 * 60 + 1230, temp.y, temp.z);
 				}
 				tip->SetVelo(0, 0, 0);
 			}
 		}
-
-		for (auto& obj : objects)
+		if (tip->isGrabing)
 		{
-			if (dynamic_cast<Ground*>(obj) != nullptr || dynamic_cast<Band*>(obj) != nullptr || dynamic_cast<UpBand*>(obj) != nullptr)
+			for (auto& obj : objects)
 			{
-				for (auto& col : Scene::GetInstance()->GetObjects<Ground>())
+				if (dynamic_cast<Ground*>(obj) != nullptr || dynamic_cast<Band*>(obj) != nullptr || dynamic_cast<UpBand*>(obj) != nullptr)
 				{
-					if (Object::Collision(obj, col))
+					for (auto& col : Scene::GetInstance()->GetObjects<Ground>())
 					{
-						flg = true;
-						break;
+						if (Object::Collision(obj, col))
+						{
+							flg = true;
+							break;
+						}
 					}
-				}
-				for (auto& col : Scene::GetInstance()->GetObjects<Band>())
-				{
-					if (Object::Collision(obj, col))
+					for (auto& col : Scene::GetInstance()->GetObjects<Band>())
 					{
-						flg = true;
-						break;
+						if (Object::Collision(obj, col))
+						{
+							flg = true;
+							break;
+						}
 					}
-				}
-				for (auto& col : Scene::GetInstance()->GetObjects<UpBand>())
-				{
-					if (Object::Collision(obj, col))
+					for (auto& col : Scene::GetInstance()->GetObjects<UpBand>())
 					{
-						flg = true;
-						break;
+						if (Object::Collision(obj, col))
+						{
+							flg = true;
+							break;
+						}
 					}
+					if (flg)
+						break;
 				}
-				if (flg)
-					break;
 			}
 		}
 
@@ -162,7 +163,7 @@ void Band::Update()
 		break;
 	}
 
-	if (tip->m_Position.x + BLOCK_SIZE >= m_Position.x)
+	if (tip->m_Position.x + BLOCK_SIZE * 1.5f >= m_Position.x)
 	{
 		tip->SetPos(m_Position.x - BLOCK_SIZE * 2, m_Position.y, 0);
 		tip->SetVelo(0, 0, 0);
@@ -240,6 +241,14 @@ void Band::ResetObject()
 			Add(obj);
 		}
 	}
+
+	//for (auto& tag : tags)
+	//{
+	//	for (auto& obj : objects)
+	//	{
+	//		obj->tags.AddTag(tag);
+	//	}
+	//}
 }
 
 std::vector<std::string> Band::GetData() const

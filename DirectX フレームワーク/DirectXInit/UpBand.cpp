@@ -32,20 +32,7 @@ void UpBand::Init()
 }
 
 void UpBand::Update()
-{	
-	auto d = m_Position - oldPos;
-	for (auto& obj : jagged)
-	{
-		auto temp = obj->GetPos();
-		obj->SetPos(temp.x + d.x, temp.y + d.y, 0);
-	}
-	for (auto& obj : objects)
-	{
-		auto temp = obj->GetPos();
-		obj->SetPos(temp.x + d.x, temp.y + d.y, 0);
-	}
-	oldPos = m_Position;
-
+{		
 	bool moveFlg = false;
 	if (GameScene::player)
 	{
@@ -68,6 +55,19 @@ void UpBand::Update()
 		}
 	}
 	
+	auto d = m_Position - oldPos;
+	for (auto& obj : jagged)
+	{
+		auto temp = obj->GetPos();
+		obj->SetPos(temp.x + d.x, temp.y + d.y, 0);
+	}
+
+	for (auto& obj : objects)
+	{
+		auto temp = obj->GetPos();
+		obj->SetPos(temp.x + d.x, temp.y + d.y, 0);
+	}
+
 	if (moveFlg)
 	{		
 		// ˆÊ’u‚Ì’²®
@@ -87,9 +87,64 @@ void UpBand::Update()
 			obj->SetPos(temp.x, temp.y + differencial, temp.z);
 		}
 
+		bool flg = false;
+		for (auto& obj : objects)
+		{
+			if (dynamic_cast<Ground*>(obj) != nullptr || dynamic_cast<Band*>(obj) != nullptr || dynamic_cast<UpBand*>(obj) != nullptr)
+			{
+				for (auto& col : Scene::GetInstance()->GetObjects<Ground>())
+				{
+					if (Object::Collision(obj, col))
+					{
+						flg = true;
+						break;
+					}
+				}
+				if (flg)
+					break;
+				for (auto& col : Scene::GetInstance()->GetObjects<Band>())
+				{
+					if (Object::Collision(obj, col))
+					{
+						flg = true;
+						break;
+					}
+				}
+				if (flg)
+					break;
+				for (auto& col : Scene::GetInstance()->GetObjects<UpBand>())
+				{
+					if (Object::Collision(obj, col))
+					{
+						flg = true;
+						break;
+					}
+				}
+				if (flg)
+					break;
+			}
+		}
+
+		// ˆÊ’u–ß‚·
+		if (flg)
+		{
+			for (auto& obj : jagged)
+			{
+				auto temp = obj->GetPos();
+				obj->SetPos(temp.x, temp.y - pullLevel, temp.z);
+			}
+
+			for (auto& obj : objects)
+			{
+				auto temp = obj->GetPos();
+				obj->SetPos(temp.x, temp.y - pullLevel, temp.z);
+			}
+
+			pullLevel = 0;
+		}
 	}
 	
-	if ((!(Scene::input.GetKeyPress(VK_E))) ||
+	if ((!(Scene::input.GetKeyPress(VK_E))) &&
 		 (Scene::input.GetLeftTrigger() <= 0.1 &&
 		  Scene::input.GetLeftTrigger() > 0) ||
 		(Scene::input.GetRightTrigger() <= 0.1 &&
@@ -100,85 +155,31 @@ void UpBand::Update()
 		for (auto& obj : jagged)
 		{
 			auto temp = obj->GetPos();
-			if (temp.y > 0)
+			if (temp.y < 0)
 			{
-				obj->SetPos(temp.x, (int)temp.y / 60 * 60 + 30, temp.z);
+				obj->SetPos(temp.x, (int)temp.y / 60 * 60 - 30, temp.z);
 			}
 			else
 			{
-				obj->SetPos(temp.x, (int)temp.y / 60 * 60 - 30, temp.z);
+				obj->SetPos(temp.x, (int)temp.y / 60 * 60 + 30, temp.z);
 			}
 		}
 
 		for (auto& obj : objects)
 		{
 			auto temp = obj->GetPos();
-			if (temp.y > 0)
-			{
-				obj->SetPos(temp.x, (int)temp.y / 60 * 60 + 30, temp.z);
-			}
-			else
+			if (temp.y < 0)
 			{
 				obj->SetPos(temp.x, (int)temp.y / 60 * 60 - 30, temp.z);
 			}
+			else
+			{
+				obj->SetPos(temp.x, (int)temp.y / 60 * 60 + 30, temp.z);
+			}
 		}
 	}
 
-	bool flg = false;
-	for (auto& obj : objects)
-	{
-		if (dynamic_cast<Ground*>(obj) != nullptr || dynamic_cast<Band*>(obj) != nullptr || dynamic_cast<UpBand*>(obj) != nullptr)
-		{
-			for (auto& col : Scene::GetInstance()->GetObjects<Ground>())
-			{
-				if (Object::Collision(obj, col))
-				{
-					flg = true;
-					break;
-				}
-			}
-			if (flg)
-				break;
-			for (auto& col : Scene::GetInstance()->GetObjects<Band>())
-			{
-				if (Object::Collision(obj, col))
-				{
-					flg = true;
-					break;
-				}
-			}
-			if (flg)
-				break;
-			for (auto& col : Scene::GetInstance()->GetObjects<UpBand>())
-			{
-				if (Object::Collision(obj, col))
-				{
-					flg = true;
-					break;
-				}
-			}
-			if (flg)
-				break;
-		}
-	}
-
-	// ˆÊ’u–ß‚·
-	if (flg)
-	{
-		for (auto& obj : jagged)
-		{
-			auto temp = obj->GetPos();
-			obj->SetPos(temp.x, temp.y - pullLevel, temp.z);
-		}
-
-		for (auto& obj : objects)
-		{
-			auto temp = obj->GetPos();
-			obj->SetPos(temp.x, temp.y - pullLevel, temp.z);
-		}
-
-		pullLevel = 0;
-	}
+	oldPos = m_Position;
 }
 
 void UpBand::Uninit()
@@ -191,8 +192,6 @@ void UpBand::Uninit()
 		Object::Delete(obj);
 		jagged.erase(obj);
 	}
-
-	//Object::Delete(delay);
 }
 
 void UpBand::Add(Object* _object)
@@ -251,16 +250,13 @@ void UpBand::ResetObject()
 		}
 	}
 
-	for (auto& tag : tags)
-	{
-		for (auto& obj : objects)
-		{
-			if (obj->tags.SearchTag(tag))
-			{
-				obj->tags.RemoveTag(tag);
-			}
-		}
-	}
+	//for (auto& tag : tags)
+	//{
+	//	for (auto& obj : objects)
+	//	{	
+	//		obj->tags.AddTag(tag);
+	//	}
+	//}
 }
 
 std::vector<std::string> UpBand::GetData() const
