@@ -16,7 +16,7 @@ void TitleScene::Init()
 	auto frame			= Object::Create<Quad>();			// アイコンを囲むフレーム
 	auto fade			= Object::Create<Quad>();			// フェードイン・フェードアウト用
 				
-	bg->SetTex("asset/Texture/Title_bg.jpg");				// 画像読み込み
+	bg->SetTex("asset/Texture/Title_bg.png");				// 画像読み込み
 	bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);			// 大きさを設定
 	bg->layer = -1;											// レイヤー設定
 
