@@ -144,11 +144,10 @@ void UpBand::Update()
 		}
 	}
 	
+
 	if ((!(Scene::input.GetKeyPress(VK_E))) &&
-		 (Scene::input.GetLeftTrigger() <= 0.1 &&
-		  Scene::input.GetLeftTrigger() > 0) ||
-		(Scene::input.GetRightTrigger() <= 0.1 &&
-		  Scene::input.GetRightTrigger() > 0))
+		((Scene::input.GetLeftTrigger() <= 0.1 && Scene::input.GetLeftTrigger() >= 0) ||
+		(Scene::input.GetRightTrigger() <= 0.1 && Scene::input.GetRightTrigger() >= 0)))
 	{
 		pullLevel = (int)(pullLevel + 30) / 60 * 60;
 		// И╩ТuВ╠Т▓Ро
