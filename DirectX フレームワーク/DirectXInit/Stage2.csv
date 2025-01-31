@@ -68,5 +68,5 @@ Player,Object,-870,238.099792,3,Tags,1,Player,,,
 Band,Object,270,-90,0,Tags,1,BandC,3,BandD,
 Band,Object,-510,-270,0,Tags,1,BandB,9,BandC,
 Band,Object,-570,210,0,Tags,0,3,BandA,,
-UpBand,Object,630,30,0,Tags,2,BandC,BandD,3,BandE
+UpBand,Object,630,30,0,Tags,1,BandD,3,BandE
 UpBand,Object,-510,-150,0,Tags,0,3,BandB,,

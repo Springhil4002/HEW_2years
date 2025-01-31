@@ -42,7 +42,6 @@ void UpBand::Update()
 			   (Scene::input.GetLeftTrigger() >= 0.9 &&
 				Scene::input.GetRightTrigger() >= 0.9))
 			{
-				SceneManager::m_SoundManager.Play(SOUND_LABEL_SE007);	// バンド引っ張る音
 				for (auto& jag : jagged)
 				{
 					if (Object::Collision(GameScene::player, jag))
@@ -70,6 +69,7 @@ void UpBand::Update()
 
 	if (moveFlg)
 	{		
+		SceneManager::m_SoundManager.Play(SOUND_LABEL_SE007);	// バンド引っ張る音
 		// 位置の調整
 		const float differencial = 1.0f;
 		pullLevel += differencial;
@@ -143,16 +143,10 @@ void UpBand::Update()
 			pullLevel = 0;
 		}
 	}
-	else
+	else if ((!(Scene::input.GetKeyPress(VK_E))) &&
+		((Scene::input.GetLeftTrigger() <= 0.1 && Scene::input.GetLeftTrigger() >= 0) ||
+		(Scene::input.GetRightTrigger() <= 0.1 && Scene::input.GetRightTrigger() >= 0)))
 	{
-
-	//}
-	//
-
-	//if ((!(Scene::input.GetKeyPress(VK_E))) &&
-	//	((Scene::input.GetLeftTrigger() <= 0.1 && Scene::input.GetLeftTrigger() >= 0) ||
-	//	(Scene::input.GetRightTrigger() <= 0.1 && Scene::input.GetRightTrigger() >= 0)))
-	//{
 		pullLevel = (int)(pullLevel + 30) / 60 * 60;
 		// 位置の調整
 		for (auto& obj : jagged)
