@@ -4,6 +4,7 @@
 #include "UpBand.h"
 #include "Application.h"
 #include "GameScene.h"
+
 using namespace DirectX::SimpleMath;
 
 #define GROUND_OFFSET_X (-930.0f)
