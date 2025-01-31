@@ -126,7 +126,7 @@ void Player::State() {
 				{
 					grabState = GRAB;
 					SceneManager::m_SoundManager.Play(SOUND_LABEL_SE006);	// ’Í‚Þ‰¹
-					if (m_Velocity.x > -0.01f && moveDirection == LEFT || m_Velocity.x < 0.01f && moveDirection == RIGHT)
+					if (m_Velocity.x > 0.1f && moveDirection == LEFT || m_Velocity.x < -0.1f && moveDirection == RIGHT)
 					{
 						bandTip->isGrabing = true;
 						bandTip->SetVelo(m_Velocity.x, 0, 0);
