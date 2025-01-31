@@ -14,9 +14,14 @@ class GameScene : public Scene
 private:
 	int gameSceneNum;				// GameScene(ステージ)の識別用番号
 	static int allBandTipCount;		// bandTipの総数
+	int countFadeIn = 0;			// フェードインカウント
+	int countFadeOut = 0;			// フェードアウトカウント
 public:
+	bool fade_In = true;			// フェードインフラグ
 	bool fadeOut_Start = false;		// フェード開始フラグ
 	bool fadeOut_End = false;		// フェード終了フラグ
+	bool fadeOut_Start_GameOver = false;	// フェードアウト開始(ゲームオーバー)
+	bool fadeOut_End_GameOver = false;		// フェードアウト終了(ゲームオーバー)
 	static int bandTipCount;		// bandTipの獲得数
 	static Player* player;
 
@@ -27,6 +32,7 @@ public:
 	void Init(int _num);			// 基本的に初期化はこっち使う
 	void Fade_In();					// フェードイン処理		(明るくなる)
 	void Fade_Out();				// フェードアウト処理	(暗くなる)
+	void Fade_Out_GameOver();		// フェードアウト(ゲームオーバー)
 	void RetryGame();				// ゲーム中のリトライ機能
 
 	//オーバーライドした関数

@@ -1,6 +1,7 @@
 #include "GameOverScene.h"
 #include "SceneManager.h"
 #include "Quad.h"
+#include "Application.h"
 
 SCENE GameOverScene::isEndSceneNum = GAME_1;
 
@@ -17,25 +18,10 @@ void GameOverScene::Init()
 	auto returnHome					= Object::Create<Quad>();	//「ステージ選択に戻る」アイコン
 	auto retryLogo					= Object::Create<Quad>();	//「リトライ」アイコン
 	auto frame						= Object::Create<Quad>();	// アイコンを囲むフレーム
-	auto white_Logo1				= Object::Create<Quad>();	// ロゴ背景
-	auto white_Logo2				= Object::Create<Quad>();	// ロゴ背景
-	auto white_Logo3				= Object::Create<Quad>();	// ロゴ背景
-
+	
 	bg->SetTex("asset/Texture/GameOver_bg.jpg");				// 画像読み込み
 	bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);				// 大きさを設定
 	bg->layer = -1;												// レイヤーを設定
-
-	white_Logo1->SetTex("asset/Texture/White_Logo.png");		// 画像読み込み
-	white_Logo1->SetPos(-450.0f, -300.0f, 0.0f);				// 座標を設定
-	white_Logo1->SetScale(300.0f, 100.0f, 0.0f);				// 大きさを設定
-
-	white_Logo2->SetTex("asset/Texture/White_Logo.png");		// 画像読み込み
-	white_Logo2->SetPos(0.0f, -300.0f, 0.0f);					// 座標を設定
-	white_Logo2->SetScale(300.0f, 100.0f, 0.0f);				// 大きさを設定
-
-	white_Logo3->SetTex("asset/Texture/White_Logo.png");		// 画像読み込み
-	white_Logo3->SetPos(450.0f, -300.0f, 0.0f);					// 座標を設定
-	white_Logo3->SetScale(300.0f, 100.0f, 0.0f);				// 大きさを設定
 
 	// フェードイン・フェードアウト用
 	auto fade = Object::Create<Quad>();
@@ -66,7 +52,7 @@ void GameOverScene::Init()
 	retryLogo->layer = 1;
 
 	frame->SetTex("asset/Texture/Frame.png");					// 画像読み込み
-	frame->SetPos(-450.0f, -300.0f, 0.0f);						// 座標を設定
+	frame->SetPos(450.0f, -300.0f, 0.0f);						// 座標を設定
 	frame->SetScale(400.0f, 150.0f, 0.0f);						// 大きさを設定
 	frame->tags.AddTag("frame");								// タグ付け
 	frame->layer = 1;
@@ -214,18 +200,52 @@ void GameOverScene::Fade_In()
 // フェードアウト処理	(暗くなる)
 void GameOverScene::Fade_Out()
 {
-	auto Fade = GetInstance()->GetObjects<Quad>();
-	for (auto& fade : Fade)
+	if (Application::GetFpsCounter() % 6 == 0)
 	{
-		if (fade->tags.SearchTag("Fade"))
+		countFadeOut += 1;
+		auto Fade = GetInstance()->GetObjects<Quad>();
+		for (auto& fade : Fade)
 		{
-			if (fade->GetColor().w <= 1.0f)
+			if (fade->tags.SearchTag("Fade"))
 			{
-				fade->SetColor(1.0f, 1.0f, 1.0f, fade->GetColor().w + 0.05f);
-			}
-			else
-			{
-				fadeOut_End = true;
+				fade->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
+				switch (countFadeOut)
+				{
+				case 1: {
+					fade->SetTex("asset/Texture/Fade/Fade_Out_1.png");	// 画像読み込み
+					break; }
+				case 2: {
+					fade->SetTex("asset/Texture/Fade/Fade_Out_2.png");	// 画像読み込み
+					break; }
+				case 3: {
+					fade->SetTex("asset/Texture/Fade/Fade_Out_3.png");	// 画像読み込み
+					break; }
+				case 4: {
+					fade->SetTex("asset/Texture/Fade/Fade_Out_4.png");	// 画像読み込み
+					break; }
+				case 5: {
+					fade->SetTex("asset/Texture/Fade/Fade_Out_5.png");	// 画像読み込み
+					break; }
+				case 6: {
+					fade->SetTex("asset/Texture/Fade/Fade_Out_6.png");	// 画像読み込み
+					break; }
+				case 7: {
+					fade->SetTex("asset/Texture/Fade/Fade_Out_7.png");	// 画像読み込み
+					break; }
+				case 8: {
+					fade->SetTex("asset/Texture/Fade/Fade_Out_8.png");	// 画像読み込み
+					break; }
+				case 9: {
+					fade->SetTex("asset/Texture/Fade/Fade_Out_9.png");	// 画像読み込み
+					break; }
+				case 10: {
+					fade->SetTex("asset/Texture/Fade/Fade_Out_10.png");	// 画像読み込み
+					break; }
+				default: {
+					fade->SetTex("asset/Texture/Fade.png");		// 画像読み込み
+					fadeOut_End = true;
+					break; }
+				}
 			}
 		}
 	}

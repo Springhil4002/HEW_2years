@@ -8,6 +8,7 @@ using namespace DirectX::SimpleMath;
 void Ground::Init()
 {
 	SetTex("asset/Texture/ground.png");
+	// SetTex("asset/Texture/Ground_Object.png");
 	// オブジェクトのサイズ設定
 	SetScale(60.0f, 60.0f, 0.0f);
 }

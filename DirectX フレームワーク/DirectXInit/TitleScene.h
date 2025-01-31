@@ -6,7 +6,10 @@ class TitleScene
 {
 private:
 	int frameNum = 1;				// frameの識別用番号
+	int countFadeIn = 0;			// フェードインカウント
+	int countFadeOut = 0;			// フェードアウトカウント
 public:
+	bool fade_In = false;			// フェードインフラグ
 	bool fadeOut_Start = false;		// フェード開始フラグ
 	bool fadeOut_End = false;		// フェード終了フラグ
 

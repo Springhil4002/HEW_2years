@@ -8,7 +8,8 @@ class GameOverScene
 	: public Scene
 {
 private:
-	int frameNum = 1;				// frameの識別用番号
+	int frameNum = 3;				// frameの識別用番号
+	int countFadeOut = 0;			// フェードアウトカウント
 public:
 	static SCENE isEndSceneNum;		// 最後に終わったGameSceneを入れる変数
 	bool fadeOut_Start = false;		// フェード開始フラグ

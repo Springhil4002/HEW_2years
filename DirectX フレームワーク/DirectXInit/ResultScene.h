@@ -13,6 +13,8 @@ private:
 	static int tipCount;			// bandTipの獲得数
 	static int meterCount;			// 引っぱったバンドカウント
 	int frameNum = 1;				// frameの識別用番号
+	int countFadeIn = 0;	// フェードインカウント
+	int countFadeOut = 0;	// フェードアウトカウント
 public:
 	bool drawFlag = true;			// CLEARロゴ描画フラグ
 	bool drawClearFlag = false;		// CLEARロゴ描画完了フラグ	
@@ -21,6 +23,7 @@ public:
 	bool layerFlag = false;			// UIレイヤーフラグ
 	bool movePlayerFlag = true;		// playerMoveフラグ
 
+	bool fade_In = true;			// フェードインフラグ
 	bool fadeOut_Start = false;		// フェード開始フラグ
 	bool fadeOut_End = false;		// フェード終了フラグ
 

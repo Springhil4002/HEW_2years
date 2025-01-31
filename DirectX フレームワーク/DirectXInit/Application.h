@@ -9,8 +9,10 @@
 
 class Player;
 class TitleScene;
+class PlayOperateScene;
 class HomeScene;
 class GameScene;
+class GameOverScene;
 class ResultScene;
 class Application
 {

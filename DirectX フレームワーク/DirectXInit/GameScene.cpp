@@ -9,6 +9,7 @@
 #include "CoinNum.h"
 #include "Goal.h"
 #include "MapEditor.h"
+#include "Application.h"
 
 //#include "iostream"
 
@@ -38,14 +39,22 @@ void GameScene::Init(int _num)
 		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
 		bg->layer = -5;
 
-		// フェードイン・フェードアウト用
-		auto fade = Object::Create<Quad>();	
-		fade->SetTex("asset/Texture/Fade_Black.png",			// 画像読み込み
-			1, 1, 0, 0, 1.0f, 1.0f, 1.0f, 1.0f);
-		fade->SetPos(0.0f, 0.0f, 0.0f);							// 座標設定
-		fade->SetScale(1920.0f, 1080.0f, 0.0f);					// 大きさを設定
-		fade->tags.AddTag("Fade");								// タグ付け
-		fade->layer = 10;										// レイヤーを設定
+		// フェードイン・フェードアウト
+		auto fade = Object::Create<Quad>();
+		fade->SetTex("asset/Texture/Fade.png");						// 画像読み込み
+		fade->SetPos(0.0f, 0.0f, 0.0f);								// 座標設定
+		fade->SetScale(1920.0f, 1080.0f, 0.0f);						// 大きさを設定
+		fade->tags.AddTag("Fade");									// タグ付け
+		fade->layer = 10;											// レイヤーを設定
+
+		// フェードイン・フェードアウト(ゲームオーバー)	
+		auto fade_GameOver = Object::Create<Quad>();
+		fade_GameOver->SetTex("asset/Texture/Fade_Black.png");			// 画像読み込み
+		fade_GameOver->SetPos(0.0f, 0.0f, 0.0f);						// 座標設定
+		fade_GameOver->SetScale(1920.0f, 1080.0f, 0.0f);				// 大きさを設定
+		fade_GameOver->SetColor(1.0f, 1.0f, 1.0f, 0.0f);				// 色設定
+		fade_GameOver->tags.AddTag("Fade_GameOver");					// タグ付け
+		fade_GameOver->layer = -10;										// レイヤーを設定
 
 		// Stage1のCSV読み込み
 		MapEditor::Load("Stage1.csv");
@@ -86,14 +95,22 @@ void GameScene::Init(int _num)
 		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
 		bg->layer = -5;
 
-		// フェードイン・フェードアウト用
+		// フェードイン・フェードアウト
 		auto fade = Object::Create<Quad>();
-		fade->SetTex("asset/Texture/Fade_Black.png",			// 画像読み込み
-			1, 1, 0, 0, 1.0f, 1.0f, 1.0f, 1.0f);
-		fade->SetPos(0.0f, 0.0f, 0.0f);							// 座標設定
-		fade->SetScale(1920.0f, 1080.0f, 0.0f);					// 大きさを設定
-		fade->tags.AddTag("Fade");								// タグ付け
-		fade->layer = 10;										// レイヤーを設定
+		fade->SetTex("asset/Texture/Fade.png");						// 画像読み込み
+		fade->SetPos(0.0f, 0.0f, 0.0f);								// 座標設定
+		fade->SetScale(1920.0f, 1080.0f, 0.0f);						// 大きさを設定
+		fade->tags.AddTag("Fade");									// タグ付け
+		fade->layer = 10;											// レイヤーを設定
+
+		// フェードイン・フェードアウト(ゲームオーバー)	
+		auto fade_GameOver = Object::Create<Quad>();
+		fade_GameOver->SetTex("asset/Texture/Fade_Black.png",			// 画像読み込み
+			1, 1, 0, 0, 1.0f, 1.0f, 1.0f, 0.0f);
+		fade_GameOver->SetPos(0.0f, 0.0f, 0.0f);						// 座標設定
+		fade_GameOver->SetScale(1920.0f, 1080.0f, 0.0f);				// 大きさを設定
+		fade_GameOver->tags.AddTag("Fade_GameOver");					// タグ付け
+		fade_GameOver->layer = -10;										// レイヤーを設定
 
 		// Stage2のCSV読み込み
 		MapEditor::Load("Stage2.csv");
@@ -134,15 +151,23 @@ void GameScene::Init(int _num)
 		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
 		bg->layer = -5;
 
-		// フェードイン・フェードアウト用
+		// フェードイン・フェードアウト
 		auto fade = Object::Create<Quad>();
-		fade->SetTex("asset/Texture/Fade_Black.png",			// 画像読み込み
-			1, 1, 0, 0, 1.0f, 1.0f, 1.0f, 1.0f);
-		fade->SetPos(0.0f, 0.0f, 0.0f);							// 座標設定
-		fade->SetScale(1920.0f, 1080.0f, 0.0f);					// 大きさを設定
-		fade->tags.AddTag("Fade");								// タグ付け
-		fade->layer = 10;										// レイヤーを設定
+		fade->SetTex("asset/Texture/Fade.png");						// 画像読み込み
+		fade->SetPos(0.0f, 0.0f, 0.0f);								// 座標設定
+		fade->SetScale(1920.0f, 1080.0f, 0.0f);						// 大きさを設定
+		fade->tags.AddTag("Fade");									// タグ付け
+		fade->layer = 10;											// レイヤーを設定
 		
+		// フェードイン・フェードアウト(ゲームオーバー)	
+		auto fade_GameOver = Object::Create<Quad>();
+		fade_GameOver->SetTex("asset/Texture/Fade_Black.png",			// 画像読み込み
+			1, 1, 0, 0, 1.0f, 1.0f, 1.0f, 0.0f);
+		fade_GameOver->SetPos(0.0f, 0.0f, 0.0f);						// 座標設定
+		fade_GameOver->SetScale(1920.0f, 1080.0f, 0.0f);				// 大きさを設定
+		fade_GameOver->tags.AddTag("Fade_GameOver");					// タグ付け
+		fade_GameOver->layer = -10;										// レイヤーを設定
+
 		// Stage3のCSV読み込み
 		MapEditor::Load("Stage3.csv");
 
@@ -182,14 +207,22 @@ void GameScene::Init(int _num)
 		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
 		bg->layer = -5;
 
-		// フェードイン・フェードアウト用
+		// フェードイン・フェードアウト
 		auto fade = Object::Create<Quad>();
-		fade->SetTex("asset/Texture/Fade_Black.png",			// 画像読み込み
-			1, 1, 0, 0, 1.0f, 1.0f, 1.0f, 1.0f);
-		fade->SetPos(0.0f, 0.0f, 0.0f);							// 座標設定
-		fade->SetScale(1920.0f, 1080.0f, 0.0f);					// 大きさを設定
-		fade->tags.AddTag("Fade");								// タグ付け
-		fade->layer = 10;										// レイヤーを設定
+		fade->SetTex("asset/Texture/Fade.png");						// 画像読み込み
+		fade->SetPos(0.0f, 0.0f, 0.0f);								// 座標設定
+		fade->SetScale(1920.0f, 1080.0f, 0.0f);						// 大きさを設定
+		fade->tags.AddTag("Fade");									// タグ付け
+		fade->layer = 10;											// レイヤーを設定
+
+		// フェードイン・フェードアウト(ゲームオーバー)	
+		auto fade_GameOver = Object::Create<Quad>();
+		fade_GameOver->SetTex("asset/Texture/Fade_Black.png",			// 画像読み込み
+			1, 1, 0, 0, 1.0f, 1.0f, 1.0f, 0.0f);
+		fade_GameOver->SetPos(0.0f, 0.0f, 0.0f);						// 座標設定
+		fade_GameOver->SetScale(1920.0f, 1080.0f, 0.0f);				// 大きさを設定
+		fade_GameOver->tags.AddTag("Fade_GameOver");					// タグ付け
+		fade_GameOver->layer = -10;										// レイヤーを設定
 
 		// Stage4のCSV読み込み
 		MapEditor::Load("Stage4.csv");
@@ -230,14 +263,22 @@ void GameScene::Init(int _num)
 		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
 		bg->layer = -5;
 		
-		// フェードイン・フェードアウト用
+		// フェードイン・フェードアウト
 		auto fade = Object::Create<Quad>();
-		fade->SetTex("asset/Texture/Fade_Black.png",			// 画像読み込み
-			1, 1, 0, 0, 1.0f, 1.0f, 1.0f, 1.0f);
-		fade->SetPos(0.0f, 0.0f, 0.0f);							// 座標設定
-		fade->SetScale(1920.0f, 1080.0f, 0.0f);					// 大きさを設定
-		fade->tags.AddTag("Fade");								// タグ付け
-		fade->layer = 10;										// レイヤーを設定
+		fade->SetTex("asset/Texture/Fade.png");						// 画像読み込み
+		fade->SetPos(0.0f, 0.0f, 0.0f);								// 座標設定
+		fade->SetScale(1920.0f, 1080.0f, 0.0f);						// 大きさを設定
+		fade->tags.AddTag("Fade");									// タグ付け
+		fade->layer = 10;											// レイヤーを設定
+
+		// フェードイン・フェードアウト(ゲームオーバー)	
+		auto fade_GameOver = Object::Create<Quad>();
+		fade_GameOver->SetTex("asset/Texture/Fade_Black.png",			// 画像読み込み
+			1, 1, 0, 0, 1.0f, 1.0f, 1.0f, 0.0f);
+		fade_GameOver->SetPos(0.0f, 0.0f, 0.0f);						// 座標設定
+		fade_GameOver->SetScale(1920.0f, 1080.0f, 0.0f);				// 大きさを設定
+		fade_GameOver->tags.AddTag("Fade_GameOver");					// タグ付け
+		fade_GameOver->layer = -10;										// レイヤーを設定
 
 		// Stage5のCSV読み込み
 		MapEditor::Load("Stage5.csv");
@@ -278,14 +319,22 @@ void GameScene::Init(int _num)
 		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
 		bg->layer = -5;
 
-		// フェードイン・フェードアウト用
+		// フェードイン・フェードアウト
 		auto fade = Object::Create<Quad>();
-		fade->SetTex("asset/Texture/Fade_Black.png",			// 画像読み込み
-			1, 1, 0, 0, 1.0f, 1.0f, 1.0f, 1.0f);
-		fade->SetPos(0.0f, 0.0f, 0.0f);							// 座標設定
-		fade->SetScale(1920.0f, 1080.0f, 0.0f);					// 大きさを設定
-		fade->tags.AddTag("Fade");								// タグ付け
-		fade->layer = 10;										// レイヤーを設定
+		fade->SetTex("asset/Texture/Fade.png");						// 画像読み込み
+		fade->SetPos(0.0f, 0.0f, 0.0f);								// 座標設定
+		fade->SetScale(1920.0f, 1080.0f, 0.0f);						// 大きさを設定
+		fade->tags.AddTag("Fade");									// タグ付け
+		fade->layer = 10;											// レイヤーを設定
+
+		// フェードイン・フェードアウト(ゲームオーバー)	
+		auto fade_GameOver = Object::Create<Quad>();
+		fade_GameOver->SetTex("asset/Texture/Fade_Black.png",			// 画像読み込み
+			1, 1, 0, 0, 1.0f, 1.0f, 1.0f, 0.0f);
+		fade_GameOver->SetPos(0.0f, 0.0f, 0.0f);						// 座標設定
+		fade_GameOver->SetScale(1920.0f, 1080.0f, 0.0f);				// 大きさを設定
+		fade_GameOver->tags.AddTag("Fade_GameOver");					// タグ付け
+		fade_GameOver->layer = -10;										// レイヤーを設定
 
 		// Stage6のCSV読み込み
 		MapEditor::Load("Stage6.csv");
@@ -326,14 +375,22 @@ void GameScene::Init(int _num)
 		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
 		bg->layer = -5;
 
-		// フェードイン・フェードアウト用
+		// フェードイン・フェードアウト
 		auto fade = Object::Create<Quad>();
-		fade->SetTex("asset/Texture/Fade_Black.png",			// 画像読み込み
-			1, 1, 0, 0, 1.0f, 1.0f, 1.0f, 1.0f);
-		fade->SetPos(0.0f, 0.0f, 0.0f);							// 座標設定
-		fade->SetScale(1920.0f, 1080.0f, 0.0f);					// 大きさを設定
-		fade->tags.AddTag("Fade");								// タグ付け
-		fade->layer = 10;										// レイヤーを設定
+		fade->SetTex("asset/Texture/Fade.png");						// 画像読み込み
+		fade->SetPos(0.0f, 0.0f, 0.0f);								// 座標設定
+		fade->SetScale(1920.0f, 1080.0f, 0.0f);						// 大きさを設定
+		fade->tags.AddTag("Fade");									// タグ付け
+		fade->layer = 10;											// レイヤーを設定
+
+		// フェードイン・フェードアウト(ゲームオーバー)	
+		auto fade_GameOver = Object::Create<Quad>();
+		fade_GameOver->SetTex("asset/Texture/Fade_Black.png",			// 画像読み込み
+			1, 1, 0, 0, 1.0f, 1.0f, 1.0f, 0.0f);
+		fade_GameOver->SetPos(0.0f, 0.0f, 0.0f);						// 座標設定
+		fade_GameOver->SetScale(1920.0f, 1080.0f, 0.0f);				// 大きさを設定
+		fade_GameOver->tags.AddTag("Fade_GameOver");					// タグ付け
+		fade_GameOver->layer = -10;										// レイヤーを設定
 
 		// Stage7のCSV読み込み
 		MapEditor::Load("Stage7.csv");
@@ -374,14 +431,22 @@ void GameScene::Init(int _num)
 		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);
 		bg->layer = -5;
 
-		// フェードイン・フェードアウト用
+		// フェードイン・フェードアウト
 		auto fade = Object::Create<Quad>();
-		fade->SetTex("asset/Texture/Fade_Black.png",			// 画像読み込み
-			1, 1, 0, 0, 1.0f, 1.0f, 1.0f, 1.0f);
-		fade->SetPos(0.0f, 0.0f, 0.0f);							// 座標設定
-		fade->SetScale(1920.0f, 1080.0f, 0.0f);					// 大きさを設定
-		fade->tags.AddTag("Fade");								// タグ付け
-		fade->layer = 10;										// レイヤーを設定
+		fade->SetTex("asset/Texture/Fade.png");						// 画像読み込み
+		fade->SetPos(0.0f, 0.0f, 0.0f);								// 座標設定
+		fade->SetScale(1920.0f, 1080.0f, 0.0f);						// 大きさを設定
+		fade->tags.AddTag("Fade");									// タグ付け
+		fade->layer = 10;											// レイヤーを設定
+
+		// フェードイン・フェードアウト(ゲームオーバー)	
+		auto fade_GameOver = Object::Create<Quad>();
+		fade_GameOver->SetTex("asset/Texture/Fade_Black.png",			// 画像読み込み
+			1, 1, 0, 0, 1.0f, 1.0f, 1.0f, 0.0f);
+		fade_GameOver->SetPos(0.0f, 0.0f, 0.0f);						// 座標設定
+		fade_GameOver->SetScale(1920.0f, 1080.0f, 0.0f);				// 大きさを設定
+		fade_GameOver->tags.AddTag("Fade_GameOver");					// タグ付け
+		fade_GameOver->layer = -10;										// レイヤーを設定
 
 		// Stage8のCSV読み込み
 		MapEditor::Load("Stage8.csv");
@@ -421,8 +486,11 @@ void GameScene::Init(int _num)
 
 void GameScene::Update()
 {
-	// フェードイン処理		(明るくなる)
-	Fade_In();		
+	if (fade_In == true)
+	{
+		// フェードイン処理		(明るくなる)
+		Fade_In();
+	}
 	// コイン獲得数UIの各桁更新処理
 	CoinCounter();
 	// コイン獲得数UIの各桁更新処理
@@ -432,6 +500,10 @@ void GameScene::Update()
 	if (fadeOut_Start == true)
 	{
 		Fade_Out();	// フェードアウト処理	(暗くなる)
+	}
+	if (fadeOut_Start_GameOver == true)
+	{
+		Fade_Out_GameOver();	// フェードアウト(ゲームオーバー)
 	}
 	
 	auto objects = objectInstance;
@@ -476,10 +548,10 @@ void GameScene::FallIsPlayer()
 	{
 		if (GROUND_OFFSET_Y > player->GetPos().y + 120.0f)
 		{
-			fadeOut_Start = true;
+			fadeOut_Start_GameOver = true;
 		}
 	}
-	if (fadeOut_End == true)
+	if (fadeOut_End_GameOver == true)
 	{
 		SceneManager::ChangeScene(GAMEOVER);
 	}
@@ -489,14 +561,52 @@ void GameScene::FallIsPlayer()
 // フェードイン処理		(明るくなる)
 void GameScene::Fade_In()
 {
-	auto Fade = GetInstance()->GetObjects<Quad>();
-	for (auto& fade : Fade)
+	if (Application::GetFpsCounter() % 6 == 0)
 	{
-		if (fade->tags.SearchTag("Fade"))
+		countFadeIn += 1;
+		auto Fade = GetInstance()->GetObjects<Quad>();
+		for (auto& fade : Fade)
 		{
-			if (fade->GetColor().w >= 0.0f)
+			if (fade->tags.SearchTag("Fade"))
 			{
-				fade->SetColor(1.0f, 1.0f, 1.0f, fade->GetColor().w - 0.01f);
+				switch (countFadeIn)
+				{
+				case 1: {
+					fade->SetTex("asset/Texture/Fade/Fade_In_1.png");	// 画像読み込み
+					break; }
+				case 2: {
+					fade->SetTex("asset/Texture/Fade/Fade_In_2.png");	// 画像読み込み
+					break; }
+				case 3: {
+					fade->SetTex("asset/Texture/Fade/Fade_In_3.png");	// 画像読み込み
+					break; }
+				case 4: {
+					fade->SetTex("asset/Texture/Fade/Fade_In_4.png");	// 画像読み込み
+					break; }
+				case 5: {
+					fade->SetTex("asset/Texture/Fade/Fade_In_5.png");	// 画像読み込み
+					break; }
+				case 6: {
+					fade->SetTex("asset/Texture/Fade/Fade_In_6.png");	// 画像読み込み
+					break; }
+				case 7: {
+					fade->SetTex("asset/Texture/Fade/Fade_In_7.png");	// 画像読み込み
+					break; }
+				case 8: {
+					fade->SetTex("asset/Texture/Fade/Fade_In_8.png");	// 画像読み込み
+					break; }
+				case 9: {
+					fade->SetTex("asset/Texture/Fade/Fade_In_9.png");	// 画像読み込み
+					break; }
+				case 10: {
+					fade->SetTex("asset/Texture/Fade/Fade_In_10.png");	// 画像読み込み
+					break; }
+				default: {
+					fade->SetColor(1.0f, 1.0f, 1.0f, 0.0f);
+					fade->SetTex("asset/Texture/Fade.png");		// 画像読み込み
+					fade_In = false;							// フェードイン終了
+					break; }
+				}
 			}
 		}
 	}
@@ -505,18 +615,52 @@ void GameScene::Fade_In()
 // フェードアウト処理	(暗くなる)
 void GameScene::Fade_Out()
 {
-	auto Fade = GetInstance()->GetObjects<Quad>();
-	for (auto& fade : Fade)
+	if (Application::GetFpsCounter() % 6 == 0)
 	{
-		if (fade->tags.SearchTag("Fade"))
+		countFadeOut += 1;
+		auto Fade = GetInstance()->GetObjects<Quad>();
+		for (auto& fade : Fade)
 		{
-			if (fade->GetColor().w <= 1.0f)
+			if (fade->tags.SearchTag("Fade"))
 			{
-				fade->SetColor(1.0f, 1.0f, 1.0f, fade->GetColor().w + 0.05f);
-			}
-			else
-			{
-				fadeOut_End = true;
+				fade->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
+				switch (countFadeOut)
+				{
+				case 1: {
+					fade->SetTex("asset/Texture/Fade/Fade_Out_1.png");	// 画像読み込み
+					break; }
+				case 2: {
+					fade->SetTex("asset/Texture/Fade/Fade_Out_2.png");	// 画像読み込み
+					break; }
+				case 3: {
+					fade->SetTex("asset/Texture/Fade/Fade_Out_3.png");	// 画像読み込み
+					break; }
+				case 4: {
+					fade->SetTex("asset/Texture/Fade/Fade_Out_4.png");	// 画像読み込み
+					break; }
+				case 5: {
+					fade->SetTex("asset/Texture/Fade/Fade_Out_5.png");	// 画像読み込み
+					break; }
+				case 6: {
+					fade->SetTex("asset/Texture/Fade/Fade_Out_6.png");	// 画像読み込み
+					break; }
+				case 7: {
+					fade->SetTex("asset/Texture/Fade/Fade_Out_7.png");	// 画像読み込み
+					break; }
+				case 8: {
+					fade->SetTex("asset/Texture/Fade/Fade_Out_8.png");	// 画像読み込み
+					break; }
+				case 9: {
+					fade->SetTex("asset/Texture/Fade/Fade_Out_9.png");	// 画像読み込み
+					break; }
+				case 10: {
+					fade->SetTex("asset/Texture/Fade/Fade_Out_10.png");	// 画像読み込み
+					break; }
+				default: {
+					fade->SetTex("asset/Texture/Fade.png");		// 画像読み込み
+					fadeOut_End = true;
+					break; }
+				}
 			}
 		}
 	}
@@ -530,5 +674,25 @@ void GameScene::RetryGame()
 	{
 		int stageNum = (int)(GameOverScene::isEndSceneNum - SCENE_ENUM_OFFSET);					
 		SceneManager::ChangeScene(GameOverScene::isEndSceneNum, stageNum);
+	}
+}
+
+void GameScene::Fade_Out_GameOver()
+{
+	auto Fade = GetInstance()->GetObjects<Quad>();
+	for (auto& fade : Fade)
+	{
+		if (fade->tags.SearchTag("Fade_GameOver"))
+		{
+			fade->layer = 10;
+			if (fade->GetColor().w <= 1.0f)
+			{
+				fade->SetColor(1.0f, 1.0f, 1.0f, fade->GetColor().w + 0.05f);
+			}
+			else
+			{
+				fadeOut_End_GameOver = true;
+			}
+		}
 	}
 }

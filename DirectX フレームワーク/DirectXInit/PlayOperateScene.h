@@ -5,8 +5,10 @@ class PlayOperateScene
 	: public Scene
 {
 private:
-	// 特になし
+	int countFadeIn = 0;	// フェードインカウント
+	int countFadeOut = 0;	// フェードアウトカウント
 public:
+	bool fade_In = true;			// フェードインフラグ
 	bool fadeOut_Start = false;		// フェード開始フラグ
 	bool fadeOut_End = false;		// フェード終了フラグ
 
