@@ -8,7 +8,7 @@ void TitleScene::Init()
 	SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM002);	// サウンド停止
 	SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM004);	// サウンド停止
 	SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM005);	// サウンド停止
-	SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM001);	// サウンド再生
+	
 	
 	// オブジェクト作成
 	auto bg				= Object::Create<Quad>();			// 背景
@@ -30,72 +30,27 @@ void TitleScene::Init()
 		fade_move[i] = Object::Create<Quad>();
 		fade_move[i]->layer = -10;
 	}
-	for (int i = 0; i < 20; i++)
-	{
-		switch (i)
-		{
-		case 0:
-			fade_move[i]->SetTex("asset/Texture/Fade/Fade_In_1.png");		// 画像読み込み
-			break;
-		case 1:
-			fade_move[i]->SetTex("asset/Texture/Fade/Fade_In_2.png");		// 画像読み込み
-			break;
-		case 2:
-			fade_move[i]->SetTex("asset/Texture/Fade/Fade_In_3.png");		// 画像読み込み
-			break;
-		case 3:
-			fade_move[3]->SetTex("asset/Texture/Fade/Fade_In_4.png");		// 画像読み込み
-			break;
-		case 4:
-			fade_move[4]->SetTex("asset/Texture/Fade/Fade_In_5.png");		// 画像読み込み
-			break;
-		case 5:
-			fade_move[5]->SetTex("asset/Texture/Fade/Fade_In_6.png");		// 画像読み込み
-			break;
-		case 6:
-			fade_move[6]->SetTex("asset/Texture/Fade/Fade_In_7.png");		// 画像読み込み
-			break;
-		case 7:
-			fade_move[7]->SetTex("asset/Texture/Fade/Fade_In_8.png");		// 画像読み込み
-			break;
-		case 8:
-			fade_move[8]->SetTex("asset/Texture/Fade/Fade_In_9.png");		// 画像読み込み
-			break;
-		case 9:
-			fade_move[9]->SetTex("asset/Texture/Fade/Fade_In_10.png");		// 画像読み込み
-			break;
-		case 10:
-			fade_move[10]->SetTex("asset/Texture/Fade/Fade_Out_1.png");		// 画像読み込み
-			break;
-		case 11:
-			fade_move[11]->SetTex("asset/Texture/Fade/Fade_Out_2.png");		// 画像読み込み
-			break;
-		case 12:
-			fade_move[12]->SetTex("asset/Texture/Fade/Fade_Out_3.png");		// 画像読み込み
-			break;
-		case 13:
-			fade_move[13]->SetTex("asset/Texture/Fade/Fade_Out_4.png");		// 画像読み込み
-			break;
-		case 14:
-			fade_move[14]->SetTex("asset/Texture/Fade/Fade_Out_5.png");		// 画像読み込み
-			break;
-		case 15:
-			fade_move[15]->SetTex("asset/Texture/Fade/Fade_Out_6.png");		// 画像読み込み
-			break;
-		case 16:
-			fade_move[16]->SetTex("asset/Texture/Fade/Fade_Out_7.png");		// 画像読み込み
-			break;
-		case 17:
-			fade_move[17]->SetTex("asset/Texture/Fade/Fade_Out_8.png");		// 画像読み込み
-			break;
-		case 18:
-			fade_move[18]->SetTex("asset/Texture/Fade/Fade_Out_9.png");		// 画像読み込み	
-			break;
-		case 19:
-			fade_move[19]->SetTex("asset/Texture/Fade/Fade_Out_10.png");	// 画像読み込み
-			break;
-		}
-	}
+
+	fade_move[0]->SetTex("asset/Texture/Fade/Fade_In_1.png");		// 画像読み込み
+	fade_move[1]->SetTex("asset/Texture/Fade/Fade_In_2.png");		// 画像読み込み
+	fade_move[2]->SetTex("asset/Texture/Fade/Fade_In_3.png");		// 画像読み込み
+	fade_move[3]->SetTex("asset/Texture/Fade/Fade_In_4.png");		// 画像読み込み
+	fade_move[4]->SetTex("asset/Texture/Fade/Fade_In_5.png");		// 画像読み込み
+	fade_move[5]->SetTex("asset/Texture/Fade/Fade_In_6.png");		// 画像読み込み
+	fade_move[6]->SetTex("asset/Texture/Fade/Fade_In_7.png");		// 画像読み込み
+	fade_move[7]->SetTex("asset/Texture/Fade/Fade_In_8.png");		// 画像読み込み
+	fade_move[8]->SetTex("asset/Texture/Fade/Fade_In_9.png");		// 画像読み込み
+	fade_move[9]->SetTex("asset/Texture/Fade/Fade_In_10.png");		// 画像読み込み
+	fade_move[10]->SetTex("asset/Texture/Fade/Fade_Out_1.png");		// 画像読み込み
+	fade_move[11]->SetTex("asset/Texture/Fade/Fade_Out_2.png");		// 画像読み込み
+	fade_move[12]->SetTex("asset/Texture/Fade/Fade_Out_3.png");		// 画像読み込み
+	fade_move[13]->SetTex("asset/Texture/Fade/Fade_Out_4.png");		// 画像読み込み
+	fade_move[14]->SetTex("asset/Texture/Fade/Fade_Out_5.png");		// 画像読み込み
+	fade_move[15]->SetTex("asset/Texture/Fade/Fade_Out_6.png");		// 画像読み込み
+	fade_move[16]->SetTex("asset/Texture/Fade/Fade_Out_7.png");		// 画像読み込み
+	fade_move[17]->SetTex("asset/Texture/Fade/Fade_Out_8.png");		// 画像読み込み
+	fade_move[18]->SetTex("asset/Texture/Fade/Fade_Out_9.png");		// 画像読み込み
+	fade_move[19]->SetTex("asset/Texture/Fade/Fade_Out_10.png");	// 画像読み込み
 				
 	bg->SetTex("asset/Texture/Bg.png");						// 画像読み込み
 	bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);			// 大きさを設定
@@ -118,6 +73,7 @@ void TitleScene::Init()
 	frame->SetScale(800.0f, 200.0f, 0.0f);					// 大きさを設定
 	frame->tags.AddTag("frame");							// タグ付け
 
+	SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM001);	// サウンド再生
 	fade_In = true;
 }
 
