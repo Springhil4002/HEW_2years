@@ -8,6 +8,10 @@
 //=============================================================================
 
 class Player;
+class TitleScene;
+class HomeScene;
+class GameScene;
+class ResultScene;
 class Application
 {
 private:

@@ -7,7 +7,10 @@ class HomeScene
 private:
 	int homeSceneNum = 0;	// HomeSceneの切り替え用の番号
 	int frameNum = 0;		// frameの識別用番号
+	int countFadeIn = 0;	// フェードインカウント
+	int countFadeOut = 0;	// フェードアウトカウント
 public:
+	bool fade_In = true;			// フェードインフラグ
 	bool fadeOut_Start = false;		// フェード開始フラグ
 	bool fadeOut_End = false;		// フェード終了フラグ
 

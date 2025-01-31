@@ -27,15 +27,15 @@ void GameOverScene::Init()
 
 	white_Logo1->SetTex("asset/Texture/White_Logo.png");		// 画像読み込み
 	white_Logo1->SetPos(-450.0f, -300.0f, 0.0f);				// 座標を設定
-	white_Logo1->SetScale(400.0f, 110.0f, 0.0f);				// 大きさを設定
+	white_Logo1->SetScale(300.0f, 100.0f, 0.0f);				// 大きさを設定
 
 	white_Logo2->SetTex("asset/Texture/White_Logo.png");		// 画像読み込み
 	white_Logo2->SetPos(0.0f, -300.0f, 0.0f);					// 座標を設定
-	white_Logo2->SetScale(400.0f, 110.0f, 0.0f);				// 大きさを設定
+	white_Logo2->SetScale(300.0f, 100.0f, 0.0f);				// 大きさを設定
 
 	white_Logo3->SetTex("asset/Texture/White_Logo.png");		// 画像読み込み
 	white_Logo3->SetPos(450.0f, -300.0f, 0.0f);					// 座標を設定
-	white_Logo3->SetScale(400.0f, 110.0f, 0.0f);				// 大きさを設定
+	white_Logo3->SetScale(300.0f, 100.0f, 0.0f);				// 大きさを設定
 
 	// フェードイン・フェードアウト用
 	auto fade = Object::Create<Quad>();
@@ -52,22 +52,22 @@ void GameOverScene::Init()
 
 	returnTitle->SetTex("asset/Texture/Return_toTitle.png");	// 画像読み込み
 	returnTitle->SetPos(-450.0f, -300.0f, 0.0f);				// 座標を設定
-	returnTitle->SetScale(420.0f, 150.0f, 0.0f);				// 大きさを設定
+	returnTitle->SetScale(300.0f, 100.0f, 0.0f);				// 大きさを設定
 	returnTitle->layer = 1;
 
 	returnHome->SetTex("asset/Texture/Return_toHome.png");		// 画像読み込み
 	returnHome->SetPos(0.0f, -300.0f, 0.0f);					// 座標を設定
-	returnHome->SetScale(420.0f, 150.0f, 0.0f);					// 大きさを設定
+	returnHome->SetScale(300.0f, 100.0f, 0.0f);					// 大きさを設定
 	returnHome->layer = 1;
 
 	retryLogo->SetTex("asset/Texture/Retry.png");				// 画像読み込み
 	retryLogo->SetPos(450.0f, -300.0f, 0.0f);					// 座標を設定
-	retryLogo->SetScale(420.0f, 150.0f, 0.0f);					// 大きさを設定
+	retryLogo->SetScale(300.0f, 100.0f, 0.0f);					// 大きさを設定
 	retryLogo->layer = 1;
 
 	frame->SetTex("asset/Texture/Frame.png");					// 画像読み込み
 	frame->SetPos(-450.0f, -300.0f, 0.0f);						// 座標を設定
-	frame->SetScale(420.0f, 150.0f, 0.0f);						// 大きさを設定
+	frame->SetScale(400.0f, 150.0f, 0.0f);						// 大きさを設定
 	frame->tags.AddTag("frame");								// タグ付け
 	frame->layer = 1;
 }

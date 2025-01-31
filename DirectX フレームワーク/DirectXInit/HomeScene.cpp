@@ -1,6 +1,7 @@
 #include "HomeScene.h"
 #include "SceneManager.h"
 #include "Quad.h"
+#include "Application.h"
 
 // コンストラクタ
 HomeScene::HomeScene(int _num)
@@ -16,7 +17,7 @@ void HomeScene::Init(int _num)
 	SceneManager::m_SoundManager.Stop(SOUND_LABEL_BGM005);			// サウンド停止
 	SceneManager::m_SoundManager.Play(SOUND_LABEL_BGM002);			// サウンド再生
 	homeSceneNum = _num;
-	
+		
 	// ステージ選択シーンの描画分岐処理
 	switch (homeSceneNum) {
 	case 1: {
@@ -29,19 +30,23 @@ void HomeScene::Init(int _num)
 		auto rightArrow				= Object::Create<Quad>();		// 矢印アイコン
 		auto frame					= Object::Create<Quad>();		// アイコンの枠
 		auto backTitle				= Object::Create<Quad>();		// タイトルに戻る
+		auto howToPlay1				= Object::Create<Quad>();		// 操作説明	決定
+		auto howToPlay2				= Object::Create<Quad>();		// 操作説明	LB
+		auto howToPlay3				= Object::Create<Quad>();		// 操作説明	RB
+		auto howToPlay4				= Object::Create<Quad>();		// 操作説明	上下
+		auto howToPlay5				= Object::Create<Quad>();		// 操作説明	左右
 
-		bg->SetTex("asset/Texture/Home.jpg");						// 画像読み込み
+		bg->SetTex("asset/Texture/Bg.png");							// 画像読み込み
 		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);				// 大きさを設定
 		bg->layer = -1;												// レイヤーを設定
 
-		// フェードイン・フェードアウト用
+		// フェードインオブジェクト作成
 		auto fade = Object::Create<Quad>();
-		fade->SetTex("asset/Texture/Fade_Black.png",			// 画像読み込み
-			1, 1, 0, 0, 1.0f, 1.0f, 1.0f, 1.0f);
-		fade->SetPos(0.0f, 0.0f, 0.0f);							// 座標設定
-		fade->SetScale(1920.0f, 1080.0f, 0.0f);					// 大きさを設定
-		fade->tags.AddTag("Fade");								// タグ付け
-		fade->layer = 2;										// レイヤーを設定
+		fade->SetTex("asset/Texture/Fade.png");		// 画像読み込み
+		fade->SetPos(0.0f, 0.0f, 0.0f);				// 座標設定
+		fade->SetScale(1920.0f, 1080.0f, 0.0f);		// 大きさを設定
+		fade->tags.AddTag("Fade");					// タグ付け
+		fade->layer = 10;							// レイヤーを設定
 
 		stage_Logo1->SetTex("asset/Texture/Stage1.png");			// 画像読み込み
 		stage_Logo1->SetPos(300.0f, 300.0f, 0.0f);					// 座標を設定
@@ -67,6 +72,27 @@ void HomeScene::Init(int _num)
 		backTitle->SetTex("asset/Texture/BackTitle.png");			// 画像読み込み
 		backTitle->SetPos(-900.0f, 480.0f, 0.0f);					// 座標を設定
 		backTitle->SetScale(100.0f, 100.0f, 0.0f);					// 大きさを設定
+
+		howToPlay1->SetTex("asset/Texture/Decision_Logo.png");		// 画像読み込み
+		howToPlay1->SetPos(-400.0f, 300.0f, 0.0f);					// 座標設定
+		howToPlay1->SetScale(400.0f, 150.0f, 0.0f);					// 大きさを設定
+
+		howToPlay2->SetTex("asset/Texture/LB_Logo.png");			// 画像読み込み
+		howToPlay2->SetPos(-400.0f, 150.0f,0.0f);					// 座標設定
+		howToPlay2->SetScale(800.0f, 150.0f, 0.0f);					// 大きさを設定
+		
+		howToPlay3->SetTex("asset/Texture/RB_Logo.png");			// 画像読み込み
+		howToPlay3->SetPos(-400.0f, 0.0f, 0.0f);					// 座標設定
+		howToPlay3->SetScale(800.0f, 150.0f, 0.0f);					// 大きさを設定
+
+		howToPlay4->SetTex("asset/Texture/LeftRight_Logo.png");		// 画像読み込み
+		howToPlay4->SetPos(-400.0f, -150.0f, 0.0f);					// 座標設定
+		howToPlay4->SetScale(600.0f, 150.0f, 0.0f);					// 大きさを設定
+
+		howToPlay5->SetTex("asset/Texture/UpDown_Logo.png");		// 画像読み込み
+		howToPlay5->SetPos(-400.0f, -300.0f, 0.0f);					// 座標設定
+		howToPlay5->SetScale(600.0f, 150.0f, 0.0f);					// 大きさを設定
+
 		break; }
 	case 2: {
 		frameNum = 4;		
@@ -80,7 +106,7 @@ void HomeScene::Init(int _num)
 		auto frame					= Object::Create<Quad>();		// アイコンを囲むフレーム
 		auto backTitle				= Object::Create<Quad>();		// タイトルに戻る
 
-		bg->SetTex("asset/Texture/Home.jpg");						// 画像読み込み
+		bg->SetTex("asset/Texture/Bg.png");							// 画像読み込み
 		bg->SetScale(BACKGROUND_X, BACKGROUND_Y, 0.0f);				// 大きさを設定
 		bg->layer = -1;												// レイヤーを設定
 
@@ -135,9 +161,11 @@ void HomeScene::Init(int _num)
 // 更新処理
 void HomeScene::Update()
 {
-	// フェードイン処理	(明るくなる)
-	Fade_In();
-
+	if (fade_In = true)
+	{
+		// フェードイン処理	(明るくなる)
+		Fade_In();
+	}
 	Frame_Input();	// frame移動入力処理
 	Frame_Move();	// frame移動処理
 	ChangeHome();	// HomeScene切り替え処理
@@ -468,34 +496,101 @@ void HomeScene::ChangeHome()
 // フェードイン処理		(明るくなる)
 void HomeScene::Fade_In()
 {
-	auto Fade = GetInstance()->GetObjects<Quad>();
-	for (auto& fade : Fade)
-	{
-		if (fade->tags.SearchTag("Fade"))
+		countFadeIn += 1;
+		auto Fade = GetInstance()->GetObjects<Quad>();
+		for (auto& fade : Fade)
 		{
-			if (fade->GetColor().w >= 0.0f)
+			if (fade->tags.SearchTag("Fade"))
 			{
-				fade->SetColor(1.0f, 1.0f, 1.0f, fade->GetColor().w - 0.01f);
+				switch (countFadeIn)
+				{
+				case 1: {
+					fade->SetTex("asset/Texture/Fade_In_1.png");	// 画像読み込み
+					break; }
+				case 2: {
+					fade->SetTex("asset/Texture/Fade_In_2.png");	// 画像読み込み
+					break; }
+				case 3: {
+					fade->SetTex("asset/Texture/Fade_In_3.png");	// 画像読み込み
+					break; }
+				case 4: {
+					fade->SetTex("asset/Texture/Fade_In_4.png");	// 画像読み込み
+					break; }
+				case 5: {
+					fade->SetTex("asset/Texture/Fade_In_5.png");	// 画像読み込み
+					break; }
+				case 6: {
+					fade->SetTex("asset/Texture/Fade_In_6.png");	// 画像読み込み
+					break; }
+				case 7: {
+					fade->SetTex("asset/Texture/Fade_In_7.png");	// 画像読み込み
+					break; }
+				case 8: {
+					fade->SetTex("asset/Texture/Fade_In_8.png");	// 画像読み込み
+					break; }
+				case 9: {
+					fade->SetTex("asset/Texture/Fade_In_9.png");	// 画像読み込み
+					break; }
+				case 10: {
+					fade->SetTex("asset/Texture/Fade_In_10.png");	// 画像読み込み
+					break; }
+				default: {
+					fade->SetColor(1.0f, 1.0f, 1.0f, 0.0f);
+					fade->SetTex("asset/Texture/Fade.png");		// 画像読み込み
+					fade_In = false;							// フェードイン終了
+					break; }
+				}
 			}
 		}
-	}
 }
 
 // フェードアウト処理	(暗くなる)
 void HomeScene::Fade_Out()
 {
+	countFadeOut += 1;
 	auto Fade = GetInstance()->GetObjects<Quad>();
 	for (auto& fade : Fade)
 	{
 		if (fade->tags.SearchTag("Fade"))
 		{
-			if (fade->GetColor().w <= 1.0f)
+			fade->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
+			switch (countFadeOut)
 			{
-				fade->SetColor(1.0f, 1.0f, 1.0f, fade->GetColor().w + 0.05f);
-			}
-			else
-			{
+			case 1: {
+				fade->SetTex("asset/Texture/Fade_Out_1.png");	// 画像読み込み
+				break; }
+			case 2: {
+				fade->SetTex("asset/Texture/Fade_Out_2.png");	// 画像読み込み
+				break; }
+			case 3: {
+				fade->SetTex("asset/Texture/Fade_Out_3.png");	// 画像読み込み
+				break; }
+			case 4: {
+				fade->SetTex("asset/Texture/Fade_Out_4.png");	// 画像読み込み
+				break; }
+			case 5: {
+				fade->SetTex("asset/Texture/Fade_Out_5.png");	// 画像読み込み
+				break; }
+			case 6: {
+				fade->SetTex("asset/Texture/Fade_Out_6.png");	// 画像読み込み
+				break; }
+			case 7: {
+				fade->SetTex("asset/Texture/Fade_Out_7.png");	// 画像読み込み
+				break; }
+			case 8: {
+				fade->SetTex("asset/Texture/Fade_Out_8.png");	// 画像読み込み
+				break; }
+			case 9: {
+				fade->SetTex("asset/Texture/Fade_Out_9.png");	// 画像読み込み
+				break; }
+			case 10: {
+				fade->SetTex("asset/Texture/Fade_Out_10.png");	// 画像読み込み
+				break; }
+			default: {
+				fade->SetColor(1.0f, 1.0f, 1.0f, 0.0f);
+				fade->SetTex("asset/Texture/Fade.png");		// 画像読み込み
 				fadeOut_End = true;
+				break; }
 			}
 		}
 	}
