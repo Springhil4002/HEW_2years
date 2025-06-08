@@ -192,7 +192,6 @@
     <ClInclude Include="CSV.h" />
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="Delay.h" />
-    <ClInclude Include="Direction.h" />
     <ClInclude Include="dx11helper.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Enum.h" />

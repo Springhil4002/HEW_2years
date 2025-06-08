@@ -21,7 +21,6 @@ void Band::Init()
 	SetScale(60, 60, 0);
 	
 	// æ’[‚Ì‰ŠúÝ’è
-	//tip->SetTex("asset/Texture/Band_Tip.png");
 	tip->SetPos(m_Position.x - BLOCK_SIZE * 2.0f, m_Position.y, 0);
 	oldPos = { m_Position.x - BLOCK_SIZE * 2.0f, m_Position.y, 0 };
 
@@ -241,14 +240,6 @@ void Band::ResetObject()
 			Add(obj);
 		}
 	}
-
-	//for (auto& tag : tags)
-	//{
-	//	for (auto& obj : objects)
-	//	{
-	//		obj->tags.AddTag(tag);
-	//	}
-	//}
 }
 
 std::vector<std::string> Band::GetData() const
@@ -279,7 +270,6 @@ bool Band::SetData(std::vector<std::string> _data)
 		std::copy(_data.begin() + 1, _data.begin() + 7 + stoi(_data[6]), objBuf.begin());
 		Object::SetData(objBuf);
 
-		//SetLength(stoi(_data[7 + stoi(_data[6])]));
 		L = stoi(_data[7 + stoi(_data[6])]);
 
 		objectTag = _data[8 + stoi(_data[6])];
